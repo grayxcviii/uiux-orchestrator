@@ -62,17 +62,35 @@
 
 ## Install
 
+**Codex** (npm CLI; available after the first npm release):
+
+```bash
+npx uiux-orchestrator install
+```
+
+This installs the skill for the current project only. Use `npx uiux-orchestrator install --global` (or `-g`) to make it available in every project. `--project` (or `-p`) explicitly selects project scope. The package is prepared in this repository but has not been published to npm yet.
+
+**Codex and other Agent Skills agents** (available now; Node.js 22.20+):
+
+```bash
+npx skills add LongNguyen2312/uiux-orchestrator --skill uiux-orchestrator -g -a codex
+```
+
+Run it without `-g` to install in the current project. Replace `codex` with your agent name, or omit `-a codex` to choose interactively. This installs the orchestrator skill; optional specialist skills have separate install instructions in the [usage guide](docs/usage.md#recommended-skills).
+
+**Claude Code plugin** (includes six specialist skills):
+
 ```text
 /plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator
 ```
 
-Then just ask:
+Then describe the UI task to your agent. In Claude Code, you can call the skill directly:
 
 ```text
 /uiux-orchestrator The onboarding animation feels dead. Make it smooth.
 ```
 
-<sub>Codex and other agents: see the [usage guide](docs/usage.md#install-update-remove).</sub>
+<sub>Install, update and removal options: [usage guide](docs/usage.md#install-update-remove).</sub>
 
 ## Numbers, not adjectives
 

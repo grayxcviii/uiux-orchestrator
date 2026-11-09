@@ -25,8 +25,38 @@ Update: `claude plugin marketplace update uiux-orchestrator`, then
 
 Remove: `claude plugin uninstall uiux-orchestrator@uiux-orchestrator`.
 
-**Codex CLI and other Agent Skills agents:** clone once, then link the skill folder into the
-agent's skills directory:
+**Codex npm CLI:** after its first npm release:
+
+```bash
+npx uiux-orchestrator install           # current project only
+npx uiux-orchestrator install --project # explicit project scope (-p)
+npx uiux-orchestrator install --global  # every project (-g)
+```
+
+Project scope writes to `<project>/.agents/skills/uiux-orchestrator` and is discovered only
+inside that project. Global scope writes to `~/.agents/skills/uiux-orchestrator` (or
+`$CODEX_HOME/skills/uiux-orchestrator` when configured), which Codex loads across projects.
+A global installation remains available even in projects without a local installation.
+Running the same command again updates an installation made by this CLI. The npm package is
+prepared in this repository but has not been published yet.
+
+**Codex CLI and other Agent Skills agents:** available now with Node.js 22.20 or later. Install globally so
+the skill is available in every project:
+
+```bash
+npx skills add LongNguyen2312/uiux-orchestrator --skill uiux-orchestrator -g -a codex
+```
+
+Omit `-g` to install in the current project. Replace `codex` with another agent name, or omit
+`-a codex` to select an agent interactively. This installs only the orchestrator skill; the
+Claude Code plugin also installs six specialist skills. See [recommended skills](#recommended-skills)
+for optional manual installs.
+
+Update with `npx skills update uiux-orchestrator -g` and remove with
+`npx skills remove uiux-orchestrator -g -a codex` (omit `-g` for a project install).
+
+For a manual install without Node.js, clone once and link the skill folder into the agent's
+skills directory:
 
 ```bash
 git clone https://github.com/LongNguyen2312/uiux-orchestrator.git ~/uiux-orchestrator
@@ -37,7 +67,7 @@ ln -s ~/uiux-orchestrator/skills/uiux-orchestrator ~/.codex/skills/uiux-orchestr
 To update, run `git -C ~/uiux-orchestrator pull`. Only the folder `skills/uiux-orchestrator/` is
 the skill; the rest of the repository is docs and tests.
 
-**Requirements:** none to install.
+**Requirements:** Node.js 18+ for the npm CLI, Node.js 22.20+ for `npx skills`; none for the Claude Code plugin or manual install.
 - The optional validation scripts need Node 18+ and Chrome, Chromium or Edge.
 - `python3` is used only by the repository's own checks.
 

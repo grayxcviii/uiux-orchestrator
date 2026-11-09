@@ -1,0 +1,25 @@
+{
+  "name": "uiux-orchestrator",
+  "version": "1.1.0",
+  "description": "One-command installer for the UIUX Orchestrator Codex skill",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LongNguyen2312/uiux-orchestrator.git"
+  },
+  "bin": {
+    "uiux-orchestrator": "bin/uiux-orchestrator.mjs"
+  },
+  "files": [
+    "bin/",
+    "skills/uiux-orchestrator/",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/npm-cli.test.mjs tests/npm-package.test.mjs"
+  }
+}
