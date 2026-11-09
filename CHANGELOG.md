@@ -17,6 +17,13 @@ format.
   orchestrator-only success. No SDKs, app libraries, setup scripts or hooks run during install.
 - Detection, selection, real local Git-source, licence, collision and symlink-escape tests.
 
+### Fixed
+- Preserve supplementary original notices for Lucide/Feather, vscode-icons, Simple Icons,
+  gilbarbara/logos and ehmo platform references. Verify Taste asset-credit manifests and repair
+  missing notices or damaged credits on managed reruns, including at the same source revision.
+- Retain original source bytes regardless of Git's `core.autocrlf` setting; include asset usage
+  guidance and release-gate/package checks for the supplementary notices.
+
 ## [1.2.0] - 2026-11-09
 
 ### Changed
