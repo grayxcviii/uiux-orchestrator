@@ -1,11 +1,11 @@
 <h1 align="center">UIUX Orchestrator</h1>
 
-<h3 align="center">Turn UI requests into working interfaces.</h3>
+<h3 align="center">Professional UI/UX, from concept to code.</h3>
 
 <p align="center">
-  Describe what you want to build or improve.<br>
-  UIUX Orchestrator guides your coding agent from design decisions to implementation and review,
-  keeping the work grounded in your project.
+  Give your interface a clear concept and a cohesive experience.<br>
+  UIUX Orchestrator guides your coding agent through UX structure, visual direction,
+  interaction and implementation — shaped around your product and brand.
 </p>
 
 <p align="center">
@@ -21,17 +21,21 @@
 
 <sub>Demo: Vahl, a fictional brand. [Before & after](docs/assets/vahl-fullpage.jpg) · [Photo credits](docs/assets/CREDITS.md)</sub>
 
-## Keep the whole interface in view
+## A concept that carries through the whole interface
 
-From landing pages to onboarding flows, UIUX Orchestrator keeps design decisions connected to
-the code that ships.
+Professional UI/UX brings usability and visual identity together. UIUX Orchestrator helps your
+agent establish that direction, explore alternatives when requested, and carry the chosen
+concept through to a working web or mobile interface.
 
-- **Start with your project.** Reuse its components, tokens and conventions; follow supplied designs.
-- **Keep decisions consistent.** Coordinate design, motion and implementation, resolving conflicting skill guidance within your constraints.
-- **Fit the task.** Small fixes and specified components take a shorter path. Larger changes get focused specialists and review.
-- **Close the loop.** Check the implementation, inspect rendered output when tooling allows, and report what remains unverified.
+- **UX with purpose.** Define user flows, content hierarchy, primary actions and interaction states.
+- **A coherent visual concept.** Connect typography, color, layout, components and motion to your brand and audience.
+- **Design decisions that survive implementation.** Coordinate specialist work around the chosen concept, existing tokens and project constraints.
+- **Review and refinement.** Check usability, accessibility and implementation; inspect rendered output when tooling allows and disclose unverified details.
 
-**Understand the project → choose the right expertise → build → check → refine.**
+**Understand the product → shape the concept → design the experience → build → review → refine.**
+
+Already have a design system or a supplied design? It follows that direction. Small, specified
+changes take a shorter path without starting a new concept exercise.
 
 Includes guidance for **web, React Native, iOS, Android and Flutter**. Install for Claude Code,
 Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode or Windsurf, with the models your agent supports.
@@ -57,6 +61,13 @@ Open your agent in the project and ask:
 ```text
 Use uiux-orchestrator to redesign this dashboard.
 Keep our components and brand colors. Make the main actions easier to find.
+```
+
+Or explore before building:
+
+```text
+Use uiux-orchestrator to propose three distinct UI/UX concepts for our productivity app.
+Explain the user flow, visual direction and motion. Let me choose before implementation.
 ```
 
 Ordinary UI/UX prompts can activate it automatically; naming it explicitly requests the workflow.
