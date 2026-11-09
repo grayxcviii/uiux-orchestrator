@@ -4,6 +4,18 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.1.1] - 2026-11-09
+
+### Fixed
+- Include project and third-party licence/NOTICE files in the npm package and installed skill.
+  Preserve original upstream texts with source revisions and SHA-256 hashes.
+- Add an offline licence gate to CI and npm prepublish checks, plus packaged-install tests.
+- Keep frontend-design as the only automatic plugin dependency. Move five specialists to
+  author-managed installs because their selected folders lacked complete licence/NOTICE files.
+- Remove the unlicensed dickwu Apple Design skill from active routing and recommendations.
+  Use official Apple guidance and licensed reviewers. Historical test results are unchanged;
+  the current routing answer key records this change.
+
 ## [1.1.0] - 2026-11-06
 
 ### Added

@@ -52,8 +52,8 @@ npx skills add grayxcviii/uiux-orchestrator --skill uiux-orchestrator
 Choose your agent when prompted. Add `-g` to use it across projects.
 
 [Claude Code plugin installation →](docs/usage.md#install-update-remove)
-The plugin includes six specialist skills; the skill-only installer works with the specialists
-you already have, or uses its built-in guidance.
+The plugin includes frontend-design. Add other specialist skills when you need them; the
+orchestrator also works with its built-in guidance.
 
 ## Tell it what you want to change
 

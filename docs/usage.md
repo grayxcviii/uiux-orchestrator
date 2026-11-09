@@ -72,7 +72,7 @@ npx skills add grayxcviii/uiux-orchestrator --skill uiux-orchestrator -g -a code
 
 Omit `-g` to install in the current project. Replace `codex` with another agent name, or omit
 `-a codex` to select an agent interactively. This installs only the orchestrator skill; the
-Claude Code plugin also installs six specialist skills. See [recommended skills](#recommended-skills)
+Claude Code plugin also installs frontend-design. Other specialists are optional installs. See [recommended skills](#recommended-skills)
 for optional manual installs.
 
 Update with `npx skills update uiux-orchestrator -g` and remove with
@@ -240,28 +240,20 @@ two assessment sub-agents. The orchestrator uses it when the review itself is th
 
 ### Installed automatically (Claude Code plugin)
 
-Installing the Claude Code plugin also installs these six skills as **plugin dependencies**:
+The plugin installs **Anthropic frontend-design**, whose selected upstream folder includes its
+Apache-2.0 licence. Other specialists are optional installs from their authors' distributions.
+Previously automatic downloads of Impeccable, Taste, UI UX Pro Max, Emil's motion skills and
+Vercel web-design-guidelines have been removed: their selected folders did not include a complete
+standalone licence (and, for Impeccable, its upstream NOTICE was also absent).
 
-| Dependency | What loads |
-|---|---|
-| `impeccable` | Impeccable 4.8.0: 1 skill, 4 agents and its 3 hooks |
-| `taste-skill` | `design-taste-frontend` |
-| `ui-ux-pro-max` | `ui-ux-pro-max` (needs Python 3 for its search scripts) |
-| `emil-kowalski-motion` | `animate`, `choreograph`, `animation-performance`, `improve-animations`, `review-animations`, `find-animation-opportunities`, `remove-animations`, `animate-expo` |
-| `frontend-design` | `frontend-design` |
-| `web-design-guidelines` | `web-design-guidelines` |
+Existing installations are not removed or modified by this update. If you keep a previously
+installed specialist, reinstall it using its author's supported distribution and check that its
+licence and notices are retained. Impeccable can install hooks and send anonymous telemetry;
+turn telemetry off with `npx impeccable telemetry off` or `DO_NOT_TRACK=1`.
 
-How the dependencies work:
-- Each one is fetched from its author's repository at a pinned commit, the version this project
-  verified. Nothing is copied into this repository.
-- Together they add about 2,600 tokens of skill descriptions to each session.
-- Impeccable ships hooks that run in the background, and it can send anonymous telemetry when a new
-  design starts. Turn that off with `npx impeccable telemetry off` or `DO_NOT_TRACK=1`.
-- `claude plugin uninstall uiux-orchestrator@uiux-orchestrator --prune` removes the orchestrator
-  together with the dependencies it installed.
-- If you already installed one of these separately, you may see it twice. Keep either copy.
-
-Agents other than Claude Code don't support plugin dependencies. Install the skills below yourself.
+The unlicensed dickwu Apple Design skill is no longer recommended or routed. Use
+[Apple's official Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines)
+and the built-in iOS platform guidance instead.
 
 ### Install yourself
 
@@ -299,7 +291,6 @@ The commands come from each project's README (checked 2026-11-06):
 | [Callstack (incl. agent-device)](https://github.com/callstackincubator/agent-skills) | `npx skills@latest add callstackincubator/agent-skills --skill '*'` |
 | [Android](https://github.com/android/skills) | `/plugin marketplace add android/skills`, then `/plugin install android-skills@android-skills` |
 | [SwiftUI Pro](https://github.com/twostraws/SwiftUI-Agent-Skill) | `npx skills add https://github.com/twostraws/swiftui-agent-skill --skill swiftui-pro` |
-| [Apple Design (dickwu)](https://github.com/dickwu/apple-design-skill) | `npx skills add dickwu/apple-design-skill` |
 
 When a missing skill would clearly improve a task, the report says so in one line. The orchestrator
 never installs anything for you. What each skill is used for is in

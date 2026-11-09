@@ -476,7 +476,7 @@ providers:
         priority: optional
         value_if_missing: low
       - id: emil/apple-design
-        names: [apple-design]   # collides with dickwu/apple-design — disambiguate by SKILL.md description ("translated for the web")
+        names: [apple-design]
         expected_outputs: ["web interaction/motion guidance"]
         slots: [motion-build]
         authority: {gesture-feel: high}
@@ -759,39 +759,6 @@ providers:
         priority: optional
         value_if_missing: low
         notes: "Choosing a driver for a new web surface: Large/full product or a new visual world → impeccable/new-work; marketing site with Node 22 + Chrome and kit consent → taste; a single page or small surface → frontend-design (or new-work)."
-
-  # ───────────────────────────── dickwu ─────────────────────────────
-  - provider: dickwu
-    source: https://github.com/dickwu/apple-design-skill
-    verified_version: "ff4ebdd"
-    verified_on: 2026-11-06
-    install_hint: "npx skills add dickwu/apple-design-skill"
-    skills:
-      - id: dickwu/apple-design
-        names: [apple-design]
-        required_inputs: ["platform/framework", "screens or code paths in scope"]
-        expected_outputs: ["HIG review report: Critical, Improvements, Craft notes, with path:line"]
-        kind: skill
-        role: reviewer
-        cost: medium
-        invocation: model
-        slots: [platform-conformance]
-        authority: {hig-compliance: high, apple-platform-conventions: high, liquid-glass: high}
-        platforms: [ios, react-native, flutter]
-        frameworks: [any]
-        capabilities: ["HIG review through five lenses with Critical/Improvements/Craft report", "124 HIG pages bundled (read 8–12 per review)", "modes: Liquid Glass, iPhone Duo, Apple Pay (App Review 4.9), navigation, forms, onboarding/permissions, accessibility, app icon, dark mode", "code audit citing path:line", "HIG → Flutter/React Native vocabulary mapping"]
-        use_when: [review or audit of UI shipping to Apple platforms (SwiftUI/UIKit, or React Native/Flutter iOS builds), Liquid Glass or iPhone Duo questions, HIG compliance before App Store submission]
-        avoid_when: [Android-only apps (would impose Apple conventions), web apps, read-only tasks when only its improvement mode would apply]
-        side_effects: ["scripts/pull-hig.mjs refreshes the bundled HIG pages over the network — do not run it during a task"]
-        limitations: ["improvement mode edits code: use only when mutation is allowed", "desktop targets (macOS, Tauri, Electron) are outside this orchestrator's platform list"]
-        brief: >-
-          Name the platform/framework and the screens; ask for its review report (Critical,
-          Improvements, Craft notes) in review mode, citing path:line when code is provided. Merge
-          findings with impeccable/critique by location; HIG findings carry the platform-convention
-          authority.
-        priority: recommended
-        value_if_missing: high
-        notes: "Name collision: Emil Kowalski's skill is also named `apple-design` (web). Tell them apart by the SKILL.md description: dickwu's says 'Cross-platform UI/UX design reviewer grounded in Apple's Human Interface Guidelines'; Emil's says 'translated for the web'."
 
   # ───────────────────────────── Android (official) ─────────────────────────────
   - provider: android

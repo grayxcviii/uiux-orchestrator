@@ -218,8 +218,7 @@
           "impeccable/harden",
           "uupm/search",
           "impeccable/audit",
-          "expo/router",
-          "dickwu/apple-design"
+          "expo/router"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -911,8 +910,7 @@
         "may_select": [
           "impeccable/audit",
           "twostraws/swiftui-pro",
-          "callstack/agent-device",
-          "dickwu/apple-design"
+          "callstack/agent-device"
         ],
         "must_not_select": [
           "vercel/web-design-guidelines",
@@ -1520,8 +1518,7 @@
           "impeccable/shape",
           "emil/find-animation-opportunities",
           "impeccable/new-work",
-          "uupm/design-system",
-          "dickwu/apple-design"
+          "uupm/design-system"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -1567,8 +1564,7 @@
         "must_select": [],
         "may_select": [
           "impeccable/critique",
-          "impeccable/audit",
-          "dickwu/apple-design"
+          "impeccable/audit"
         ],
         "must_not_select": [
           "callstack/agent-device",
@@ -1796,7 +1792,7 @@
         "driver": null,
         "must_select": [
           [
-            "dickwu/apple-design"
+            "impeccable/critique"
           ]
         ],
         "may_select": [
@@ -1824,7 +1820,7 @@
       },
       "expected_outputs": "HIG/Liquid Glass findings with severity and file:line.",
       "expected_validation": "L0 + simulator L4.",
-      "pass_criteria": "HIG reviewer (dickwu) chosen, not Emil's web skill of the same name."
+      "pass_criteria": "Use the licensed native reviewer and official Apple HIG; do not route to the unlicensed dickwu skill."
     },
     {
       "id": "S38",
@@ -1899,7 +1895,6 @@
           ]
         ],
         "may_select": [
-          "dickwu/apple-design",
           "impeccable/audit",
           "callstack/agent-device",
           "impeccable/onboard"
@@ -1952,5 +1947,9 @@
     "S04: may += dickwu/apple-design (platform-conformance in the review of a new iOS-shipping app)",
     "S32: may += dickwu/apple-design (iOS review; key predates the integration)",
     "S31: may += dickwu/apple-design (platform-conformance for the Expo app's iOS build; key predates the integration)"
+  ],
+  "answer_key_changes_license_review": [
+    "dickwu/apple-design removed from active routing because no verified licence grant is available; historical results are unchanged.",
+    "S37 now requires impeccable/critique with official Apple platform references."
   ]
 }

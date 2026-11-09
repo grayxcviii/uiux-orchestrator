@@ -46,8 +46,9 @@ const targets = [...new Set((selected.length ? selected : [...agents.keys()]).ma
 const source = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'skills', 'uiux-orchestrator');
 const marker = '.uiux-orchestrator-npm';
 
-if (!existsSync(join(source, 'SKILL.md'))) {
-  console.error('The npm package is missing its skill files.');
+const requiredFiles = ['SKILL.md', 'LICENSE', 'legal/THIRD_PARTY_NOTICES.md', 'legal/licenses/apache-2.0.txt'];
+if (requiredFiles.some((file) => !existsSync(join(source, file)))) {
+  console.error('The npm package is missing required skill or licence files.');
   process.exit(1);
 }
 

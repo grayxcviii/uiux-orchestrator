@@ -57,7 +57,6 @@ documents its own install.
 | Skill | Used for |
 |---|---|
 | [Anthropic frontend-design](https://github.com/anthropics/skills) | A lighter visual-direction driver for a single new web page or a small surface. Not used inside an existing design system |
-| [Apple Design (dickwu)](https://github.com/dickwu/apple-design-skill) | HIG, Liquid Glass and iPhone Duo review for apps shipping to Apple platforms: SwiftUI, UIKit, and RN/Flutter iOS builds. Never used for Android-only apps |
 | [Impeccable](https://github.com/pbakaus/impeccable) | Targeted commands: critique, audit (web and native), polish, typeset, layout, colorize, adapt, harden, clarify, document. new-work only for new or fully replaced surfaces |
 | [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Data-backed answers to one design question (`--domain`, `--stack`). `--design-system` only when a project has no system |
 | [Taste](https://github.com/Leonxlnx/taste-skill) (`design-taste-frontend` 2.5) | Driver for marketing and company **websites** only, when Node 22 and Chrome are present and the user accepts its kit |

@@ -10,74 +10,10 @@
     {
       "name": "uiux-orchestrator",
       "description": "Adaptive UI/UX orchestrator for web, React Native/Expo, iOS, Android and Flutter.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "source": "./",
       "category": "design",
       "homepage": "https://github.com/grayxcviii/uiux-orchestrator"
-    },
-    {
-      "name": "impeccable",
-      "description": "Impeccable by Paul Bakaus: design critique, audits, polish and new visual worlds (Apache-2.0).",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/pbakaus/impeccable.git",
-        "path": "plugin",
-        "sha": "c3bb418ee38ee49a6b999b7752c1368f3123a2bd"
-      },
-      "homepage": "https://github.com/pbakaus/impeccable",
-      "category": "design"
-    },
-    {
-      "name": "taste-skill",
-      "description": "Taste by Leonxlnx: design direction for marketing and company websites (MIT).",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/Leonxlnx/taste-skill.git",
-        "path": "skills/taste-skill",
-        "sha": "9b4bf937a1f69348126959c15d2f99a73e65699b"
-      },
-      "skills": [
-        "./"
-      ],
-      "homepage": "https://github.com/Leonxlnx/taste-skill",
-      "category": "design"
-    },
-    {
-      "name": "ui-ux-pro-max",
-      "description": "UI UX Pro Max by Next Level Builder: data-backed styles, palettes, typography and charts (MIT). Needs Python 3.",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
-        "path": ".claude/skills/ui-ux-pro-max",
-        "sha": "b7d5353e0130feb8c5574ef1251f8a1db1873ccb"
-      },
-      "skills": [
-        "./"
-      ],
-      "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
-      "category": "design"
-    },
-    {
-      "name": "emil-kowalski-motion",
-      "description": "Emil Kowalski's motion skills: animate, choreograph, performance, audits and Expo animation (MIT).",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/emilkowalski/skills.git",
-        "path": "skills",
-        "sha": "c8a79627b59d72d764d6ab6f2c87c09a48169833"
-      },
-      "skills": [
-        "./animate",
-        "./choreograph",
-        "./animation-performance",
-        "./improve-animations",
-        "./review-animations",
-        "./find-animation-opportunities",
-        "./remove-animations",
-        "./animate-expo"
-      ],
-      "homepage": "https://github.com/emilkowalski/skills",
-      "category": "design"
     },
     {
       "name": "frontend-design",
@@ -92,21 +28,6 @@
         "./"
       ],
       "homepage": "https://github.com/anthropics/skills",
-      "category": "design"
-    },
-    {
-      "name": "web-design-guidelines",
-      "description": "Vercel's Web Interface Guidelines review skill (MIT).",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/vercel-labs/agent-skills.git",
-        "path": "skills/web-design-guidelines",
-        "sha": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62"
-      },
-      "skills": [
-        "./"
-      ],
-      "homepage": "https://github.com/vercel-labs/agent-skills",
       "category": "design"
     }
   ]

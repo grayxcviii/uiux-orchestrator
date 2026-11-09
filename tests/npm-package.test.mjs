@@ -15,6 +15,11 @@ test('packed npm CLI installs through npx with isolated project and global scope
   }
   try {
     const packed = JSON.parse(command('npm', ['pack', '--json', '--pack-destination', root], resolve()));
+    const files = new Set(packed[0].files.map((file) => file.path));
+    assert.ok(files.has('THIRD_PARTY_NOTICES.md'));
+    assert.ok(files.has('skills/uiux-orchestrator/LICENSE'));
+    assert.ok(files.has('skills/uiux-orchestrator/legal/THIRD_PARTY_NOTICES.md'));
+    assert.ok(files.has('skills/uiux-orchestrator/legal/licenses/apache-2.0.txt'));
     const tarball = join(root, packed[0].filename);
     const projectA = join(root, 'project-a');
     const projectB = join(root, 'project-b');
@@ -26,6 +31,9 @@ test('packed npm CLI installs through npx with isolated project and global scope
     const npx = ['--offline', '--yes', '--package', tarball, '--', 'uiux-orchestrator', 'install', '--agent', 'codex'];
     command('npx', npx, projectA);
     assert.match(readFileSync(localA, 'utf8'), /^name: uiux-orchestrator/m);
+    for (const file of ['LICENSE', 'legal/THIRD_PARTY_NOTICES.md', 'legal/licenses/apache-2.0.txt']) {
+      assert.ok(existsSync(join(projectA, '.agents/skills/uiux-orchestrator', file)), file);
+    }
     assert.equal(existsSync(localB), false);
     assert.equal(existsSync(global), false);
     command('npx', [...npx, '--project'], projectA);

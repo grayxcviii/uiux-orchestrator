@@ -1,0 +1,76 @@
+[
+  {
+    "name": "impeccable",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/pbakaus/impeccable.git",
+      "path": "plugin",
+      "sha": "c3bb418ee38ee49a6b999b7752c1368f3123a2bd"
+    },
+    "automatic": false,
+    "required_files": [],
+    "result": "No complete standalone licence in the selected installed cache; install separately from the author"
+  },
+  {
+    "name": "taste-skill",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/Leonxlnx/taste-skill.git",
+      "path": "skills/taste-skill",
+      "sha": "9b4bf937a1f69348126959c15d2f99a73e65699b"
+    },
+    "automatic": false,
+    "required_files": [],
+    "result": "No complete standalone licence in the selected installed cache; install separately from the author"
+  },
+  {
+    "name": "ui-ux-pro-max",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+      "path": ".claude/skills/ui-ux-pro-max",
+      "sha": "b7d5353e0130feb8c5574ef1251f8a1db1873ccb"
+    },
+    "automatic": false,
+    "required_files": [],
+    "result": "No complete standalone licence in the selected installed cache; install separately from the author"
+  },
+  {
+    "name": "emil-kowalski-motion",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/emilkowalski/skills.git",
+      "path": "skills",
+      "sha": "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+    },
+    "automatic": false,
+    "required_files": [],
+    "result": "No complete standalone licence in the selected installed cache; install separately from the author"
+  },
+  {
+    "name": "frontend-design",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/anthropics/skills.git",
+      "path": "skills/frontend-design",
+      "sha": "ca45fc496a3436251f191354091d557da31c15b5"
+    },
+    "automatic": true,
+    "required_files": [
+      "LICENSE.txt"
+    ],
+    "result": "LICENSE.txt present in selected folder and installed cache"
+  },
+  {
+    "name": "web-design-guidelines",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/vercel-labs/agent-skills.git",
+      "path": "skills/web-design-guidelines",
+      "sha": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62"
+    },
+    "automatic": false,
+    "required_files": [],
+    "result": "No complete standalone licence in the selected installed cache; install separately from the author"
+  }
+]

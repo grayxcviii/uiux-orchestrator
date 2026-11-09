@@ -1,0 +1,80 @@
+[
+  {
+    "provider": "impeccable",
+    "source": "https://raw.githubusercontent.com/pbakaus/impeccable/c3bb418ee38ee49a6b999b7752c1368f3123a2bd/LICENSE",
+    "sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+    "file": "licenses/impeccable-license"
+  },
+  {
+    "provider": "impeccable",
+    "source": "https://raw.githubusercontent.com/pbakaus/impeccable/c3bb418ee38ee49a6b999b7752c1368f3123a2bd/NOTICE.md",
+    "sha256": "c60a093c2845fd9fb82f9c6f742ece31f379f8190b535309d32d66c45ccffdcb",
+    "file": "licenses/impeccable-notice.md"
+  },
+  {
+    "provider": "uupm",
+    "source": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/LICENSE",
+    "sha256": "738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014",
+    "file": "licenses/uupm-license"
+  },
+  {
+    "provider": "taste",
+    "source": "https://raw.githubusercontent.com/Leonxlnx/taste-skill/9b4bf937a1f69348126959c15d2f99a73e65699b/LICENSE",
+    "sha256": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df",
+    "file": "licenses/taste-license"
+  },
+  {
+    "provider": "lucian",
+    "source": "https://raw.githubusercontent.com/Seokwoooo/lucian-uxui/0067ad85bfcf62a572071fdbe82a4e02f0d2098f/LICENSE",
+    "sha256": "9ed2e1b9b7fd4c9c2e0edf1018826ecf4118934439d349d322a9139cb23c4e86",
+    "file": "licenses/lucian-license"
+  },
+  {
+    "provider": "emil",
+    "source": "https://raw.githubusercontent.com/emilkowalski/skills/c8a79627b59d72d764d6ab6f2c87c09a48169833/LICENSE",
+    "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+    "file": "licenses/emil-license"
+  },
+  {
+    "provider": "gsap",
+    "source": "https://raw.githubusercontent.com/greensock/gsap-skills/aed9cfd3277740755f6bfc1155c7aa645403b760/LICENSE",
+    "sha256": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "file": "licenses/gsap-license"
+  },
+  {
+    "provider": "expo",
+    "source": "https://raw.githubusercontent.com/expo/skills/a9e5bd3fa00b4e61f632e43f85da73aee1942582/LICENSE",
+    "sha256": "49c5f9c7097c9a940ff663a54c27a4c60e379df6cc2b3052df0d37a09a85df93",
+    "file": "licenses/expo-license"
+  },
+  {
+    "provider": "callstack",
+    "source": "https://raw.githubusercontent.com/callstackincubator/agent-skills/59e9d17446a248b21d86f078fcd0bd2d36db1ca4/LICENSE",
+    "sha256": "6b4d67d192cedc90cabeac71e2fc1e24f158638192b8bf93d639b28bc42b62f1",
+    "file": "licenses/callstack-license"
+  },
+  {
+    "provider": "anthropic",
+    "source": "https://raw.githubusercontent.com/anthropics/skills/ca45fc496a3436251f191354091d557da31c15b5/skills/frontend-design/LICENSE.txt",
+    "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+    "file": "licenses/anthropic-license.txt"
+  },
+  {
+    "provider": "android",
+    "source": "https://raw.githubusercontent.com/android/skills/bf68e2d66a992a1e6aeb7e9263293cc23fcbf475/LICENSE.txt",
+    "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+    "file": "licenses/android-license.txt"
+  },
+  {
+    "provider": "twostraws",
+    "source": "https://raw.githubusercontent.com/twostraws/SwiftUI-Agent-Skill/f2920b63995263f57b3e198674e89a602efba6d2/LICENSE",
+    "sha256": "b9b479e6df9f27cbc8e7abe91f771b396f3f0fa114d070c7c0b02c820c6b74dc",
+    "file": "licenses/twostraws-license"
+  },
+  {
+    "provider": "apache-license-text",
+    "file": "licenses/apache-2.0.txt",
+    "source": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  }
+]

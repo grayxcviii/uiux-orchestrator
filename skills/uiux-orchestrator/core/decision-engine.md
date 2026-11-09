@@ -96,7 +96,7 @@ replaces it; `(bundle)` = several skills that count as one pick.
 | motion-performance | `emil/animation-performance`, `gsap/performance`, `emil/animate-expo` (its build sequence covers stutter on device), `swm/react-native-best-practices`, `android/compose-performance`, `impeccable/optimize` | platform profiler |
 | ux-critique | `impeccable/critique` | rubric in `workflows/review.md` |
 | tech-audit | `impeccable/audit`, `vercel/web-design-guidelines` | a11y/perf/responsive checks + `scripts/ui-check.mjs` |
-| platform-conformance | `dickwu/apple-design` (Apple platforms), `impeccable/critique` (native mode loads its iOS/Android platform guidance) | `platforms/<platform>.md` §1, §5–§7, §12 |
+| platform-conformance | `impeccable/critique` (native mode loads its iOS/Android platform guidance) | `platforms/<platform>.md` §1, §5–§7, §12 |
 | code-review | `twostraws/swiftui-pro`, `emil/write-swift` | project lint + `platforms/<platform>.md` §10 |
 | polish | `impeccable/polish`, `emil/design-eng` | "what to inspect" list in `core/quality-gates.md` |
 | visual-validation | `callstack/agent-device` · project screenshot/visual tests first | `scripts/ui-check.mjs`, `scripts/motion-trace.mjs`, simulator/emulator CLIs |
