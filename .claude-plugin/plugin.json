@@ -1,6 +1,6 @@
 {
   "name": "uiux-orchestrator",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Adaptive UI/UX orchestrator for web, React Native/Expo, iOS, Android and Flutter: picks the minimum set of design, motion, accessibility and review skills a task needs, carries decisions into code and validates with evidence.",
   "author": {
     "name": "Long Nguyen",

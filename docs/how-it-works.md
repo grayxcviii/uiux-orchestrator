@@ -9,6 +9,11 @@ built-in tools, evidence and development.
 request → intake → project intelligence → decision engine → execute (handoffs) → validate → report
 ```
 
+Small, low-risk fixes and one fully specified component inside an existing design system can
+use `local inspection → implementation → validation`. This skips the decision engine and external
+specialists. Unknown design choices, broader effects or a critical-path interaction return to
+the normal pipeline. The shortcut keeps the applicable build, visual and interaction checks.
+
 - **Intake** classifies:
   - the intent(s): design, redesign, improvement, animation, review, bug fix, responsive, design
     system, accessibility, exploration;

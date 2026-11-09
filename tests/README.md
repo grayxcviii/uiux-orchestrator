@@ -22,6 +22,13 @@ expected: platform · intent(s) · workflow(s) · fast_path · mutation · drive
 expected_outputs · expected_validation · pass_criteria
 ```
 
+## Execution comparisons
+
+The [paired comparison suite](comparison/README.md) covers a specified component, a screen inside
+an existing design system, screenshot implementation and onboarding motion. It records quality
+checks, visual evidence, time, tokens and remaining issues. Installer tests do not establish UI
+quality; routing-only probes do not establish an execution speedup.
+
 ## Method
 
 1. **Routing runs.** A fresh subagent gets the scenario file and the metadata of the installed skills

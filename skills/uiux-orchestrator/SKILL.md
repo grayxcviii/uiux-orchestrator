@@ -4,7 +4,7 @@ description: Use when a request involves designing, redesigning, improving, anim
 license: MIT
 compatibility: Agent Skills compatible agents. Written for Claude Code first; works in agents without a Skill tool or subagents by reading files and running steps sequentially.
 metadata:
-  version: "1.1.1"
+  version: "1.2.0"
 ---
 
 # UIUX Orchestrator
@@ -32,21 +32,25 @@ already read it in this session.
 | 5 | Validate | Gather evidence at the levels the workflow requires; loop fix → verify; assign a status. | [core/quality-gates.md](core/quality-gates.md); bundled tools (web): `node <skill-dir>/scripts/ui-check.mjs --help`, `node <skill-dir>/scripts/motion-trace.mjs --help` |
 | 6 | Report | What was done, skills used and why, key changes, evidence, limitations. | format below |
 
-**Fast path** — check right after intake, before loading the decision engine. Eligible only when
-**all** hold:
+**Fast path** — check after intake and local inspection, before a full Project Profile or the
+decision engine. The task must be **Small and low risk**, with no open design judgment:
 
-1. the workflow is `bug-fix` or `improvement` (never review, design, redesign, animation,
-   design system or accessibility);
-2. the user did not ask for a design judgment ("pick the best…", "make it modern / polished /
-   feel smooth");
-3. after a quick look at the target, size is *Small* and risk is *low* (e.g. a copy edit, a local
-   style fix, a bug with an evident local cause, a token change that is exactly what was asked).
+- A local `bug-fix`/`improvement`, or **one new component** with specified layout, content and
+  behavior, using the existing design system's primitives and tokens.
+- No new dependency, shared-token, navigation, state/data-flow architecture or critical-path
+  behavior (auth, checkout, onboarding). No style exploration or unspecified interaction states.
+- Never a whole screen, review, redesign, design-system change, animation or accessibility audit.
+  Basic accessibility requirements still apply.
 
-Then: skip the decision engine and registry; use no external skill (validation tooling used only
-to capture evidence is allowed); read [core/execution-policy.md](core/execution-policy.md) and the
-one workflow file; look only at the target and what it imports (no full profile, platform file
-only if a platform API is involved); make the change, collect the evidence the workflow's gate
-requires, and report concisely, stating any safe default you chose. Otherwise run stage 3.
+Use `inspect → implement → validate → report`. Read [core/execution-policy.md](core/execution-policy.md)
+and the relevant workflow (`design.md` for a new component). Inspect the target, direct imports
+and a local example as needed. Skip specialist/subagent selection, the decision engine, registry,
+visual direction and start summary. Keep the workflow's gate: a new component needs L1 + L2 + L4,
+plus L3 for interaction. Missing render tooling limits the status; never imply visual success.
+
+If a primitive is unavailable, a design decision emerges or the impact widens, leave the fast
+path, complete project intelligence and use stage 3. Do not silently expand scope or ask for
+approval merely to use the longer process.
 
 ## Workflows
 
@@ -89,26 +93,25 @@ Details, tools and statuses: [core/quality-gates.md](core/quality-gates.md).
   when the decision needs the user's confirmation (high-risk plan, new dependency, design-system
   replacement, a driver writing project files), stop at a plan and report `Needs review`.
 
-## Start summary (show once, ≤ 6 lines)
+## Communication
+
+Keep intake, profile, routing and handoff records in working context. Create process files only
+when requested by the user or project. Explain decisions that affect the result, not routine
+steps; honor requests for detailed plans or reports.
+
+Skip the start summary on the fast path. Otherwise show once, at most three lines:
 
 ```text
-Platform: <detected stack>     Task: <intent(s)> · <size>/<risk>
-Workflow: <workflow(s)>        Skills: <ids or "none — built-in">
-Constraints: <the 1–3 that matter most>
+Task: <scope and objective> · <platform>
+Approach: <key decision, constraints and specialist if it matters>
+Checks: <planned evidence and known tooling limit>
 ```
 
-On the fast path, skip the summary unless the user asked for it; put any safe default you chose
-in the report.
-
-## Final report
-
-1. What was done (scope, files).
-2. Skills/references that mattered, one reason each; skills deliberately skipped only when the
-   user would expect them.
-3. Key changes and design decisions.
-4. Validation: evidence per level and the status — `Passed`, `Passed with limitations`,
-   `Needs review`, or `Failed`.
-5. Limitations and open issues.
+Lead the final report with the outcome, checks and remaining limitations. Small changes usually
+need one short paragraph or up to three bullets. Larger tasks add key decisions, files, the
+contribution of specialists actually used, and status (`Passed`, `Passed with limitations`,
+`Needs review` or `Failed`). Include reproducible commands when useful. Always disclose failed
+or unavailable checks; never claim visual verification without observing rendered output.
 
 ## Platform knowledge and references
 

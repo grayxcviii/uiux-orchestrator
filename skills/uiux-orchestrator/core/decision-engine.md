@@ -207,4 +207,5 @@ validation:
 done_when: the workflow gate, adapted to this task
 ```
 
-Show the user only the start summary (SKILL.md), not the whole plan, unless asked.
+Keep this plan in working context. Show the concise summary from SKILL.md when applicable;
+show the full plan only when asked. Fast-path tasks bypass this engine entirely.

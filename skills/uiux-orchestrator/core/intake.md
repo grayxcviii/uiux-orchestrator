@@ -66,7 +66,8 @@ Score each factor 0/1/2 and sum.
 | Unknowns | cause/target clear | some investigation | requirements or cause unclear |
 
 0–2 **Small** · 3–5 **Medium** · 6+ **Large**. Lines of code are not a factor. Reviews are sized by
-surface only (1 screen = Small, a flow = Medium, the product = Large); they never take the fast path.
+surface only (1 screen = Small, a flow = Medium, the product = Large); they never take the fast path. A low size score alone does not qualify a task for it;
+confirm the SKILL.md exclusions and, for a new component, an existing system plus a complete spec.
 
 ## Risk
 

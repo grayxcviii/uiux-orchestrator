@@ -28,7 +28,7 @@ implementation and review.
 
 - **One request, the right specialists.** It picks from your design skills and coordinates their work.
 - **Built for your project.** It follows your stack, components and existing design system.
-- **The right amount of work.** A small fix stays quick. A redesign gets the attention it needs.
+- **The right amount of work.** Small fixes and clearly specified components stay quick. A redesign gets the attention it needs.
 - **A result you can inspect.** It checks the implementation and shows what was verified.
 
 Works across **web, React Native, iOS, Android and Flutter**. Use it with Claude Code, Codex,

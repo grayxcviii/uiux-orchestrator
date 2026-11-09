@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "E01",
+      "fixture": "tests/fixtures/web-app",
+      "prompt": "Add one ProductCard composed from existing Card and Button. Show the supplied name and description, then a Select button calling onSelect; support disabled. Use existing tokens and spacing. Render it in an existing preview/container. No new libraries, tokens or application state.",
+      "criteria": ["reuse", "states", "scope"],
+      "acceptance": {"reuse": "Existing Card/Button and tokens reused", "states": "onSelect, disabled and keyboard behavior exercised", "scope": "No new dependency, shared token change or unrelated edits"},
+      "requires_visual": true
+    },
+    {
+      "id": "E02",
+      "fixture": "tests/fixtures/web-app",
+      "prompt": "Add a notification preferences section to Settings using existing components and tokens. Provide Email and Product updates toggles with accessible labels and local state. Preserve the existing page shell and other settings. Do not add persistence or a backend.",
+      "criteria": ["system", "interaction", "preservation"],
+      "acceptance": {"system": "Existing shell, typography and tokens preserved", "interaction": "Both toggles work by pointer and keyboard with accessible names", "preservation": "Other settings still behave as before; no fake persistence"},
+      "requires_visual": true
+    },
+    {
+      "id": "E03",
+      "fixture": "tests/fixtures/web-app",
+      "reference": "Capture the unchanged Pricing page at 1280px before either run; use that exact file in both prompts, remove only the Pricing body in both starting copies, and record its SHA-256 in settings.reference_sha256.",
+      "prompt": "Rebuild the Pricing page body to match the supplied reference screenshot using the project's components and tokens. Preserve its shell and existing plan actions. Match hierarchy, spacing, type and alignment; handle 390px without overflow. Report deviations rather than inventing a new style.",
+      "criteria": ["reference", "responsive", "actions"],
+      "acceptance": {"reference": "A blinded reviewer compared the rendered page to the supplied reference and recorded deviations", "responsive": "1280px and 390px inspected with no overflow or clipped text", "actions": "Existing plan actions and keyboard access preserved"},
+      "requires_visual": true
+    },
+    {
+      "id": "E04",
+      "fixture": "tests/fixtures/expo-onboarding",
+      "prompt": "Improve continuity between the onboarding steps while keeping the current structure and content. Preserve existing Reanimated components. Handle rapid Next/Back input and reduced motion. Do not add libraries or change navigation/state architecture.",
+      "criteria": ["continuity", "interruptions", "reduced_motion"],
+      "acceptance": {"continuity": "Step transitions observed on the same simulator/device setup", "interruptions": "Rapid Next/Back does not leave stuck or overlapping steps", "reduced_motion": "Reduced-motion behavior exercised; navigation remains usable"},
+      "requires_visual": true
+    }
+  ]
+}

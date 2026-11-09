@@ -26,6 +26,11 @@ Without explicit permission, do not:
   them (record the skipped step instead). A driver that needs such a file for a new surface gets
   one permission line in the question batch (decision-engine §4).
 
+Passing a supplied callback through a presentation component or calling an established project
+hook with its existing contract is not a navigation/state/data-flow architecture change. A new
+auth flow, endpoint contract, persistence mechanism or state ownership is. Critical-path impact
+still raises risk under intake and excludes the component fast path.
+
 When a permission is needed, ask once with the recommended option and the cost of each option.
 If nobody can answer (non-interactive run), follow the SKILL.md hard rule: safe default when one
 exists, otherwise stop at a plan with status `Needs review`.

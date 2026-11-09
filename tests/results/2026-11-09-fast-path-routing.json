@@ -1,0 +1,75 @@
+{
+  "kind": "routing-only behavioral probe",
+  "candidate_version": "1.2.0",
+  "entrypoint_sha256": "b92fe65f23f2588b7332897d067f3ae36059b00cdf01467290bbfdbdda6b200c",
+  "evaluation": "Independent first pass followed by one repeat check after ambiguity fixes; shared context across eight synthetic tasks. No specialist was executed, no source app was implemented, and no screenshot was inspected.",
+  "model": "Inherited evaluator model; exact model identifier and token usage were not exposed in the evaluator response.",
+  "initial_limitations": "First-pass specialist choices depended on local installed skills, which the task setup did not specify. Those choices were not scored. P05 initially interpreted endpoint wiring as a high-risk architecture change; the repeated check uses the clarified established-contract rule.",
+  "execution_comparison": "Not run; no latency, token-efficiency or visual-quality improvement claimed.",
+  "cases": [
+    {
+      "id": "P01",
+      "request": "Add a StatusBadge with text and success/warning variants using existing Badge padding, typography and tokens. No interaction.",
+      "project_facts": "One local component; existing Badge and tokens cover the spec; no shared edit.",
+      "expected_fast_path": true,
+      "observed_fast_path": true,
+      "reported_risk_after_clarification": "low"
+    },
+    {
+      "id": "P02",
+      "request": "Build a simple product card that feels premium; pick spacing, hierarchy and hover treatment.",
+      "project_facts": "Existing Card/Button; visual decisions unspecified.",
+      "expected_fast_path": false,
+      "observed_fast_path": false,
+      "reported_risk_after_clarification": "low"
+    },
+    {
+      "id": "P03",
+      "request": "Implement one card with existing Card, title, description and Button; onSelect callback and disabled support.",
+      "project_facts": "Callback supplied; existing primitives implement focus/disabled; no critical-path behavior.",
+      "expected_fast_path": true,
+      "observed_fast_path": true,
+      "reported_risk_after_clarification": "low"
+    },
+    {
+      "id": "P04",
+      "request": "Review this card for accessibility without changing code.",
+      "project_facts": "One card; no existing audit results; read-only.",
+      "expected_fast_path": false,
+      "observed_fast_path": false,
+      "reported_risk_after_clarification": "low"
+    },
+    {
+      "id": "P05",
+      "request": "Build a password reset form and wire it to resetPassword.",
+      "project_facts": "Existing endpoint/form components; auth flow; validation/error states unspecified.",
+      "expected_fast_path": false,
+      "observed_fast_path": false,
+      "reported_risk_after_clarification": "elevated"
+    },
+    {
+      "id": "P06",
+      "request": "Implement the full Settings screen exactly like this supplied screenshot.",
+      "project_facts": "Existing tokens/components; multiple sections and local toggles; specified visuals.",
+      "expected_fast_path": false,
+      "observed_fast_path": false,
+      "reported_risk_after_clarification": "low"
+    },
+    {
+      "id": "P07",
+      "request": "Animate this existing toggle with a spring and reduced-motion support.",
+      "project_facts": "One component; installed motion library; no current animation.",
+      "expected_fast_path": false,
+      "observed_fast_path": false,
+      "reported_risk_after_clarification": "low"
+    },
+    {
+      "id": "P08",
+      "request": "Change the local badge margin to the existing spacing token so it stops touching the title.",
+      "project_facts": "One CSS class on one usage; known cause; no shared token or critical-path change.",
+      "expected_fast_path": true,
+      "observed_fast_path": true,
+      "reported_risk_after_clarification": "low"
+    }
+  ]
+}

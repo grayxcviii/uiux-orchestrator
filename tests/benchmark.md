@@ -7,6 +7,16 @@
 Every number here comes from a recorded run in `tests/results/`. Targets are labelled as targets.
 Nothing in this file was produced without a run behind it.
 
+## Current release coverage
+
+Version 1.2.0 extends the fast path to specified small components and shortens routine reports.
+The execution metrics below were collected on earlier versions; they have not been rerun as a
+paired execution comparison for 1.2.0. See [comparison/README.md](comparison/README.md) for the
+current protocol. An [eight-case routing-only probe](results/2026-11-09-fast-path-routing.json)
+matched the expected fast-path boundaries on the candidate. It used shared context and one
+follow-up after ambiguity fixes; it is not a paired execution benchmark. Do not infer a quality
+or token-efficiency improvement from installer tests or that routing probe.
+
 ## 1. What was measured
 
 | Layer | Method | Data |
@@ -24,7 +34,7 @@ Batches have 8–12 scenarios each, shuffled with fixed seeds (`tests/harness/ba
 
 ## 2. Results
 
-### v1.0 (current) — summary
+### v1.0 — historical summary
 
 v1.0.0 has the same routing rules as v0.6.0 plus one "not a reason" row (Phase 5). The rows below
 were measured on v0.6.0 unless marked v1.0.

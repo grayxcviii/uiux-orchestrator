@@ -145,20 +145,24 @@ once. Until you answer, it uses clearly marked placeholders.
 
 ## What you get back
 
-**Start summary** (skipped on the fast path):
+For a small fix or a fully specified component inside your existing design system, the agent
+can go straight from local inspection to implementation and checks. It does not need a planning
+summary, specialist selection or separate process documents. A new visual direction, whole
+screen, critical-path interaction, animation or review uses the normal workflow.
+
+**Start summary** for other tasks (shown once):
 
 ```text
-Platform: Vite 8 + React 19, Tailwind v4    Task: review · Medium/low
-Workflow: review (read-only)               Skills: impeccable/critique
-Constraints: no source edits; evidence from code + rendered page
+Task: dashboard review · Vite + React
+Approach: inspect UX with Impeccable critique; preserve source files
+Checks: code review and rendered-page inspection
 ```
 
-**Final report:**
-1. What was done.
-2. Which skills mattered, with one reason each.
-3. Key changes and decisions.
-4. The validation evidence and a status.
-5. Limitations.
+**Final report:** what changed, what was checked and what remains unverified. Small changes
+usually need one short paragraph or up to three bullets. Larger tasks include the key decisions,
+affected files, the contribution of any specialist actually used and a status. Ask for a detailed
+report or execution plan when you want one. Visual and interaction checks still apply on the
+fast path; missing tools are reported as limitations.
 
 The status is one of four:
 

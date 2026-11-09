@@ -4,6 +4,22 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.2.0] - 2026-11-09
+
+### Changed
+- Extend the fast path to one fully specified, low-risk component inside an existing design
+  system. Skip specialist selection and routine planning; retain static, build, visual and
+  applicable interaction checks. Escalate when the inspected scope no longer qualifies.
+- Shorten routine summaries and final reports. Keep process records in working context unless
+  the user or project requests documents; disclose unavailable verification.
+- Clarify callback reuse versus changes to state/data-flow architecture. Require interaction
+  checks for normal design implementation as well as the component shortcut.
+
+### Added
+- Four paired execution cases and a comparison tool that rejects mismatched setups and missing
+  measurements. Reports distinguish unverified visuals and unavailable tokens. Comparative
+  execution gains are not claimed until actual runs have been measured.
+
 ## [1.1.1] - 2026-11-09
 
 ### Fixed
