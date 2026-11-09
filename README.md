@@ -1,10 +1,11 @@
 <h1 align="center">UIUX Orchestrator</h1>
 
-<h3 align="center">Give your coding agent a design team.</h3>
+<h3 align="center">One prompt. Your design skills, working together.</h3>
 
 <p align="center">
-  Turn the interface in your head into something people want to use.<br>
-  Describe what you need. Your agent brings together design, motion and review to build it.
+  An orchestrator for frontend-design, Impeccable, UI UX Pro Max, Taste and more.<br>
+  It guides your coding agent to select and activate the right installed specialists,
+  implement the UI and check the result.
 </p>
 
 <p align="center">
@@ -20,19 +21,28 @@
 
 <sub>Demo: Vahl, a fictional brand. [Before & after](docs/assets/vahl-fullpage.jpg) · [Photo credits](docs/assets/CREDITS.md)</sub>
 
-## You bring the idea. It brings the right skills.
+## Connect the specialists you already trust
 
-A sharper landing page. A smoother onboarding flow. A dashboard that finally feels clear.
-UIUX Orchestrator helps your agent take the work from the first design decision through
-implementation and review.
+| Specialist | What it brings |
+|---|---|
+| [Anthropic frontend-design](https://github.com/anthropics/skills), [Taste](https://github.com/Leonxlnx/taste-skill) | Visual direction and new web interfaces |
+| [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Styles, palettes, typography and charts |
+| [Impeccable](https://github.com/pbakaus/impeccable) | UX critique, accessibility audits and polish |
+| [Emil Kowalski's skills](https://github.com/emilkowalski/skills), [GSAP skills](https://github.com/greensock/gsap-skills) | Motion design, choreography and animation performance |
+| [Expo](https://github.com/expo/skills), [Software Mansion](https://github.com/software-mansion-labs/skills), [Callstack](https://github.com/callstackincubator/agent-skills) | Mobile UI, native interactions and device checks |
 
-- **One request, the right specialists.** It picks from your design skills and coordinates their work.
-- **Built for your project.** It follows your stack, components and existing design system.
-- **The right amount of work.** Small fixes and clearly specified components stay quick. A redesign gets the attention it needs.
-- **A result you can inspect.** It checks the implementation and shows what was verified.
+The [built-in registry](skills/uiux-orchestrator/registry/skills.yaml) guides skill discovery and
+selection. Your agent checks what is installed and compatible, activates the chosen specialists
+and follows their instructions for the task.
 
-Works across **web, React Native, iOS, Android and Flutter**. Use it with Claude Code, Codex,
-Cursor, Gemini CLI, GitHub Copilot, OpenCode or Windsurf — with the models your agent supports.
+**Inspect the project → select and activate specialists → implement → validate.**
+
+Your existing components, tokens and supplied designs guide the work. Small, specified changes
+take a shorter path. Reports cover changes, checks and remaining limitations.
+
+Includes guidance for **web, React Native, iOS, Android and Flutter**. The installer supports
+Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and Windsurf, with the models
+each agent supports. [Tested coverage →](docs/usage.md#supported-agents)
 
 ## Get started
 
@@ -45,17 +55,17 @@ npx uiux-orchestrator install --global  # all your projects
 
 To target one agent, add `--agent claude-code` (or another supported agent).
 
-**Alternative:** install through the Skills CLI (Node.js 22.20+):
+**What gets installed?**
 
-```bash
-npx skills add grayxcviii/uiux-orchestrator --skill uiux-orchestrator
-```
+| Install method | Included |
+|---|---|
+| npm or Skills CLI | UIUX Orchestrator |
+| [Claude Code plugin](docs/usage.md#install-update-remove) | UIUX Orchestrator + frontend-design |
 
-Choose your agent when prompted. Add `-g` to use it across projects.
-
-[Claude Code plugin installation →](docs/usage.md#install-update-remove)
-The plugin includes frontend-design. Add other specialist skills when you need them; the
-orchestrator also works with its built-in guidance.
+Install specialists once via the [setup guide](docs/usage.md#recommended-skills); the orchestrator
+then selects them when relevant. User-invoked skills require an explicit request. Missing a useful
+skill? It suggests the install and uses built-in guidance where possible. It never downloads
+specialists during a task. [Alternative install methods →](docs/usage.md#install-update-remove)
 
 ## How to use it
 
@@ -72,11 +82,7 @@ agent's choice; to request it explicitly, name the skill in your prompt:
 Use uiux-orchestrator to make the onboarding animation feel smooth and natural.
 ```
 
-In Claude Code, you can call it directly:
-
-```text
-/uiux-orchestrator Review this dashboard. Find the UX issues without changing code.
-```
+In Claude Code, call it directly with `/uiux-orchestrator <request>`.
 
 Project installs apply to that project; global installs are available across projects.
 If the skill doesn't appear after installation, start a new agent session.
