@@ -1,7 +1,7 @@
 {
   "name": "uiux-orchestrator",
   "version": "1.1.0",
-  "description": "One-command installer for the UIUX Orchestrator Codex skill",
+  "description": "One-command UIUX Orchestrator skill installer for coding agents",
   "license": "MIT",
   "repository": {
     "type": "git",

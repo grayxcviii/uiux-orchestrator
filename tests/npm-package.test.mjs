@@ -23,7 +23,7 @@ test('packed npm CLI installs through npx with isolated project and global scope
     const localA = join(projectA, '.agents', 'skills', 'uiux-orchestrator', 'SKILL.md');
     const localB = join(projectB, '.agents', 'skills', 'uiux-orchestrator', 'SKILL.md');
     const global = join(env.CODEX_HOME, 'skills', 'uiux-orchestrator', 'SKILL.md');
-    const npx = ['--offline', '--yes', '--package', tarball, '--', 'uiux-orchestrator', 'install'];
+    const npx = ['--offline', '--yes', '--package', tarball, '--', 'uiux-orchestrator', 'install', '--agent', 'codex'];
     command('npx', npx, projectA);
     assert.match(readFileSync(localA, 'utf8'), /^name: uiux-orchestrator/m);
     assert.equal(existsSync(localB), false);
@@ -35,6 +35,21 @@ test('packed npm CLI installs through npx with isolated project and global scope
     command('npx', [...npx, '-g'], projectA);
     assert.ok(existsSync(global));
     assert.ok(existsSync(localA));
+
+    // Use a temporary user profile so the multi-agent global test cannot touch real installations.
+    const profile = join(root, 'profile');
+    const isolatedEnv = { ...env, HOME: profile, USERPROFILE: profile,
+      CLAUDE_CONFIG_DIR: join(profile, '.claude'), XDG_CONFIG_HOME: join(profile, '.config') };
+    delete isolatedEnv.CODEX_HOME;
+    const allAgents = spawnSync('npx', npx.slice(0, -2).concat('--global'), {
+      cwd: projectB, env: isolatedEnv, encoding: 'utf8', timeout: 60000,
+    });
+    assert.equal(allAgents.status, 0, `${allAgents.error || ''}\n${allAgents.stderr}`);
+    for (const folder of ['.agents/skills', '.claude/skills', '.cursor/skills', '.gemini/skills', '.copilot/skills',
+      '.config/opencode/skills', '.codeium/windsurf/skills']) {
+      assert.ok(existsSync(join(profile, folder, 'uiux-orchestrator', 'SKILL.md')), folder);
+    }
+    assert.equal(existsSync(localB), false);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

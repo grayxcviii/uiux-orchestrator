@@ -62,21 +62,21 @@
 
 ## Install
 
-**Codex** (npm CLI; available after the first npm release):
+**Coding agents** (npm CLI; available after the first npm release):
 
 ```bash
 npx uiux-orchestrator install
 ```
 
-This installs the skill for the current project only. Use `npx uiux-orchestrator install --global` (or `-g`) to make it available in every project. `--project` (or `-p`) explicitly selects project scope. The package is prepared in this repository but has not been published to npm yet.
+Installs for Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and Windsurf in the current project. It works with the models supported by each agent. Use `npx uiux-orchestrator install --global` (or `-g`) for all projects, or add `--agent claude-code` to target one agent. The package is prepared but has not been published to npm yet.
 
-**Codex and other Agent Skills agents** (available now; Node.js 22.20+):
+**Other Agent Skills agents** (available now; Node.js 22.20+):
 
 ```bash
-npx skills add LongNguyen2312/uiux-orchestrator --skill uiux-orchestrator -g -a codex
+npx skills add LongNguyen2312/uiux-orchestrator --skill uiux-orchestrator -g
 ```
 
-Run it without `-g` to install in the current project. Replace `codex` with your agent name, or omit `-a codex` to choose interactively. This installs the orchestrator skill; optional specialist skills have separate install instructions in the [usage guide](docs/usage.md#recommended-skills).
+Run it without `-g` to install in the current project. Choose your agent interactively, or add `-a <agent>` to select it explicitly. This installs the orchestrator skill; optional specialist skills have separate install instructions in the [usage guide](docs/usage.md#recommended-skills).
 
 **Claude Code plugin** (includes six specialist skills):
 

@@ -25,7 +25,7 @@ Update: `claude plugin marketplace update uiux-orchestrator`, then
 
 Remove: `claude plugin uninstall uiux-orchestrator@uiux-orchestrator`.
 
-**Codex npm CLI:** after its first npm release:
+**Coding agents — npm CLI:** after its first npm release:
 
 ```bash
 npx uiux-orchestrator install           # current project only
@@ -33,10 +33,33 @@ npx uiux-orchestrator install --project # explicit project scope (-p)
 npx uiux-orchestrator install --global  # every project (-g)
 ```
 
-Project scope writes to `<project>/.agents/skills/uiux-orchestrator` and is discovered only
-inside that project. Global scope writes to `~/.agents/skills/uiux-orchestrator` (or
-`$CODEX_HOME/skills/uiux-orchestrator` when configured), which Codex loads across projects.
-A global installation remains available even in projects without a local installation.
+The installer supports Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and
+Windsurf. It installs for all seven by default; repeat `--agent <name>` (or `-a`) to select
+specific agents. The skill is independent of the model used inside each compatible agent.
+
+```bash
+npx uiux-orchestrator install --agent claude-code
+npx uiux-orchestrator install --global --agent cursor --agent gemini-cli
+```
+
+| Agent (`--agent`) | Project directory | Global directory |
+|---|---|---|
+| `claude-code` | `.claude/skills` | `~/.claude/skills` |
+| `codex` | `.agents/skills` | `~/.agents/skills` |
+| `cursor` | `.agents/skills` | `~/.cursor/skills` |
+| `gemini-cli` | `.agents/skills` | `~/.gemini/skills` |
+| `github-copilot` | `.agents/skills` | `~/.copilot/skills` |
+| `opencode` | `.agents/skills` | `~/.config/opencode/skills` |
+| `windsurf` | `.windsurf/skills` | `~/.codeium/windsurf/skills` |
+
+Paths follow the [Skills CLI agent directory reference](https://github.com/vercel-labs/skills/blob/main/docs/agents.md).
+Codex honors `CODEX_HOME`, Claude Code honors `CLAUDE_CONFIG_DIR`, and OpenCode honors
+`XDG_CONFIG_HOME` when configured. Shared project destinations are written only once.
+
+Project installs are available inside that project. Global installs are available across
+projects for the selected agents. Agent support for reading skills is required; a model in a
+plain chat interface does not discover local skill directories. Installer tests verify file
+placement and updates; full task execution has only been tested in the agents listed below.
 Running the same command again updates an installation made by this CLI. The npm package is
 prepared in this repository but has not been published yet.
 

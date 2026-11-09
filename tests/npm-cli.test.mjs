@@ -20,12 +20,12 @@ test('explicit global install copies the complete skill and can be rerun', () =>
   try {
     const home = join(root, 'codex');
     const target = join(home, 'skills', 'uiux-orchestrator');
-    const first = run(['install', '--global'], root, home);
+    const first = run(['install', '--global', '--agent', 'codex'], root, home);
     assert.equal(first.status, 0, first.stderr);
     assert.match(readFileSync(join(target, 'SKILL.md'), 'utf8'), /^name: uiux-orchestrator/m);
     assert.ok(existsSync(join(target, 'core', 'decision-engine.md')));
     assert.ok(existsSync(join(target, 'scripts', 'ui-check.mjs')));
-    const second = run(['install', '-g'], root, home);
+    const second = run(['install', '-g', '--agent', 'codex'], root, home);
     assert.equal(second.status, 0, second.stderr);
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -65,7 +65,7 @@ test('existing skill directory without this installer marker is preserved', () =
     const target = join(home, 'skills', 'uiux-orchestrator');
     mkdirSync(target, { recursive: true });
     writeFileSync(join(target, 'SKILL.md'), 'user copy');
-    const result = run(['install', '--global'], root, home);
+    const result = run(['install', '--global', '--agent', 'codex'], root, home);
     assert.notEqual(result.status, 0);
     assert.equal(readFileSync(join(target, 'SKILL.md'), 'utf8'), 'user copy');
   } finally {
@@ -73,7 +73,7 @@ test('existing skill directory without this installer marker is preserved', () =
   }
 });
 
-for (const args of [[], ['install', '--unknown'], ['install', 'constructor'], ['install', '--project', '--global'], ['install', '-g', '-p']]) {
+for (const args of [[], ['install', '--agent', 'unknown'], ['install', '--agent'], ['install', '--unknown'], ['install', 'constructor'], ['install', '--project', '--global'], ['install', '-g', '-p']]) {
   test(`rejects missing command or conflicting scopes: ${args.join(' ')}`, () => {
     const root = mkdtempSync(join(tmpdir(), 'uiux-cli-'));
     try {
@@ -87,3 +87,43 @@ for (const args of [[], ['install', '--unknown'], ['install', 'constructor'], ['
     }
   });
 }
+
+for (const [agent, folder] of [
+  ['claude-code', '.claude/skills'], ['cursor', '.agents/skills'],
+  ['gemini-cli', '.agents/skills'], ['github-copilot', '.agents/skills'],
+  ['opencode', '.agents/skills'], ['windsurf', '.windsurf/skills'],
+]) {
+  test(`project installer supports ${agent} without creating Codex-specific files`, () => {
+    const root = mkdtempSync(join(tmpdir(), 'uiux-agent-'));
+    try {
+      const result = run(['install', '--agent', agent], root, join(root, 'codex'));
+      assert.equal(result.status, 0, result.stderr);
+      assert.ok(existsSync(join(root, folder, 'uiux-orchestrator', 'SKILL.md')));
+      assert.equal(existsSync(join(root, 'codex')), false);
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  });
+}
+
+test('default project install covers shared, Claude Code and Windsurf directories', () => {
+  const root = mkdtempSync(join(tmpdir(), 'uiux-agent-'));
+  try {
+    const result = run(['install'], root, join(root, 'codex'));
+    assert.equal(result.status, 0, result.stderr);
+    for (const folder of ['.agents/skills', '.claude/skills', '.windsurf/skills']) {
+      assert.ok(existsSync(join(root, folder, 'uiux-orchestrator', 'SKILL.md')));
+    }
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('multi-agent preflight preserves every target if one destination is an existing user copy', () => {
+  const root = mkdtempSync(join(tmpdir(), 'uiux-agent-'));
+  try {
+    const target = join(root, '.claude/skills/uiux-orchestrator');
+    mkdirSync(target, { recursive: true });
+    writeFileSync(join(target, 'SKILL.md'), 'user copy');
+    const result = run(['install'], root, join(root, 'codex'));
+    assert.notEqual(result.status, 0);
+    assert.equal(readFileSync(join(target, 'SKILL.md'), 'utf8'), 'user copy');
+    assert.equal(existsSync(join(root, '.agents')), false);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
