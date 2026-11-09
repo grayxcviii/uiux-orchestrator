@@ -8,7 +8,7 @@ import test from 'node:test';
 const cli = resolve('bin/uiux-orchestrator.mjs');
 
 function run(args, cwd, codexHome) {
-  return spawnSync(process.execPath, [cli, ...args], {
+  return spawnSync(process.execPath, [cli, ...args, ...(args[0] === 'install' ? ['--orchestrator-only'] : [])], {
     cwd,
     env: { ...process.env, CODEX_HOME: codexHome },
     encoding: 'utf8',

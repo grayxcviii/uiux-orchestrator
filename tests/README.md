@@ -22,6 +22,15 @@ expected: platform · intent(s) · workflow(s) · fast_path · mutation · drive
 expected_outputs · expected_validation · pass_criteria
 ```
 
+## Installer checks
+
+`npm test` runs CLI/package tests, local Git-source specialist installation tests and the execution
+comparison tool's tests. Specialist tests cover web/mobile/mixed detection, workspace globs and
+exclusions, all-source selection, licence retention, repeat installs, user-managed copies, bad
+revisions, unavailable Git and escaping symlinks. CI does not need to download all upstream repos.
+The [recorded upstream installation run](results/2026-11-09-specialist-installer.json) separately
+checks the live catalogue in isolated profiles. Neither set measures UI output quality.
+
 ## Execution comparisons
 
 The [paired comparison suite](comparison/README.md) covers a specified component, a screen inside

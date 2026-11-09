@@ -4,6 +4,19 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.3.0] - 2026-11-09
+
+### Added
+- Global npm installs provision all 46 supported specialist skill folders from 13 pinned sources.
+  Project installs detect web/mobile and workspace apps, then install the relevant subset.
+- `--platform web|mobile|all`, `--dry-run` and `--orchestrator-only` for unknown projects, previews
+  and offline/minimal installs. Existing user-managed skills are preserved.
+- Sparse Git downloads retain original licence/NOTICE files, source provenance and hashes.
+  README-only MIT grants preserve the original README plus permission terms. Downloads are
+  prepared before committing the skill installation; failures do not silently degrade to an
+  orchestrator-only success. No SDKs, app libraries, setup scripts or hooks run during install.
+- Detection, selection, real local Git-source, licence, collision and symlink-escape tests.
+
 ## [1.2.0] - 2026-11-09
 
 ### Changed

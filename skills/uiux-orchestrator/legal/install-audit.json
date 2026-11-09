@@ -1,0 +1,5 @@
+{
+  "reviewed_on": "2026-11-09",
+  "catalog_sha256": "7d1d266f219a1eb95b7d99b464aa1084e236532bbb4cf4d5e1afcbed2342a9ea",
+  "scope": "46 skill folders from 13 pinned sources, covering 62 registry entries plus agent-device's dogfood companion. Real global, web and mobile installs and reruns verified in isolated profiles. No upstream setup scripts or hooks executed."
+}

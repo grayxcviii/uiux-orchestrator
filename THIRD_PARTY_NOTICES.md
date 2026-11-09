@@ -9,7 +9,9 @@ licence files and their provenance are kept in [legal/](skills/uiux-orchestrator
 The repository's historical test metadata and research notes contain excerpts from the referenced
 projects. These materials retain their original licences. Specialist implementations are not
 bundled in the npm package. Only frontend-design, which includes its own Apache-2.0 licence,
-is an automatic plugin dependency; other specialists must be installed separately.
+is an automatic plugin dependency. The npm installer downloads selected specialists directly
+from pinned upstream sources and includes their original root licence/NOTICE files in each
+installed folder. Their implementations are not bundled in the npm tarball.
 
 Demo photograph credits are in [docs/assets/CREDITS.md](docs/assets/CREDITS.md).
 Vahl is fictional. No pictured car manufacturer endorses this project.

@@ -34,6 +34,33 @@ def main():
         assert entry['source'] == audit['source'], f'Plugin {name} source changed; repeat the licence audit'
     assert set(plugin.get('dependencies', [])) <= external.keys(), 'Unaudited plugin dependency'
     assert 'provider: dickwu' not in (SKILL / 'registry/skills.yaml').read_text(), 'Unlicensed provider remains in active routing'
+    audit = json.loads((LEGAL / 'install-audit.json').read_text())
+    assert hashlib.sha256((ROOT / 'bin/specialists.json').read_bytes()).hexdigest() == audit['catalog_sha256'], 'Specialist catalogue changed; repeat the upstream installation/licence audit'
+    catalog = json.loads((ROOT / 'bin/specialists.json').read_text())
+    names, registry_ids, source_ids = set(), set(), set()
+    for source in catalog['sources']:
+        assert source['id'] not in source_ids, 'Duplicate specialist source'
+        source_ids.add(source['id'])
+        assert source['repository'].startswith('https://github.com/') and source['repository'].endswith('.git'), 'Unreviewed specialist source URL'
+        assert len(source['revision']) == 40 and all(c in '0123456789abcdef' for c in source['revision']), 'Unpinned specialist source'
+        assert source['license']['files'], 'Specialist source omits its licence/notice files'
+        assert source['license']['spdx'] in ('MIT', 'Apache-2.0'), 'Unreviewed specialist licence'
+        if source['license']['readme_declaration']:
+            assert source['id'] in ('swm', 'vercel'), 'New README-only licence needs review'
+        for skill in source['skills']:
+            assert skill['name'] not in names, 'Colliding specialist skill names'
+            names.add(skill['name'])
+            assert skill['groups'] and set(skill['groups']) <= {'web', 'mobile'}, 'Invalid specialist platform group'
+            assert skill['registry_ids'] or (skill.get('support_for') and all(parent in {s['name'] for s in source['skills']} for parent in skill['support_for'])), 'Unmapped specialist needs an audited companion relationship'
+            assert all(sid.split('/')[0] == source['id'] for sid in skill['registry_ids']), 'Specialist is mapped to the wrong registry provider'
+            assert not (set(skill['registry_ids']) & registry_ids), 'Duplicate specialist registry mapping'
+            registry_ids.update(skill['registry_ids'])
+    import re
+    active_ids = set(re.findall(r'^\s*-?\s*\{?\s*id:\s*([a-z0-9]+/[a-z0-9-]+)', (SKILL / 'registry/skills.yaml').read_text(), re.M))
+    active_ids = {sid for sid in active_ids if not sid.startswith('ref/')}
+    assert registry_ids == active_ids, 'Install catalogue does not match active registry'
+    assert (ROOT / 'bin/licenses/MIT-terms.txt').read_text().split('Permission is hereby granted', 1)[1] == (ROOT / 'LICENSE').read_text().split('Permission is hereby granted', 1)[1], 'MIT permission terms changed'
+    print(f'OK: {len(names)} installable specialists cover {len(registry_ids)} registry entries from {len(source_ids)} pinned sources')
     print(f'OK: {len(sources)} original licence/NOTICE files verified; {len(external)} approved automatic plugin dependency')
 
 

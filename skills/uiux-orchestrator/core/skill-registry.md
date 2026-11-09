@@ -40,11 +40,14 @@ and stop at the first hit:
    as `animate` or `plugin:skill`). Match any of `names`. A `plugin:skill` name matches on the
    part after the colon: `emil-kowalski-motion:animate` matches `animate`, and
    `taste-skill:design-taste-frontend` matches `design-taste-frontend`. The UIUX Orchestrator
-   Claude Code plugin installs a core set this way as dependencies. If the same skill appears twice
+   Claude Code plugin installs frontend-design this way as a dependency. The npm installer
+   can provision all specialists globally or a web/mobile subset in a project. If the same skill appears twice
    (a plugin copy and a skills-folder copy), it is available; invoke the one listed first.
 2. **Skill directories** — search for a `SKILL.md` whose frontmatter `name` matches:
-   - project: `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`, `.codex/skills/`
-   - user: `~/.claude/skills/`, `~/.agents/skills/`, `~/.codex/skills/`, `~/.cursor/skills/`
+   - project: `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`, `.codex/skills/`, `.windsurf/skills/`
+   - user: `~/.claude/skills/`, `~/.agents/skills/`, `~/.codex/skills/`, `~/.cursor/skills/`,
+     `~/.gemini/skills/`, `~/.copilot/skills/`, `~/.config/opencode/skills/`, `~/.codeium/windsurf/skills/`
+     (respect configured `CLAUDE_CONFIG_DIR`, `CODEX_HOME` and `XDG_CONFIG_HOME`)
    - Claude Code plugins: `~/.claude/plugins/` (installed plugin skills are namespaced)
 3. Any additional skill location the user or environment explicitly designates.
 4. Not found → **not available**. Do not search the network, do not install.

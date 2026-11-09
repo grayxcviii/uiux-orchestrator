@@ -43,8 +43,10 @@ project is bundled here.
 ## External plugin downloads
 
 Only Anthropic frontend-design remains an automatic Claude Code plugin dependency: its selected
-folder includes `LICENSE.txt` (Apache-2.0). Other specialists are optional installs from their
-authors' own distributions. Their licences and any required NOTICE files must accompany their
+folder includes `LICENSE.txt` (Apache-2.0). The npm installer can fetch the full catalogue globally or a web/mobile subset for a project.
+It copies each selected skill with the original upstream root licence/NOTICE files and records
+the commit and file hashes in `.uiux-licenses/SOURCE.json`. It does not run third-party install
+scripts or enable their hooks. Other plugin/Skills CLI users may install specialists separately. Their licences and any required NOTICE files must accompany their
 own distributions. The licence copies here are attribution for this project's excerpts, not a
 replacement for missing notices in an external plugin cache.
 

@@ -1,0 +1,673 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "impeccable",
+      "repository": "https://github.com/pbakaus/impeccable.git",
+      "revision": "c3bb418ee38ee49a6b999b7752c1368f3123a2bd",
+      "license": {
+        "spdx": "Apache-2.0",
+        "files": [
+          "LICENSE",
+          "NOTICE.md"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "plugin/skills/impeccable",
+          "registry_ids": [
+            "impeccable/new-work",
+            "impeccable/shape",
+            "impeccable/critique",
+            "impeccable/audit",
+            "impeccable/polish",
+            "impeccable/typeset",
+            "impeccable/colorize",
+            "impeccable/layout",
+            "impeccable/adapt",
+            "impeccable/harden",
+            "impeccable/clarify",
+            "impeccable/onboard",
+            "impeccable/animate",
+            "impeccable/optimize",
+            "impeccable/tone",
+            "impeccable/document",
+            "impeccable/live"
+          ],
+          "groups": [
+            "mobile",
+            "web"
+          ],
+          "name": "impeccable"
+        }
+      ]
+    },
+    {
+      "id": "uupm",
+      "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+      "revision": "b7d5353e0130feb8c5574ef1251f8a1db1873ccb",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": ".claude/skills/ui-ux-pro-max",
+          "registry_ids": [
+            "uupm/search",
+            "uupm/design-system"
+          ],
+          "groups": [
+            "mobile",
+            "web"
+          ],
+          "name": "ui-ux-pro-max"
+        }
+      ]
+    },
+    {
+      "id": "taste",
+      "repository": "https://github.com/Leonxlnx/taste-skill.git",
+      "revision": "9b4bf937a1f69348126959c15d2f99a73e65699b",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "skills/taste-skill",
+          "registry_ids": [
+            "taste/design-taste-frontend"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "design-taste-frontend"
+        }
+      ]
+    },
+    {
+      "id": "lucian",
+      "repository": "https://github.com/Seokwoooo/lucian-uxui.git",
+      "revision": "0067ad85bfcf62a572071fdbe82a4e02f0d2098f",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "skills/lucian-uxui",
+          "registry_ids": [
+            "lucian/uxui"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "lucian-uxui"
+        }
+      ]
+    },
+    {
+      "id": "emil",
+      "repository": "https://github.com/emilkowalski/skills.git",
+      "revision": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "skills/animate",
+          "registry_ids": [
+            "emil/animate"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "animate"
+        },
+        {
+          "path": "skills/animate-expo",
+          "registry_ids": [
+            "emil/animate-expo"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "animate-expo"
+        },
+        {
+          "path": "skills/choreograph",
+          "registry_ids": [
+            "emil/choreograph"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "choreograph"
+        },
+        {
+          "path": "skills/find-animation-opportunities",
+          "registry_ids": [
+            "emil/find-animation-opportunities"
+          ],
+          "groups": [
+            "mobile",
+            "web"
+          ],
+          "name": "find-animation-opportunities"
+        },
+        {
+          "path": "skills/improve-animations",
+          "registry_ids": [
+            "emil/improve-animations"
+          ],
+          "groups": [
+            "mobile",
+            "web"
+          ],
+          "name": "improve-animations"
+        },
+        {
+          "path": "skills/review-animations",
+          "registry_ids": [
+            "emil/review-animations"
+          ],
+          "groups": [
+            "mobile",
+            "web"
+          ],
+          "name": "review-animations"
+        },
+        {
+          "path": "skills/remove-animations",
+          "registry_ids": [
+            "emil/remove-animations"
+          ],
+          "groups": [
+            "mobile",
+            "web"
+          ],
+          "name": "remove-animations"
+        },
+        {
+          "path": "skills/animation-performance",
+          "registry_ids": [
+            "emil/animation-performance"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "animation-performance"
+        },
+        {
+          "path": "skills/apple-design",
+          "registry_ids": [
+            "emil/apple-design"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "apple-design"
+        },
+        {
+          "path": "skills/mobile-native",
+          "registry_ids": [
+            "emil/mobile-native"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "mobile-native"
+        },
+        {
+          "path": "skills/break-ui",
+          "registry_ids": [
+            "emil/break-ui"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "break-ui"
+        },
+        {
+          "path": "skills/emil-design-eng",
+          "registry_ids": [
+            "emil/design-eng"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "emil-design-eng"
+        },
+        {
+          "path": "skills/animation-vocabulary",
+          "registry_ids": [
+            "emil/animation-vocabulary"
+          ],
+          "groups": [
+            "mobile",
+            "web"
+          ],
+          "name": "animation-vocabulary"
+        },
+        {
+          "path": "skills/ask-sonner",
+          "registry_ids": [
+            "emil/ask-sonner"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "ask-sonner"
+        },
+        {
+          "path": "skills/write-swift",
+          "registry_ids": [
+            "emil/write-swift"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "write-swift"
+        },
+        {
+          "path": "skills/pick-ui-library",
+          "registry_ids": [
+            "emil/pick-ui-library"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "pick-ui-library"
+        },
+        {
+          "path": "skills/prototype",
+          "registry_ids": [
+            "emil/prototype"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "prototype"
+        }
+      ]
+    },
+    {
+      "id": "gsap",
+      "repository": "https://github.com/greensock/gsap-skills.git",
+      "revision": "aed9cfd3277740755f6bfc1155c7aa645403b760",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "skills/gsap-core",
+          "registry_ids": [
+            "gsap/core"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-core"
+        },
+        {
+          "path": "skills/gsap-timeline",
+          "registry_ids": [
+            "gsap/timeline"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-timeline"
+        },
+        {
+          "path": "skills/gsap-scrolltrigger",
+          "registry_ids": [
+            "gsap/scrolltrigger"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-scrolltrigger"
+        },
+        {
+          "path": "skills/gsap-plugins",
+          "registry_ids": [
+            "gsap/plugins"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-plugins"
+        },
+        {
+          "path": "skills/gsap-react",
+          "registry_ids": [
+            "gsap/react"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-react"
+        },
+        {
+          "path": "skills/gsap-frameworks",
+          "registry_ids": [
+            "gsap/frameworks"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-frameworks"
+        },
+        {
+          "path": "skills/gsap-performance",
+          "registry_ids": [
+            "gsap/performance"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-performance"
+        },
+        {
+          "path": "skills/gsap-utils",
+          "registry_ids": [
+            "gsap/utils"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "gsap-utils"
+        }
+      ]
+    },
+    {
+      "id": "expo",
+      "repository": "https://github.com/expo/skills.git",
+      "revision": "a9e5bd3fa00b4e61f632e43f85da73aee1942582",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "plugins/expo/skills/expo-native-ui",
+          "registry_ids": [
+            "expo/native-ui"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "expo-native-ui"
+        },
+        {
+          "path": "plugins/expo/skills/expo-design-system",
+          "registry_ids": [
+            "expo/design-system"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "expo-design-system"
+        },
+        {
+          "path": "plugins/expo/skills/expo-ui",
+          "registry_ids": [
+            "expo/ui"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "expo-ui"
+        },
+        {
+          "path": "plugins/expo/skills/expo-animation",
+          "registry_ids": [
+            "expo/expo-animation"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "expo-animation"
+        },
+        {
+          "path": "plugins/expo/skills/expo-router",
+          "registry_ids": [
+            "expo/router"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "expo-router"
+        }
+      ]
+    },
+    {
+      "id": "swm",
+      "repository": "https://github.com/software-mansion-labs/skills.git",
+      "revision": "43cde80af628d103647c13bde07975d0b21b8419",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "README.md"
+        ],
+        "readme_declaration": true
+      },
+      "skills": [
+        {
+          "path": "skills/react-native-best-practices",
+          "registry_ids": [
+            "swm/react-native-best-practices"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "react-native-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "callstack",
+      "repository": "https://github.com/callstackincubator/agent-skills.git",
+      "revision": "59e9d17446a248b21d86f078fcd0bd2d36db1ca4",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "plugins/vendored/.agents/skills/agent-device",
+          "registry_ids": [
+            "callstack/agent-device"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "agent-device"
+        },
+        {
+          "path": "skills/react-navigation",
+          "registry_ids": [
+            "callstack/react-navigation"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "react-navigation"
+        },
+        {
+          "name": "dogfood",
+          "path": "plugins/vendored/.agents/skills/dogfood",
+          "groups": [
+            "mobile"
+          ],
+          "registry_ids": [],
+          "support_for": [
+            "agent-device"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anthropic",
+      "repository": "https://github.com/anthropics/skills.git",
+      "revision": "ca45fc496a3436251f191354091d557da31c15b5",
+      "license": {
+        "spdx": "Apache-2.0",
+        "files": [
+          "skills/frontend-design/LICENSE.txt"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "skills/frontend-design",
+          "registry_ids": [
+            "anthropic/frontend-design"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "frontend-design"
+        }
+      ]
+    },
+    {
+      "id": "android",
+      "repository": "https://github.com/android/skills.git",
+      "revision": "bf68e2d66a992a1e6aeb7e9263293cc23fcbf475",
+      "license": {
+        "spdx": "Apache-2.0",
+        "files": [
+          "LICENSE.txt"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "jetpack-compose/adaptive",
+          "registry_ids": [
+            "android/adaptive"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "adaptive"
+        },
+        {
+          "path": "system/edge-to-edge",
+          "registry_ids": [
+            "android/edge-to-edge"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "edge-to-edge"
+        },
+        {
+          "path": "navigation/navigation-event",
+          "registry_ids": [
+            "android/navigation-event"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "navigation-event"
+        },
+        {
+          "path": "jetpack-compose/jetpack-compose-performance",
+          "registry_ids": [
+            "android/compose-performance"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "jetpack-compose-performance"
+        }
+      ]
+    },
+    {
+      "id": "vercel",
+      "repository": "https://github.com/vercel-labs/agent-skills.git",
+      "revision": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "README.md"
+        ],
+        "readme_declaration": true
+      },
+      "skills": [
+        {
+          "path": "skills/web-design-guidelines",
+          "registry_ids": [
+            "vercel/web-design-guidelines"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "web-design-guidelines"
+        },
+        {
+          "path": "skills/react-view-transitions",
+          "registry_ids": [
+            "vercel/react-view-transitions"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "vercel-react-view-transitions"
+        }
+      ]
+    },
+    {
+      "id": "twostraws",
+      "repository": "https://github.com/twostraws/SwiftUI-Agent-Skill.git",
+      "revision": "f2920b63995263f57b3e198674e89a602efba6d2",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE"
+        ],
+        "readme_declaration": false
+      },
+      "skills": [
+        {
+          "path": "swiftui-pro",
+          "registry_ids": [
+            "twostraws/swiftui-pro"
+          ],
+          "groups": [
+            "mobile"
+          ],
+          "name": "swiftui-pro"
+        }
+      ]
+    }
+  ]
+}

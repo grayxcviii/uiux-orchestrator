@@ -46,11 +46,11 @@ each agent supports. [Tested coverage →](docs/usage.md#supported-agents)
 
 ## Get started
 
-Run from your project (Node.js 18+):
+Run from your project (Node.js 18+, Git and network access):
 
 ```bash
-npx uiux-orchestrator install           # this project
-npx uiux-orchestrator install --global  # all your projects
+npx uiux-orchestrator install           # detect web/mobile and install relevant skills
+npx uiux-orchestrator install --global  # install the complete supported skill catalogue
 ```
 
 To target one agent, add `--agent claude-code` (or another supported agent).
@@ -59,13 +59,18 @@ To target one agent, add `--agent claude-code` (or another supported agent).
 
 | Install method | Included |
 |---|---|
-| npm or Skills CLI | UIUX Orchestrator |
+| npm — project | Orchestrator + specialists for detected web/mobile projects |
+| npm — global | Orchestrator + all 46 supported specialist skills |
+| Skills CLI | UIUX Orchestrator |
 | [Claude Code plugin](docs/usage.md#install-update-remove) | UIUX Orchestrator + frontend-design |
 
-Install specialists once via the [setup guide](docs/usage.md#recommended-skills); the orchestrator
-then selects them when relevant. User-invoked skills require an explicit request. Missing a useful
-skill? It suggests the install and uses built-in guidance where possible. It never downloads
-specialists during a task. [Alternative install methods →](docs/usage.md#install-update-remove)
+Project detection reads app manifests and workspace packages; mixed web/mobile projects get both
+groups. Unknown project? Add `--platform web` or `--platform mobile`. Preview the selection with
+`--dry-run`, or use `--orchestrator-only` for an offline install without specialists.
+
+The npm installer downloads pinned skills from 13 upstream repos, retains their licence/NOTICE
+files and preserves existing user-managed skills. It does not install SDKs, application libraries
+or third-party hooks. [Setup details and alternative methods →](docs/usage.md#install-update-remove)
 
 ## How to use it
 

@@ -25,13 +25,46 @@ Update: `claude plugin marketplace update uiux-orchestrator`, then
 
 Remove: `claude plugin uninstall uiux-orchestrator@uiux-orchestrator`.
 
-**Coding agents — npm CLI:** requires Node.js 18+:
+**Coding agents — npm CLI:** requires Node.js 18+, Git and network access for specialist downloads:
 
 ```bash
-npx uiux-orchestrator install           # current project only
+npx uiux-orchestrator install           # auto-detect web/mobile and install relevant specialists
 npx uiux-orchestrator install --project # explicit project scope (-p)
-npx uiux-orchestrator install --global  # every project (-g)
+npx uiux-orchestrator install --global  # all 46 supported specialists, for every project (-g)
 ```
+
+**Selection:** global installs include the entire supported catalogue: 46 unique skill folders
+from 13 pinned sources, covering 62 routing entries/commands plus the dogfood companion linked
+by agent-device. Project installs include skills
+marked web or mobile in the registry. Shared specialists belong to both groups. Mobile includes
+React Native/Expo, iOS, Android and Flutter guidance; runtime routing still checks the actual
+framework and prerequisites before using a skill. Installing a skill does not install its SDKs.
+
+Project detection checks package dependencies, static HTML, Flutter manifests, Xcode/Android
+projects, npm/Yarn workspace packages and pnpm workspace patterns (`*`, `?`, `**` and exclusions).
+Unsupported complex glob syntax produces an explicit error with platform-override guidance. Mixed projects receive the
+union. It does not classify unrelated test/example directories as applications. If detection
+finds neither group, installation stops before changing skills and asks you to select a platform:
+
+```bash
+npx uiux-orchestrator install --platform web
+npx uiux-orchestrator install --platform mobile
+npx uiux-orchestrator install --platform all  # explicit mixed-project override
+npx uiux-orchestrator install --dry-run       # JSON plan; no skill changes or Git downloads
+npx uiux-orchestrator install --orchestrator-only  # no specialist downloads; no Git needed
+```
+
+The installer fetches the recorded Git commits without running third-party install scripts or
+hooks, stages all downloads before replacing managed skill folders, and retains original licence
+and NOTICE files in `.uiux-licenses/` with source revisions and hashes. Software Mansion and Vercel
+have README-only MIT declarations at these revisions; those original READMEs and MIT terms are
+preserved explicitly. No specialist implementation is bundled in the npm tarball itself.
+
+Existing user-managed directories/symlinks are kept and reported as unverified. Managed copies
+at the pinned revision with intact licences are reused without a download. A failed download,
+missing licence or unexpected skill name fails installation; it is not reported as full success.
+CLI selection and local Git installation are covered by offline tests; real upstream installs
+were also checked in isolated global, web and mobile profiles.
 
 The installer supports Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and
 Windsurf. It installs for all seven by default; repeat `--agent <name>` (or `-a`) to select
@@ -60,7 +93,7 @@ Project installs are available inside that project. Global installs are availabl
 projects for the selected agents. Agent support for reading skills is required; a model in a
 plain chat interface does not discover local skill directories. Installer tests verify file
 placement and updates; full task execution has only been tested in the agents listed below.
-Running the same command again updates an installation made by this CLI. The npm package is available as `uiux-orchestrator`.
+Running the same command again updates managed copies to the catalogue revision and verifies their licence files. The npm package is available as `uiux-orchestrator`.
 
 **Codex CLI and other Agent Skills agents:** available now with Node.js 22.20 or later. Install globally so
 the skill is available in every project:
@@ -89,7 +122,7 @@ ln -s ~/uiux-orchestrator/skills/uiux-orchestrator ~/.codex/skills/uiux-orchestr
 To update, run `git -C ~/uiux-orchestrator pull`. Only the folder `skills/uiux-orchestrator/` is
 the skill; the rest of the repository is docs and tests.
 
-**Requirements:** Node.js 18+ for the npm CLI, Node.js 22.20+ for `npx skills`; none for the Claude Code plugin or manual install.
+**Requirements:** Node.js 18+ and Git/network for specialist downloads through the npm CLI (`--orchestrator-only` needs only Node.js), Node.js 22.20+ for `npx skills`; none for the Claude Code plugin or manual install.
 - The optional validation scripts need Node 18+ and Chrome, Chromium or Edge.
 - `python3` is used only by the repository's own checks.
 
@@ -241,10 +274,16 @@ two assessment sub-agents. The orchestrator uses it when the review itself is th
 
 ## Recommended skills
 
-### Installed automatically (Claude Code plugin)
+### Installed automatically
+
+With the npm installer, global scope installs the complete catalogue; project scope installs the
+web/mobile subset detected above. The remaining manual commands are alternatives for Skills CLI
+or plugin users and for adding a specialist outside the project profile.
+
+#### Claude Code plugin
 
 The plugin installs **Anthropic frontend-design**, whose selected upstream folder includes its
-Apache-2.0 licence. Other specialists are optional installs from their authors' distributions.
+Apache-2.0 licence. Other plugin specialists can be installed through the npm installer or from their authors' distributions.
 Previously automatic downloads of Impeccable, Taste, UI UX Pro Max, Emil's motion skills and
 Vercel web-design-guidelines have been removed: their selected folders did not include a complete
 standalone licence (and, for Impeccable, its upstream NOTICE was also absent).

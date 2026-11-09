@@ -49,3 +49,21 @@ frontmatter field on both the baseline and this revision. That helper does not a
 in the [current Agent Skills specification](https://agentskills.io/specification). The repository's
 validator accepts and checks this supported field. The field was retained; it is unrelated to
 licence compliance.
+
+## 1.3.0 npm installer follow-up
+
+The npm installer now fetches the full supported catalogue globally or the detected web/mobile
+subset in a project. It downloads the selected skill folders **and** each source's original root
+licence/NOTICE files at audited commits; this resolves the directory-only omission for these
+npm installs. The Claude Code plugin dependency mechanism remains unchanged.
+
+Software Mansion and Vercel declare MIT only in their root README at these revisions. Those
+original READMEs and the full MIT permission terms are retained, with the basis recorded in each
+installed `.uiux-licenses/SOURCE.json`. This preserves the published declaration; it is not a
+new licence grant or a guarantee about underlying ownership.
+
+[install-audit.json](../skills/uiux-orchestrator/legal/install-audit.json) binds the reviewed
+catalogue by hash. [Real installation results](../tests/results/2026-11-09-specialist-installer.json)
+record isolated global, web and mobile installs plus original licence/NOTICE hash checks. No
+third-party setup scripts, hook manifests, SDK installation or design tasks were executed.
+Changing the catalogue requires repeating that source/licence review and updating the audit.

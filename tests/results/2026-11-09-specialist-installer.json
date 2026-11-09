@@ -1,0 +1,34 @@
+{
+  "candidate": "1.3.0",
+  "kind": "real installer integration verification",
+  "catalog_sha256": "7d1d266f219a1eb95b7d99b464aa1084e236532bbb4cf4d5e1afcbed2342a9ea",
+  "sources": "Live anonymous GitHub Git fetch at the catalogue commits, not mocked source content.",
+  "scope": "Isolated temporary directories, --agent codex for real upstream downloads. Multi-agent paths and copying were verified separately by offline CLI/local-Git tests.",
+  "profiles": [
+    {
+      "profile": "global",
+      "specialists_installed": 46,
+      "names_match_catalogue": true,
+      "original_licence_and_notice_hashes_verified": true
+    },
+    {
+      "profile": "web",
+      "specialists_installed": 30,
+      "names_match_catalogue": true,
+      "original_licence_and_notice_hashes_verified": true
+    },
+    {
+      "profile": "mobile",
+      "specialists_installed": 23,
+      "names_match_catalogue": true,
+      "original_licence_and_notice_hashes_verified": true
+    }
+  ],
+  "rerun": "Pinned copies with intact licence hashes reused. An initial optional link from agent-device to dogfood was found; the original companion skill was added without modifying either SKILL.md.",
+  "limitations": [
+    "Skill installation and licence retention verified; specialist runtime scripts and design output not executed.",
+    "No third-party hook manifests enabled. SDKs, browser, Python and native runtime prerequisites are not installed by this command.",
+    "Actual upstream integration runs were on macOS; offline detection/Git/packaging tests are included in the Linux CI workflow."
+  ],
+  "code_review": "Independent review found a partial-segment workspace-glob bug; it was reproduced, fixed and regression-tested. Follow-up review reported no remaining Critical/Important finding within installer scope. The reviewer did not assess legal sufficiency or runtime agent discovery."
+}

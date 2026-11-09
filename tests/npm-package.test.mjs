@@ -24,6 +24,9 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     assert.ok(files.has('skills/uiux-orchestrator/LICENSE'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/THIRD_PARTY_NOTICES.md'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/licenses/apache-2.0.txt'));
+    for (const file of ['bin/specialists.json', 'bin/lib/project.mjs', 'bin/lib/install.mjs', 'bin/lib/specialists.mjs', 'bin/licenses/MIT-terms.txt']) {
+      assert.ok(files.has(file), file);
+    }
     const tarball = join(root, packed[0].filename);
     assert.ok(existsSync(tarball), 'npm pack must create the temporary tarball');
     const projectA = join(root, 'project-a');
@@ -33,7 +36,13 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     const localA = join(projectA, '.agents', 'skills', 'uiux-orchestrator', 'SKILL.md');
     const localB = join(projectB, '.agents', 'skills', 'uiux-orchestrator', 'SKILL.md');
     const global = join(env.CODEX_HOME, 'skills', 'uiux-orchestrator', 'SKILL.md');
-    const npx = ['--offline', '--yes', '--package', tarball, '--', 'uiux-orchestrator', 'install', '--agent', 'codex'];
+    const npx = ['--offline', '--yes', '--package', tarball, '--', 'uiux-orchestrator', 'install', '--orchestrator-only', '--agent', 'codex'];
+    const bootstrap = ['--offline', '--yes', '--package', tarball, '--', 'uiux-orchestrator', 'install', '--dry-run', '--agent', 'codex'];
+    const webPlan = JSON.parse(command('npx', [...bootstrap, '--platform', 'web'], projectA));
+    assert.ok(webPlan.sources.some(source => source.id === 'anthropic'));
+    assert.equal(webPlan.sources.some(source => source.id === 'expo'), false);
+    const globalPlan = JSON.parse(command('npx', [...bootstrap, '--global'], projectB));
+    assert.equal(globalPlan.sources.length, 13);
     command('npx', npx, projectA);
     assert.match(readFileSync(localA, 'utf8'), /^name: uiux-orchestrator/m);
     for (const file of ['LICENSE', 'legal/THIRD_PARTY_NOTICES.md', 'legal/licenses/apache-2.0.txt']) {
