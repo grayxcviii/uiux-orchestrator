@@ -36,14 +36,16 @@ Cursor, Gemini CLI, GitHub Copilot, OpenCode or Windsurf — with the models you
 
 ## Get started
 
-The npm installer is ready in this repo; its first npm release is coming soon:
+Run from your project (Node.js 18+):
 
 ```bash
 npx uiux-orchestrator install           # this project
 npx uiux-orchestrator install --global  # all your projects
 ```
 
-**Want to use it today?** Install through the Skills CLI (Node.js 22.20+):
+To target one agent, add `--agent claude-code` (or another supported agent).
+
+**Alternative:** install through the Skills CLI (Node.js 22.20+):
 
 ```bash
 npx skills add grayxcviii/uiux-orchestrator --skill uiux-orchestrator
@@ -55,21 +57,29 @@ Choose your agent when prompted. Add `-g` to use it across projects.
 The plugin includes frontend-design. Add other specialist skills when you need them; the
 orchestrator also works with its built-in guidance.
 
-## Tell it what you want to change
+## How to use it
+
+Open your coding agent in the project and describe what you want to change:
 
 ```text
 Redesign this landing page. Make it feel premium and keep our brand colors.
 ```
 
-```text
-Make the onboarding animation feel smooth and natural.
-```
+Your agent can pick up UIUX Orchestrator automatically for UI/UX tasks. Activation is the
+agent's choice; to request it explicitly, name the skill in your prompt:
 
 ```text
-Review this dashboard. Find what makes it confusing before changing any code.
+Use uiux-orchestrator to make the onboarding animation feel smooth and natural.
 ```
 
-In Claude Code, start with `/uiux-orchestrator` to call it directly.
+In Claude Code, you can call it directly:
+
+```text
+/uiux-orchestrator Review this dashboard. Find the UX issues without changing code.
+```
+
+Project installs apply to that project; global installs are available across projects.
+If the skill doesn't appear after installation, start a new agent session.
 
 ---
 

@@ -25,7 +25,7 @@ Update: `claude plugin marketplace update uiux-orchestrator`, then
 
 Remove: `claude plugin uninstall uiux-orchestrator@uiux-orchestrator`.
 
-**Coding agents — npm CLI:** after its first npm release:
+**Coding agents — npm CLI:** requires Node.js 18+:
 
 ```bash
 npx uiux-orchestrator install           # current project only
@@ -60,8 +60,7 @@ Project installs are available inside that project. Global installs are availabl
 projects for the selected agents. Agent support for reading skills is required; a model in a
 plain chat interface does not discover local skill directories. Installer tests verify file
 placement and updates; full task execution has only been tested in the agents listed below.
-Running the same command again updates an installation made by this CLI. The npm package is
-prepared in this repository but has not been published yet.
+Running the same command again updates an installation made by this CLI. The npm package is available as `uiux-orchestrator`.
 
 **Codex CLI and other Agent Skills agents:** available now with Node.js 22.20 or later. Install globally so
 the skill is available in every project:
