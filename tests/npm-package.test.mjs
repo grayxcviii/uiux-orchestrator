@@ -5,11 +5,15 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import test from 'node:test';
 
-test('packed npm CLI installs through npx with isolated project and global scopes', () => {
+for (const inheritedDryRun of ['false', 'true']) {
+test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDryRun})`, () => {
   const root = mkdtempSync(join(tmpdir(), 'uiux-npx-'));
-  const env = { ...process.env, npm_config_cache: join(root, 'cache'), CODEX_HOME: join(root, 'codex') };
+  const env = { ...process.env, npm_config_dry_run: inheritedDryRun, npm_config_cache: join(root, 'cache'), CODEX_HOME: join(root, 'codex') };
+  // publish --dry-run exports this flag to lifecycle scripts. The test must still
+  // create and install its temporary tarball; only these child commands override it.
+  const commandEnv = { ...env, npm_config_dry_run: 'false' };
   function command(executable, args, cwd) {
-    const result = spawnSync(executable, args, { cwd, env, encoding: 'utf8', timeout: 60000 });
+    const result = spawnSync(executable, args, { cwd, env: commandEnv, encoding: 'utf8', timeout: 60000 });
     assert.equal(result.status, 0, `${result.error || ''}\n${result.stdout}\n${result.stderr}`);
     return result.stdout;
   }
@@ -21,6 +25,7 @@ test('packed npm CLI installs through npx with isolated project and global scope
     assert.ok(files.has('skills/uiux-orchestrator/legal/THIRD_PARTY_NOTICES.md'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/licenses/apache-2.0.txt'));
     const tarball = join(root, packed[0].filename);
+    assert.ok(existsSync(tarball), 'npm pack must create the temporary tarball');
     const projectA = join(root, 'project-a');
     const projectB = join(root, 'project-b');
     mkdirSync(projectA);
@@ -46,7 +51,7 @@ test('packed npm CLI installs through npx with isolated project and global scope
 
     // Use a temporary user profile so the multi-agent global test cannot touch real installations.
     const profile = join(root, 'profile');
-    const isolatedEnv = { ...env, HOME: profile, USERPROFILE: profile,
+    const isolatedEnv = { ...commandEnv, HOME: profile, USERPROFILE: profile,
       CLAUDE_CONFIG_DIR: join(profile, '.claude'), XDG_CONFIG_HOME: join(profile, '.config') };
     delete isolatedEnv.CODEX_HOME;
     const allAgents = spawnSync('npx', npx.slice(0, -2).concat('--global'), {
@@ -62,3 +67,4 @@ test('packed npm CLI installs through npx with isolated project and global scope
     rmSync(root, { recursive: true, force: true });
   }
 });
+}
