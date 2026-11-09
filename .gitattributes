@@ -1,0 +1,4 @@
+# Preserve exact bytes for provenance hashes and unmodified upstream notices.
+bin/specialists.json -text
+skills/uiux-orchestrator/legal/sources.json -text
+skills/uiux-orchestrator/legal/licenses/* -text

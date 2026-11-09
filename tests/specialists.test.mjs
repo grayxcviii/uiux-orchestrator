@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -52,6 +53,7 @@ function sourceFixture(root) {
   writeFileSync(join(repo, 'skills/design/SKILL.md'), '---\nname: design\ndescription: Fixture skill\n---\n');
   writeFileSync(join(repo, 'LICENSE'), 'MIT fixture licence and copyright\n');
   writeFileSync(join(repo, 'NOTICE.md'), 'Original upstream attribution\n');
+  writeFileSync(join(repo, 'skills/design/credits.json'), '{"author":"Original artist","license":"CC BY-SA 4.0"}\n');
   for (const args of [['init', '-q'], ['add', '.'], ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'fixture']]) {
     const result = spawnSync('git', args, { cwd: repo, encoding: 'utf8' }); assert.equal(result.status, 0, result.stderr);
   }
@@ -60,6 +62,77 @@ function sourceFixture(root) {
     license: { spdx: 'MIT', files: ['LICENSE', 'NOTICE.md'], readme_declaration: false },
     skills: [{ name: 'design', path: 'skills/design', groups: ['web'], registry_ids: ['fixture/design'] }] };
 }
+
+test('supplemental notices accompany every target and repair same-revision installations', async (t) => {
+  const root = workspace(t), source = sourceFixture(root);
+  const parents = [join(root, 'project/.agents/skills'), join(root, 'profile/.agents/skills')];
+  commitJobs((await prepareSpecialists([source], parents, join(root, 'old-installer'))).jobs);
+  // A new notice requirement must upgrade an existing managed copy at the same upstream commit.
+  source.license.bundled_files = ['licenses/apache-2.0.txt'];
+  const upgraded = await prepareSpecialists([source], parents, join(root, 'upgrade'));
+  assert.equal(upgraded.jobs.length, 2, 'same-revision copies missing new notices need upgrading');
+  commitJobs(upgraded.jobs);
+  const notice = 'design/.uiux-licenses/supplemental/licenses/apache-2.0.txt';
+  const expected = readFileSync(new URL('../skills/uiux-orchestrator/legal/licenses/apache-2.0.txt', import.meta.url));
+  for (const parent of parents) {
+    assert.deepEqual(readFileSync(join(parent, notice)), expected);
+    const provenance = JSON.parse(readFileSync(join(parent, 'design/.uiux-licenses/SOURCE.json')));
+    assert.equal(provenance.supplemental_files[0].file, 'licenses/apache-2.0.txt');
+    assert.match(provenance.supplemental_files[0].source, /^https:\/\/www.apache.org\//);
+  }
+  assert.equal((await prepareSpecialists([source], parents, join(root, 'unchanged'))).jobs.length, 0);
+  writeFileSync(join(parents[0], notice), 'corrupted notice');
+  const repaired = await prepareSpecialists([source], parents, join(root, 'repair'));
+  assert.equal(repaired.jobs.length, 1);
+  commitJobs(repaired.jobs);
+  assert.deepEqual(readFileSync(join(parents[0], notice)), expected);
+});
+
+test('missing or escaping bundled notice paths block preparation without writing targets', async (t) => {
+  const root = workspace(t), source = sourceFixture(root), parent = join(root, 'target');
+  for (const file of ['licenses/missing.txt', '../LICENSE', '/LICENSE']) {
+    await assert.rejects(prepareSpecialists([{ ...source, license: { ...source.license, bundled_files: [file] } }],
+      [parent], join(root, 'bad-' + file.replaceAll('/', '-'))), /supplement|licen[cs]e|Unsafe/i);
+    assert.equal(existsSync(parent), false);
+  }
+});
+
+test('reviewed asset credit manifests are verified, retained and checked on reruns', async (t) => {
+  const root = workspace(t), source = sourceFixture(root), parent = join(root, 'target');
+  const file = 'skills/design/credits.json', bytes = readFileSync(join(source.repository, file));
+  source.license.asset_manifests = [{ file, sha256: createHash('sha256').update(bytes).digest('hex') }];
+  commitJobs((await prepareSpecialists([source], [parent], join(root, 'install'))).jobs);
+  assert.deepEqual(readFileSync(join(parent, 'design/credits.json')), bytes);
+  writeFileSync(join(parent, 'design/credits.json'), '{}');
+  const repaired = await prepareSpecialists([source], [parent], join(root, 'repair'));
+  assert.equal(repaired.jobs.length, 1, 'damaged attribution needs repair');
+  commitJobs(repaired.jobs);
+  assert.deepEqual(readFileSync(join(parent, 'design/credits.json')), bytes);
+});
+
+test('a missing or changed upstream asset credit manifest blocks installation', async (t) => {
+  const root = workspace(t), source = sourceFixture(root), parent = join(root, 'target');
+  for (const file of ['skills/design/credits.json', 'skills/design/missing-credits.json']) {
+    await assert.rejects(prepareSpecialists([{ ...source, license: { ...source.license,
+      asset_manifests: [{ file, sha256: '0'.repeat(64) }] } }], [parent], join(root, file.replaceAll('/', '-'))), /asset|credit|manifest/i);
+    assert.equal(existsSync(parent), false);
+  }
+});
+
+test('asset credit bytes survive a user Git autocrlf setting', (t) => {
+  const root = workspace(t), source = sourceFixture(root), parent = join(root, 'target');
+  const file = 'skills/design/credits.json', original = readFileSync(join(source.repository, file));
+  source.license.asset_manifests = [{ file, sha256: createHash('sha256').update(original).digest('hex') }];
+  const script = `import { prepareSpecialists } from ${JSON.stringify(new URL('../bin/lib/specialists.mjs', import.meta.url).href)};
+    import { commitJobs } from ${JSON.stringify(new URL('../bin/lib/install.mjs', import.meta.url).href)};
+    const [source, parent, temporary] = process.argv.slice(1);
+    commitJobs((await prepareSpecialists([JSON.parse(source)], [parent], temporary)).jobs);`;
+  const result = spawnSync(process.execPath, ['--input-type=module', '-e', script, JSON.stringify(source), parent, join(root, 'downloads')], {
+    encoding: 'utf8', env: { ...process.env, GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'core.autocrlf', GIT_CONFIG_VALUE_0: 'true' },
+  });
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readFileSync(join(parent, 'design/credits.json')), original);
+});
 
 test('fetches a pinned git source and retains original licence/NOTICE in every installed skill', async (t) => {
   const root = workspace(t), source = sourceFixture(root), parent = join(root, 'project/.agents/skills');

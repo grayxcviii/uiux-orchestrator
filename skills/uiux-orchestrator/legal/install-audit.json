@@ -1,5 +1,11 @@
 {
   "reviewed_on": "2026-11-09",
-  "catalog_sha256": "7d1d266f219a1eb95b7d99b464aa1084e236532bbb4cf4d5e1afcbed2342a9ea",
-  "scope": "46 skill folders from 13 pinned sources, covering 62 registry entries plus agent-device's dogfood companion. Real global, web and mobile installs and reruns verified in isolated profiles. No upstream setup scripts or hooks executed."
+  "catalog_sha256": "1eed6c967e46cc1276de2a5e3b8d65f05bbcfe5390a90ba8f7900ad11851c8a4",
+  "scope": "46 folders / 13 pinned sources / 62 registry entries plus dogfood. Packed global (46), web (30) and mobile (23) installs verified with original root notices, five applicable transitive originals, asset guidance, six Taste credit manifests and same-revision repair. No upstream scripts/hooks executed.",
+  "supplemental_sources_sha256": "8847c0ed8938123e0463a5a012bd7d4d097cd708e2215be33e2833d83dea20cf",
+  "verification_record": "tests/results/2026-11-09-transitive-notices.json",
+  "limitations": [
+    "Per-asset ownership and trademark clearance are not established; follow asset-usage.md when shipping products.",
+    "Software Mansion/Vercel retain README-only MIT declarations at these pins; original notices are not invented."
+  ]
 }

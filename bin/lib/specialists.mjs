@@ -5,6 +5,9 @@ import { dirname, isAbsolute, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { existing, managed } from './install.mjs';
 
+const bundledLegal = fileURLToPath(new URL('../../skills/uiux-orchestrator/legal/', import.meta.url));
+const sha256 = path => createHash('sha256').update(readFileSync(path)).digest('hex');
+
 function inside(root, path) {
   if (isAbsolute(path) || path.split(/[\\/]/).includes('..')) throw new Error(`Unsafe upstream path: ${path}`);
   const full = resolve(root, path);
@@ -22,7 +25,7 @@ function safeTree(path, root, ancestors = new Set()) {
 }
 function git(args, cwd) {
   return new Promise((resolvePromise, reject) => {
-    const child = spawn('git', ['-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', ...args], {
+    const child = spawn('git', ['-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', '-c', 'core.autocrlf=false', ...args], {
       cwd, env: { ...process.env, GIT_TERMINAL_PROMPT: '0', GIT_LFS_SKIP_SMUDGE: '1', GIT_TRACE: '0', GIT_TRACE_CURL: '0' },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
@@ -51,7 +54,24 @@ async function checkout(source, root) {
   if (await git(['rev-parse', 'HEAD'], root) !== source.revision) throw new Error(`Revision mismatch for ${source.id}`);
 }
 
-function currentInstallation(destination, source, skill, previous) {
+function supplementalFiles(source) {
+  const origins = JSON.parse(readFileSync(join(bundledLegal, 'sources.json'), 'utf8'));
+  return (source.license.bundled_files || []).map(file => {
+    const path = inside(bundledLegal, file);
+    if (!existsSync(path) || !lstatSync(path).isFile()) throw new Error(`Missing supplemental licence: ${file}`);
+    const hash = sha256(path), origin = origins.find(entry => entry.file === file);
+    if ((!origin && file !== 'asset-usage.md') || (origin && hash !== origin.sha256)) {
+      throw new Error(`Unverified supplemental licence: ${file}`);
+    }
+    return { file, path, sha256: hash, source: origin?.source || null };
+  });
+}
+
+function assetManifests(source, skill) {
+  return (source.license.asset_manifests || []).filter(entry => entry.file.startsWith(skill.path + '/'));
+}
+
+function currentInstallation(destination, source, skill, previous, supplements) {
   if (previous.revision !== source.revision || previous.path !== skill.path || !existsSync(join(destination, 'SKILL.md'))) return false;
   try {
     const legal = join(destination, '.uiux-licenses');
@@ -59,13 +79,19 @@ function currentInstallation(destination, source, skill, previous) {
     return source.license.files.every(file => {
       const entry = provenance.files.find(entry => entry.file === file);
       return entry && createHash('sha256').update(readFileSync(inside(legal, file))).digest('hex') === entry.sha256;
-    }) && (!source.license.readme_declaration || existsSync(join(legal, 'MIT-terms.txt')));
+    }) && (!source.license.readme_declaration || sha256(join(legal, 'MIT-terms.txt')) === sha256(fileURLToPath(new URL('../licenses/MIT-terms.txt', import.meta.url))))
+      && supplements.every(entry => {
+        const recorded = provenance.supplemental_files?.find(item => item.file === entry.file);
+        return recorded?.sha256 === entry.sha256 && sha256(inside(join(legal, 'supplemental'), entry.file)) === entry.sha256;
+      })
+      && assetManifests(source, skill).every(entry => sha256(inside(destination, entry.file.slice(skill.path.length + 1))) === entry.sha256);
   } catch { return false; }
 }
 
 export async function prepareSpecialists(sources, parents, tempRoot, log = () => {}) {
   const jobs = [], kept = [];
   for (const source of sources) {
+    const supplements = supplementalFiles(source);
     const pending = [];
     for (const skill of source.skills) {
       if (!/^[a-z0-9][a-z0-9-]*$/.test(skill.name)) throw new Error(`Invalid skill name: ${skill.name}`);
@@ -75,7 +101,7 @@ export async function prepareSpecialists(sources, parents, tempRoot, log = () =>
           if (!previous || (previous.name && previous.name !== skill.name) || (previous.repository && previous.repository !== source.repository)) {
             kept.push({ name: skill.name, destination, reason: 'existing user-managed skill; not modified or verified' }); continue;
           }
-          if (currentInstallation(destination, source, skill, previous)) {
+          if (currentInstallation(destination, source, skill, previous, supplements)) {
             kept.push({ name: skill.name, destination, reason: 'already installed at the pinned revision' }); continue;
           }
         }
@@ -94,6 +120,14 @@ export async function prepareSpecialists(sources, parents, tempRoot, log = () =>
     if (source.license.readme_declaration && !/^#{1,6}\s+Licen[cs]e\s*\n[\s\S]{0,500}\bMIT\b/im.test(readFileSync(licencePaths[0].path, 'utf8'))) {
       throw new Error(`Unverified MIT licence declaration for ${source.id}`);
     }
+    for (const entry of source.license.asset_manifests || []) {
+      if (!source.skills.some(skill => entry.file.startsWith(skill.path + '/'))) continue;
+      const path = inside(checkoutRoot, entry.file);
+      if (!existsSync(path) || !lstatSync(path).isFile() || !/^[a-f0-9]{64}$/.test(entry.sha256) || sha256(path) !== entry.sha256) {
+        throw new Error(`Missing or changed asset credit manifest: ${source.id}/${entry.file}`);
+      }
+      safeTree(path, realpathSync(checkoutRoot));
+    }
     const prepared = new Map();
     for (const { skill, destination } of pending) {
       if (!prepared.has(skill.name)) {
@@ -111,9 +145,14 @@ export async function prepareSpecialists(sources, parents, tempRoot, log = () =>
           const target = inside(legal, file); mkdirSync(dirname(target), { recursive: true }); cpSync(licencePath, target);
           provenance.push({ file, sha256: createHash('sha256').update(readFileSync(licencePath)).digest('hex') });
         }
+        for (const entry of supplements) {
+          const target = inside(join(legal, 'supplemental'), entry.file);
+          mkdirSync(dirname(target), { recursive: true }); cpSync(entry.path, target);
+        }
         if (source.license.readme_declaration) cpSync(fileURLToPath(new URL('../licenses/MIT-terms.txt', import.meta.url)), join(legal, 'MIT-terms.txt'));
         writeFileSync(join(legal, 'SOURCE.json'), JSON.stringify({ repository: source.repository, revision: source.revision,
-          path: skill.path, license: source.license.spdx, readme_declaration: source.license.readme_declaration, files: provenance }, null, 2) + '\n');
+          path: skill.path, license: source.license.spdx, readme_declaration: source.license.readme_declaration, files: provenance,
+          supplemental_files: supplements.map(({ path, ...entry }) => entry), asset_manifests: assetManifests(source, skill) }, null, 2) + '\n');
         prepared.set(skill.name, ready);
       }
       jobs.push({ source: prepared.get(skill.name), destination, metadata: { name: skill.name, repository: source.repository,

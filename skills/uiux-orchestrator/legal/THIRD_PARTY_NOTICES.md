@@ -4,6 +4,11 @@ UIUX Orchestrator's original code and instructions are MIT-licensed. The project
 included as `LICENSE` in the installed skill. Third-party material remains under its original
 licence; our MIT licence does not replace those terms.
 
+The v1.3.0 installer includes original supplementary notices for Taste's icon sources and
+Impeccable's platform references, and verifies the reviewed Taste credit manifests. Photos,
+icons and other assets retain their own terms. Follow [asset usage guidance](asset-usage.md)
+when reusing them in a product. Notice preservation is not a complete ownership or asset audit.
+
 ## What is distributed
 
 The runtime registry includes project names, factual descriptions, command names and short
@@ -29,6 +34,11 @@ at the recorded upstream revisions. `sources.json` records their URLs and SHA-25
 | android | [android-license.txt](licenses/android-license.txt) | [Original file](https://raw.githubusercontent.com/android/skills/bf68e2d66a992a1e6aeb7e9263293cc23fcbf475/LICENSE.txt) |
 | twostraws | [twostraws-license](licenses/twostraws-license) | [Original file](https://raw.githubusercontent.com/twostraws/SwiftUI-Agent-Skill/f2920b63995263f57b3e198674e89a602efba6d2/LICENSE) |
 | apache-license-text | [apache-2.0.txt](licenses/apache-2.0.txt) | [Original file](https://www.apache.org/licenses/LICENSE-2.0.txt) |
+| Taste / Lucide and Feather-derived icons | [taste-lucide-license](licenses/taste-lucide-license) | [Original file](https://raw.githubusercontent.com/lucide-icons/lucide/e715245d62667c800e7f54c94b1b023692e900a3/LICENSE) |
+| Taste / vscode-icons | [taste-vscode-icons-license](licenses/taste-vscode-icons-license) | [Original file](https://raw.githubusercontent.com/vscode-icons/vscode-icons/8362039960e5d35a75720a2e9830fd47b213059a/LICENSE) |
+| Taste / Simple Icons | [taste-simple-icons-license](licenses/taste-simple-icons-license) | [Original file](https://raw.githubusercontent.com/simple-icons/simple-icons/73f7cb245ff7f2bc9bf6af3ff5d73329071e7420/LICENSE.md) |
+| Taste / gilbarbara logos | [taste-gilbarbara-license](licenses/taste-gilbarbara-license) | [Original file](https://raw.githubusercontent.com/gilbarbara/logos/d6960edc1b7309d392c76e40d3a320df7f9ff85c/LICENSE.txt) |
+| Impeccable / ehmo platform references | [ehmo-platform-design-license](licenses/ehmo-platform-design-license) | [Original file](https://raw.githubusercontent.com/ehmo/platform-design-skills/baff03e456864470db3ba8acebc41a003cbfa541/LICENSE) |
 
 Software Mansion's skills and Vercel's agent-skills declare MIT in their upstream READMEs,
 but no standalone licence file was found at the reviewed revisions. Their metadata is attributed

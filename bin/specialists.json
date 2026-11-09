@@ -11,7 +11,11 @@
           "LICENSE",
           "NOTICE.md"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md",
+          "licenses/ehmo-platform-design-license"
+        ]
       },
       "skills": [
         {
@@ -52,7 +56,10 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -78,7 +85,40 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md",
+          "licenses/taste-lucide-license",
+          "licenses/taste-vscode-icons-license",
+          "licenses/taste-gilbarbara-license",
+          "licenses/taste-simple-icons-license"
+        ],
+        "asset_manifests": [
+          {
+            "file": "skills/taste-skill/assets/photos/photos.json",
+            "sha256": "4e5108b4a1e6cf744dff5dc510c42109579b1181837c0feb6edab86960b8fadf"
+          },
+          {
+            "file": "skills/taste-skill/assets/icons/demo/icons-credits.json",
+            "sha256": "9e988b58bb6f56d9fa43134bc58c952c0867a48d72c0d5b4343e67d0ecb44b5b"
+          },
+          {
+            "file": "skills/taste-skill/assets/ui/icons/icons-credits.json",
+            "sha256": "f1a113069f68c36192006edc8d6e1b3bdb9caf366315ff553b8821b3f89678d4"
+          },
+          {
+            "file": "skills/taste-skill/assets/layout/img/credits.json",
+            "sha256": "41a5a4d9fa9e1d6afe52b5468e83e1a54ae119586d2909b27694ce3209f615a4"
+          },
+          {
+            "file": "skills/taste-skill/assets/scenes/_demo/credits.json",
+            "sha256": "a8229e58f3fabdcb4446f6bc620b9c3d7b846bc8603664dd8a73637216a7f06d"
+          },
+          {
+            "file": "skills/taste-skill/assets/moments/_demo/credits.json",
+            "sha256": "529eb5cbd43841d3b65c3cfb7b3b1c69c74e0ff780f9d607b97132d5d123e3b0"
+          }
+        ]
       },
       "skills": [
         {
@@ -102,7 +142,10 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -126,7 +169,10 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -315,7 +361,10 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -409,7 +458,10 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -473,7 +525,10 @@
         "files": [
           "README.md"
         ],
-        "readme_declaration": true
+        "readme_declaration": true,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -497,7 +552,10 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -542,7 +600,10 @@
         "files": [
           "skills/frontend-design/LICENSE.txt"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -566,7 +627,10 @@
         "files": [
           "LICENSE.txt"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -620,7 +684,10 @@
         "files": [
           "README.md"
         ],
-        "readme_declaration": true
+        "readme_declaration": true,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {
@@ -654,7 +721,10 @@
         "files": [
           "LICENSE"
         ],
-        "readme_declaration": false
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
       },
       "skills": [
         {

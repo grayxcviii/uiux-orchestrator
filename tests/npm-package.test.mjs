@@ -24,6 +24,9 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     assert.ok(files.has('skills/uiux-orchestrator/LICENSE'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/THIRD_PARTY_NOTICES.md'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/licenses/apache-2.0.txt'));
+    const supplementary = ['asset-usage.md', 'licenses/taste-lucide-license', 'licenses/taste-vscode-icons-license',
+      'licenses/taste-simple-icons-license', 'licenses/taste-gilbarbara-license', 'licenses/ehmo-platform-design-license'];
+    for (const file of supplementary) assert.ok(files.has('skills/uiux-orchestrator/legal/' + file), file);
     for (const file of ['bin/specialists.json', 'bin/lib/project.mjs', 'bin/lib/install.mjs', 'bin/lib/specialists.mjs', 'bin/licenses/MIT-terms.txt']) {
       assert.ok(files.has(file), file);
     }
@@ -47,6 +50,9 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     assert.match(readFileSync(localA, 'utf8'), /^name: uiux-orchestrator/m);
     for (const file of ['LICENSE', 'legal/THIRD_PARTY_NOTICES.md', 'legal/licenses/apache-2.0.txt']) {
       assert.ok(existsSync(join(projectA, '.agents/skills/uiux-orchestrator', file)), file);
+    }
+    for (const file of supplementary) {
+      assert.ok(existsSync(join(projectA, '.agents/skills/uiux-orchestrator/legal', file)), file);
     }
     assert.equal(existsSync(localB), false);
     assert.equal(existsSync(global), false);

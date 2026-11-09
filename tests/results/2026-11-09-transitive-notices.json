@@ -1,0 +1,51 @@
+{
+  "candidate": "1.3.0",
+  "kind": "packed installer transitive-notice verification",
+  "catalog_sha256": "1eed6c967e46cc1276de2a5e3b8d65f05bbcfe5390a90ba8f7900ad11851c8a4",
+  "sources": "Anonymous GitHub Git fetches at all catalogue commits; no specialist scripts executed.",
+  "profiles": [
+    {
+      "profile": "global",
+      "specialists": 46,
+      "original_notices_match_pinned_sources": true,
+      "supplemental_files_verified": 51,
+      "asset_credit_manifests_verified": 6,
+      "intact_rerun_reuses_all_sources": true
+    },
+    {
+      "profile": "web",
+      "specialists": 30,
+      "original_notices_match_pinned_sources": true,
+      "supplemental_files_verified": 35,
+      "asset_credit_manifests_verified": 6,
+      "intact_rerun_reuses_all_sources": true
+    },
+    {
+      "profile": "mobile",
+      "specialists": 23,
+      "original_notices_match_pinned_sources": true,
+      "supplemental_files_verified": 24,
+      "asset_credit_manifests_verified": 0,
+      "intact_rerun_reuses_all_sources": true
+    }
+  ],
+  "limitations": [
+    "Installation and notice retention, not ownership clearance or specialist design/runtime validation.",
+    "Real downloads use macOS and --agent codex; offline tests cover the other agent directories."
+  ],
+  "missing_supplement_repaired_at_same_revision": true,
+  "tarball": {
+    "files": 63,
+    "bytes": 125978,
+    "specialist_implementations_bundled": false
+  },
+  "final_verification": {
+    "node_tests": 41,
+    "python_tests": 12,
+    "licence_gate": "passed: 18 original files including 5 supplemental originals",
+    "repository_validator": "passed",
+    "npm_publish_dry_run": "passed; no npm release published",
+    "autocrlf_regression": "reproduced then fixed; user setting overridden for upstream checkouts"
+  },
+  "code_review": "Independent read-only review and incremental autocrlf review approved with no material findings. Reviewer did not repeat network installs or determine ownership/legal sufficiency."
+}

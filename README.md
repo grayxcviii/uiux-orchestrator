@@ -48,8 +48,11 @@ npx uiux-orchestrator install           # this project
 npx uiux-orchestrator install --global  # all your projects
 ```
 
-Automatic specialist setup arrives in **v1.3.0**: web/mobile skills per project, the full catalogue
-globally. Available in GitHub source; npm release pending. Current npm installs the orchestrator only.
+**npm currently provides v1.1.1**, which installs UIUX Orchestrator. Install specialist skills
+separately with that release.
+
+The **v1.3.0 code on GitHub** adds automatic specialist installation: relevant web/mobile skills
+for a project, or the full supported catalogue globally. It has not been published to npm yet.
 
 Requires Node.js 18+; specialist downloads also need Git and network access.
 [Agent selection and setup options →](docs/usage.md#install-update-remove)
@@ -94,8 +97,10 @@ Selection depends on the task; user-invoked skills require an explicit request.
 
 UIUX Orchestrator's original code and instructions are licensed under [MIT](LICENSE).
 Third-party skills retain their authors' copyrights and their own licences; they are independent
-projects, with no affiliation or endorsement implied. The npm installer preserves upstream
-licence/NOTICE files alongside downloaded skills. [Full notices and licence texts →](THIRD_PARTY_NOTICES.md)
+projects, with no affiliation or endorsement implied. The v1.3.0 source installer preserves
+upstream licence/NOTICE files, supplementary notices and reviewed asset credits. Photos, icons
+and other assets can carry separate terms; follow the [asset usage guidance](skills/uiux-orchestrator/legal/asset-usage.md)
+when reusing them in a product. [Full notices and licence texts →](THIRD_PARTY_NOTICES.md)
 
 Demo photos are used under the [Pexels licence](https://www.pexels.com/license/), with
 [credits](docs/assets/CREDITS.md). No pictured car manufacturer endorses this project.
