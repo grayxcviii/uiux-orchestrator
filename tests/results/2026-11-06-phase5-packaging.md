@@ -15,7 +15,7 @@
 | `claude plugin install uiux-orchestrator --marketplace <local path>` | Installed. `claude plugin details` shows 1 skill, about 200 always-on tokens and about 2.9k when invoked |
 | Skill name registered | `uiux-orchestrator:uiux-orchestrator`. `/uiux-orchestrator` also resolves to it (P3) |
 | Uninstall and marketplace removal | Clean. `claude plugin list` no longer shows it |
-| Install from GitHub: `claude plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator` | Passed after the v1.0.0 push. It cloned, validated and installed v1.0.0. A `/uiux-orchestrator` probe (G1) loaded the skill from the plugin cache |
+| Install from GitHub: `claude plugin install uiux-orchestrator --marketplace grayxcviii/uiux-orchestrator` | Passed after the v1.0.0 push. It cloned, validated and installed v1.0.0. A `/uiux-orchestrator` probe (G1) loaded the skill from the plugin cache |
 | `claude plugin marketplace update` + `claude plugin update` | Both work. The update reported "already at the latest version (1.0.0)" |
 | GitHub Actions `validate` on the first push | success |
 | `npx skills add` | **Not tested:** running the external CLI was not permitted in this environment |
@@ -61,7 +61,7 @@ limitations" stated that nothing was rendered: the harness did not approve a dev
 ## 3. v1.1.0: plugin dependencies, routing with namespaced skills
 
 The plugin was installed from GitHub with
-`claude plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator`. All 6
+`claude plugin install uiux-orchestrator --marketplace grayxcviii/uiux-orchestrator`. All 6
 dependencies were installed and enabled, and sessions saw 14 plugin skills, for example
 `impeccable:impeccable` and `emil-kowalski-motion:animate`. The author's standalone
 `~/.claude/skills/impeccable` was moved aside first to avoid a duplicate.

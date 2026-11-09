@@ -5,16 +5,16 @@
 **Claude Code**: one command, in Claude Code (needs Claude Code 2.1.275 or later):
 
 ```text
-/plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator
+/plugin install uiux-orchestrator --marketplace grayxcviii/uiux-orchestrator
 ```
 
 On the terminal the same install is
-`claude plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator`.
+`claude plugin install uiux-orchestrator --marketplace grayxcviii/uiux-orchestrator`.
 
 On older Claude Code versions, use two steps instead:
 
 ```text
-/plugin marketplace add LongNguyen2312/uiux-orchestrator
+/plugin marketplace add grayxcviii/uiux-orchestrator
 /plugin install uiux-orchestrator@uiux-orchestrator
 ```
 
@@ -67,7 +67,7 @@ prepared in this repository but has not been published yet.
 the skill is available in every project:
 
 ```bash
-npx skills add LongNguyen2312/uiux-orchestrator --skill uiux-orchestrator -g -a codex
+npx skills add grayxcviii/uiux-orchestrator --skill uiux-orchestrator -g -a codex
 ```
 
 Omit `-g` to install in the current project. Replace `codex` with another agent name, or omit
@@ -82,7 +82,7 @@ For a manual install without Node.js, clone once and link the skill folder into 
 skills directory:
 
 ```bash
-git clone https://github.com/LongNguyen2312/uiux-orchestrator.git ~/uiux-orchestrator
+git clone https://github.com/grayxcviii/uiux-orchestrator.git ~/uiux-orchestrator
 ln -s ~/uiux-orchestrator/skills/uiux-orchestrator ~/.codex/skills/uiux-orchestrator    # Codex CLI
 # ln -s ~/uiux-orchestrator/skills/uiux-orchestrator ~/.claude/skills/uiux-orchestrator  # Claude Code without the plugin
 ```

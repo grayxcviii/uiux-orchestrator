@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml"><img src="https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml/badge.svg" alt="validate"></a>
+  <a href="https://github.com/grayxcviii/uiux-orchestrator/actions/workflows/validate.yml"><img src="https://github.com/grayxcviii/uiux-orchestrator/actions/workflows/validate.yml/badge.svg" alt="validate"></a>
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
   <img src="https://img.shields.io/badge/web%20%26%20mobile-ready-black" alt="Web and mobile">
 </p>
@@ -46,7 +46,7 @@ npx uiux-orchestrator install --global  # all your projects
 **Want to use it today?** Install through the Skills CLI (Node.js 22.20+):
 
 ```bash
-npx skills add LongNguyen2312/uiux-orchestrator --skill uiux-orchestrator
+npx skills add grayxcviii/uiux-orchestrator --skill uiux-orchestrator
 ```
 
 Choose your agent when prompted. Add `-g` to use it across projects.

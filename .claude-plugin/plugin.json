@@ -4,10 +4,10 @@
   "description": "Adaptive UI/UX orchestrator for web, React Native/Expo, iOS, Android and Flutter: picks the minimum set of design, motion, accessibility and review skills a task needs, carries decisions into code and validates with evidence.",
   "author": {
     "name": "Long Nguyen",
-    "url": "https://github.com/LongNguyen2312"
+    "url": "https://github.com/grayxcviii"
   },
-  "homepage": "https://github.com/LongNguyen2312/uiux-orchestrator",
-  "repository": "https://github.com/LongNguyen2312/uiux-orchestrator",
+  "homepage": "https://github.com/grayxcviii/uiux-orchestrator",
+  "repository": "https://github.com/grayxcviii/uiux-orchestrator",
   "license": "MIT",
   "keywords": [
     "ui",

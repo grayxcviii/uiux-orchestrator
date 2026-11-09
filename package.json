@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LongNguyen2312/uiux-orchestrator.git"
+    "url": "git+https://github.com/grayxcviii/uiux-orchestrator.git"
   },
   "bin": {
     "uiux-orchestrator": "bin/uiux-orchestrator.mjs"

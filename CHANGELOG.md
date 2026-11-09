@@ -26,7 +26,7 @@ First public release (Phase 5: packaging).
 
 ### Added
 - Claude Code plugin and marketplace manifests (`.claude-plugin/`). Install with
-  `/plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator`.
+  `/plugin install uiux-orchestrator --marketplace grayxcviii/uiux-orchestrator`.
 - `docs/usage.md`: the commands, the request → workflow table, and real example output.
 - CI (`.github/workflows/validate.yml`) runs `scripts/validate.py` on every push.
 - `validate.py` checks that the plugin, marketplace and SKILL.md versions agree.

@@ -4,7 +4,7 @@
   "description": "UIUX Orchestrator: adaptive UI/UX design and implementation skill for web and mobile.",
   "owner": {
     "name": "Long Nguyen",
-    "url": "https://github.com/LongNguyen2312"
+    "url": "https://github.com/grayxcviii"
   },
   "plugins": [
     {
@@ -13,7 +13,7 @@
       "version": "1.1.0",
       "source": "./",
       "category": "design",
-      "homepage": "https://github.com/LongNguyen2312/uiux-orchestrator"
+      "homepage": "https://github.com/grayxcviii/uiux-orchestrator"
     },
     {
       "name": "impeccable",
