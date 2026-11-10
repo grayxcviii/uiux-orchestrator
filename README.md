@@ -54,8 +54,10 @@ npx uiux-orchestrator install           # this project
 npx uiux-orchestrator install --global  # all your projects
 ```
 
-Installs UIUX Orchestrator and its specialists together: relevant web/mobile skills for the
-current project, or the full supported catalogue globally.
+Installs UIUX Orchestrator and its specialists together. Project installs automatically detect
+your web/mobile framework and select the matching skills. In a new or unrecognized project,
+the installer automatically installs the full web/mobile catalogue locally — no platform flag
+required. Global installs always include the full supported catalogue.
 
 Requires Node.js 18+; specialist downloads also need Git and network access.
 Full-design execution-record checks use Python 3 (standard library only).
