@@ -1,9 +1,34 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
+import { cpSync, existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import test from 'node:test';
+
+test('npm package excludes Python caches even after local validation', () => {
+  const root = mkdtempSync(join(tmpdir(), 'uiux-pack-cache-'));
+  try {
+    const project = join(root, 'project');
+    mkdirSync(project);
+    for (const entry of ['package.json', 'bin', 'skills', 'LICENSE', 'README.md', 'THIRD_PARTY_NOTICES.md']) {
+      cpSync(resolve(entry), join(project, entry), { recursive: true });
+    }
+    const scripts = join(project, 'skills/uiux-orchestrator/scripts');
+    mkdirSync(join(scripts, '__pycache__'), { recursive: true });
+    writeFileSync(join(scripts, '__pycache__/release-test.cpython-312.pyc'), 'test cache');
+    writeFileSync(join(scripts, 'release-test.pyc'), 'test cache');
+    const result = spawnSync('npm', ['pack', '--dry-run', '--json'], {
+      cwd: project, env: { ...process.env, npm_config_cache: join(root, 'cache') },
+      encoding: 'utf8', timeout: 60000,
+    });
+    assert.equal(result.status, 0, result.stderr);
+    const files = JSON.parse(result.stdout)[0].files.map(file => file.path);
+    assert.ok(files.includes('skills/uiux-orchestrator/scripts/check-orchestration.py'));
+    assert.deepEqual(files.filter(file => file.includes('__pycache__') || /\.py[cod]$/.test(file)), []);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
 
 for (const inheritedDryRun of ['false', 'true']) {
 test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDryRun})`, () => {
@@ -24,6 +49,9 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     assert.ok(files.has('skills/uiux-orchestrator/LICENSE'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/THIRD_PARTY_NOTICES.md'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/licenses/apache-2.0.txt'));
+    for (const file of ['scripts/probe-runtime.py', 'scripts/check-orchestration.py']) {
+      assert.ok(files.has('skills/uiux-orchestrator/' + file), file);
+    }
     const supplementary = ['asset-usage.md', 'licenses/taste-lucide-license', 'licenses/taste-vscode-icons-license',
       'licenses/taste-simple-icons-license', 'licenses/taste-gilbarbara-license', 'licenses/ehmo-platform-design-license'];
     for (const file of supplementary) assert.ok(files.has('skills/uiux-orchestrator/legal/' + file), file);
@@ -49,6 +77,9 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     command('npx', npx, projectA);
     assert.match(readFileSync(localA, 'utf8'), /^name: uiux-orchestrator/m);
     for (const file of ['LICENSE', 'legal/THIRD_PARTY_NOTICES.md', 'legal/licenses/apache-2.0.txt']) {
+      assert.ok(existsSync(join(projectA, '.agents/skills/uiux-orchestrator', file)), file);
+    }
+    for (const file of ['scripts/probe-runtime.py', 'scripts/check-orchestration.py']) {
       assert.ok(existsSync(join(projectA, '.agents/skills/uiux-orchestrator', file)), file);
     }
     for (const file of supplementary) {

@@ -33,6 +33,68 @@
       "criteria": ["continuity", "interruptions", "reduced_motion"],
       "acceptance": {"continuity": "Step transitions observed on the same simulator/device setup", "interruptions": "Rapid Next/Back does not leave stuck or overlapping steps", "reduced_motion": "Reduced-motion behavior exercised; navigation remains usable"},
       "requires_visual": true
+    },
+    {
+      "id": "E05",
+      "fixture": "tests/fixtures/web-app",
+      "prompt": "Create a separate Vietnamese marketing page for a fictional consumer-headphone brand named Pulse. This is an independent visual world; preserve the existing admin screens and their tokens. Make the page contemporary, colorful, premium and product-specific, with a substantial 3D product focal point. Choose the art direction and build; use clearly identified concept content and no invented testimonials. Interactive geometry is optional; a high-quality static 3D render is acceptable. Include product exploration, a color selector and an honest demo cart without checkout. Use available tooling and assets, and report asset or rendering limits.",
+      "criteria": ["brief_fit", "color_presence", "media_craft", "responsive", "interaction_scope"],
+      "acceptance": {
+        "brief_fit": "A blinded reviewer assessed rendered composition, type and materials against contemporary premium tech positioning; a coherent but mismatched retro/editorial direction is not accepted solely for being distinctive",
+        "color_presence": "The requested expressive color is visible in the composition, with purposeful roles and legible primary actions; no particular hue or dark/light theme is mandated",
+        "media_craft": "A substantial product-specific 3D image or scene has observed material, lighting and geometry quality appropriate to the premium brief; crude placeholders are reported as unresolved rather than passed",
+        "responsive": "320/390/768/1280 layouts observed, with intentional phone composition and no overflow or clipped meaningful content",
+        "interaction_scope": "Color selection and demo cart work by pointer/keyboard, with truthful non-checkout status; unrelated admin screens and tokens are preserved"
+      },
+      "requires_visual": true
+    },
+    {
+      "id": "E06",
+      "fixture": "tests/fixtures/web-app",
+      "prompt": "Build a separate campaign page for a fictional music subscription, with a modern vivid violet/cyan gradient art direction and glass limited to one player-preview area. This campaign has its own visual identity; preserve existing admin screens and tokens. Keep text and plan actions legible, use music-specific imagery or clearly labeled concept assets, and support keyboard and reduced motion. Use the requested palette and effects deliberately; do not replace them with a muted neutral theme in the name of avoiding generic AI design. All subscription actions must clearly remain a demo.",
+      "criteria": ["style_fidelity", "identity", "contrast", "responsive", "interaction_scope"],
+      "acceptance": {
+        "style_fidelity": "Rendered output visibly preserves the requested vivid violet/cyan gradients and restrained glass; driver house preferences do not override the brief",
+        "identity": "Music-specific composition, media and signature details extend beyond the hero and are assessed by a blinded reviewer",
+        "contrast": "Text, controls and focus states remain legible over the actual gradients/translucent surfaces at all relevant states; automated DOM checks alone do not establish contrast over imagery",
+        "responsive": "320/390/768/1280 renders inspected for hierarchy, framing and reflow",
+        "interaction_scope": "Keyboard and reduced-motion paths exercised, subscription actions are honest demos, and the existing admin UI remains unchanged"
+      },
+      "requires_visual": true
+    },
+    {
+      "id": "E07",
+      "fixture": "tests/fixtures/web-app",
+      "prompt": "Creatively refine one existing pricing card so it feels distinctive, contemporary and more compelling. You choose the design. Preserve the brand tokens, supplied content, plan action, accessibility and other cards/screens; no new dependency or rebrand. Inspect the current card in its page context, explore meaningfully different approaches within scope, choose and build the strongest. Show matching before/after evidence and explain the concrete user/product benefit.",
+      "criteria": ["creative_process", "creative_gain", "system_scope", "responsive", "interaction"],
+      "acceptance": {
+        "creative_process": "Executed concept and scoped visual expertise with alternatives, chosen rationale and accepted handoffs; Small scope/existing tokens did not silently skip creative judgment",
+        "creative_gain": "A blinded reviewer compared before/after and identified a deliberate product-specific composition, presentation or interaction improvement; arbitrary cosmetic swaps or a generic looks-cleaner verdict do not establish the claim",
+        "system_scope": "Existing tokens, supplied content and other cards/screens preserved; no unauthorized rebrand, dependency or behavior change",
+        "responsive": "Observed the component in its page context at phone and desktop sizes and relevant states; hierarchy and legibility remain intact",
+        "interaction": "Existing plan action and keyboard/focus behavior exercised and preserved"
+      },
+      "requires_visual": true
+    },
+    {
+      "id": "E08",
+      "fixture": "tests/fixtures/web-app",
+      "prompt": "Build a new independent Hanoi tourism landing page outside the existing app shell. You choose art direction; preserve the app and its tokens. PATH uses Node20 but Node24 is already installed, Chrome and Python3 are available, and all specialists are installed. Required local kit/assets for this new surface are authorized; do not publish, install runtimes or change global defaults. Use genuine Hanoi material with clear provenance. Select a compatible visual driver from the original brief before deciding effects. Deliver the page, actual rendered evidence and an honest visual assessment.",
+      "criteria": [
+        "driver_eligibility",
+        "media_fit",
+        "visual_brief",
+        "interaction",
+        "status_honesty"
+      ],
+      "acceptance": {
+        "driver_eligibility": "Observed alternate runtime and actual installed driver rules; eligible Taste preferred for original marketing brief unless the user actually selected another driver; no exclusion based only on PATH or self-imposed effects.",
+        "media_fit": "Images/materials depict Hanoi convincingly at presentation size; a model is not considered superior merely for being3D; licensed sources and real assets have provenance.",
+        "visual_brief": "Blinded reviewer inspects phone/desktop against original audience/brief for composition, type, palette, subject identity and finish; technical or record pass is reported separately.",
+        "interaction": "Navigation/main travel action exercised; motion appropriate to the design and reduced-motion behavior observed; new page does not change existing app tokens.",
+        "status_honesty": "No visual pass from met:true alone; failed/unverified brief fit remains Needs review. If negative feedback is introduced after initial review, preserve it and require a new rendered assessment before completion."
+      },
+      "requires_visual": true
     }
   ]
 }

@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 /tmp/
 .claude/settings.local.json
+
+# Large media/demo outputs (publish via GitHub Releases, not git)
+marketing/
+/examples/

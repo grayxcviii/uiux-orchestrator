@@ -76,12 +76,67 @@ hover/press/focus · accessibility: focus order, labels, large text (200% / larg
 font scale 2.0), reduced motion · animation: plays, interruptible, no jank visible · RTL if
 localized.
 
+For modern/3D directions, also inspect the focal composition, type, materials, lighting and depth
+against the direction record. Apply [spatial-design.md](../references/spatial-design.md) for scene
+framing, input alternatives, reduced motion, loading/failure fallback and lifecycle checks.
+DOM checks cannot assess canvas content; DOM motion traces cannot capture internal scene animation.
+Use rendered frames/recordings and actual measurements for scene claims, disclosing device limits.
+
 ## Gates per workflow
+
+### Visual craft acceptance
+
+For every task with open design judgment, including new design, Refresh, polish and a single
+component refinement, apply this
+check alongside the workflow's gate. Inspect rendered output and record concrete observations:
+
+| Dimension | Acceptance evidence |
+|---|---|
+| Brief fit | Each requested visual quality maps to observed choices in the render: color intensity, typography, composition, media/material quality and depth. A coherent but wrong style fails this check. |
+| Creative advance | Identify the chosen signature/experience improvement and its user/product benefit. For edits, compare matching before/after evidence and the alternatives considered under the [creative-improvement contract](../references/visual-design.md#9-breakthrough-ambition-for-new-work-and-edits). Small scope or fixed tokens do not waive this judgment. |
+| Composition | A clear focal point and primary action; balanced visual weight, intentional alignment and negative space. |
+| Typography | A deliberate scale and type treatment that suit the product; readable copy and clean wrapping at target sizes. |
+| Palette and materials | Cohesive color roles, accessible contrast and consistent depth/light/material choices when used. |
+| Product identity | Specific content and a recognizable visual idea carried across the surface; explain what makes it fit this product. |
+| Distinctiveness (original visual work) | Signature details remain recognizable without the logo; an unrelated product would require meaningful visual redesign. Use the [identity contract](../references/visual-design.md#product-identity-contract) to identify and refine interchangeable sections. |
+| Finish | Consistent icons, radii, borders, image crops and spacing; interaction states receive the same care as the default view. |
+| Responsive craft | Phone layouts are intentionally recomposed; hierarchy, focal media and controls remain polished and usable. |
+
+Check the first representative render for brief fit before spending time on micro-polish; then
+verify the full surface at the required sizes/states. Review both the original brief and the
+direction record, not just implementation fidelity. If the direction itself misses the brief,
+return to `direction` within authorized scope; do not preserve a wrong style because it was
+recorded. Report findings as requested quality → observed mismatch → change needed. Maintain
+the separate technical checks; neither visual taste nor a technical pass replaces the other.
+Fix visible weak points through the visual loop; unresolved craft defects prevent `Passed` for
+a visual-quality request.
+For full-design, persist this assessment as `visual_review` in the execution record: each
+dimension has a verdict, a concrete observation and rendered evidence, tied to the actual
+UX/design activation. A functional/a11y score or a list of `met: true` gates cannot replace it.
+
+Negative user feedback invalidates the earlier visual pass. Reopen the affected direction and
+review, retain the feedback and superseded activation, then record fixes and a new rendered
+assessment. Do not answer a rejection only with more effects, a larger skill list or the earlier
+review score. This is not a universal user-approval gate: delegated work proceeds normally when
+no feedback was received, and fixes can be validated by a new qualified review within scope.
+Use `Needs review` when the aesthetic verdict is uncertain, the loop does not converge, or no
+render can be observed. A technical test result or the presence of 3D does not establish beauty.
+For exact corrections/supplied designs, assess fidelity, craft and reliability within scope;
+do not require unrelated novelty. For open-ended creative work, a missing demonstrated advance
+requires refinement or `Needs review`, not a breakthrough claim based only on source changes.
+
+### Workflow requirements
 
 Each workflow file ends with its own **Gate**: the conditions and the minimum evidence. That gate is
 canonical; this file defines the levels and statuses they use. "L1 + L2" means both.
 
 ## Status
+
+For full-design work, first run the [orchestration record check](orchestration.md#5-completion-check).
+Missing phase/activation/handoff/review coverage blocks completion. Use the lower of its status
+ceiling and the workflow's evidence verdict. Required built-in specialist fallbacks or declared
+sequential reviews are limited; unmet critical outputs/independent-review requirements remain
+`Needs review`. The record checker does not authenticate receipts or establish visual quality.
 
 | Status | Use when |
 |---|---|

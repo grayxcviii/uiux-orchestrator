@@ -157,13 +157,13 @@ Say *what* you want and any constraint that matters. You don't need to name skil
 
 | Request | What happens |
 |---|---|
-| "Redesign the profile screen. Make it modern but consistent with the app." | Redesign, **Refresh** mode: it audits the current screen, keeps the existing design system, then implements and validates the result. |
-| "Replace the landing page with a completely new look." | Redesign, **Replace** mode: one design driver chooses a new direction. Before it changes anything project-wide, it asks you once. |
+| "Redesign the profile screen. Make it modern but consistent with the app." | Redesign, **Refresh** mode: it audits the current screen, keeps the existing design system, explores concept alternatives within it, implements the chosen improvement, then compares before/after and runs a design review. |
+| "Replace the landing page with a completely new look." | Redesign, **Replace** mode: the full design pipeline: research & foundation, concept reasoning, one driver for the new art direction, a finalized design system, implementation, then separate UX/design and technical reviews. It asks once only if the new direction or project-wide changes are not already authorized by your request. |
 | "Improve the animation of the onboarding flow." | Animation: it decides what each motion is for and picks the tool. It prefers CSS or the library you already use, and adds no new dependency without asking. |
 | "Review this screen and find UX problems. Do not modify the code." | Review, read-only: it returns findings with location, severity, impact and fix. No source file changes. |
 | "The plan name is cut off on small phones." | Bug fix: it finds the root cause, makes the smallest fix, and shows before/after at the widths that matter. |
 | "Is the checkout accessible?" | Accessibility: a WCAG 2.2 AA audit, plus fixes if edits are allowed. |
-| "Set up design tokens for this app." | Design system: it inventories what exists and introduces tokens without restyling unrelated screens. |
+| "Set up design tokens for this app." | Design system: if none exists, it runs foundation, concept and art direction before committing tokens and core components, applied to one screen; otherwise it inventories and extends what exists without restyling unrelated screens. |
 
 Useful constraints to add in the same sentence:
 - "don't modify code", for review only;
@@ -171,7 +171,7 @@ Useful constraints to add in the same sentence:
 - "no new libraries";
 - "keep the brand colours";
 - "iOS only" or "web only";
-- "make it Large", to get the multi-step process with a separate reviewer.
+- "make it Large", to plan it as Large: multi-agent execution with an independent reviewer when subagents are available.
 
 If a fact that end users would read as true is missing, such as prices or legal text, it asks
 once. Until you answer, it uses clearly marked placeholders.
@@ -346,4 +346,4 @@ never installs anything for you. What each skill is used for is in
 | It doesn't activate | Run `/plugin` and confirm `uiux-orchestrator` is enabled, then start a new session. Or call `/uiux-orchestrator` explicitly. |
 | "No Chrome, Chromium or Edge found" from the validation scripts | Install Chrome, Chromium or Edge, or set `CHROME_PATH`. |
 | It reports `Passed with limitations` on mobile | No simulator or emulator, or no device automation tool. Install [agent-device](https://github.com/callstackincubator/agent-skills) (Callstack) for native screenshots and frames. |
-| It asks before running a design driver | Drivers such as Impeccable new-work and Taste write context files or kits into your project, so it asks first. |
+| It asks before running a design driver | Check whether the requested build already authorizes its local assets/context. Ask only for genuinely unauthorized changes, dependencies or conflicting house rules; read-only tasks prohibit project writes. |

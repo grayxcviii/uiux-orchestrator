@@ -23,8 +23,9 @@ Without explicit permission, do not:
   (CocoaPods, Gradle, Expo prebuild, Reanimated major version, New Architecture switch);
 - install skills, CLIs, MCP servers, or global tools;
 - run a skill's own setup that copies kits or writes project files when the task did not ask for
-  them (record the skipped step instead). A driver that needs such a file for a new surface gets
-  one permission line in the question batch (decision-engine §4).
+  them. First check existing task authorization: creating local assets, tokens and context inside
+  the requested new surface is ordinary implementation when it fits the brief and scope. Ask
+  only for actions not already authorized; read-only requests still prohibit these writes.
 
 Passing a supplied callback through a presentation component or calling an established project
 hook with its existing contract is not a navigation/state/data-flow architecture change. A new
@@ -40,7 +41,8 @@ exists, otherwise stop at a plan with status `Needs review`.
 - A skill's own setup steps that are read-only or stay inside the skill's own folder are part of
   using a skill the user installed — run them, and mention any first-run download in the report
   (e.g. Impeccable's launcher binary, a search script's cache). Setup that writes into the
-  project, installs packages, or changes the system needs permission. The registry's
+  project needs scope authorization, which may already be supplied by the task; installs or
+  system changes need their applicable authorization. The registry's
   `side_effects` and `requires` fields list these steps for each known skill.
 - Check that a tool is already configured before running it: some commands set themselves up on
   first run (e.g. `npx expo lint` installs ESLint and writes a config when none exists). If it is

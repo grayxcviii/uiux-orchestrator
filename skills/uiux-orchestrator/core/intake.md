@@ -83,8 +83,10 @@ Read-only reviews are low risk by default. For changes, raise to **elevated** fo
 - Affects accessibility of a critical path (checkout, auth, onboarding).
 - Large redesign of a live product.*
 
-High-risk tasks require: a short plan the user **confirms** before editing (this counts as asking),
-an independent review pass, and regression checks of everything sharing the touched components.
+High-risk tasks require a short plan covered by user authorization before editing, an independent
+review pass and regression checks of shared usages. Ask for confirmation only when the relevant
+action is not already authorized. Delegated design choices need no repeated selection gate;
+unrelated destructive actions, dependencies and broader changes still need their own authority.
 
 ## When to ask
 
@@ -100,3 +102,25 @@ default, state it in the start summary, and proceed.
 | Facts end users would read as true (company facts, prices, claims, testimonials) — ask once and meanwhile build with clearly marked placeholders | Whether to follow platform conventions (always) |
 
 Ask once, batched, with a recommended default.
+
+## Visual intent (when design judgment is in scope)
+
+Capture the user's requested look, color intensity, mood, depth/motion and explicit dislikes
+as constraints, not just an objective such as "make it beautiful". Retain supplied references
+and brand limits. When references are available, inspect their relevant visual details; do not
+invent references or claim to have viewed them. Carry this brief into driver selection and
+the direction contract in [visual-design.md §6](../references/visual-design.md#6-avoiding-generic-ai-generated-ui).
+
+For original work with no supplied style, use a contemporary, expressive direction suited to
+the product. "Modern" alone does not select dark mode, neon, monochrome, minimalism or retro
+editorial styling. For "modern and colorful", plan visible chromatic presence and contemporary
+type/composition; do not reduce the request to a tiny accent on a muted template. State the
+concrete direction you choose and proceed when the user delegated it. This adds no approval step.
+
+Record whether **design judgment is open**. It is open for delegated polish, visual/UX
+improvement, Refresh and new concepts—even one component with existing tokens. Default its
+creative ambition to breakthrough: a meaningful distinctive improvement inside the authorized
+scope. Route the creative-refinement branch of `improvement.md` (its size table scales the number
+of activations, not the ambition) or Refresh concept/direction steps; do not classify it as an exact fix merely because the task is Small or tokens already exist.
+For an exact value/text fix or supplied design, fulfill that specification without unrelated
+redesign. An existing brand constrains identity; it does not freeze layout or interaction ideas.

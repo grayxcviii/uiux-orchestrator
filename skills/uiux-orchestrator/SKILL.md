@@ -4,7 +4,7 @@ description: Use when a request involves designing, redesigning, improving, anim
 license: MIT
 compatibility: Agent Skills compatible agents. Written for Claude Code first; works in agents without a Skill tool or subagents by reading files and running steps sequentially.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # UIUX Orchestrator
@@ -14,9 +14,49 @@ designer, UI engineer and design reviewer — that decides what a UI task actual
 the right specialist skill at the right time for the right reason, ships the change, and proves
 it with evidence.
 
-**Core rule:** pick the *minimum sufficient* process. A slot that would not change the outcome
-is not run. A skill that duplicates a filled slot is not loaded. Quality is the finish line, not
-the number of skills used or lines written.
+**Core rule: orchestrate, then implement.** For every required capability, discover compatible
+skills, select its owner, activate it, execute its instructions and accept its output before
+advancing. An available suitable skill is mandatory for an unresolved required slot: every
+full-design slot, and, in scoped workflows, the slots the workflow requires at that size or that pass
+the [outcome test](core/decision-engine.md#scoped-workflows-outcome-test-and-size). Personal
+confidence, time pressure and "built-in is enough" are not exceptions. Avoid duplicate ownership,
+not specialist execution. Read [core/orchestration.md](core/orchestration.md) before routing.
+
+**Breakthrough ambition applies to edits too.** Whenever design judgment is open—new work,
+Refresh, polish, component refinement or interaction improvement—execute the
+[creative-improvement contract](references/visual-design.md#9-breakthrough-ambition-for-new-work-and-edits).
+Small scope and existing tokens are constraints for invention, not reasons to omit it. Exact
+supplied fixes/designs retain fidelity and scope; review-only requests return creative
+recommendations without editing.
+
+**Full creative work** (a new surface or Redesign/Replace) requires research/foundation → concept
+reasoning → final art direction → finalized design system → component/media sourcing → motion
+decision → implementation → validation →
+UX/design review **and** technical/accessibility review → fixes and rechecks. A driver can perform
+several stages only with separate accepted outputs; its name never substitutes for missing work.
+Keep execution receipts and handoffs as defined in the orchestration contract. Full-design
+completion requires its bundled record checker as well as the UI workflow's evidence gates.
+
+**Visual quality contract:** original designs and visual redesigns default to contemporary,
+expressive, product-specific art direction. Before writing UI, translate the user's visual intent
+into the concrete direction contract in [references/visual-design.md §6](references/visual-design.md#6-avoiding-generic-ai-generated-ui).
+The selected visual driver authors it from the accepted foundation and concept brief; use built-in
+direction only after evidenced candidate checks. Record it in working context even on Medium single-agent tasks; carry it into specialist briefs and
+implementation. Preserve supplied designs and governing brand systems. A request for modern,
+colorful design must not silently become muted retro/editorial styling or one fixed house palette.
+Choose media and depth from the actual subject and brief: a strong photograph, composed 2D
+layout, rendered asset or interactive geometry. Promotional, colorful or "creative" does not
+automatically mean 3D. Preserve explicit spatial requests; load
+[references/spatial-design.md](references/spatial-design.md) for requested/chosen 3D.
+Review rendered output against **both** the
+user's brief and the [visual craft gate](core/quality-gates.md#visual-craft-acceptance).
+Technical success, added effects and authorship guesses do not establish visual quality.
+User rejection reopens visual acceptance; an earlier score or green record cannot overrule it.
+
+Stage owners for full creative work are listed in the [orchestration contract §1](core/orchestration.md#1-required-roles-and-outputs)
+(implementation goes to stack-specific owners); driver order, Taste first for suitable marketing
+sites, is in [decision-engine §4](core/decision-engine.md#4-drivers). Read [core/adapters.md](core/adapters.md)
+before invoking a driver entry in bounded specialist mode.
 
 ## The pipeline
 
@@ -27,7 +67,7 @@ already read it in this session.
 |---|---|---|---|
 | 1 | Intake | Classify intent(s), objective, scope, constraints, mutation permission; estimate complexity and risk (provisional until stage 2). Decide whether a question is truly needed. | [core/intake.md](core/intake.md) |
 | 2 | Project intelligence | Inspect the project before deciding anything: platform, framework, styling, tokens, components, motion stack, navigation/state, commands, visual tooling. Then finalize size and risk. | [core/project-intelligence.md](core/project-intelligence.md) |
-| 3 | Decide | Compose the workflow, decide which capability slots get a specialist, route each through the slot index, pick at most one driver per surface, choose execution mode, record the plan. | [core/decision-engine.md](core/decision-engine.md) (includes the slot index) → the chosen `workflows/*.md` → [core/skill-registry.md](core/skill-registry.md) (availability, once per session) → only the shortlisted entries of [registry/skills.yaml](registry/skills.yaml), found by searching `id: <id>` |
+| 3 | Decide | Compose the workflow, decide which capability slots get a specialist, route each through the slot index, pick at most one driver per surface, choose execution mode, record the plan. | [core/orchestration.md](core/orchestration.md) → [core/decision-engine.md](core/decision-engine.md) (includes the slot index) → [core/adapters.md](core/adapters.md) for a bounded driver entry → the chosen `workflows/*.md` → [core/skill-registry.md](core/skill-registry.md) (availability, once per session) → only the shortlisted entries of [registry/skills.yaml](registry/skills.yaml), found by searching `id: <id>` |
 | 4 | Execute | Run steps; every stage hands off a record; resolve conflicts per dimension. | [core/handoff.md](core/handoff.md), [core/conflict-resolution.md](core/conflict-resolution.md) when two sources disagree, [core/execution-policy.md](core/execution-policy.md) before the first edit |
 | 5 | Validate | Gather evidence at the levels the workflow requires; loop fix → verify; assign a status. | [core/quality-gates.md](core/quality-gates.md); bundled tools (web): `node <skill-dir>/scripts/ui-check.mjs --help`, `node <skill-dir>/scripts/motion-trace.mjs --help` |
 | 6 | Report | What was done, skills used and why, key changes, evidence, limitations. | format below |
@@ -82,8 +122,11 @@ Details, tools and statuses: [core/quality-gates.md](core/quality-gates.md).
 - Review-only requests change no files.
 - Never install skills, packages or tools, upgrade libraries, or change architecture, navigation,
   state management or design tokens outside scope without the user's permission.
-- Never claim a skill was used unless it was actually activated and followed. Never claim a
-  visual review without observing rendered output.
+- A skill is "used" only after successful execution with a receipt and accepted output. Listing,
+  reading, planning, failed invocation and self-written substitutes do not count. Without a Skill
+  tool, reading **and executing** the specialist's actual instructions is valid; reading alone is not.
+- Never claim a visual review without observing rendered output. Never let the builder's self-check
+  stand in for required specialist reviews; disclose sequential-review limitations.
 - A skill's house rules bind only inside the scope that skill owns; project truth and the user's
   instructions outrank them.
 - Skills marked `invocation: user` in the registry are recommended to the user, never auto-run.
@@ -93,7 +136,7 @@ Details, tools and statuses: [core/quality-gates.md](core/quality-gates.md).
   Preserve the actual source's licence/credits in the product; use verified replacements when rights are unclear.
 - If nobody can answer a question (non-interactive run), take the safe default when one exists;
   when the decision needs the user's confirmation (high-risk plan, new dependency, design-system
-  replacement, a driver writing project files), stop at a plan and report `Needs review`.
+  replacement or out-of-scope driver writes), stop at a plan and report `Needs review`.
 
 ## Communication
 
@@ -115,6 +158,11 @@ contribution of specialists actually used, and status (`Passed`, `Passed with li
 `Needs review` or `Failed`). Include reproducible commands when useful. Always disclose failed
 or unavailable checks; never claim visual verification without observing rendered output.
 
+For orchestrated tasks, include a compact role → skill actually executed → output/evidence table.
+List verified reuse, missing/failed skills and fallbacks separately. Full-design work must show
+the execution-record check result. A clean record check establishes consistency, not the truth
+of receipts or aesthetic success; observed evidence and review are still required.
+
 ## Platform knowledge and references
 
 Load the platform file once project intelligence has identified the platform, and read only the
@@ -134,6 +182,7 @@ before using a version-sensitive API.
 | Cross-platform reference | Load when |
 |---|---|
 | [references/visual-design.md](references/visual-design.md) | direction, improvement, redesign, review of visual quality |
+| [references/spatial-design.md](references/spatial-design.md) | spatial/3D direction, CSS perspective, rendered 3D assets, or Three.js scenes |
 | [references/motion-principles.md](references/motion-principles.md) | any motion design, build or review without a motion skill |
 | [references/accessibility.md](references/accessibility.md) | accessibility workflow, review, or a contrast/target/semantics question |
 

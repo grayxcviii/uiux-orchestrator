@@ -22,6 +22,12 @@ as the audit record.
    specialist available, use the rubric below.
 4. **report** — Merge and dedupe findings (same location + same cause = one finding).
 
+Execute compatible available reviewer skills for the requested dimensions; a self-written
+rubric is fallback only after candidate checks. Keep review activation receipts and findings.
+For the final review of full creative work, execute both UX/design and technical/accessibility
+assessments under [orchestration.md](../core/orchestration.md). The builder's self-check is not
+either activation. Fixes require updated evidence and review before findings are closed.
+
 ## Rubric (built-in)
 
 Task clarity and primary action · information hierarchy · consistency with the rest of the app ·
@@ -29,6 +35,14 @@ platform conventions · states (loading/empty/error/disabled/long content) · fo
 near fields, input types, keyboard) · navigation and back behavior · copy clarity ·
 accessibility (contrast, targets, labels/roles, focus order, large text, reduced motion) · motion ·
 responsiveness/adaptivity · performance signals visible in code.
+
+For visual-quality reviews, also apply the
+[visual craft acceptance check](../core/quality-gates.md#visual-craft-acceptance): composition,
+typography, palette/materials, product identity, finish and responsive craft. Tie aesthetic
+findings to observed details and the chosen direction; distinguish defects from optional taste.
+Read the original visual brief as well as the direction record. A visually coherent result can
+still miss the requested style. Report that mismatch explicitly rather than accepting it on
+the strength of technical checks or consistency alone.
 
 ## Finding format
 

@@ -17,6 +17,8 @@ Motion is its own discipline. Identify the sub-type, run only its steps.
 **purpose** — Every animation must serve one of: feedback (press, success, error), state change
 (expand, toggle, select), spatial continuity (navigation, shared element, origin-aware popover),
 attention (rare, important), or direct manipulation (gesture tracking). No purpose → no animation.
+On Persuade/Experience surfaces, product demonstration and a deliberate brand/3D reveal also
+qualify; name the subject and what its motion communicates. Avoid ambient motion without a role.
 Do not animate keyboard-triggered or high-frequency actions, or functional data that changes
 constantly.
 
@@ -30,7 +32,13 @@ constantly.
    first use — justify that cost (measure the bundle) before choosing it.
 3. Otherwise walk the ladder below for the platform, cheapest first.
 4. A library not installed (including GSAP) needs a stated reason the installed stack can't do it
-   cleanly **and** the user's permission.
+   cleanly **and** the user's permission, which may already be explicit in the request.
+
+**3D is a separate rendering decision.** Consult [spatial-design.md](../references/spatial-design.md):
+CSS perspective for shallow UI depth, rendered assets for fixed compositions, Three.js
+(optionally React Three Fiber in React) for interactive geometry, cameras, materials or shaders.
+Do not exhaust the DOM animation ladder before choosing a scene renderer. Keep the existing
+motion stack for DOM choreography.
 
 | Platform | Ladder (stop at the first that fits) | Slot candidates |
 |---|---|---|

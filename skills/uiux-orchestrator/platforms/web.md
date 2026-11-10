@@ -143,6 +143,10 @@ Follow the tool decision in `workflows/animation.md`.
 
 ## 10. Performance
 
+For requested/chosen 3D, use [spatial-design.md](../references/spatial-design.md) for the CSS vs.
+rendered asset vs. Three.js decision, client/SSR boundaries, resource lifecycle and validation.
+Check installed renderer/framework compatibility before adding scene integration APIs.
+
 - LCP: preload the hero image (`fetchpriority="high"`), avoid client-only rendering of above-the-fold
   content, inline critical CSS where the framework supports it.
 - INP:

@@ -17,21 +17,38 @@ open: questions left for a later stage (or none)
 next: the stage that consumes this
 ```
 
-Write only the fields that carry information. Records are **required** when stages run in
-different agents or the task is Large/high risk. For a single agent on a Small/Medium task, a
-"Decisions" list in the final report is enough.
+Every executed stage needs an accepted output before its dependent stage starts, including
+Medium single-agent work. Keep records in working context; a final report written after the
+implementation is not a substitute. Record activation/coverage and evidence using
+[orchestration.md](orchestration.md). Verified reuse is a handoff decision, not a silent skip.
+Every full-design stage also lists `inputs` referencing the prior accepted stage ids under
+execution schema 2. Fast-path tasks retain their scoped workflow without creative-stage records.
 
 ## Stage contracts
 
 | Stage | Must hand off |
 |---|---|
-| Product / UX analysis | Users and their main task on this surface; primary action; information hierarchy (what is first/second/third); required states (loading, empty, error, disabled, offline, permission); flows and entry/exit points; success criteria. |
-| Visual direction | Design style in one line + mode (Operate/Persuade/Read/Experience); visual hierarchy rules; color direction (roles → tokens or new values); typography direction (families, scale steps used); component principles (density, radius, elevation, iconography); motion direction (personality, duration range, easing/spring family) if motion is in scope. |
-| Design system decisions | Token changes (name → old → new) or "none"; new components and their variants/states; components reused as-is; where tokens live. |
+| Foundation / product / UX analysis | Users and their main task on this surface; primary action; information hierarchy (what is first/second/third); required states (loading, empty, error, disabled, offline, permission); flows and entry/exit points; success criteria. |
+| Concept reasoning | Concept alternatives, chosen experience/narrative, rationale, hierarchy/layout sketches, constraints and provisional visual suggestions; no final token authority. |
+| Final art direction | Design style in one line + mode (Operate/Persuade/Read/Experience); visual hierarchy rules; color direction (roles → tokens or new values); typography direction (families, scale steps used); component principles (density, radius, elevation, iconography); motion direction (personality, duration range, easing/spring family) if motion is in scope. |
+| Final design system | References to foundation and final art-direction handoffs; reconciled token/component decisions and contrast evidence. Token changes (name → old → new) or "none"; new components and their variants/states; components reused as-is; where tokens live. |
 | Component research | For each needed part: chosen source (project component / platform component / library / Lucian element #id), adaptation notes, rejected options in one line. |
 | Implementation | Files changed; how each decision was applied; deviations from decisions with reason; states implemented; known gaps. |
+| Spatial / 3D direction (when requested or chosen) | Focal subject and placement; depth/material/light treatment; medium and rationale (CSS / static asset / scene renderer); responsive framing; interactions; assets/rights; reduced-motion and failure fallback; measurable performance budget. See [spatial-design.md](../references/spatial-design.md). |
 | Design review | Findings (severity, location, impact, fix); which decisions were checked; verdict. |
 | Visual refinement | Fixes applied per finding; findings deferred with reason; evidence to re-verify. |
+
+The visual-direction record also maps each requested aesthetic quality to concrete choices and
+rendered acceptance observations using the [direction contract](../references/visual-design.md#direction-contract-before-implementation).
+When a driver is selected, it makes these choices; the orchestrator supplies the user's brief
+and project constraints, then passes the driver's resulting choices to downstream specialists.
+A coherent implementation of a direction that misses the user's visual brief still fails
+review; correct that direction within the authorized
+scope before refining small details.
+
+Foundation and concept token ideas remain provisional. The art-direction owner selects final
+visual choices; the system owner reconciles them with product/platform constraints. A correction
+to an upstream decision invalidates affected downstream handoffs until they are rechecked.
 
 ## Rules
 
@@ -41,6 +58,8 @@ different agents or the task is Large/high risk. For a single agent on a Small/M
 - **Review checks against records and requirements**, not against its own taste. It may reopen a
   decision only for a concrete defect (accessibility, platform violation, requirement miss, broken
   behavior) — see conflict-resolution rung 1–4.
-- **Do not repeat analysis** whose record is still valid. A record is invalid only if the
-  requirement, the scope, or the project truth it relied on changed.
-- **Skipped stages** produce no record; the next stage takes its input from the profile and intake.
+- **Do not repeat analysis** whose record is still valid. Reopen it when its requirement, scope
+  or project truth changes, or rendered evidence demonstrates that its decisions miss the
+  explicit brief or quality gate. Keep the unaffected decisions.
+- **Skipped scoped-workflow stages** produce no handoff. Full-design retains all required stage
+  rows, including the explicit static/motion skip decision; dependent stages consume that decision.

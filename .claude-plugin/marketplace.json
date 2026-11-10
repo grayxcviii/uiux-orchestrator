@@ -10,7 +10,7 @@
     {
       "name": "uiux-orchestrator",
       "description": "Adaptive UI/UX orchestrator for web, React Native/Expo, iOS, Android and Flutter.",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "source": "./",
       "category": "design",
       "homepage": "https://github.com/grayxcviii/uiux-orchestrator"

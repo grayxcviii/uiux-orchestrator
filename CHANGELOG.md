@@ -4,6 +4,38 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.4.0] - 2026-11-10
+
+### Added
+- Orchestration contract (`core/orchestration.md`): full-design work runs ten ordered stages
+  (inspect → foundation → concept → direction → system → components → motion → implement →
+  validate → review) with execution receipts, accepted handoffs and separate UX/design and
+  technical reviews. Built-in fallback requires evidenced candidate checks and is reported as limited.
+- `scripts/check-orchestration.py` (Python standard library) checks schema 2 execution records
+  for stage order, inputs, ownership, receipts, review independence and evidence levels.
+- Bounded adapters (`core/adapters.md`): frontend-design serves concept reasoning without
+  becoming a second driver.
+- Creative-improvement contract for open-ended polish/Refresh, a visual craft gate, and
+  `references/spatial-design.md` for requested or chosen 3D.
+- `docs/architecture.md` and execution-contract regression tests.
+
+### Changed
+- Improvement and Refresh separate creative refinement from exact corrections; design-system
+  Create runs foundation, concept and art direction before tokens.
+- Scoped workflows scale with size. An exact correction routes no specialist. Small open-ended
+  refinement uses one scoped specialist and a self-check, and Medium adds one UX/design reviewer.
+  The outcome test and default-on presumption return for non-full-design slots; more than 5
+  routed slots outside full-design is flagged as over-engineered. Full-design is unchanged.
+- The orchestration contract documents the full stage `inputs` matrix that the record checker
+  enforces, with a test keeping both in sync.
+
+### Fixed
+- Require an eligible routing candidate for the selected driver on every surface.
+- Require declared sequential mode for built-in technical self-review and validate evidence-level arrays.
+- Reject unrelated or failed activations as the previous visual review when resolving negative feedback.
+- Exclude Python bytecode/cache files from npm packages, including after local validation.
+- Use absolute repository documentation and media URLs in README for npm compatibility.
+
 ## [1.3.0] - 2026-11-09
 
 ### Added

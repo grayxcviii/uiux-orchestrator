@@ -51,9 +51,11 @@ Every screen answers three questions in this order:
   secondary, error, outline, and so on. Components consume roles; themes map roles to values.
 - Every foreground/background pair meets contrast floors (`references/accessibility.md`).
 - Color is never the only signal (pair it with an icon, text or shape).
-- Use one accent for interactive/primary meaning. If everything is colorful, nothing is.
+- Give primary actions one consistent color meaning. A broader expressive palette can include
+  chromatic surfaces, imagery, gradients and supporting accents with distinct roles; color-rich
+  does not mean every element competes. Match visible color intensity to the brief.
 - Dark mode is a separate palette, not an inverted one:
-  - lower the saturation of accents;
+  - tune saturation and luminance per role, retaining vivid brand accents where readable;
   - use elevation through lighter surfaces, not shadows;
   - avoid pure black under bright text if it causes smearing on OLED;
   - check contrast again.
@@ -72,10 +74,59 @@ Every screen answers three questions in this order:
 
 ## 6. Avoiding generic, "AI-generated" UI
 
-These patterns make an interface look templated. Avoid them unless the brand or the user asks
-for them:
+For new work or a visual redesign, establish a contemporary art direction before assembling
+components: one typographic idea, a composed focal point, intentional negative space, and a
+coherent treatment of depth, light and materials. Describe concrete choices rather than merely
+calling the result "modern" or "premium".
 
-- purple/blue gradients and glassmorphism as default decoration;
+For Persuade/Experience surfaces, compare media that credibly show the subject: photography,
+an expressive flat composition, a product render, layered interface demonstration or interactive
+scene. More geometry, motion or saturation does not establish better art direction. Do not
+replace a real destination with a crude miniature simply to add depth; inspect material,
+lighting, silhouette and photographic quality at presentation size. A requested stylized
+miniature is valid, but must be judged against that brief rather than counted as inherently better.
+For Operate/Read surfaces, use restrained elevation and spatial transitions; keep controls and
+data stable and legible. An explicit 3D request makes depth a deliverable: record where it is
+visible and how it will be checked. Load [spatial-design.md](spatial-design.md) when choosing it.
+Existing design systems and supplied designs remain the constraints for scoped changes.
+
+### Direction contract before implementation
+
+When `direction` runs, keep a short record in working context with concrete choices:
+
+| Field | What to decide |
+|---|---|
+| Brief fit | The requested visual qualities and explicit dislikes, each mapped to an observable design choice. Include references actually inspected, if any. |
+| Concept | A product-specific visual idea and surface mode; how it serves the audience and primary action. |
+| Color | Actual roles/tokens or values, contrast pairs, color intensity and where color occupies the composition. A colorful brief needs meaningful chromatic areas, not just a small CTA. |
+| Type | Actual families with the required language glyphs, display/body roles, weight, scale and wrapping. For contemporary work, start from a current-feeling sans treatment; use editorial/retro serif styling when the brief or brand supports it. |
+| Composition | Focal point, desktop/phone layouts, section rhythm, density and whitespace. Explain how the structure follows the content. |
+| Media and depth | Subject, asset source/creation method, material/light treatment, and CSS/static-render/scene choice when 3D is in scope. |
+| Signature and motion | Recognizable details carried beyond the hero; purposeful motion and reduced-motion behavior, or a deliberate static treatment. |
+| Acceptance | What must be visible in the first representative render to prove the requested style, and which mismatches would require changing the direction. |
+
+If the user delegated art direction, choose and implement without an extra selection gate.
+If they asked for alternatives, use the design-exploration workflow. This record is a building
+brief, not a substitute for rendering or a reason to create process files.
+
+### Contemporary visual range
+
+For original work without a governing style, aim for contemporary, expressive craft. Choose a
+visual language suited to the brief: a light chromatic layout, a dark high-contrast composition,
+or a richer layered/material treatment can all work. Specify actual colors, type, composition
+and assets; naming a style is insufficient. Do not assign every product the same palette.
+
+Gradients, violet/blue, glass, glow and rounded geometry are available tools. Use them to carry
+brand color, show layers, shape light or focus attention, with controlled placement and contrast.
+No hue or effect proves that a page is generic. Equally, avoiding those tools does not justify
+defaulting to beige, terracotta, muted colors, serif italics or a sparse editorial layout.
+
+For a modern/colorful brief, review the overall color presence, typography, image treatment and
+component geometry together. A polished retro direction still misses that brief. For an
+explicit vintage/editorial brief, honor it; this is not a global ban on warm palettes or serif.
+
+These patterns weaken specificity when repeated without a product/content reason:
+
 - glow shadows everywhere;
 - emoji used as icons;
 - three-card feature grids repeated in every section;
@@ -89,10 +140,42 @@ for them:
 
 The antidote is specificity:
 - real content and the product's own UI;
-- a deliberate, limited palette;
+- a deliberate palette with clear roles and the requested color intensity;
 - one typographic idea;
 - spacing doing the hierarchy work;
 - conventions where users expect them, distinctiveness where the brand lives.
+
+Before handing off, name the focal composition, type treatment, depth/material approach and
+motion signature (or why static is appropriate). If the result could fit any unrelated product
+after changing its logo, refine the concept. Generic floating spheres, neon blobs or a spinning
+torus do not become product-specific merely because they are rendered in 3D.
+
+### Product identity contract
+
+For original visual work, include these concrete choices in the direction before building:
+
+- **Concept:** one sentence connecting the product's purpose and audience to a visual idea.
+- **Signature details:** a small set of recognizable choices, such as a distinctive type/crop
+  relationship, a product-derived shape, a material treatment or a meaningful interaction.
+  Carry them into supporting sections and mobile layouts so the hero is part of a coherent whole.
+- **Content-led composition:** give each section a layout suited to what it communicates;
+  vary scale, alignment and rhythm intentionally. Use asymmetry when it strengthens hierarchy.
+- **Authentic evidence:** use supplied product imagery, real interface demonstrations and specific
+  copy. Mark missing assets/data as placeholders; do not fabricate social proof to fill a layout.
+  When a hero needs a product render/photo that does not exist, choose a suitable available image
+  generation or licensed-asset path. Inspect the asset at presentation size. Judge a procedural
+  model or CSS illustration against the same requested material/detail quality; replacing a
+  premium product image with an obviously crude stand-in is an unresolved asset gap.
+
+Review with two checks: cover the logo and name what still identifies the product; then imagine
+swapping in an unrelated product's copy and list which visual decisions would need redesign.
+If nothing meaningful changes, refine the concept and its implementation. These are critique
+prompts, not authorship detection. Judge fit to the brief and observed craft.
+
+Use familiar controls where users need predictability. Distinctiveness belongs in art direction,
+content and purposeful interaction; retain clear navigation, readable forms and usable focus
+states. Existing brand systems and supplied designs constrain the identity contract to the scope
+the user authorized.
 
 ## 7. Consistency checks before handing off
 
@@ -121,3 +204,57 @@ matters (e.g. the current period), mute the rest; don't encode meaning in color 
 screen readers an equivalent (a data table or a summary sentence); use tabular figures; design the
 empty state.
 
+## 9. Breakthrough ambition for new work and edits
+
+Apply whenever the task leaves design judgment open: new work, Refresh, polish, a component
+refinement or an interaction improvement. Aim for a memorable, product-specific advance in
+composition, visual identity, presentation or interaction, with an explicit user/product benefit.
+Small scope still deserves creative judgment; fixed brand tokens are design constraints, not
+an instruction to produce a generic or timid result.
+
+### Creative-improvement contract
+
+Before implementation, keep a short accepted creative brief in working context:
+
+- **Baseline and opportunity:** inspect the actual current UI when it exists. Identify what is
+  forgettable, unclear, awkward or underdeveloped and what this task can improve.
+- **Distinct alternatives:** develop 2–3 meaningfully different approaches within scope, through
+  the assigned concept specialist (on Small scope, the single scoped specialist weighs them
+  inline). Compare composition, hierarchy, narrative, content treatment or interaction—not
+  merely different color swatches on the same template.
+- **Chosen move and benefit:** choose the strongest approach against the brief and explain the
+  recognizable signature or experience improvement. If the user delegated judgment, proceed
+  without an additional selection gate. Preserve the user's explicit constraints.
+- **Execution owners:** route compatible concept and visual/interaction expertise at the scale set
+  by [improvement.md](../workflows/improvement.md#creative-refinement) (one scoped specialist for
+  Small open-ended component work). Execute their instructions and record actual handoffs.
+- **Proof:** inspect the result in context at relevant sizes/states. For edits, compare matching
+  before/after views. The reviewer, or the self-check when Small scope has no reviewer activation,
+  must identify the concrete difference and why it improves the product or task; a generic
+  "looks cleaner" is insufficient evidence of breakthrough ambition.
+
+A signature can be a strong typographic/compositional idea, a better product demonstration,
+an expressive material/color language or a useful interaction. Apply the idea beyond superficial
+hero decoration where the authorized scope allows. Avoid recycling unrelated clients' layouts
+and palettes simply because they worked previously. Shared primitives and coherent brand
+patterns remain reusable.
+
+For open-ended improvement requests, arbitrary shadow/radius/color swaps with no concept or
+observed benefit do not satisfy the creative brief. Aim for a convincing, crafted change at the
+requested scale. Distinctiveness must survive responsive and interaction states and make the
+product more compelling or easier to use. Extra animation, unusual navigation, saturated color
+or 3D are tools, not mandatory substitutes for an idea.
+
+### Observable scope boundaries
+
+- **Existing system/brand:** invent within its constraints. Changes that truly require broader
+  identity/system replacement must be within authorization; state the limitation if they are not.
+- **Exact supplied fix or design:** implement with high craft and fidelity. Do not fabricate a
+  need for alternative designs or change unrelated UI to claim novelty.
+- **Review-only:** propose specific ambitious alternatives and benefits; do not implement them.
+- **Native/Operate:** retain predictable controls and platform conventions while improving the
+  content hierarchy, presentation, feedback or other aspects actually in scope.
+
+Judge the observed creative result against the brief and baseline, not a claim that novelty is
+objectively guaranteed. If the requested creative improvement is not demonstrated, refine it
+or report `Needs review`; technical checks alone cannot establish it.

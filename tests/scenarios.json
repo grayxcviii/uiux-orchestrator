@@ -1918,6 +1918,119 @@
       "expected_outputs": "UX findings; iOS findings may use HIG reviewer.",
       "expected_validation": "L0 + simulator/emulator L4.",
       "pass_criteria": "critique selected; HIG reviewer optional for the iOS build."
+    },
+    {
+      "id": "S40",
+      "covers": [
+        "web",
+        "marketing",
+        "alternate-runtime",
+        "subject-fit"
+      ],
+      "request": "Tạo một landing page du lịch Hà Nội. Bạn tự quyết định mỹ thuật và thực hiện các bước cần thiết trong dự án; không publish và không thay cấu hình máy.",
+      "project": "Empty standalone HTML/CSS/JS surface. No existing brand or design system. No requirement for 3D, parallax or any particular palette. Local skill-kit files needed for the new page are authorized.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Python3, Chrome. PATH Node20; Node24 already installed under a supported local runtime manager. No installs or shell-default changes permitted."
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "new-ui-design"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": "taste/design-taste-frontend",
+        "must_select": [
+          [
+            "taste/design-taste-frontend"
+          ],
+          [
+            "uupm/search",
+            "impeccable/shape"
+          ]
+        ],
+        "may_select": [
+          "anthropic/frontend-design",
+          "impeccable/document",
+          "impeccable/critique",
+          "impeccable/audit",
+          "vercel/web-design-guidelines",
+          "emil/animate",
+          "lucian/uxui"
+        ],
+        "must_not_select": [
+          "uupm/design-system",
+          "gsap/core",
+          "impeccable/new-work"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Probe actual runtimes; run eligible Taste via installed Node24 absolute path without changing defaults. Let its actual place/destination rules guide media; use real Hanoi material and meaningful source-backed UX.",
+      "expected_validation": "Original-brief visual assessment separate from build/a11y scores; real observed renders and driver checks.",
+      "pass_criteria": "Does not exclude Taste because node --version shows20; does not invent a 3D requirement or ask again only for already-authorized local kit files. Does not claim quality from skill names."
+    },
+    {
+      "id": "S41",
+      "covers": [
+        "web",
+        "marketing",
+        "explicit-3d",
+        "driver-conflict"
+      ],
+      "request": "Build a Hanoi travel landing page with an interactive3D landmark and violet/cyan art direction. These visual choices are required. Choose a compatible driver and proceed locally.",
+      "project": "New independent web surface. User explicitly requires interactive3D and violet. No existing design system; do not weaken the request to comply with a skill house style.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Python3, Chrome, Node20 on PATH, installed alternate Node24 available; no runtime installation needed"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "new-ui-design"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": [
+          "impeccable/new-work",
+          "anthropic/frontend-design"
+        ],
+        "must_select": [
+          [
+            "impeccable/new-work",
+            "anthropic/frontend-design"
+          ]
+        ],
+        "may_select": [
+          "uupm/search",
+          "impeccable/shape",
+          "impeccable/document",
+          "impeccable/critique",
+          "impeccable/audit",
+          "vercel/web-design-guidelines",
+          "emil/animate",
+          "lucian/uxui"
+        ],
+        "must_not_select": [
+          "taste/design-taste-frontend",
+          "uupm/design-system",
+          "gsap/core"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Keep user-required3D/violet; record actual installed Taste house-rule conflict with user-constraint provenance rather than claiming a missing Node runtime.",
+      "expected_validation": "Observed spatial/material/color fit, real interaction and reduced-motion/fallback checks; independent visual judgment.",
+      "pass_criteria": "Runtime availability and brief eligibility remain distinct. Does not force Taste or default all non-tech pages to photographs against explicit user intent."
     }
   ],
   "answer_key_changes_v2": [

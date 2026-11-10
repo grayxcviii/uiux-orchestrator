@@ -4,7 +4,7 @@
 |---|---|---|
 | Document | "document our design system", "write DESIGN.md", "what tokens do we have" | inspect → inventory → document → report |
 | Extend | "add a variant/token/component", "make these consistent" | inspect → inventory → decide → implement → migrate usages (if asked) → validate |
-| Create | no system exists and user wants one | ux (product context) → direction → tokens → core components → apply to one screen → validate |
+| Create | no system exists and user wants one | foundation → concept → final art direction → tokens → core components → apply to one screen → validate |
 
 **inventory** — Collect what exists: tokens (color roles, type scale, spacing, radius, elevation,
 motion), components and variants, hardcoded values that should be tokens (count and locations),
@@ -15,10 +15,20 @@ CSS variables, Tailwind theme).
 otherwise write in the project's existing format/location. Describe what the code *does*, derived
 from the code, not aspirations.
 
-**decide / tokens** — Semantic tokens over raw values (`color.bg.surface` → primitive). Every
+**decide / tokens** — Finalize after art direction when composed with full-design. Research-stage
+palettes/type suggestions are provisional; reconcile foundation constraints and the final visual
+brief before committing tokens. Semantic tokens over raw values (`color.bg.surface` → primitive). Every
 color role ships with its on-color and a contrast check. Type scale tied to platform scaling
 (Dynamic Type, `sp`, `textScaler`, `rem`). For Create, the driver comes from the driver table (decision-engine §4); `uupm/design-system`
 `--persist` writes only into a location the user agrees; Expo projects may use `expo/design-system`.
+
+Resolve `design-system` ownership through the decision engine and actually execute the selected
+skill. An existing driver covers this role only when the registry explicitly grants ownership
+and the token/component output is accepted. Otherwise route a suitable system specialist; do not
+count palette selection or a driver name as a completed system. If documentation tooling is
+chosen, it must inventory/normalize actual tokens and components, not merely create a file title.
+Record semantic color pairs, type/spacing/radius/elevation/motion scales, component variants and
+states, code locations, reuse and contrast evidence before dependent UI integration.
 
 **migrate usages** — Only when asked or required by the change; list every file touched.
 

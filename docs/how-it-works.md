@@ -24,17 +24,33 @@ the normal pipeline. The shortcut keeps the applicable build, visual and interac
     Compose/Views, Flutter;
   - tokens, components and motion libraries;
   - commands, and the visual tooling available.
-- **Decision engine** splits the task into capability slots and drops slots that would not change
-  the outcome. Each remaining slot goes to **one** skill, after compatibility, avoid-when,
-  invocation and availability checks.
+- **Decision engine** assigns every required capability to a compatible skill, an executed
+  driver's owned output, verified project reuse or an evidenced fallback. Available suitable
+  specialists must execute; personal confidence and cost alone do not permit bypass.
   - Ties go to a preference-ordered slot index, which `validate.py` keeps in sync with the
     registry.
   - It allows at most one *driver* (a skill that runs a whole design pipeline) per surface, chosen
     from a single driver table.
-- **Handoff records** carry decisions (direction, tokens, components) into implementation and
-  review.
+- **Execution receipts and handoffs** link actual activations to accepted outputs before
+  dependent stages. Full creative work requires research/foundation, concept reasoning, final
+  art direction, finalized system, component/media sourcing, motion decision, implementation,
+  validation and separate UX/technical reviews.
+- **Execution-record checking** rejects missing roles, unsupported ownership, failed activations
+  counted as use and undeclared self-review. It checks record consistency, not receipt truth or
+  beauty. See the [execution contract](../skills/uiux-orchestrator/core/orchestration.md).
 - **Quality gates** require evidence at levels L0–L5: code, static, build, functional, visual,
   device.
+
+The [architecture](architecture.md) fixes stage responsibilities while routing compatible
+providers. In web marketing work, UUPM informs the foundation, frontend-design's bounded
+`design-reasoning` mode produces the concept brief, and Taste can retain sole final visual
+ownership. The system is finalized after that direction. This bounded mode is local orchestration
+policy, not an upstream command or a second full frontend-design build.
+
+Open-ended refinements also run concept reasoning, scoped visual/interaction expertise and
+before/after comparison, scaled by size. A Small component uses one scoped specialist and a
+self-check. Medium adds a UX/design reviewer, and Large adds technical review. Existing tokens
+constrain the idea rather than eliminating it. Exact fixes and supplied designs retain their scoped path.
 
 ## Supported platforms
 
@@ -55,16 +71,17 @@ What has been run on real projects, and what has not, is listed under [Evidence]
 
 ## Skill integrations (optional)
 
-The orchestrator works with **no** external skills. If any of the skills below are installed, it
-uses each one for what it is actually good at. Install them only if you want them; each project
-documents its own install.
+Installing external skills is optional; executing a compatible installed owner of a required
+role is mandatory. With no suitable specialists, the orchestrator can use explicit built-in
+fallbacks, but full creative work is reported as limited rather than fully specialist-orchestrated.
+Each specialist project documents its own installation.
 
 | Skill | Used for |
 |---|---|
-| [Anthropic frontend-design](https://github.com/anthropics/skills) | A lighter visual-direction driver for a single new web page or a small surface. Not used inside an existing design system |
+| [Anthropic frontend-design](https://github.com/anthropics/skills) | Concept reasoning in a bounded `design-reasoning` mode (full creative web work, and creative refinement inside an existing system). Also a lighter visual-direction driver for a single new web page or small surface with no governing system |
 | [Impeccable](https://github.com/pbakaus/impeccable) | Targeted commands: critique, audit (web and native), polish, typeset, layout, colorize, adapt, harden, clarify, document. new-work only for new or fully replaced surfaces |
-| [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Data-backed answers to one design question (`--domain`, `--stack`). `--design-system` only when a project has no system |
-| [Taste](https://github.com/Leonxlnx/taste-skill) (`design-taste-frontend` 2.5) | Driver for marketing and company **websites** only, when Node 22 and Chrome are present and the user accepts its kit |
+| [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Research & foundation for full creative work (product/pattern evidence, audience, flows/states, hierarchy) and targeted data-backed answers (`--domain`, `--stack`). `--design-system` only when a project has no system |
+| [Taste](https://github.com/Leonxlnx/taste-skill) (`design-taste-frontend` 2.5) | Preferred eligible driver for marketing/company **websites**; actual house rules must fit the brief and kit writes must be in scope. An installed alternate Node ≥22 counts; probe it before exclusion |
 | [Lucian UX/UI](https://github.com/Seokwoooo/lucian-uxui) | Interactive component references on web. On native, specs only (no code) |
 | [GSAP skills](https://github.com/greensock/gsap-skills) | Web only, after the animation workflow has picked GSAP |
 | [Emil Kowalski skills](https://github.com/emilkowalski/skills) | Motion decisions and builds (`animate`, `animate-expo`, `choreograph`), audits (`improve-animations`), discovery, removal, web performance |
@@ -86,7 +103,13 @@ them itself; you can also run them by hand:
 S=~/uiux-orchestrator/skills/uiux-orchestrator/scripts
 node $S/ui-check.mjs http://localhost:5173/ --widths 390,768,1280 --schemes light,dark
 node $S/motion-trace.mjs http://localhost:5173/#/help --target "[role=region]" --trigger "button[aria-expanded]"
+python3 -I $S/check-orchestration.py /path/to/temporary-record.json
+python3 -I $S/probe-runtime.py --min-node 22
 ```
+
+- **`probe-runtime`** records observed Node binaries and versions, including installed runtime-manager
+  alternatives. It returns a compatible absolute path without installing Node or changing PATH,
+  a shell or global defaults. Preserve the JSON when excluding a driver on runtime grounds.
 
 - **`ui-check`** saves screenshots and reports:
   - horizontal overflow, with the offending element;

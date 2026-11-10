@@ -34,6 +34,8 @@ providers:
                                            # (soft caveats go in limitations)
         required_inputs: [...]             # what to put in the handoff brief
         expected_outputs: [...]
+        specialist_slots: []               # orchestrator-defined bounded roles, e.g. design-reasoning
+        scoped_brief: "..."                # bounded adapter instructions; not an upstream command
         owns: [...]                        # drivers only: slots it fills itself
         delegates_to: [...]                # ids its own instructions call
         side_effects: [...]                # files written, network, downloads, kit copies
@@ -46,6 +48,11 @@ providers:
         brief: "..."                       # what to pass when activating it and what to take back
                                            # (decision-engine §6 adds task-specific values)
 ```
+
+A driver entry may execute as a specialist only for a declared `specialist_slots` capability
+with the matching activation `mode`. Normal platform and scope checks still apply. Read
+`core/adapters.md` for the contract; no implicit second-driver or arbitrary mode is permitted.
+These fields are orchestrator policy, separate from verified upstream capabilities.
 
 `references:` holds knowledge sources (`kind: reference`): `id`, `url`, `platforms`, `topics`,
 `checked` (date or `no`). References are read, never "run".

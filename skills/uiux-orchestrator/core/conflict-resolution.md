@@ -31,6 +31,7 @@ navigation, accessibility, tooling — never "skill A wins everything".
 
 | Overlap | Ruling |
 |---|---|
+| Concept adapter plus a visual driver | A registered `specialist_slots` mode may supply concept reasoning only. frontend-design in `design-reasoning` mode does not become a second driver or own the final palette/layout. Its exploratory tokens are reconciled by the art-direction and system owners. |
 | Two drivers for one surface | Only one; choose with the driver table in `core/decision-engine.md` §4. UUPM may still answer a narrow sub-question the driver leaves open (chart type, RTL, a font pairing) — never override the driver's palette or style. |
 | Emil `animate` tool ladder vs. GSAP "recommend GSAP" | The tool decision in `workflows/animation.md` is canonical; GSAP's self-recommendation is ignored. |
 | `animate-expo` (Reanimated 4) vs. project on Reanimated 3 / old architecture | Project truth: keep Reanimated 3; use animate-expo's decisions; translate APIs. Upgrading is a separate, permissioned task. |
@@ -44,6 +45,8 @@ navigation, accessibility, tooling — never "skill A wins everything".
 | Project tokens that fail a floor (e.g. danger text on dark < 4.5:1) | Floors win in scope: fix locally by deriving from tokens (e.g. `color-mix` of existing tokens), not raw new hex; recommend the token fix to the user (shared → ask). |
 | Web guidance applied to native (hover states, 100vh, CSS easing names) | Translate the principle, not the API. Platform conventions win. |
 | Reviewer wants to change visual direction | Only with a concrete defect (rung 1–4 violated). Taste preferences alone do not reopen a recorded decision. |
+| The direction is internally consistent but misses the user's visual intent | Rung 1 wins: compare the render to the requested color intensity, typography, composition and asset quality. A demonstrated brief mismatch reopens direction within scope; fidelity to the wrong direction does not make it acceptable. |
+| Anti-generic guidance vs. intentional saturated color, gradients or glass | Judge product fit, placement, hierarchy and contrast. These tools are permitted; a requested visual treatment outranks a specialist's house taste. Select another driver if its hard rules conflict. |
 
 ## Escalate to the user when
 

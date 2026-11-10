@@ -4,7 +4,7 @@ This suite measures whether orchestration helps a real UI task enough to justify
 It is separate from installer tests and routing-only probes. No execution results are included
 until agents actually complete these tasks and an evaluator inspects the output.
 
-## Run the four cases
+## Run the comparison cases
 
 Use the prompts and acceptance criteria in [cases.json](cases.json). Start with two repetitions
 per case and condition (16 runs) if resources permit; a single pair is a smoke test, not a trend.

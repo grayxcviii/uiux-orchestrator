@@ -52,14 +52,14 @@ providers:
         side_effects: ["writes PRODUCT.md (init) and, on approval, DESIGN.md", "concept seeding contacts a remote API (network) per new-work.md 4.8.0", "may start a local decision page server (needs a free port and the user)"]
         notes: "Mapping: new surface inside the project's existing system → Impeccable 'surface inside an established world' (extend tokens); Redesign/Replace → 'new world'."
         avoid_when: [Redesign/Refresh or improvement inside an existing design system, another driver already owns the surface]
-        owns: [visual-direction, typography, color, layout, polish]
+        owns: [visual-direction, design-system, typography, color, layout, polish]
         expected_outputs: [direction decisions, implemented surface, DESIGN.md]
         priority: recommended
         value_if_missing: high
       - id: impeccable/shape
         names: [impeccable]
         role: specialist
-        slots: [ux-analysis]
+        slots: [research-foundation, ux-analysis, design-reasoning]
         authority: {ux: high}
         capabilities: [plan UX/UI before code, task discovery]
         use_when: [new screen or flow with unclear structure, Large design tasks]
@@ -259,7 +259,7 @@ providers:
       - id: uupm/search
         required_inputs: ["one design question as 2-5 terms", "domain and/or detected stack"]
         role: specialist
-        slots: [ux-analysis, typography, color, layout, data-visualization]
+        slots: [research-foundation, ux-analysis, typography, color, layout, data-visualization]
         authority: {ux-guidelines: medium, color: medium, typography: medium, data-visualization: high}
         capabilities: ["--domain ux|color|typography|google-fonts|chart|landing|icons|style|product|gsap|react|web", "--stack <stack> implementation guidance", "--rtl"]
         use_when: [one targeted design question the project does not answer, chart type choice (default-on when the user asks which chart), font pairing for a new surface, RTL support]
@@ -281,7 +281,7 @@ providers:
         use_when: [new product or page with no design system, user wants a data-backed direction for app UI]
         avoid_when: ["existing tokens/design system (Refresh, improvement, bug fix)", another driver owns the surface]
         side_effects: ["--persist writes design-system/<slug>/; never pass --force without user authorization"]
-        owns: [color, typography]
+        owns: [visual-direction, design-system, color, typography]
         priority: recommended
         value_if_missing: low
 
@@ -294,7 +294,7 @@ providers:
     skills:
       - id: taste/design-taste-frontend
         names: [design-taste-frontend, "taste-skill:design-taste-frontend"]
-        required_inputs: ["business kind, what is sold, main action", "real content and assets", "kit consent"]
+        required_inputs: ["business kind, what is sold, main action", "real content and assets", "authorization for necessary kit files in the target surface"]
         expected_outputs: ["built marketing page from its kit", "checker, layout and perf results"]
         kind: skill
         role: driver
@@ -310,10 +310,12 @@ providers:
         requires: ["Node 22+", "Chrome, Edge or Chromium (CHROME_PATH)", "ffmpeg optional"]
         owns: [visual-direction, layout, typography, color, ux-copy, polish]
         brief: >-
-          Check Node ≥ 22 (an installed alternate runtime, e.g. via nvm, counts as available, but
-          switching to it is an environment change: add it to the question batch) and an installed
+          Probe Node ≥ 22 with the bundled probe-runtime.py: an installed alternate runtime counts.
+          Invoke its absolute binary directly, without changing PATH, shell or global defaults. Check an installed
           Chrome/Edge/Chromium (default install path is enough; CHROME_PATH only if non-standard).
-          If Node ≥ 22 is not installed at all, eliminate it (do not install Node). Get user consent for the kit copy and house rules. For a
+          If no compatible runtime is observed, eliminate it (do not install Node). Read actual house rules for brief fit;
+          local kit copies inside an authorized new surface are ordinary implementation. Ask only for genuinely
+          unauthorized side effects, not permission already implied by the build task. For a
           framework project, plan the port from its starter.html into components before building.
         side_effects: ["copies its assets/ kit into the project and starts from starter.html", "writes .taste-skill/ history files and names.json", "photo fetch may use network"]
         limitations: ["pipeline is built on its own HTML starter/system.css; no framework-porting guidance found — porting into Next.js/Vue components is manual work to plan for", "house rules: no captions, one section per screen, no scroll-reveal, never violet"]
@@ -743,15 +745,22 @@ providers:
         role: driver
         cost: light
         invocation: model
-        slots: [visual-direction]
+        slots: [visual-direction, design-reasoning]
+        specialist_slots: [design-reasoning]
         authority: {visual-direction: medium, typography: medium, ux-copy: medium}
         platforms: [web]
         frameworks: [any]
         capabilities: ["aesthetic direction grounded in the subject", "compact token plan (4–6 colors, type roles, layout concept, principles) reviewed against the brief before building", "catalogue of generated-UI tells to avoid", "UX-writing rules"]
         use_when: [new web page or surface that needs a distinct direction and no design system governs it, a lighter direction than impeccable/new-work for a single page or component set, impeccable/new-work unavailable]
-        avoid_when: [refinement or redesign Refresh inside an existing design system, Operate surfaces inside an app with established conventions, native or React Native or Flutter, another driver already owns the surface]
-        owns: [visual-direction, typography, color, layout]
+        avoid_when: ["full-driver mode for refinement/Refresh inside an existing system", "full-driver mode on Operate surfaces with established conventions", native or React Native or Flutter, "full-driver mode when another driver already owns the surface"]
+        owns: [design-reasoning, visual-direction, typography, color, layout]
         limitations: ["web-oriented (hero, CSS); no platform or accessibility procedure beyond principles", "asks to confirm the subject with the client when the brief is vague — fold into the question batch"]
+        scoped_brief: >-
+          mode: design-reasoning is an orchestrator-defined bounded use, not an upstream command.
+          Read the actual SKILL.md and execute its planning/review-against-brief portion only.
+          For new work or creative refinement inside an existing system, return concept alternatives,
+          rationale, information architecture and a chosen concept brief; visual/token ideas are provisional. No implementation or project token edits.
+          The selected visual driver owns final art direction. Record the bounded mode explicitly.
         brief: >-
           Give it the subject, audience and the brand facts the project already has. Take back its
           token plan (palette, type roles, layout concept, principles) as the direction record, then

@@ -4,7 +4,7 @@
 
 | Path | Contents |
 |---|---|
-| `scenarios.json` | 39 routing scenarios with expected routing (answer key v3; revisions listed in `answer_key_changes_v2` and `_v3`) |
+| `scenarios.json` | 41 routing scenarios with expected routing, including alternate-runtime and subject/media-fit regressions |
 | `scenarios-heldout.json` | 8 held-out scenarios written after all fixes, never used for tuning |
 | `harness/` | Harness README (decision schema, prompts), installed-skill metadata, shuffled batches |
 | `fixtures/` | Sample apps for execution runs (`web-app`, `expo-onboarding`) |
@@ -31,12 +31,45 @@ revisions, unavailable Git and escaping symlinks. CI does not need to download a
 The [recorded upstream installation run](results/2026-11-09-specialist-installer.json) separately
 checks the live catalogue in isolated profiles. Neither set measures UI output quality.
 
+`test_orchestration.py` checks the full-design execution-record validator: required phase order,
+activation provenance, driver ownership, bounded concept execution, foundation/concept separation,
+final system inputs, platform compatibility, fallback alternatives, separate reviews and status
+ceilings. Execution schema 2 deliberately rejects legacy records that omit the new stage work. The validator is bundled with the installed skill. Passing installer, routing
+or record tests does not prove real specialist execution or aesthetic quality; receipts must
+match actual runs and visual claims need observed renders.
+
+Additional regressions reject skipping an eligible marketing driver, ignoring an observed
+compatible runtime, replacing visual assessment with boolean gates, and keeping an old pass
+after negative feedback. They preserve explicit user driver/style choices and allow a new
+rendered review to resolve feedback without requiring another user approval. `test_runtime_probe.py`
+executes isolated fake Node binaries to test PATH-vs-nvm discovery, configured paths, invalid
+version output, and environment preservation. Package tests verify both helpers ship and install.
+
+Pre-push checker regressions also require selected-driver eligibility on every surface, reject
+built-in technical self-review unless declared sequential, and enforce evidence-level arrays
+with valid L0–L5 labels. Valid independent fallback remains limited; optional extra evidence
+requirements may be omitted without suppressing the profile's minimums.
+
 ## Execution comparisons
 
 The [paired comparison suite](comparison/README.md) covers a specified component, a screen inside
 an existing design system, screenshot implementation and onboarding motion. It records quality
 checks, visual evidence, time, tokens and remaining issues. Installer tests do not establish UI
 quality; routing-only probes do not establish an execution speedup.
+
+E05/E06 add original contemporary/colorful art direction and explicit violet/cyan/glass fidelity.
+Their acceptance criteria require observed renders and blinded brief-fit judgments, separately
+from functional checks. These are evaluation cases, not measured visual-quality results; do not
+claim improvement until paired executions and their reviews have actually been recorded.
+
+E07 covers creative refinement of one existing card with fixed tokens. It requires executed
+creative expertise and observed before/after benefit; it is an evaluation specification, not a
+measured claim that novelty or aesthetic quality improved. Exact component/spec fidelity remains
+covered by the earlier scoped cases.
+
+E08 adds a destination-landing-page comparison with a Node20 PATH and installed Node24. It grades
+driver eligibility, media quality, original-brief fit and honest visual acceptance. Like E05–E07,
+it is a specification for future paired runs, not a measured claim of aesthetic improvement.
 
 ## Method
 

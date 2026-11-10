@@ -44,6 +44,11 @@ platform-agnostic UX and accessibility principles only, and route no platform-sp
 
 ## 3. Motion, navigation, state
 
+For spatial/3D requests, also inspect `three`, `@react-three/fiber`, `@react-three/drei` or other
+scene renderers, their versions/framework compatibility, existing canvas boundaries, model/texture
+assets and loaders, asset rights, static fallbacks and supported device classes. Record findings
+with the motion stack; do not assume a renderer is available merely because 3D was requested.
+
 | Area | Signals |
 |---|---|
 | Web motion | `motion`/`framer-motion`, `gsap`, `@react-spring/*`, `animejs`, `lottie-web`, `@rive-app/*`, CSS `@keyframes`/`transition`, View Transitions API; Vue `<Transition>`/`<TransitionGroup>`; Svelte `transition:`/`animate:`; Angular's animations package or its newer built-in enter/leave animations (check the project's Angular version docs before choosing) |
@@ -55,6 +60,11 @@ platform-agnostic UX and accessibility principles only, and route no platform-sp
 | Navigation / state | router packages above; Redux/Zustand/Jotai/Pinia/NgRx/Riverpod/Bloc/TCA — record, **never change** without permission |
 
 ## 4. Commands and visual tooling
+
+Record the active runtime separately from compatible installed alternatives. A PATH Node20
+does not rule out a skill requiring Node22 when nvm/Volta/fnm/mise/asdf already provides one.
+For Node-gated candidates, use the bundled `scripts/probe-runtime.py` before routing exclusions;
+preserve its observations and invoke the selected binary by absolute path without changing defaults.
 
 - Build, dev, lint, typecheck, test commands: `package.json` scripts, `Makefile`, Gradle tasks,
   `xcodebuild` schemes, `flutter` commands, CI config (`.github/workflows`).
