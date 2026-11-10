@@ -44,7 +44,8 @@ Project detection checks package dependencies, static HTML, Flutter manifests, X
 projects, npm/Yarn workspace packages and pnpm workspace patterns (`*`, `?`, `**` and exclusions).
 Unsupported complex glob syntax produces an explicit error with platform-override guidance. Mixed projects receive the
 union. It does not classify unrelated test/example directories as applications. If detection
-finds neither group, installation stops before changing skills and asks you to select a platform:
+finds neither group (for example, in a new or empty project), installation defaults to the full
+web/mobile catalogue in the current project. No platform flag is required. Optional overrides:
 
 ```bash
 npx uiux-orchestrator install --platform web

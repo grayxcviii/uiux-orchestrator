@@ -4,7 +4,7 @@ description: Use when a request involves designing, redesigning, improving, anim
 license: MIT
 compatibility: Agent Skills compatible agents. Written for Claude Code first; works in agents without a Skill tool or subagents by reading files and running steps sequentially.
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
 ---
 
 # UIUX Orchestrator

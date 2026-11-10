@@ -4,6 +4,18 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.4.1] - 2026-11-10
+
+### Fixed
+- Keep project installation automatic when no web/mobile framework is detected: install the
+  full specialist catalogue locally instead of requiring a platform flag. Recognized projects
+  still receive the matching subset; global installs still include the full catalogue.
+
+### Changed
+- Replace the README demo with VELTORA Noir, a fictional luxury perfume campaign, with
+  responsive stills, smooth motion exports, reduced-motion support and reproducible sources.
+- Expand npm and plugin discovery keywords for supported agents, design disciplines and platforms.
+
 ## [1.4.0] - 2026-11-10
 
 ### Added

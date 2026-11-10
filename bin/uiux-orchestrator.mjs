@@ -19,7 +19,7 @@ const agents = new Map([
 const args = process.argv.slice(2);
 const usage = 'Usage: npx uiux-orchestrator install [--project | --global] [--agent <name>] [--platform web|mobile|all] [--dry-run] [--orchestrator-only]';
 if (args.includes('--help') || args.includes('-h')) {
-  console.log(`${usage}\n\nDefault: detect the project and install its web/mobile specialists for all supported agents. --global (-g) installs the full catalogue. --project (-p) explicitly selects project scope. Repeat --agent (-a) to select agents. Git and network access are required for specialists; --orchestrator-only skips them. --dry-run prints the plan without changing files.\n\nAgents: ${[...agents.keys()].join(', ')}`);
+  console.log(`${usage}\n\nDefault: detect the project and install its web/mobile specialists for all supported agents; if no framework is detected, install the full catalogue in this project. --global (-g) installs the full catalogue. --project (-p) explicitly selects project scope. Repeat --agent (-a) to select agents. Git and network access are required for specialists; --orchestrator-only skips them. --dry-run prints the plan without changing files.\n\nAgents: ${[...agents.keys()].join(', ')}`);
   process.exit(0);
 }
 const command = args.shift();
@@ -61,8 +61,11 @@ try {
     const [local, global] = agents.get(agent);
     return project ? join(process.cwd(), local) : global;
   }))];
-  const groups = only ? [] : !project || platform === 'all' ? ['web', 'mobile'] : platform ? [platform] : detectProject(process.cwd());
-  if (!only && !groups.length) throw new Error('Cannot identify this project as web or mobile. Use --platform web, --platform mobile, --platform all, or --orchestrator-only.');
+  let groups = only ? [] : !project || platform === 'all' ? ['web', 'mobile'] : platform ? [platform] : detectProject(process.cwd());
+  if (!only && !groups.length) {
+    groups = ['web', 'mobile'];
+    console.error('No web/mobile framework detected; installing the full specialist catalogue for this project.');
+  }
   const catalog = JSON.parse(readFileSync(join(packageRoot, 'bin/specialists.json'), 'utf8'));
   const sources = selectSources(catalog, groups);
   if (dryRun) {

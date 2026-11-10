@@ -16,11 +16,12 @@
 </p>
 
 <picture>
-  <source srcset="https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/vahl-demo.webp" type="image/webp">
-  <img src="https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/vahl-demo.gif" alt="UIUX Orchestrator demo: an animated landing page with model tabs and an interactive charging simulator" width="100%">
+  <source media="(prefers-reduced-motion: reduce)" srcset="https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-overview.jpg">
+  <source srcset="https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-demo.webp" type="image/webp">
+  <img src="https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-demo.gif" alt="VELTORA Noir — a luxury perfume campaign with an amber glass bottle, champagne lighting, elegant serif typography and a slow cinematic transition into the fragrance composition." width="100%">
 </picture>
 
-<sub>Demo: Vahl, a fictional brand. [Before & after](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/assets/vahl-fullpage.jpg) · [Photo credits](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/assets/CREDITS.md)</sub>
+<sub>VELTORA Noir — a fictional luxury perfume campaign, created as an illustrative showcase. [Still](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-overview.jpg) · [Motion film](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-demo.mp4) · [Mobile](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-mobile.jpg) · [Source](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/showcase/README.md)</sub>
 
 ## A concept that carries through the whole interface
 
@@ -116,7 +117,7 @@ upstream licence/NOTICE files, supplementary notices and reviewed asset credits.
 and other assets can carry separate terms; follow the [asset usage guidance](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/legal/asset-usage.md)
 when reusing them in a product. [Full notices and licence texts →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/THIRD_PARTY_NOTICES.md)
 
-Demo photos are used under the [Pexels licence](https://www.pexels.com/license/), with
+The archived Vahl demo photos are used under the [Pexels licence](https://www.pexels.com/license/), with
 [credits](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/assets/CREDITS.md). No pictured car manufacturer endorses this project.
 
 ---

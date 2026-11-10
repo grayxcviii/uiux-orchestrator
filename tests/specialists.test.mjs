@@ -190,10 +190,17 @@ test('CLI previews global/all and project-specific selection without network or 
   assert.equal(existsSync(join(root, '.agents')), false);
 });
 
-test('unknown projects fail before writing files and accept an explicit platform', (t) => {
+test('unknown projects default to the full catalogue and accept an explicit platform', (t) => {
   const root = workspace(t), cli = new URL('../bin/uiux-orchestrator.mjs', import.meta.url).pathname;
-  const result = spawnSync(process.execPath, [cli, 'install', '--agent', 'codex'], { cwd: root, encoding: 'utf8' });
-  assert.notEqual(result.status, 0); assert.match(result.stderr, /--platform/);
+  for (const args of [[], ['--project']]) {
+    const result = spawnSync(process.execPath, [cli, 'install', '--agent', 'codex', '--dry-run', ...args], { cwd: root, encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    const plan = JSON.parse(result.stdout);
+    assert.equal(plan.scope, 'project');
+    assert.deepEqual(plan.platforms, ['web', 'mobile']);
+    assert.ok(plan.sources.some(s => s.id === 'taste'));
+    assert.ok(plan.sources.some(s => s.id === 'expo'));
+  }
   const explicit = spawnSync(process.execPath, [cli, 'install', '--platform', 'mobile', '--dry-run'], { cwd: root, encoding: 'utf8' });
   assert.equal(explicit.status, 0, explicit.stderr);
   assert.deepEqual(JSON.parse(explicit.stdout).platforms, ['mobile']);
