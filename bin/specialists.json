@@ -220,6 +220,9 @@
           "groups": [
             "mobile"
           ],
+          "stacks": [
+            "react-native"
+          ],
           "name": "animate-expo"
         },
         {
@@ -354,6 +357,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "ios-native"
           ],
           "name": "write-swift"
         },
@@ -499,6 +505,9 @@
           "groups": [
             "mobile"
           ],
+          "stacks": [
+            "expo"
+          ],
           "name": "expo-native-ui"
         },
         {
@@ -508,6 +517,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "expo"
           ],
           "name": "expo-design-system"
         },
@@ -519,6 +531,9 @@
           "groups": [
             "mobile"
           ],
+          "stacks": [
+            "expo"
+          ],
           "name": "expo-ui"
         },
         {
@@ -529,6 +544,9 @@
           "groups": [
             "mobile"
           ],
+          "stacks": [
+            "react-native"
+          ],
           "name": "expo-animation"
         },
         {
@@ -538,6 +556,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "expo"
           ],
           "name": "expo-router"
         }
@@ -565,6 +586,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "react-native"
           ],
           "name": "react-native-best-practices"
         }
@@ -602,6 +626,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "react-native"
           ],
           "name": "react-navigation"
         },
@@ -668,6 +695,9 @@
           "groups": [
             "mobile"
           ],
+          "stacks": [
+            "android-native"
+          ],
           "name": "adaptive"
         },
         {
@@ -677,6 +707,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "android-native"
           ],
           "name": "edge-to-edge"
         },
@@ -688,6 +721,9 @@
           "groups": [
             "mobile"
           ],
+          "stacks": [
+            "android-native"
+          ],
           "name": "navigation-event"
         },
         {
@@ -697,6 +733,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "android-native"
           ],
           "name": "jetpack-compose-performance"
         }
@@ -761,6 +800,9 @@
           ],
           "groups": [
             "mobile"
+          ],
+          "stacks": [
+            "ios-native"
           ],
           "name": "swiftui-pro"
         }

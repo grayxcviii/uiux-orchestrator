@@ -57,13 +57,17 @@ Ask a coding agent for a beautiful interface and you usually get:
 - **Checked on screen.** The rendered result is reviewed for brief fit, craft, accessibility and
   responsiveness. Anything unverified is reported, not hidden.
 
-Have a design system, brand or supplied design? It works within them.
+Have a design system, brand or supplied design? It works within them. The monochrome palette and
+bold direction are defaults for a blank brief only: existing brand colors, tokens and components
+always win, so say so in your request if your project has them.
 
 ## How it works
 
 **At install**, one command scans your project (`package.json`, workspaces, `pubspec.yaml`,
-Gradle, Swift) and installs the orchestrator plus the matching web or mobile specialists for
-every supported agent. A new or unrecognized project gets the full catalogue.
+Gradle, Swift) and installs the orchestrator plus the specialists for your stack: a React Native
+CLI app gets no Expo, SwiftUI or Compose skills. It installs only for the agents the project
+already uses (`.claude/`, `AGENTS.md`, `.cursor/`, …). A new or unrecognized project gets the full
+catalogue; `npx uiux-orchestrator uninstall` removes everything the installer added.
 
 **On every request**, it reads your brief and your project (stack, tokens, components, motion
 library, tooling), picks which installed skill owns each step, and settles their overlaps up
@@ -103,6 +107,7 @@ Smaller jobs take shorter paths:
 ```bash
 npx uiux-orchestrator install           # this project: detects your stack, installs matching specialists
 npx uiux-orchestrator install --global  # all your projects: full catalogue
+npx uiux-orchestrator uninstall         # remove what the installer added to this project
 ```
 
 Requires Node.js 18+, plus Git and network access to download specialists.

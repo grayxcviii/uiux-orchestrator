@@ -1,7 +1,7 @@
 {
   "reviewed_on": "2026-11-11",
-  "catalog_sha256": "65f32cc9a2190f920422a1db33a1d0cc08f0d63db62964b0391dd066bb55583b",
-  "scope": "47 folders / 14 pinned sources / 63 registry entries plus dogfood. Packed global (47), web (31) and mobile (23) installs verified with original root notices, applicable transitive originals, asset guidance, Taste credit manifests and same-revision reuse. 1.4.4 replaced Lucian with shadcn/ui and Magic UI (both MIT). No upstream scripts/hooks executed.",
+  "catalog_sha256": "f926b1f9d7ff58c93372c7c91a3ef8e679a5d6d98d31d44a7429d6fbf60a2a4a",
+  "scope": "47 folders / 14 pinned sources / 63 registry entries plus dogfood. Packed global (47), web (31) and mobile (23) installs verified with original root notices, applicable transitive originals, asset guidance, Taste credit manifests and same-revision reuse. 1.4.4 replaced Lucian with shadcn/ui and Magic UI (both MIT). 1.5.0 adds stack tags only (no source, revision or licence change): project mobile installs are Expo 17, React Native CLI 13, iOS native 11, Android native 13, Flutter 9; a real React Native CLI install (13) and uninstall were verified. No upstream scripts/hooks executed.",
   "supplemental_sources_sha256": "ecbf6faeb5c30892f9be761974517a613b8b7835221040f23f65356f1e41e0ea",
   "verification_record": "tests/results/2026-11-11-component-specialists.json",
   "limitations": [

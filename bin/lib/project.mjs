@@ -25,8 +25,11 @@ function expand(root, pattern) {
   return walk(root, 0, 0);
 }
 
-export function detectProject(directory) {
-  const root = resolve(directory), visited = new Set(), groups = new Set();
+export const stackIds = ['expo', 'react-native', 'ios-native', 'android-native', 'flutter'];
+
+// Groups decide web/mobile; stacks narrow mobile specialists to the frameworks actually present.
+export function detectProfile(directory) {
+  const root = resolve(directory), visited = new Set(), groups = new Set(), stacks = new Set();
   function inspect(dir) {
     if (visited.has(dir) || relative(root, dir).startsWith('..')) return;
     visited.add(dir);
@@ -38,14 +41,17 @@ export function detectProject(directory) {
     }
     const deps = { ...pkg.dependencies, ...pkg.devDependencies, ...pkg.peerDependencies };
     const native = 'react-native' in deps || 'expo' in deps;
-    if (native) groups.add('mobile');
+    if (native) { groups.add('mobile'); stacks.add('react-native'); }
+    if ('expo' in deps) stacks.add('expo');
     const web = ['next', 'vite', 'vue', 'nuxt', 'svelte', '@sveltejs/kit', 'astro', '@angular/core', 'react-dom', 'react-native-web'];
     if (web.some(name => name in deps) || (!native && 'react' in deps) || existsSync(join(dir, 'index.html'))) groups.add('web');
-    if (existsSync(join(dir, 'pubspec.yaml')) && /^\s*flutter\s*:/m.test(readFileSync(join(dir, 'pubspec.yaml'), 'utf8'))) groups.add('mobile');
-    if (readdirSync(dir).some(name => /\.(xcodeproj|xcworkspace)$/.test(name))) groups.add('mobile');
+    if (existsSync(join(dir, 'pubspec.yaml')) && /^\s*flutter\s*:/m.test(readFileSync(join(dir, 'pubspec.yaml'), 'utf8'))) { groups.add('mobile'); stacks.add('flutter'); }
+    if (readdirSync(dir).some(name => /\.(xcodeproj|xcworkspace)$/.test(name))) { groups.add('mobile'); stacks.add('ios-native'); }
     for (const file of ['build.gradle', 'build.gradle.kts', 'app/build.gradle', 'app/build.gradle.kts', 'Package.swift']) {
       const path = join(dir, file);
-      if (existsSync(path) && /com\.android|android\.application|android\.library|\.iOS|SwiftUI|UIKit/.test(readFileSync(path, 'utf8'))) groups.add('mobile');
+      if (existsSync(path) && /com\.android|android\.application|android\.library|\.iOS|SwiftUI|UIKit/.test(readFileSync(path, 'utf8'))) {
+        groups.add('mobile'); stacks.add(file === 'Package.swift' ? 'ios-native' : 'android-native');
+      }
     }
     let patterns = Array.isArray(pkg.workspaces) ? pkg.workspaces : pkg.workspaces?.packages || [];
     if (!Array.isArray(patterns)) throw new Error(`Invalid workspaces in ${packagePath}`);
@@ -63,10 +69,38 @@ export function detectProject(directory) {
     for (const pattern of patterns) for (const child of expand(dir, pattern)) if (!excluded.has(child)) inspect(child);
   }
   inspect(root);
-  return ['web', 'mobile'].filter(group => groups.has(group));
+  return { groups: ['web', 'mobile'].filter(group => groups.has(group)), stacks: stackIds.filter(stack => stacks.has(stack)) };
 }
 
-export function selectSources(catalog, groups) {
-  return catalog.sources.map(source => ({ ...source, skills: source.skills.filter(skill => skill.groups.some(group => groups.includes(group))) }))
+export function detectProject(directory) {
+  return detectProfile(directory).groups;
+}
+
+// Without `stacks` (global, explicit --platform, or nothing detected) every skill in the groups is kept.
+export function selectSources(catalog, groups, stacks) {
+  const fits = skill => skill.groups.some(group => groups.includes(group))
+    && (!stacks || !skill.stacks || skill.stacks.some(stack => stacks.includes(stack)));
+  return catalog.sources.map(source => ({ ...source, skills: source.skills.filter(fits) }))
     .filter(source => source.skills.length);
+}
+
+// Project/home markers that show an agent is in use. AGENTS.md and .agents/ map to the shared .agents/skills folder.
+export const agentMarkers = {
+  'claude-code': { project: ['.claude', 'CLAUDE.md'], home: ['.claude'] },
+  codex: { project: ['.codex', '.agents', 'AGENTS.md'], home: ['.codex', '.agents'] },
+  cursor: { project: ['.cursor', '.cursorrules'], home: ['.cursor'] },
+  'gemini-cli': { project: ['.gemini', 'GEMINI.md'], home: ['.gemini'] },
+  'github-copilot': { project: ['.github/copilot-instructions.md'], home: ['.copilot'] },
+  opencode: { project: ['.opencode', 'opencode.json', 'opencode.jsonc'], home: ['.config/opencode'] },
+  windsurf: { project: ['.windsurf', '.windsurfrules'], home: ['.codeium/windsurf'] },
+};
+
+export function detectAgents(directory, scope, env = {}) {
+  return Object.entries(agentMarkers).filter(([agent, markers]) => {
+    if (scope === 'project') return markers.project.some(marker => existsSync(join(directory, marker)));
+    if (agent === 'claude-code' && env.CLAUDE_CONFIG_DIR && existsSync(env.CLAUDE_CONFIG_DIR)) return true;
+    if (agent === 'codex' && env.CODEX_HOME && existsSync(env.CODEX_HOME)) return true;
+    if (agent === 'opencode' && env.XDG_CONFIG_HOME && existsSync(join(env.XDG_CONFIG_HOME, 'opencode'))) return true;
+    return markers.home.some(marker => existsSync(join(directory, marker)));
+  }).map(([agent]) => agent);
 }

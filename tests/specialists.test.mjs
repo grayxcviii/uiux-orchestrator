@@ -5,7 +5,7 @@ import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, 
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
-import { detectProject, selectSources } from '../bin/lib/project.mjs';
+import { detectAgents, detectProfile, detectProject, selectSources } from '../bin/lib/project.mjs';
 import { prepareSpecialists } from '../bin/lib/specialists.mjs';
 import { commitJobs } from '../bin/lib/install.mjs';
 
@@ -46,6 +46,49 @@ test('selects all supported sources globally and platform-relevant skills per pr
   assert.deepEqual(selectSources(catalog, ['web']).map(s => s.id), ['web', 'common']);
   assert.deepEqual(selectSources(catalog, ['mobile']).map(s => s.id), ['mobile', 'common']);
   assert.equal(selectSources(catalog, ['web', 'mobile']).length, 3);
+});
+
+test('detects the mobile stack so React Native CLI does not count its ios/ and android/ folders as native apps', (t) => {
+  const root = workspace(t);
+  json(join(root, 'package.json'), { dependencies: { 'react-native': '0.87.0' } });
+  mkdirSync(join(root, 'ios/App.xcodeproj'), { recursive: true });
+  mkdirSync(join(root, 'android')); writeFileSync(join(root, 'android/build.gradle'), 'apply plugin: "com.android.application"');
+  assert.deepEqual(detectProfile(root), { groups: ['mobile'], stacks: ['react-native'] });
+  json(join(root, 'package.json'), { dependencies: { expo: '58', 'react-native': '0.88' } });
+  assert.deepEqual(detectProfile(root).stacks, ['expo', 'react-native']);
+  const ios = join(root, 'native-ios'); mkdirSync(join(ios, 'App.xcodeproj'), { recursive: true });
+  assert.deepEqual(detectProfile(ios), { groups: ['mobile'], stacks: ['ios-native'] });
+  const android = join(root, 'native-android'); mkdirSync(android);
+  writeFileSync(join(android, 'build.gradle.kts'), 'plugins { id("com.android.application") }');
+  assert.deepEqual(detectProfile(android).stacks, ['android-native']);
+});
+
+test('stack filtering keeps untagged skills and drops skills for absent stacks', () => {
+  const catalog = { sources: [{ id: 'm', skills: [
+    { name: 'shared', groups: ['mobile'] }, { name: 'router', groups: ['mobile'], stacks: ['expo'] },
+    { name: 'rn', groups: ['mobile'], stacks: ['react-native'] }, { name: 'swift', groups: ['mobile'], stacks: ['ios-native'] }] }] };
+  const names = stacks => selectSources(catalog, ['mobile'], stacks)[0].skills.map(s => s.name);
+  assert.deepEqual(names(['react-native']), ['shared', 'rn']);
+  assert.deepEqual(names(['expo', 'react-native']), ['shared', 'router', 'rn']);
+  assert.deepEqual(names(undefined), ['shared', 'router', 'rn', 'swift']);
+});
+
+test('real catalogue gives React Native CLI no Expo, Swift or Compose specialists', () => {
+  const catalog = JSON.parse(readFileSync('bin/specialists.json', 'utf8'));
+  const names = selectSources(catalog, ['mobile'], ['react-native']).flatMap(s => s.skills.map(k => k.name));
+  for (const absent of ['expo-router', 'expo-ui', 'expo-native-ui', 'expo-design-system', 'swiftui-pro', 'write-swift', 'jetpack-compose-performance', 'adaptive', 'navigation-event', 'edge-to-edge']) {
+    assert.ok(!names.includes(absent), absent);
+  }
+  for (const present of ['react-native-best-practices', 'react-navigation', 'animate-expo', 'agent-device', 'dogfood', 'impeccable']) assert.ok(names.includes(present), present);
+});
+
+test('detects agents from project and home markers', (t) => {
+  const root = workspace(t);
+  assert.deepEqual(detectAgents(root, 'project'), []);
+  mkdirSync(join(root, '.claude')); writeFileSync(join(root, 'AGENTS.md'), '');
+  assert.deepEqual(detectAgents(root, 'project'), ['claude-code', 'codex']);
+  mkdirSync(join(root, '.codeium/windsurf'), { recursive: true });
+  assert.deepEqual(detectAgents(root, 'global'), ['claude-code', 'windsurf']);
 });
 
 function sourceFixture(root) {

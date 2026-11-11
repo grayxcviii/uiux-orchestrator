@@ -31,14 +31,29 @@ Remove: `claude plugin uninstall uiux-orchestrator@uiux-orchestrator`.
 npx uiux-orchestrator install           # auto-detect web/mobile and install relevant specialists
 npx uiux-orchestrator install --project # explicit project scope (-p)
 npx uiux-orchestrator install --global  # all 47 supported specialists, for every project (-g)
+npx uiux-orchestrator uninstall         # remove installer-managed folders from this project
 ```
 
 **Selection:** global installs include the entire supported catalogue: 47 unique skill folders
 from 14 pinned sources, covering 63 routing entries/commands plus the dogfood companion linked
 by agent-device. Project installs include skills
-marked web or mobile in the registry. Shared specialists belong to both groups. Mobile includes
-React Native/Expo, iOS, Android and Flutter guidance; runtime routing still checks the actual
-framework and prerequisites before using a skill. Installing a skill does not install its SDKs.
+marked web or mobile in the registry. Shared specialists belong to both groups. Mobile skills
+that only fit one stack are also tagged with it in `bin/specialists.json` (`stacks`), and a
+project install keeps them only when that stack is detected:
+
+| Stack | Detected from | Stack-only specialists |
+|---|---|---|
+| `expo` | `expo` dependency | `expo-router`, `expo-ui`, `expo-native-ui`, `expo-design-system` |
+| `react-native` | `react-native` or `expo` dependency | `react-native-best-practices`, `react-navigation`, `animate-expo`, `expo-animation` |
+| `ios-native` | `.xcodeproj`/`.xcworkspace` or iOS `Package.swift` in an app root | `swiftui-pro`, `write-swift` |
+| `android-native` | Android Gradle build file in an app root | `adaptive`, `edge-to-edge`, `navigation-event`, `jetpack-compose-performance` |
+
+Untagged mobile skills (Impeccable, UI UX Pro Max, the shared animation skills, `agent-device`,
+`dogfood`) are installed for every mobile stack. A React Native CLI app therefore gets no Expo,
+SwiftUI or Compose skills; its `ios/` and `android/` folders are not treated as native apps.
+If you write native modules and want those skills, use `--platform mobile`, which installs every
+mobile specialist without stack filtering. Runtime routing still checks the actual framework and
+prerequisites before using a skill. Installing a skill does not install its SDKs.
 
 Project detection checks package dependencies, static HTML, Flutter manifests, Xcode/Android
 projects, npm/Yarn workspace packages and pnpm workspace patterns (`*`, `?`, `**` and exclusions).
@@ -68,8 +83,12 @@ CLI selection and local Git installation are covered by offline tests; real upst
 were also checked in isolated global, web and mobile profiles.
 
 The installer supports Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and
-Windsurf. It installs for all seven by default; repeat `--agent <name>` (or `-a`) to select
-specific agents. The skill is independent of the model used inside each compatible agent.
+Windsurf. By default it installs only for the agents it detects: in a project from `.claude/` or
+`CLAUDE.md`, `.agents/`, `.codex/` or `AGENTS.md`, `.cursor/` or `.cursorrules`, `.gemini/` or
+`GEMINI.md`, `.github/copilot-instructions.md`, `.opencode/` or `opencode.json`, and `.windsurf/`
+or `.windsurfrules`; globally from each agent's home folder. If none is detected it installs for
+all seven. Repeat `--agent <name>` (or `-a`) to select specific agents. The skill is independent
+of the model used inside each compatible agent.
 
 ```bash
 npx uiux-orchestrator install --agent claude-code
@@ -94,7 +113,14 @@ Project installs are available inside that project. Global installs are availabl
 projects for the selected agents. Agent support for reading skills is required; a model in a
 plain chat interface does not discover local skill directories. Installer tests verify file
 placement and updates; full task execution has only been tested in the agents listed below.
-Running the same command again updates managed copies to the catalogue revision and verifies their licence files. The npm package is available as `uiux-orchestrator`.
+Running the same command again updates managed copies to the catalogue revision and verifies their licence files.
+
+**Remove (npm CLI):** `npx uiux-orchestrator uninstall` removes, for every agent folder in this
+project, only the folders that carry the installer's `.uiux-orchestrator-npm` marker, then drops
+agent folders left empty. Skills you added yourself and symlinks are kept. Add `--global` for the
+global folders, `--agent <name>` to limit it, and `--dry-run` to see the list first. Skills that a
+newer catalogue no longer filters in are not removed by a re-install; run `uninstall` first for a
+clean set. The npm package is available as `uiux-orchestrator`.
 
 **Codex CLI and other Agent Skills agents:** available now with Node.js 22.20 or later. Install globally so
 the skill is available in every project:

@@ -75,6 +75,7 @@ def main():
             assert skill['name'] not in names, 'Colliding specialist skill names'
             names.add(skill['name'])
             assert skill['groups'] and set(skill['groups']) <= {'web', 'mobile'}, 'Invalid specialist platform group'
+            assert set(skill.get('stacks', [])) <= {'expo', 'react-native', 'ios-native', 'android-native', 'flutter'} and (not skill.get('stacks') or 'mobile' in skill['groups']), 'Invalid specialist stack'
             assert skill['registry_ids'] or (skill.get('support_for') and all(parent in {s['name'] for s in source['skills']} for parent in skill['support_for'])), 'Unmapped specialist needs an audited companion relationship'
             assert all(sid.split('/')[0] == source['id'] for sid in skill['registry_ids']), 'Specialist is mapped to the wrong registry provider'
             assert not (set(skill['registry_ids']) & registry_ids), 'Duplicate specialist registry mapping'

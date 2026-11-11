@@ -127,3 +127,42 @@ test('multi-agent preflight preserves every target if one destination is an exis
     assert.equal(existsSync(join(root, '.agents')), false);
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
+
+test('default project install targets only the agents the project already uses', () => {
+  const root = mkdtempSync(join(tmpdir(), 'uiux-agent-'));
+  try {
+    mkdirSync(join(root, '.claude'));
+    const result = run(['install'], root, join(root, 'codex'));
+    assert.equal(result.status, 0, result.stderr);
+    assert.ok(existsSync(join(root, '.claude/skills/uiux-orchestrator/SKILL.md')));
+    assert.equal(existsSync(join(root, '.agents')), false);
+    assert.equal(existsSync(join(root, '.windsurf')), false);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('uninstall removes managed folders, keeps user skills and empty-folder cleanup is safe', () => {
+  const root = mkdtempSync(join(tmpdir(), 'uiux-agent-'));
+  try {
+    assert.equal(run(['install'], root, join(root, 'codex')).status, 0);
+    const user = join(root, '.claude/skills/my-skill');
+    mkdirSync(user, { recursive: true }); writeFileSync(join(user, 'SKILL.md'), 'user copy');
+    const plan = run(['uninstall', '--dry-run'], root, join(root, 'codex'));
+    assert.equal(plan.status, 0, plan.stderr);
+    assert.equal(JSON.parse(plan.stdout).remove.length, 3);
+    assert.ok(existsSync(join(root, '.agents/skills/uiux-orchestrator')));
+    const result = run(['uninstall'], root, join(root, 'codex'));
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(readFileSync(join(user, 'SKILL.md'), 'utf8'), 'user copy');
+    assert.equal(existsSync(join(root, '.claude/skills/uiux-orchestrator')), false);
+    assert.equal(existsSync(join(root, '.agents')), false);
+    assert.equal(existsSync(join(root, '.windsurf')), false);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('uninstall rejects install-only options', () => {
+  const root = mkdtempSync(join(tmpdir(), 'uiux-agent-'));
+  try {
+    const result = spawnSync(process.execPath, [cli, 'uninstall', '--platform', 'web'], { cwd: root, encoding: 'utf8' });
+    assert.notEqual(result.status, 0);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});

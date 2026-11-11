@@ -4,6 +4,25 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.5.0] - 2026-11-11
+
+### Added
+- `npx uiux-orchestrator uninstall [--project | --global] [--agent <name>] [--dry-run]` removes
+  only folders carrying the installer marker, keeps user-managed skills and symlinks, and drops
+  project agent folders left empty.
+
+### Changed
+- Project installs filter mobile specialists by detected stack (`stacks` in
+  `bin/specialists.json`: `expo`, `react-native`, `ios-native`, `android-native`). React Native
+  CLI apps no longer receive Expo Router, Expo UI, Expo native UI, Expo design system, SwiftUI or
+  Android/Compose skills; their `ios/` and `android/` folders are not counted as native apps.
+  `--platform mobile` still installs every mobile specialist.
+- Installs target only the agents detected in the project (or home folder for `--global`), and
+  fall back to all seven agents when none is detected, instead of always writing to `.claude/`,
+  `.agents/` and `.windsurf/`.
+- README states that existing brand colors, tokens and components override the monochrome and
+  bold-direction defaults.
+
 ## [1.4.4] - 2026-11-11
 
 ### Added

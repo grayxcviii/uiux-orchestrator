@@ -204,3 +204,12 @@ global (47), web (31) and mobile (23) installs were verified with original notic
 re-run kept all web sources. Results: [component specialist installation](../tests/results/2026-11-11-component-specialists.json).
 No upstream scripts/hooks were executed.
 
+## Stack-filtered installs — 2026-11-11 (1.5.0)
+
+`bin/specialists.json` gained `stacks` tags on 14 mobile skills; sources, revisions, licence files
+and supplemental notices are unchanged, so the catalogue hash in `install-audit.json` was updated
+without a new upstream review. Project mobile installs now select Expo 17, React Native CLI 13,
+iOS native 11, Android native 13 and Flutter 9 skills (all 23 with `--platform mobile` or
+`--global`). A real React Native CLI install for Claude Code fetched the 13 expected skills with
+their notices, and `uninstall` removed all 14 managed folders. No upstream scripts/hooks were
+executed.
