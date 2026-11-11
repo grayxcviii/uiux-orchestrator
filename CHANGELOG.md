@@ -4,6 +4,13 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.4.3] - 2026-11-11
+
+### Changed
+- README rewritten around the problem, what you get, how it works (one install that detects the
+  project and installs matching specialists) and the full design process with shorter paths for
+  smaller tasks. Runtime requirements moved to `docs/usage.md`.
+
 ## [1.4.2] - 2026-11-11
 
 ### Changed
