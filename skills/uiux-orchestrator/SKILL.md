@@ -4,7 +4,7 @@ description: Use when a request involves designing, redesigning, improving, anim
 license: MIT
 compatibility: Agent Skills compatible agents. Written for Claude Code first; works in agents without a Skill tool or subagents by reading files and running steps sequentially.
 metadata:
-  version: "1.4.1"
+  version: "1.4.2"
 ---
 
 # UIUX Orchestrator
@@ -37,13 +37,22 @@ several stages only with separate accepted outputs; its name never substitutes f
 Keep execution receipts and handoffs as defined in the orchestration contract. Full-design
 completion requires its bundled record checker as well as the UI workflow's evidence gates.
 
-**Visual quality contract:** original designs and visual redesigns default to contemporary,
-expressive, product-specific art direction. Before writing UI, translate the user's visual intent
+**Visual quality contract:** original designs and visual redesigns default to **bold**,
+contemporary, product-specific art direction with one named decisive move that survives build
+and review. Without a user or brand color direction, use the
+[premium monochrome posture](references/visual-design.md#default-color-posture-premium-monochrome):
+black/white/dark OKLCH value ramps, one temperature, at most one rare accent, richness from
+photography, material and type. Never use the [AI-generated color signatures](references/visual-design.md#ai-generated-color-signatures-avoid)
+(indigo/violet accents, purple-blue gradients, neon on dark, gradient text, glow blobs) unless a
+user or brand requires them. Motion is designed with the direction, not added later: new surfaces
+and redesigns ship a motion signature and smooth, interruptible, choreographed transitions per
+[motion-principles §0](references/motion-principles.md#0-default-posture-smooth-choreographed-motion),
+with a reduced-motion path; static only when the user asks for it. Before writing UI, translate the user's visual intent
 into the concrete direction contract in [references/visual-design.md §6](references/visual-design.md#6-avoiding-generic-ai-generated-ui).
 The selected visual driver authors it from the accepted foundation and concept brief; use built-in
 direction only after evidenced candidate checks. Record it in working context even on Medium single-agent tasks; carry it into specialist briefs and
-implementation. Preserve supplied designs and governing brand systems. A request for modern,
-colorful design must not silently become muted retro/editorial styling or one fixed house palette.
+implementation. Preserve supplied designs and governing brand systems. An explicit request for
+colorful design overrides the monochrome default and must not silently become muted or monochrome.
 Choose media and depth from the actual subject and brief: a strong photograph, composed 2D
 layout, rendered asset or interactive geometry. Promotional, colorful or "creative" does not
 automatically mean 3D. Preserve explicit spatial requests; load
@@ -183,7 +192,7 @@ before using a version-sensitive API.
 |---|---|
 | [references/visual-design.md](references/visual-design.md) | direction, improvement, redesign, review of visual quality |
 | [references/spatial-design.md](references/spatial-design.md) | spatial/3D direction, CSS perspective, rendered 3D assets, or Three.js scenes |
-| [references/motion-principles.md](references/motion-principles.md) | any motion design, build or review without a motion skill |
+| [references/motion-principles.md](references/motion-principles.md) | every new surface/redesign (§0 default motion posture), and any motion design, build or review without a motion skill |
 | [references/accessibility.md](references/accessibility.md) | accessibility workflow, review, or a contrast/target/semantics question |
 
 Version facts were checked on the date in each file. When the project's versions differ, trust the

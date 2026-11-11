@@ -51,14 +51,79 @@ Every screen answers three questions in this order:
   secondary, error, outline, and so on. Components consume roles; themes map roles to values.
 - Every foreground/background pair meets contrast floors (`references/accessibility.md`).
 - Color is never the only signal (pair it with an icon, text or shape).
-- Give primary actions one consistent color meaning. A broader expressive palette can include
-  chromatic surfaces, imagery, gradients and supporting accents with distinct roles; color-rich
-  does not mean every element competes. Match visible color intensity to the brief.
+- Give primary actions one consistent color meaning. Match visible color intensity to the brief.
 - Dark mode is a separate palette, not an inverted one:
-  - tune saturation and luminance per role, retaining vivid brand accents where readable;
+  - tune lightness per role; keep the accent readable rather than neon;
   - use elevation through lighter surfaces, not shadows;
   - avoid pure black under bright text if it causes smearing on OLED;
   - check contrast again.
+
+### Default color posture: premium monochrome
+
+When the user and brand give no color direction, default to a **premium monochrome or dark
+palette**: black, white and a deliberate range of grays, with at most one restrained accent.
+Luxury and modernity come from value contrast, material, photography and typography, not from
+hue. A user's or brand's explicit color request always overrides this default; then apply the
+same craft to their colors.
+
+Build in a perceptual space (**OKLCH** on the web, `oklch(L C H)`; the platform's wide-gamut
+color API on native) so steps are even and contrast is predictable:
+
+1. **Anchor the extremes.** A deep base, not `#000`: L 0.10–0.16. An off-white, not `#fff`:
+   L 0.96–0.985. The distance between them is the palette's drama; use it.
+2. **Build a real value ramp.** At least 5–7 neutral steps (e.g. L 0.13 / 0.18 / 0.24 / 0.32 /
+   0.55 / 0.78 / 0.97) for surfaces, raised layers, hairlines, secondary text and primary text.
+   Hierarchy comes from lightness, so mid-grays need clear jumps, not near-duplicates.
+3. **Choose a temperature and keep it.** Neutrals are either true (C 0) or barely tinted
+   (C ≤ 0.012) toward one temperature: warm stone/graphite (h 60–80) or cool steel/ink
+   (h 240–260). Mixing warm and cool grays looks accidental. Never tint neutrals violet/indigo.
+4. **One accent, used rarely, chosen from the product.** If an accent exists, it occupies
+   roughly ≤ 5% of a view: the primary action, a live state, a single signature detail.
+   Derive it from the subject's material or brand (signal red, oxblood, deep racing green,
+   bronze, steel blue, a product's own color) at moderate chroma (C 0.08–0.16; up to ~0.20 for a signal color). White can be
+   the accent on dark; black can be the accent on light.
+5. **Let content carry color.** Photography, product renders and video supply richness; the UI
+   frames them in neutrals. Grade imagery to the palette (cool/warm, contrast, grain).
+6. **Add material instead of hue.** Fine grain, hairline borders (1px at low-contrast steps),
+   subtle surface layering, controlled light falloff (vignette, spotlight) and real shadows on
+   light themes make monochrome feel expensive rather than empty.
+7. **Gradients are light, not color.** Prefer single-hue lightness falloff (base → raised gray,
+   spotlight behind a product). Interpolate in OKLCH (`linear-gradient(in oklch, …)`) and add
+   grain on large areas to prevent banding.
+8. **Contrast is computed, not guessed.** Primary text ≥ 7:1 where possible, secondary text
+   ≥ 4.5:1. Premium never means tiny, faint text: no body or label text below 12px CSS / 11pt,
+   and no gray-on-gray labels that fail contrast.
+
+Monochrome archetypes (adapt temperature, accent and proportions to the product; never ship one
+unchanged or reuse it across unrelated clients):
+
+| Archetype | Character | Shape of the palette |
+|---|---|---|
+| Ink & paper | Editorial-modern, confident | Off-white L 0.97 + near-black L 0.14, almost no mid-grays; oversized grotesk; photography in full color or graded mono |
+| Graphite | Technical, precise, product-led | Dark ramp L 0.13–0.32 for layered surfaces, hairlines at L 0.28, text L 0.95; one cool or white accent |
+| Obsidian & metal | Luxury without gold clichés | Near-black warm or cool base, a single metallic tone (steel, titanium, bronze) as rule lines and details, never as large gradients |
+| Gallery white | Calm, high-end retail or architecture | Warm or cool white L 0.96–0.98, black type, generous space; the product photography is the only color |
+| Black + signal | Bold, cinematic, performance | True dark base, white type, one saturated signal color (red, racing green, safety orange) under 5% of the view |
+| Stone | Tactile, crafted, hospitality | Tinted neutrals C ≤ 0.012 (h 60–80), matte surfaces, grain, a deep earthy accent |
+
+### AI-generated color signatures (avoid)
+
+These colors and effects are the fingerprint of generated and template UI. Do not use them
+unless the user or an existing brand explicitly requires them:
+
+- indigo/violet/purple as the primary or accent (Tailwind `indigo-500`/`violet-500`/`purple-600` defaults);
+- purple → blue, pink → purple, teal → purple, or "aurora" multi-hue gradients;
+- neon cyan, electric magenta or acid green on dark backgrounds;
+- gradient-filled headline text;
+- blurred colored glow blobs or orbs behind the hero;
+- dark backgrounds tinted blue-violet (`#0f0f23`, `#0b0b1a` and similar) instead of true or warm/cool neutrals;
+- colored glassmorphism (frosted panels over rainbow blur);
+- colored glow shadows on buttons and cards;
+- rainbow per-section or per-card accent colors;
+- pastel candy palettes with no product reason.
+
+Restraint is the default posture, not timidity: the result must still be bold through scale,
+contrast, composition, photography and motion.
 
 ## 5. Components and states
 
@@ -81,7 +146,7 @@ calling the result "modern" or "premium".
 
 For Persuade/Experience surfaces, compare media that credibly show the subject: photography,
 an expressive flat composition, a product render, layered interface demonstration or interactive
-scene. More geometry, motion or saturation does not establish better art direction. Do not
+scene. Effects support an idea; they do not replace one. Do not
 replace a real destination with a crude miniature simply to add depth; inspect material,
 lighting, silhouette and photographic quality at presentation size. A requested stylized
 miniature is valid, but must be judged against that brief rather than counted as inherently better.
@@ -98,32 +163,57 @@ When `direction` runs, keep a short record in working context with concrete choi
 |---|---|
 | Brief fit | The requested visual qualities and explicit dislikes, each mapped to an observable design choice. Include references actually inspected, if any. |
 | Concept | A product-specific visual idea and surface mode; how it serves the audience and primary action. |
-| Color | Actual roles/tokens or values, contrast pairs, color intensity and where color occupies the composition. A colorful brief needs meaningful chromatic areas, not just a small CTA. |
+| Color | Actual roles/tokens in OKLCH (or platform wide-gamut values): the neutral ramp, its temperature, the accent (if any) and where it appears, and contrast pairs. Confirm no [AI-generated color signature](#ai-generated-color-signatures-avoid) is present; if the result matches a [safe-default trap](#safe-default-traps), state the brief reason. |
+| Decisive move | The one bold decision this direction commits to and why it fits the product; what must survive implementation and review. |
 | Type | Actual families with the required language glyphs, display/body roles, weight, scale and wrapping. For contemporary work, start from a current-feeling sans treatment; use editorial/retro serif styling when the brief or brand supports it. |
 | Composition | Focal point, desktop/phone layouts, section rhythm, density and whitespace. Explain how the structure follows the content. |
 | Media and depth | Subject, asset source/creation method, material/light treatment, and CSS/static-render/scene choice when 3D is in scope. |
-| Signature and motion | Recognizable details carried beyond the hero; purposeful motion and reduced-motion behavior, or a deliberate static treatment. |
+| Signature and motion | Recognizable details carried beyond the hero; the motion signature, entrance choreography, transition and feedback tokens per [motion-principles §0](motion-principles.md#0-default-posture-smooth-choreographed-motion), and reduced-motion behavior. Static only when the user asked for it. |
 | Acceptance | What must be visible in the first representative render to prove the requested style, and which mismatches would require changing the direction. |
 
 If the user delegated art direction, choose and implement without an extra selection gate.
 If they asked for alternatives, use the design-exploration workflow. This record is a building
 brief, not a substitute for rendering or a reason to create process files.
 
-### Contemporary visual range
+### Contemporary visual range: bold by default
 
-For original work without a governing style, aim for contemporary, expressive craft. Choose a
-visual language suited to the brief: a light chromatic layout, a dark high-contrast composition,
-or a richer layered/material treatment can all work. Specify actual colors, type, composition
-and assets; naming a style is insufficient. Do not assign every product the same palette.
+For original work without a governing style, the default ambition is **bold**: a direction
+someone would remember and could describe after one look. In the default
+[premium monochrome](#default-color-posture-premium-monochrome) posture, boldness comes from
+scale, contrast, crop, composition, photography, material and motion rather than from hue.
+Specify actual colors, type, composition and assets; naming a style is insufficient. Products
+can share the posture but not the execution: vary temperature, accent, type, material and layout.
 
-Gradients, violet/blue, glass, glow and rounded geometry are available tools. Use them to carry
-brand color, show layers, shape light or focus attention, with controlled placement and contrast.
-No hue or effect proves that a page is generic. Equally, avoiding those tools does not justify
-defaulting to beige, terracotta, muted colors, serif italics or a sparse editorial layout.
+Commit to at least **one decisive move** that a cautious designer would hesitate over, and name
+it in the direction contract: an oversized or cropped type treatment, a full-bleed black or
+white field, a dramatic photographic crop, extreme scale contrast, a broken grid, a distinctive
+material, a signature interaction. Keep it while it survives usability and accessibility; do not
+sand it down during later stages merely because it is unusual.
 
-For a modern/colorful brief, review the overall color presence, typography, image treatment and
-component geometry together. A polished retro direction still misses that brief. For an
-explicit vintage/editorial brief, honor it; this is not a global ban on warm palettes or serif.
+Keep a gradient only if it has a job: it renders light or material, encodes data or progression,
+or is a recognizable brand asset built from the brand's own colors. Before handing off, ask:
+(1) if it were removed, would meaning be lost or only decoration? (2) if the brand changed,
+would the gradient have to change? "Only decoration" and "no" mean it is generic: give it a role
+or replace it with a flat field. Gradient-filled headline text and glow blobs are
+[AI-generated signatures](#ai-generated-color-signatures-avoid).
+
+#### Safe-default traps
+
+These looks are the statistical average of "tasteful" output. Each is valid **only** when the
+brief or brand points to it; otherwise treat it as unresolved direction and push further:
+
+- **Lazy mono:** flat mid-grays with no true dark or light, thin weights, tiny letter-spaced
+  labels everywhere, no material or imagery. Crafted monochrome is the default; lazy mono fails.
+- **Gold-and-italic reflex:** champagne gold accents and an italic serif phrase applied to every
+  premium brief. Premium can be achieved with steel, white or no accent at all.
+- **Editorial beige:** cream/beige/terracotta, muted sage, serif italics, sparse layout.
+- **SaaS gray:** white + light gray cards + one blue/indigo CTA, centered hero, three-card grid.
+- **Dark glow:** slate/ink background + violet/indigo glow blobs + gradient headline text.
+
+When the user asks for colorful or vivid design, follow that brief: build the palette with the
+same OKLCH method (real chroma, real area, tinted neutrals) and still avoid the
+[AI-generated signatures](#ai-generated-color-signatures-avoid). For an explicit
+vintage/editorial/luxury brief, honor it and make it specific rather than generic.
 
 These patterns weaken specificity when repeated without a product/content reason:
 
@@ -140,13 +230,13 @@ These patterns weaken specificity when repeated without a product/content reason
 
 The antidote is specificity:
 - real content and the product's own UI;
-- a deliberate palette with clear roles and the requested color intensity;
+- a deliberate palette with clear roles: a real value range, one temperature, a rare accent;
 - one typographic idea;
 - spacing doing the hierarchy work;
 - conventions where users expect them, distinctiveness where the brand lives.
 
 Before handing off, name the focal composition, type treatment, depth/material approach and
-motion signature (or why static is appropriate). If the result could fit any unrelated product
+motion signature (static only when the user asked for it). If the result could fit any unrelated product
 after changing its logo, refine the concept. Generic floating spheres, neon blobs or a spinning
 torus do not become product-specific merely because they are rendered in 3D.
 
@@ -242,8 +332,8 @@ patterns remain reusable.
 For open-ended improvement requests, arbitrary shadow/radius/color swaps with no concept or
 observed benefit do not satisfy the creative brief. Aim for a convincing, crafted change at the
 requested scale. Distinctiveness must survive responsive and interaction states and make the
-product more compelling or easier to use. Extra animation, unusual navigation, saturated color
-or 3D are tools, not mandatory substitutes for an idea.
+product more compelling or easier to use. Contrast, scale, motion and depth are strong tools for
+carrying the idea; a change that only makes the UI quieter is not a creative advance.
 
 ### Observable scope boundaries
 

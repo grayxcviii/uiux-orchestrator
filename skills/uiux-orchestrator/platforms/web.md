@@ -17,6 +17,9 @@ Last checked: 2026-11-06. Version facts are in §0. Re-check them when the proje
 | Container size queries | Baseline, widely available | Component-level responsiveness |
 | Container style queries | Baseline (May 2026), custom properties only | Theme/variant switches |
 | `:has()` | Baseline, widely available | Parent/state styling |
+| `oklch()`, `color-mix()`, `color(display-p3 …)`, `@media (color-gamut: p3)` | Baseline, widely available | Perceptual palettes, derived tints, wide-gamut accents |
+| Gradient interpolation (`linear-gradient(in oklch, …)`) | Baseline (2024) | Vivid gradients without gray midpoints |
+| Relative color syntax (`oklch(from var(--brand) l c h / .4)`) | Baseline (2024) | Derive states/tints from one token; keep a static fallback for older browsers if the project supports them |
 | `dvh` / `svh` / `lvh` | Baseline, widely available | Mobile viewport heights instead of `100vh` |
 | Popover API | Baseline (Jan 2025) | Menus, tooltips, light-dismiss layers |
 | `linear()` easing | Baseline, widely available | Spring-like CSS easing |
@@ -68,6 +71,26 @@ Last checked: 2026-11-06. Version facts are in §0. Re-check them when the proje
 
 - Put tokens in CSS custom properties (or Tailwind `@theme` / config). Components use semantic
   tokens, never raw hex.
+- For new palettes, author tokens in OKLCH (method in `references/visual-design.md` §4: premium
+  monochrome by default, no AI-generated color signatures). Tailwind v4's default palette is
+  already OKLCH, but its `indigo`/`violet`/`purple` defaults are exactly the generated look to avoid.
+  Example (cool graphite, one signal accent):
+
+  ```css
+  :root {
+    --base:      oklch(0.14 0.005 250);   /* deep base, not #000 */
+    --raised:    oklch(0.19 0.005 250);
+    --line:      oklch(0.28 0.006 250);   /* hairlines */
+    --text-2:    oklch(0.74 0.006 250);   /* secondary text, >= 4.5:1 on --base */
+    --text:      oklch(0.97 0.003 250);   /* off-white, not #fff */
+    --accent:    oklch(0.56 0.19 28);     /* signal red: primary action / live state only;
+                                             --text on it = 4.7:1, it on --base = 3.9:1 (UI only) */
+  }
+  .hero { background: radial-gradient(60% 50% at 70% 40% in oklch, var(--raised), var(--base)); }
+  ```
+
+  The gradient is light falloff in one hue, not a color effect. Prevent banding on large
+  gradients with a low-opacity noise layer.
 - Dark mode follows the project's mechanism: `prefers-color-scheme`, `.dark` class, or
   `data-theme`. Set `color-scheme` so form controls and scrollbars match.
 - Support `forced-colors: active` (Windows High Contrast): don't remove outlines; use `CanvasText`
@@ -138,6 +161,29 @@ Follow the tool decision in `workflows/animation.md`.
   approved.
 - Reduced motion: `@media (prefers-reduced-motion: reduce)`; Motion's `useReducedMotion`;
   `gsap.matchMedia()`.
+- Smooth defaults: put motion tokens in custom properties and reuse them, e.g.
+
+  ```css
+  :root {
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --dur-micro: 160ms; --dur: 280ms; --dur-expressive: 800ms;
+  }
+  .reveal-line { overflow: clip; }
+  .reveal-line > span { display: block;
+    transition: transform var(--dur-expressive) var(--ease-out-expo); }
+  /* hidden only when script runs (<html class="js">), so content never depends on JS */
+  .js .reveal-line > span { transform: translateY(105%); }
+  .js .is-in .reveal-line > span { transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal-line > span { transform: none; transition: none; }
+  }
+  ```
+
+  Add `.is-in` from script (IntersectionObserver), stagger lines with `transition-delay` in
+  30–60 ms steps, and keep the first view's entrance under ~1.2 s in total. Use View Transitions for route/state swaps so persistent
+  elements morph. Keep native scroll; no wheel/touch hijacking.
 - Animate `transform`/`opacity`. Avoid animating `width`/`height`/`top`/`left`/`box-shadow` blur on
   large areas. `will-change` only on elements about to animate, removed after.
 

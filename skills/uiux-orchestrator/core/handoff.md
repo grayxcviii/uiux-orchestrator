@@ -30,7 +30,7 @@ execution schema 2. Fast-path tasks retain their scoped workflow without creativ
 |---|---|
 | Foundation / product / UX analysis | Users and their main task on this surface; primary action; information hierarchy (what is first/second/third); required states (loading, empty, error, disabled, offline, permission); flows and entry/exit points; success criteria. |
 | Concept reasoning | Concept alternatives, chosen experience/narrative, rationale, hierarchy/layout sketches, constraints and provisional visual suggestions; no final token authority. |
-| Final art direction | Design style in one line + mode (Operate/Persuade/Read/Experience); visual hierarchy rules; color direction (roles → tokens or new values); typography direction (families, scale steps used); component principles (density, radius, elevation, iconography); motion direction (personality, duration range, easing/spring family) if motion is in scope. |
+| Final art direction | Design style in one line + mode (Operate/Persuade/Read/Experience); visual hierarchy rules; ambition level (bold/restrained + reason) and the decisive move; color direction (roles → OKLCH/wide-gamut tokens or new values: neutral ramp, temperature, accent and where it appears; confirmation that no AI-generated color signature is used); typography direction (families, scale steps used); component principles (density, radius, elevation, iconography); motion direction (signature moment, entrance choreography, transition/feedback tokens: durations, curves, springs; reduced-motion behavior), required for new surfaces and redesigns unless the user asked for static. |
 | Final design system | References to foundation and final art-direction handoffs; reconciled token/component decisions and contrast evidence. Token changes (name → old → new) or "none"; new components and their variants/states; components reused as-is; where tokens live. |
 | Component research | For each needed part: chosen source (project component / platform component / library / Lucian element #id), adaptation notes, rejected options in one line. |
 | Implementation | Files changed; how each decision was applied; deviations from decisions with reason; states implemented; known gaps. |
@@ -40,8 +40,10 @@ execution schema 2. Fast-path tasks retain their scoped workflow without creativ
 
 The visual-direction record also maps each requested aesthetic quality to concrete choices and
 rendered acceptance observations using the [direction contract](../references/visual-design.md#direction-contract-before-implementation).
-When a driver is selected, it makes these choices; the orchestrator supplies the user's brief
-and project constraints, then passes the driver's resulting choices to downstream specialists.
+When a driver is selected, it makes these choices; the orchestrator supplies the user's brief,
+project constraints, the ambition level, the color posture, the [AI-generated color signatures](../references/visual-design.md#ai-generated-color-signatures-avoid) and the [safe-default traps](../references/visual-design.md#safe-default-traps),
+then passes the driver's resulting choices, including the decisive move, to downstream
+specialists and reviewers so later stages keep it instead of quietly toning it down.
 A coherent implementation of a direction that misses the user's visual brief still fails
 review; correct that direction within the authorized
 scope before refining small details.

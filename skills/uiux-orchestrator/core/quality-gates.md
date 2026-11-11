@@ -96,12 +96,16 @@ check alongside the workflow's gate. Inspect rendered output and record concrete
 | Creative advance | Identify the chosen signature/experience improvement and its user/product benefit. For edits, compare matching before/after evidence and the alternatives considered under the [creative-improvement contract](../references/visual-design.md#9-breakthrough-ambition-for-new-work-and-edits). Small scope or fixed tokens do not waive this judgment. |
 | Composition | A clear focal point and primary action; balanced visual weight, intentional alignment and negative space. |
 | Typography | A deliberate scale and type treatment that suit the product; readable copy and clean wrapping at target sizes. |
-| Palette and materials | Cohesive color roles, accessible contrast and consistent depth/light/material choices when used. |
+| Palette and materials | Cohesive color roles, accessible contrast and consistent depth/light/material choices when used. Name the neutral ramp, its temperature and the accent (if any) and where they appear in the render. Any [AI-generated color signature](../references/visual-design.md#ai-generated-color-signatures-avoid) not required by the user or brand fails. A monochrome palette passes only with a real value range (deep base, off-white, clear mid steps) and material or imagery; flat mid-grays fail. |
+| Boldness | Name the direction's decisive move and point to it in the render. If none can be named, or it was softened away during build/review, this fails. If the render matches a [safe-default trap](../references/visual-design.md#safe-default-traps) the brief did not ask for, it fails until the direction is pushed or the brief reason is stated. |
 | Product identity | Specific content and a recognizable visual idea carried across the surface; explain what makes it fit this product. |
 | Distinctiveness (original visual work) | Signature details remain recognizable without the logo; an unrelated product would require meaningful visual redesign. Use the [identity contract](../references/visual-design.md#product-identity-contract) to identify and refine interchangeable sections. |
 | Finish | Consistent icons, radii, borders, image crops and spacing; interaction states receive the same care as the default view. |
+| Motion smoothness | The motion signature, entrance choreography and state/navigation transitions are visible in the running UI. Evidence: a motion trace or recording showing compositor-only properties, no dropped frames, interruption without snapping, and a working reduced-motion path. Missing motion on a new surface (without a user request for static), janky frames or an [AI-generated motion signature](../references/motion-principles.md#ai-generated-motion-signatures-avoid) fails. |
 | Responsive craft | Phone layouts are intentionally recomposed; hierarchy, focal media and controls remain polished and usable. |
 
+Ask of the first render: "would someone remember this tomorrow, and could they describe it?" A
+merely tidy, inoffensive result is a direction miss for open creative work, not a pass.
 Check the first representative render for brief fit before spending time on micro-polish; then
 verify the full surface at the required sizes/states. Review both the original brief and the
 direction record, not just implementation fidelity. If the direction itself misses the brief,

@@ -10,7 +10,6 @@
 | `fixtures/` | Sample apps for execution runs (`web-app`, `expo-onboarding`) |
 | `benchmark.md` | **Current benchmark: measured metrics vs. targets, cost, threats to validity** |
 | `results/` | Raw, dated results of every run (never edited after the fact except to add scoring notes) |
-| `archive/` | Earlier, smaller scenario sets (phase 0 and phase 2) kept for history; superseded by `scenarios.json` |
 
 The scenario format:
 

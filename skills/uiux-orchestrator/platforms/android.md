@@ -64,6 +64,11 @@ Last checked: 2026-11-06. Version facts are in §0. Behavior depends on **`targe
   surface/surfaceContainer* levels, outline, error… Elevation is expressed through tonal surface
   containers.
 - Light and dark schemes (`isSystemInDarkTheme()`). Optional dynamic color on Android 12+.
+- The Material 3 baseline scheme is purple (`#6750A4`), a template signature: never ship it.
+  Without a brand color, hand-tune a premium monochrome scheme (`references/visual-design.md` §4).
+  Seed-generated schemes (tonal spot) desaturate a brand hue; for a brand color, hand-tune
+  primary/tertiary containers or use a more faithful scheme variant; wide-gamut brand colors use `ColorSpaces.DisplayP3` with
+  `android:colorMode="wideColorGamut"` (API 26+).
 - Contrast: 4.5:1 for text under 18sp (14sp bold), 3:1 for larger text and UI elements.
 - System bar icons: `enableEdgeToEdge()` sets light/dark icons from the theme. Check legibility over
   content.

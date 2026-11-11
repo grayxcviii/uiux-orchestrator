@@ -79,6 +79,10 @@ in `if #available`.
   Contrast and Reduce Motion are applied automatically by system glass. Custom blur imitations are
   not.
 - One accent (`.tint`) app-wide for interactive elements.
+- Without a brand color, follow the premium monochrome posture in `references/visual-design.md` §4
+  (system semantic colors already lean that way; avoid the default indigo/purple tints). Brand
+  colors go in the Asset Catalog with the Display P3 gamut (or `Color(.displayP3, red:green:blue:)`)
+  so they are not clipped to sRGB.
 
 ## 5. Components and conventions
 

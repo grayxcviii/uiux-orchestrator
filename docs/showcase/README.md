@@ -39,5 +39,3 @@ Requires Node.js 18+, Chrome/Chromium (or `CHROME_PATH`), FFmpeg with `libx264`,
 Browser playback follows the display's animation clock. WebP uses 33/33/34 ms durations; GIF uses 40 ms frames. The README includes a reduced-motion picture source and a still link. Actual hosting playback and media-query handling depend on the README renderer.
 
 The capture checks image loading, byte-identical screenshots at timeline 0 and 10, chapter navigation, reduced-motion startup, JavaScript exceptions and horizontal overflow at 320, 390, 600, 768 and 1440 px. Additional temporary hero/detail captures at narrow widths support visual inspection; overflow checks alone cannot detect overlapping content.
-
-Historical Vahl assets remain intact for `tests/results/2026-11-06-showcase-vahl.md`.

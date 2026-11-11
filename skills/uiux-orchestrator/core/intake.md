@@ -111,10 +111,15 @@ and brand limits. When references are available, inspect their relevant visual d
 invent references or claim to have viewed them. Carry this brief into driver selection and
 the direction contract in [visual-design.md §6](../references/visual-design.md#6-avoiding-generic-ai-generated-ui).
 
-For original work with no supplied style, use a contemporary, expressive direction suited to
-the product. "Modern" alone does not select dark mode, neon, monochrome, minimalism or retro
-editorial styling. For "modern and colorful", plan visible chromatic presence and contemporary
-type/composition; do not reduce the request to a tiny accent on a muted template. State the
+For original work with no supplied style, use a bold, contemporary direction suited to the
+product. Without a user or brand color direction, the palette follows the
+[premium monochrome posture](../references/visual-design.md#default-color-posture-premium-monochrome)
+(black/white/dark, one temperature, at most one rare accent) and avoids the
+[AI-generated color signatures](../references/visual-design.md#ai-generated-color-signatures-avoid).
+Record the **ambition level**: `bold` by default; `restrained` only when the user, brand or an
+Operate/data-dense surface asks for it, with that reason noted. "Modern" alone does not select
+neon, gradients or retro editorial styling. For an explicit "colorful" request, plan visible
+chromatic presence; do not reduce it to a tiny accent on a gray template. State the
 concrete direction you choose and proceed when the user delegated it. This adds no approval step.
 
 Record whether **design judgment is open**. It is open for delegated polish, visual/UX

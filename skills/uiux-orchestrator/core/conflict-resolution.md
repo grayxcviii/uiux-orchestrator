@@ -45,8 +45,9 @@ navigation, accessibility, tooling — never "skill A wins everything".
 | Project tokens that fail a floor (e.g. danger text on dark < 4.5:1) | Floors win in scope: fix locally by deriving from tokens (e.g. `color-mix` of existing tokens), not raw new hex; recommend the token fix to the user (shared → ask). |
 | Web guidance applied to native (hover states, 100vh, CSS easing names) | Translate the principle, not the API. Platform conventions win. |
 | Reviewer wants to change visual direction | Only with a concrete defect (rung 1–4 violated). Taste preferences alone do not reopen a recorded decision. |
+| Reviewer or anti-generic specialist wants to flatten value contrast, shrink type scale or remove the recorded decisive move | Only for a concrete rung 1–4 defect; then fix the defect while keeping the move (e.g. adjust lightness for contrast, keep the scale and composition). "Too much", "simplify" or house restraint alone does not dilute an accepted bold direction. Stacked restraint from several specialists is the main way output drifts back to safe defaults. |
 | The direction is internally consistent but misses the user's visual intent | Rung 1 wins: compare the render to the requested color intensity, typography, composition and asset quality. A demonstrated brief mismatch reopens direction within scope; fidelity to the wrong direction does not make it acceptable. |
-| Anti-generic guidance vs. intentional saturated color, gradients or glass | Judge product fit, placement, hierarchy and contrast. These tools are permitted; a requested visual treatment outranks a specialist's house taste. Select another driver if its hard rules conflict. |
+| Anti-generic guidance or the monochrome default vs. saturated color, gradients or glass | Requested by the user or required by the brand: rung 1/3 wins, including over this skill's [AI-generated color signatures](../references/visual-design.md#ai-generated-color-signatures-avoid) list; judge placement, hierarchy and contrast, and select another driver if its hard rules conflict. Unrequested: the premium monochrome default and the signatures list apply. |
 
 ## Escalate to the user when
 

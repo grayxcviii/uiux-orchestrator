@@ -19,5 +19,5 @@ It verifies reviewed Taste credit manifests and includes
 [asset usage guidance](skills/uiux-orchestrator/legal/asset-usage.md). Root licence copies do not
 replace asset-specific terms or establish rights in unknown third-party material.
 
-Demo photograph credits are in [docs/assets/CREDITS.md](docs/assets/CREDITS.md).
-Vahl is fictional. No pictured car manufacturer endorses this project.
+Showcase asset credits are in [docs/assets/CREDITS.md](docs/assets/CREDITS.md).
+VELTORA is a fictional brand.

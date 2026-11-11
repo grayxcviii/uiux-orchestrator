@@ -71,11 +71,10 @@ Project names and trademarks belong to their owners. References do not imply end
 affiliation. Impeccable, Taste, UI UX Pro Max, Emil Kowalski's skills, Anthropic's skills and Vercel's
 skills are independent projects.
 
-The GitHub README demo uses screenshots containing photos from Pexels under the Pexels licence:
-https://www.pexels.com/license/
-Photo credits: https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/assets/CREDITS.md
-Vahl is a fictional brand. The pictured cars belong to other manufacturers; none endorses or
-is affiliated with this project. Demo images are not included in the npm package.
+The GitHub README showcase (VELTORA, a fictional brand) uses a generated product image and
+original HTML/CSS; credits and provenance:
+https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/assets/CREDITS.md
+Demo images are not included in the npm package.
 
 ## Optional tools and test fixtures
 

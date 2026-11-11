@@ -163,8 +163,9 @@ The top-level JSON has:
   Bounded frontend-design concept execution must declare `mode: design-reasoning`; it cannot
   fill art direction, implementation or other slots in that mode;
 - `stages`: the ten required stages in table order, each with `inputs` referencing accepted
-  predecessors (minimum set in the §2 `inputs` table). Motion alone may be skipped when
-  `motion_required: false` and a concrete `reason` is supplied;
+  predecessors (minimum set in the §2 `inputs` table). `motion_required` defaults to `true` for
+  new surfaces and redesigns; motion alone may be skipped when `motion_required: false` and a
+  concrete `reason` (user asked for static, or no state changes) is supplied;
 - `required_levels` and `evidence_levels`: evidence level arrays. Full-design requires at least
   L1/L2/L4, plus L3 for changed interactions; these labels refer to actual evidence in the records;
   both fields accept only arrays of labels L0 through L5, never strings or objects.

@@ -1,11 +1,11 @@
 <h1 align="center">UIUX Orchestrator</h1>
 
-<h3 align="center">Professional UI/UX, from concept to code.</h3>
+<h3 align="center">Stop shipping safe, forgettable UI.</h3>
 
 <p align="center">
-  Give your interface a clear concept and a cohesive experience.<br>
-  UIUX Orchestrator guides your coding agent through UX structure, visual direction,
-  interaction and implementation — shaped around your product and brand.
+  UIUX Orchestrator turns your coding agent into a small design team: UX structure, a bold
+  product-specific visual direction, motion and implementation, reviewed against the brief
+  before it calls the work done.
 </p>
 
 <p align="center">
@@ -21,30 +21,34 @@
   <img src="https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-demo.gif" alt="VELTORA Noir — a luxury perfume campaign with an amber glass bottle, champagne lighting, elegant serif typography and a slow cinematic transition into the fragrance composition." width="100%">
 </picture>
 
-<sub>VELTORA Noir — a fictional luxury perfume campaign, created as an illustrative showcase. [Still](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-overview.jpg) · [Motion film](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-demo.mp4) · [Mobile](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-mobile.jpg) · [Source](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/showcase/README.md)</sub>
+<sub>VELTORA Noir — a fictional perfume campaign built from an explicit classic-luxury brief (gold and serif were requested, not defaults). [Still](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-overview.jpg) · [Motion film](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-demo.mp4) · [Mobile](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-mobile.jpg) · [Source](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/showcase/README.md)</sub>
 
-## A concept that carries through the whole interface
+## What changes in your agent's output
 
-Professional UI/UX brings usability and visual identity together. UIUX Orchestrator helps your
-agent establish that direction, explore alternatives when requested, and carry the chosen
-concept through to a working web or mobile interface.
+- **Premium monochrome by default.** Without a color brief, palettes are black, white and dark
+  value ramps built in OKLCH, with one temperature and at most one rare accent. Richness comes
+  from photography, material and typography. Your brand or color request always wins.
+- **No AI-generated colors.** Indigo and violet accents, purple-to-blue gradients, neon on dark,
+  gradient headline text and glow blobs are banned unless you or your brand ask for them.
+- **Bold, not bland.** Original work commits to a named decisive move, such as an oversized type
+  crop, a full-bleed black field or a dramatic photographic crop. Later stages keep it instead of
+  sanding it down.
+- **Smooth motion, built in.** New surfaces and redesigns ship a motion signature, choreographed
+  entrances and fluid, interruptible transitions on compositor-only properties, with a reduced-motion
+  path, checked with a motion trace when tooling allows. No fade-up-on-everything, bouncy springs or scroll-jacking.
+- **UX first.** It defines flows, hierarchy, primary actions and every interaction state, and
+  keeps conventions where users rely on them.
+- **Specialists, coordinated.** The right design, motion, platform and review skills run in order
+  without overriding one another.
+- **Proof, not claims.** Rendered output is reviewed for brief fit, boldness, craft, accessibility
+  and responsive behavior. Unverified details are disclosed.
 
-- **UX with purpose.** Define user flows, content hierarchy, primary actions and interaction states.
-- **A modern, specific visual concept.** Turn your requested style and color intensity into concrete palette, typography, composition and media choices before building. Review the render against that brief, while respecting supplied designs and existing brands.
-- **Depth that fits the subject.** Choose photography, expressive composition, rendered assets or interactive 3D from the actual brief. More effects do not establish better design; spatial work still needs convincing materials, lighting and responsive fallbacks.
-- **Design decisions that survive implementation.** Coordinate specialist work around the chosen concept, existing tokens and project constraints.
-- **Creative ambition on edits too.** New concepts, redesigns and open-ended polish explore distinct approaches and show a concrete visual or experience improvement. Existing tokens guide the work; they do not waive concept reasoning. Exact supplied fixes retain fidelity and scope.
-- **Review and refinement.** Check usability, accessibility and implementation; inspect rendered output when tooling allows and disclose unverified details.
+**Research → concept → art direction → design system → motion & build → review → refine.**
+[Architecture →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/architecture.md)
 
-**Research & foundation → concept reasoning → art direction → finalized design system → motion & implementation → review → refine.**
-
-[Architecture and skill boundaries →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/architecture.md)
-
-Already have a design system or a supplied design? It follows that direction. Small, specified
-changes take a shorter path without starting a new concept exercise.
-
-Includes guidance for **web, React Native, iOS, Android and Flutter**. Install for Claude Code,
-Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode or Windsurf, with the models your agent supports.
+Have a design system, a brand or a supplied design? It invents within those constraints, and
+small specified fixes take a short path. Works for **web, React Native, iOS, Android and
+Flutter**, in Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and Windsurf.
 [Tested coverage →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/usage.md#supported-agents)
 
 ## Get started
@@ -87,15 +91,11 @@ if the skill is not visible.
 
 ## Specialist integrations
 
-UIUX Orchestrator assigns and executes compatible specialists for each required role, from UX
-and concept through design-system work, motion and separate design/technical reviews. Every
-execution needs a receipt and accepted output; an available suitable specialist cannot be
-replaced with "I can do this myself". Built-in coverage requires evidenced gaps and is reported
-as limited. The record checker validates consistency; it cannot authenticate execution receipts
-or establish visual quality. UI-quality claims still need observed renders and review.
-The new visual comparison cases are evaluation specifications, not measured proof of improvement.
-[Evaluation coverage](https://github.com/grayxcviii/uiux-orchestrator/blob/main/tests/README.md).
-[Execution contract →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/core/orchestration.md)
+Each required role, from UX and concept through motion and the separate design and technical
+reviews, is assigned to a compatible specialist that actually runs. Built-in fallbacks are used
+only when a gap is evidenced, and are reported as limited.
+[Execution contract →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/core/orchestration.md) ·
+[Evaluation coverage →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/tests/README.md)
 
 | Expertise | Independent skill projects |
 |---|---|
@@ -118,9 +118,6 @@ projects, with no affiliation or endorsement implied. The npm installer preserve
 upstream licence/NOTICE files, supplementary notices and reviewed asset credits. Photos, icons
 and other assets can carry separate terms; follow the [asset usage guidance](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/legal/asset-usage.md)
 when reusing them in a product. [Full notices and licence texts →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/THIRD_PARTY_NOTICES.md)
-
-The archived Vahl demo photos are used under the [Pexels licence](https://www.pexels.com/license/), with
-[credits](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/assets/CREDITS.md). No pictured car manufacturer endorses this project.
 
 ---
 

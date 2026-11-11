@@ -1,10 +1,47 @@
+# OS / editor
 .DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Dependencies, builds, caches
 node_modules/
+dist/
+coverage/
 __pycache__/
 *.pyc
-/tmp/
+*.tgz
+*.log
+.env
+.env.*
+
+# Local agent/tool state
 .claude/settings.local.json
+.superpowers/
+/tmp/
+test-results/
+playwright-report/
 
 # Large media/demo outputs (publish via GitHub Releases, not git)
 marketing/
 /examples/
+
+# Internal working notes (agent plans/specs, early research)
+docs/superpowers/
+docs/phase-0-research.md
+
+# Archived showcase media (Vahl) — superseded by VELTORA
+docs/assets/vahl-*
+
+# Superseded test scenarios and historical run logs not cited by current docs
+tests/archive/
+tests/results/2026-11-06-baseline.md
+tests/results/2026-11-06-with-skill.md
+tests/results/2026-11-06-phase2-platforms.md
+tests/results/2026-11-06-phase3-PROMPT_*.md
+tests/results/2026-11-06-skill-metadata-snapshot.txt
+tests/results/2026-11-06-triggering-and-detection.md
+tests/results/2026-11-06-showcase-vahl.md
+tests/results/detect-*.json
+tests/results/phase5/
+tests/results/triggering/

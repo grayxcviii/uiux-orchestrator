@@ -60,6 +60,10 @@ Last checked: 2026-11-06. Version facts are in §0. Re-check them when the proje
 
 - `ThemeData(colorScheme: ColorScheme.fromSeed(...))` or the project's `ColorScheme`. Widgets read
   `Theme.of(context).colorScheme.primary`, never hex literals.
+- Replace the template's `Colors.deepPurple` seed: it is a generated-app signature. Without a
+  brand color, hand-tune a premium monochrome `ColorScheme` (`references/visual-design.md` §4).
+  `fromSeed` defaults to `DynamicSchemeVariant.tonalSpot`, which mutes the seed; for a brand color
+  use `DynamicSchemeVariant.fidelity` (or `.vibrant`) or hand-tune the roles.
 - Dark mode: `darkTheme` + `themeMode`. Check contrast in both.
 - Custom tokens beyond the color scheme: `ThemeExtension<T>`.
 - Respect high contrast and inverted colors (`MediaQuery.highContrastOf`; Android detection added

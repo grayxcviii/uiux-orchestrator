@@ -4,6 +4,38 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.4.2] - 2026-11-11
+
+### Changed
+- Bold by default: original work and open-ended redesigns record an ambition level (`bold`
+  unless the brief, brand or surface calls for restraint) and one named decisive move that
+  must survive build and review.
+- Premium monochrome color posture (`references/visual-design.md` §4): without a user or
+  brand color direction, palettes are black/white/dark OKLCH value ramps with one temperature
+  and at most one rare accent; richness comes from photography, material and type. Includes
+  six monochrome archetypes and accessible-contrast rules (no tiny or faint "premium" text).
+- AI-generated color signatures are banned unless a user or brand requires them: indigo/violet
+  accents, purple/pink/teal multi-hue gradients, neon on dark, gradient headline text, glow
+  blobs, violet-tinted dark backgrounds, colored glass and glow shadows. Gradients must have a
+  job (light, material, data or brand) and pass a two-question removal/swap test.
+- Safe-default traps (lazy mono, gold-and-italic reflex, editorial beige, SaaS gray, dark glow)
+  are flagged unless the brief asks for them.
+- Web, iOS, Android and Flutter guides add OKLCH/wide-gamut APIs and replace template purple
+  defaults (Material baseline `#6750A4`, Flutter `deepPurple` seed).
+- Smooth motion by default (`references/motion-principles.md` §0): new surfaces and redesigns
+  ship a motion signature, choreographed entrances and interruptible, velocity-preserving
+  transitions at 60/120 fps, with shared motion tokens and a reduced-motion path. The design and
+  redesign workflows run the motion stage by default (`motion_required` defaults to true), the
+  visual craft gate adds Motion smoothness, and AI-generated motion signatures (fade-up on
+  everything, bouncy springs, hover-scale everywhere, typewriter text, scroll-jacking) are banned.
+- Visual craft gate adds a Boldness dimension and fails AI-generated color signatures or flat
+  mid-gray monochrome; a new conflict ruling stops reviewers and anti-generic specialists from
+  flattening an accepted bold direction without a concrete defect.
+- README rewritten around the new direction; disclaimers moved behind links.
+- Repository cleanup: internal plans, early research, superseded scenarios, uncited run logs
+  and the archived Vahl showcase media are no longer tracked (kept locally, listed in
+  `.gitignore`).
+
 ## [1.4.1] - 2026-11-10
 
 ### Fixed

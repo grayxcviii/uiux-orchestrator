@@ -88,8 +88,7 @@ Each specialist project documents its own installation.
 | [Expo](https://github.com/expo/skills), [Software Mansion](https://github.com/software-mansion-labs/skills), [Callstack](https://github.com/callstackincubator/agent-skills), [Android](https://github.com/android/skills), [Vercel](https://github.com/vercel-labs/agent-skills), [SwiftUI Pro](https://github.com/twostraws/SwiftUI-Agent-Skill) | Platform-specific UI, motion APIs, mobile device validation, adaptive layouts, web guideline reviews |
 
 What was verified about each skill (versions, real command names, prerequisites, side effects) is
-in [docs/phase-0-research.md](phase-0-research.md) and
-[`registry/skills.yaml`](../skills/uiux-orchestrator/registry/skills.yaml).
+in [`registry/skills.yaml`](../skills/uiux-orchestrator/registry/skills.yaml).
 
 The orchestrator never installs these for you. If a missing skill would make a real difference to
 a task, it says so in one line.
