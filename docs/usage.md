@@ -124,6 +124,9 @@ To update, run `git -C ~/uiux-orchestrator pull`. Only the folder `skills/uiux-o
 the skill; the rest of the repository is docs and tests.
 
 **Requirements:** Node.js 18+ and Git/network for specialist downloads through the npm CLI (`--orchestrator-only` needs only Node.js), Node.js 22.20+ for `npx skills`; none for the Claude Code plugin or manual install.
+Full-design execution-record checks use Python 3 (standard library only). Some specialists need
+newer runtimes (for example, Taste builds need Node.js 22+ and Chrome); the bundled runtime probe
+checks installed alternatives without changing your default Node version.
 - The optional validation scripts need Node 18+ and Chrome, Chromium or Edge.
 - `python3` is used only by the repository's own checks.
 

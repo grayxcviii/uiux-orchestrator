@@ -3,9 +3,9 @@
 <h3 align="center">Stop shipping safe, forgettable UI.</h3>
 
 <p align="center">
-  UIUX Orchestrator turns your coding agent into a small design team: UX structure, a bold
-  product-specific visual direction, motion and implementation, reviewed against the brief
-  before it calls the work done.
+  One install turns your coding agent into a small design team. It reads your project, sets up
+  the right design, motion and review skills, and coordinates them from UX to a reviewed,
+  working interface.
 </p>
 
 <p align="center">
@@ -23,51 +23,88 @@
 
 <sub>VELTORA Noir — a fictional perfume campaign built from an explicit classic-luxury brief (gold and serif were requested, not defaults). [Still](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-overview.jpg) · [Motion film](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-demo.mp4) · [Mobile](https://raw.githubusercontent.com/grayxcviii/uiux-orchestrator/main/docs/assets/veltora-mobile.jpg) · [Source](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/showcase/README.md)</sub>
 
-## What changes in your agent's output
+```bash
+npx uiux-orchestrator install
+```
 
-- **Premium monochrome by default.** Without a color brief, palettes are black, white and dark
-  value ramps built in OKLCH, with one temperature and at most one rare accent. Richness comes
-  from photography, material and typography. Your brand or color request always wins.
-- **No AI-generated colors.** Indigo and violet accents, purple-to-blue gradients, neon on dark,
-  gradient headline text and glow blobs are banned unless you or your brand ask for them.
-- **Bold, not bland.** Original work commits to a named decisive move, such as an oversized type
-  crop, a full-bleed black field or a dramatic photographic crop. Later stages keep it instead of
-  sanding it down.
-- **Smooth motion, built in.** New surfaces and redesigns ship a motion signature, choreographed
-  entrances and fluid, interruptible transitions on compositor-only properties, with a reduced-motion
-  path, checked with a motion trace when tooling allows. No fade-up-on-everything, bouncy springs or scroll-jacking.
-- **UX first.** It defines flows, hierarchy, primary actions and every interaction state, and
-  keeps conventions where users rely on them.
-- **Specialists, coordinated.** The right design, motion, platform and review skills run in order
-  without overriding one another.
-- **Proof, not claims.** Rendered output is reviewed for brief fit, boldness, craft, accessibility
-  and responsive behavior. Unverified details are disclosed.
+## The problem
 
-**Research → concept → art direction → design system → motion & build → review → refine.**
-[Architecture →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/architecture.md)
+Ask a coding agent for a beautiful interface and you usually get:
 
-Have a design system, a brand or a supplied design? It invents within those constraints, and
-small specified fixes take a short path. Works for **web, React Native, iOS, Android and
-Flutter**, in Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and Windsurf.
-[Tested coverage →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/usage.md#supported-agents)
+- **The same generated look.** Purple gradients, glowing blobs, three-card grids and every block
+  fading up on scroll. It works, but nobody remembers it.
+- **Skills that clash.** Install a few design, motion and review skills and they overlap, contradict
+  one another, or never run at all. Each one also tends to remove a little boldness.
+- **"Looks great" without looking.** The agent reports success from code it wrote, not from the
+  screen a user will actually see.
+
+## What you get
+
+- **One install, the right specialists.** Install one skill; it inspects your project and installs
+  the specialists that fit: web, React Native, iOS, Android or Flutter.
+- **A design team, not a single prompt.** Research, concept, art direction, components, motion and
+  review each go to the best-suited skill, in the right order.
+- **Premium, not generic.** Without a color brief: refined black, white and dark palettes with at
+  most one rare accent, and no AI-generated colors (indigo accents, purple-to-blue gradients, neon,
+  gradient text). Your brand or color request always comes first.
+- **Bold by design.** Every new design commits to one memorable decision, such as an oversized type
+  crop or a dramatic photographic composition, and later steps keep it.
+- **Smooth motion, built in.** Choreographed entrances and fluid, interruptible transitions,
+  designed with the visuals, with a reduced-motion version.
+- **Checked on screen.** The rendered result is reviewed for brief fit, craft, accessibility and
+  responsiveness. Anything unverified is reported, not hidden.
+
+Have a design system, brand or supplied design? It works within them.
+
+## How it works
+
+**At install**, one command scans your project (`package.json`, workspaces, `pubspec.yaml`,
+Gradle, Swift) and installs the orchestrator plus the matching web or mobile specialists for
+every supported agent. A new or unrecognized project gets the full catalogue.
+
+**On every request**, it reads your brief and your project (stack, tokens, components, motion
+library, tooling), picks which installed skill owns each step, and settles their overlaps up
+front so no two skills fight over the same decision. The final report lists which skills
+actually ran and the evidence behind the result.
+
+New designs and redesigns run the full process. Each stage hands an accepted output to the next:
+
+| # | Stage | What happens |
+|---|---|---|
+| 1 | Inspect | Platform, stack, tokens, components, tooling, installed skills |
+| 2 | Research & UX | Audience, goals, patterns, flows, hierarchy, states |
+| 3 | Concept | 2–3 distinct approaches; one chosen with its rationale |
+| 4 | Art direction | Palette, type, composition, media, the decisive move |
+| 5 | Design system | Final tokens, components, variants, states, contrast |
+| 6 | Components & media | Reuse project components first; source the rest with asset rights checked |
+| 7 | Motion | Motion signature, choreography, transitions, reduced motion |
+| 8 | Build | Working code on your stack, every interaction state |
+| 9 | Validate | Build, interactions and rendered screenshots at real sizes |
+| 10 | Review & refine | Separate design and technical/accessibility reviews; fix and re-check |
+
+Smaller jobs take shorter paths:
+
+| You ask for | Path |
+|---|---|
+| Polish or improvement | Scaled by size: one specialist for a component, concept + direction + review for a screen, a full audit for larger work |
+| Animation | Only the step you need: find opportunities, design and build, review, fix jank or remove excess motion |
+| A UI/UX review | Read-only, prioritized findings; no files change |
+| A bug fix or one well-specified component | Inspect → implement → validate → report |
+| A design system or accessibility pass | Document, extend or create a system; or audit → fix → verify |
+
+[Architecture →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/architecture.md) ·
+[How it works in detail →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/how-it-works.md)
 
 ## Get started
 
 ```bash
-npx uiux-orchestrator install           # this project
-npx uiux-orchestrator install --global  # all your projects
+npx uiux-orchestrator install           # this project: detects your stack, installs matching specialists
+npx uiux-orchestrator install --global  # all your projects: full catalogue
 ```
 
-Installs UIUX Orchestrator and its specialists together. Project installs automatically detect
-your web/mobile framework and select the matching skills. In a new or unrecognized project,
-the installer automatically installs the full web/mobile catalogue locally — no platform flag
-required. Global installs always include the full supported catalogue.
-
-Requires Node.js 18+; specialist downloads also need Git and network access.
-Full-design execution-record checks use Python 3 (standard library only).
-Specialists can require newer runtimes; for example, Taste requires Node.js 22+.
-The runtime probe checks installed alternatives without changing your default Node version.
-[Agent selection and setup options →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/usage.md#install-update-remove)
+Requires Node.js 18+, plus Git and network access to download specialists.
+Works in Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and Windsurf.
+[Requirements, agent selection and options →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/usage.md#install-update-remove)
 
 ## Tell it what you want
 
@@ -85,17 +122,13 @@ Use uiux-orchestrator to propose three distinct UI/UX concepts for our productiv
 Explain the user flow, visual direction and motion. Let me choose before implementation.
 ```
 
-Ordinary UI/UX prompts can activate it automatically; naming it explicitly requests the workflow.
-In Claude Code, use `/uiux-orchestrator <request>`. Restart the agent session after installation
-if the skill is not visible.
+Ordinary UI/UX prompts can activate it automatically. In Claude Code you can also use
+`/uiux-orchestrator <request>`. Restart the agent session after installing if the skill is not visible.
 
-## Specialist integrations
+## The specialists it coordinates
 
-Each required role, from UX and concept through motion and the separate design and technical
-reviews, is assigned to a compatible specialist that actually runs. Built-in fallbacks are used
-only when a gap is evidenced, and are reported as limited.
-[Execution contract →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/core/orchestration.md) ·
-[Evaluation coverage →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/tests/README.md)
+Each step is handed to a skill that actually runs. Built-in fallbacks are used only when a
+suitable skill is unavailable, and are reported as limited.
 
 | Expertise | Independent skill projects |
 |---|---|
@@ -107,17 +140,17 @@ only when a gap is evidenced, and are reported as limited.
 | Motion | [Emil Kowalski's skills](https://github.com/emilkowalski/skills), [GSAP skills](https://github.com/greensock/gsap-skills) |
 | Mobile | [Expo](https://github.com/expo/skills), [Software Mansion](https://github.com/software-mansion-labs/skills), [Callstack](https://github.com/callstackincubator/agent-skills), [Android skills](https://github.com/android/skills), [SwiftUI Pro](https://github.com/twostraws/SwiftUI-Agent-Skill) |
 
-Selection depends on the task; user-invoked skills require an explicit request.
-[Catalogue and setup →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/usage.md#recommended-skills)
+[Catalogue and setup →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/docs/usage.md#recommended-skills) ·
+[Execution contract →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/core/orchestration.md) ·
+[Evaluation coverage →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/tests/README.md)
 
 ## License & credits
 
-UIUX Orchestrator's original code and instructions are licensed under [MIT](https://github.com/grayxcviii/uiux-orchestrator/blob/main/LICENSE).
-Third-party skills retain their authors' copyrights and their own licences; they are independent
-projects, with no affiliation or endorsement implied. The npm installer preserves
-upstream licence/NOTICE files, supplementary notices and reviewed asset credits. Photos, icons
-and other assets can carry separate terms; follow the [asset usage guidance](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/legal/asset-usage.md)
-when reusing them in a product. [Full notices and licence texts →](https://github.com/grayxcviii/uiux-orchestrator/blob/main/THIRD_PARTY_NOTICES.md)
+UIUX Orchestrator's original code and instructions are [MIT](https://github.com/grayxcviii/uiux-orchestrator/blob/main/LICENSE).
+Third-party skills are independent projects that keep their authors' copyrights and licences; no
+affiliation or endorsement is implied. The installer preserves their licence/NOTICE files and
+asset credits. Assets can carry separate terms: see the [asset usage guidance](https://github.com/grayxcviii/uiux-orchestrator/blob/main/skills/uiux-orchestrator/legal/asset-usage.md)
+and [full notices](https://github.com/grayxcviii/uiux-orchestrator/blob/main/THIRD_PARTY_NOTICES.md).
 
 ---
 
