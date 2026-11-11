@@ -4,6 +4,45 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.4.4] - 2026-11-11
+
+### Added
+- Platform-agnostic component intelligence (`references/component-intelligence.md`): a
+  resolution order, a universal contract (states, semantics, keyboard/focus, targets, text,
+  motion, color, content states), a "choose the right component" table, contracts for 22 core
+  components and their mapping to HTML/WAI-ARIA APG, SwiftUI, Compose Material 3, React Native
+  and Flutter. The visual craft gate adds a Component contract check.
+- shadcn/ui (official skill) and Magic UI (official skill) as web specialists for React, both
+  MIT, pinned and installed for the web group. Magic UI is limited to recorded motion moments
+  and filtered against the AI-generated color and motion signatures.
+- Documentation references for WAI-ARIA APG, React Native Reusables, the Flutter widget catalog,
+  Compose Material 3 components, Apple HIG components and the A2UI catalog.
+
+### Changed
+- Foundation ownership is explicit (`core/decision-engine.md` §3): UUPM search owns research
+  evidence, Impeccable shape owns the UX plan (users, tasks, hierarchy, flows, states), and
+  Impeccable onboard or a targeted UUPM re-query only fill gaps. UUPM may cover both only when
+  its output contains every UX output and shape is unavailable or the task is Small. UUPM
+  style/palette results stay provisional references and cannot override art direction, the
+  premium monochrome default or the AI-signature lists. Shape used for concept runs as a
+  separate activation with its own alternatives.
+- Ownership by stage (`core/decision-engine.md` §3): one owner per decision, with advisors and
+  forbidden shortcuts. The color and motion postures and the AI-signature lists constrain every
+  driver and specialist (they choose values inside them); Impeccable colorize runs only when more
+  color is wanted. Design system splits into create (owning driver, Expo design-system, shadcn)
+  and record (Impeccable document, never creation). Project and platform components are always
+  checked before component specialists. Motion build names its primary owner per platform and
+  its specialized skills; Emil choreograph joins whenever several elements move. Review adds
+  `motion-review` whenever motion ships. Concept and art direction are always separate
+  activations, including when frontend-design serves both.
+- The execution-record checker enforces these rules: `impeccable/document` cannot create a
+  system, UUPM cannot stand in for UX analysis while Impeccable shape is available, concept needs
+  its own activation, shipped motion needs `motion-review`, and `visual_review` now requires
+  `boldness`, `component-contract` and (with motion) `motion-smoothness`.
+
+### Removed
+- Lucian UX/UI from the specialist catalogue, registry, routing and notices.
+
 ## [1.4.3] - 2026-11-11
 
 ### Changed

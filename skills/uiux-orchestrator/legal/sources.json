@@ -24,10 +24,16 @@
     "file": "licenses/taste-license"
   },
   {
-    "provider": "lucian",
-    "source": "https://raw.githubusercontent.com/Seokwoooo/lucian-uxui/0067ad85bfcf62a572071fdbe82a4e02f0d2098f/LICENSE",
-    "sha256": "9ed2e1b9b7fd4c9c2e0edf1018826ecf4118934439d349d322a9139cb23c4e86",
-    "file": "licenses/lucian-license"
+    "provider": "shadcn",
+    "source": "https://raw.githubusercontent.com/shadcn-ui/ui/8ab27715521cbd4f87ae6886cd989cbb678f6de7/LICENSE.md",
+    "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f",
+    "file": "licenses/shadcn-license"
+  },
+  {
+    "provider": "magicui",
+    "source": "https://raw.githubusercontent.com/magicuidesign/magicui/1ac985adca3cdfab9b1739253fd14209687c4e9c/LICENSE.md",
+    "sha256": "0147b84235ed916b8b4e89c1f80655351c5afe7d211b629be61f553a227b34ba",
+    "file": "licenses/magicui-license"
   },
   {
     "provider": "emil",

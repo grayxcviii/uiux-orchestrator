@@ -52,7 +52,7 @@ def load_name_map():
         name_map.setdefault(sid.split("/", 1)[1], sid)  # bare skill part, lowest priority
     # canonical installed names that differ from id suffix
     name_map.update({"ui-ux-pro-max": "uupm/search", "design-taste-frontend": "taste/design-taste-frontend",
-                     "lucian-uxui": "lucian/uxui", "emil-design-eng": "emil/design-eng"})
+                     "magic-ui": "magicui/components", "shadcn": "shadcn/ui", "emil-design-eng": "emil/design-eng"})
     return ids, name_map
 
 

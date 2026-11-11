@@ -11,15 +11,18 @@ stages, in order. Reuse can satisfy a stage only after its source has been inspe
 | Stage | Required capability | Owner candidates (route by platform and registry) | Accepted output |
 |---|---|---|---|
 | `inspect` | Project intelligence | Orchestrator, actual source/tool inspection | Platform, commands, constraints, skill inventory, asset/render tooling. |
-| `foundation` | Research and UX (`research-foundation`, `ux-analysis`) | UUPM search first for compatible product/pattern research; Impeccable shape for discovery/gaps | Product evidence, patterns, audience, goal, hierarchy, flows/states, constraints; source-backed recommendations distinguished from assumptions. Palette/system suggestions remain provisional. |
-| `concept` | Design reasoning (`design-reasoning`) | frontend-design in bounded mode on web; Impeccable shape or compatible alternative elsewhere | Distinct concept alternatives, chosen experience/narrative, rationale, information architecture and acceptance criteria. No final palette/token authority. |
+| `foundation` | Research and UX (`research-foundation`, `ux-analysis`) | In order: UUPM search owns research evidence; Impeccable shape owns the UX plan, using that evidence; gaps go to Impeccable onboard (first-run, empty states, activation) or a targeted UUPM re-query. See [decision-engine §3](decision-engine.md#foundation-ownership). | Product evidence, patterns, audience, goal, hierarchy, flows/states, constraints; source-backed recommendations distinguished from assumptions. UUPM style/palette suggestions are provisional industry references and anti-patterns, never the final palette. |
+| `concept` | Design reasoning (`design-reasoning`) | frontend-design in bounded mode on web; Impeccable shape or compatible alternative elsewhere (a separate activation from its foundation work, with its own 2–3 alternatives) | Distinct concept alternatives, chosen experience/narrative, rationale, information architecture and acceptance criteria. No final palette/token authority. |
 | `direction` | Final art direction (`visual-direction`) | One eligible driver: Taste, Impeccable new-work, frontend-design, UUPM design-system; platform specialist when appropriate | Concrete visual direction consuming the chosen concept: palette, type, composition, materials/media, identity and responsive treatment. One final visual owner. |
-| `system` | Design system (`design-system`) | Selected driver if explicitly owned, or a suitable system specialist; Impeccable document can normalize actual generated tokens, Expo design-system fits Expo | Final tokens/components reconciled with foundation constraints and approved art direction; variants/states, code locations and contrast evidence. Preliminary research tokens are not final. |
-| `components` | Component/media sourcing (`component-reference`) | Project/platform components; Lucian or other compatible specialist for gaps | Reuse/source decisions, actual assets and rights; remaining asset gaps. |
-| `motion` | Motion decision/build (`motion-build`) | Emil, Expo/Reanimated, GSAP when appropriate, or an executed driver's explicitly owned capability | Purpose, implementation, interruption/reduced-motion behavior and evidence; or an explicit static decision when no motion is required. |
+| `system` | Design system (`design-system`) | Create: the driver if it owns `design-system`, else `expo/design-system` (Expo) or `shadcn/ui` (React on shadcn); record afterwards: Impeccable document (never counts as creation) | Final tokens/components reconciled with foundation constraints and approved art direction; variants/states, code locations and contrast evidence. Preliminary research tokens are not final. |
+| `components` | Component/media sourcing (`component-reference`) | Contracts from [component-intelligence.md](../references/component-intelligence.md); project → platform components; shadcn/Magic UI on React or another compatible specialist for gaps | Reuse/source decisions, actual assets and rights; remaining asset gaps. |
+| `motion` | Motion decision/build (`motion-build`) | Primary by platform: Emil animate (web), animate-expo (RN/Expo), platform APIs (native); specialized skills when the task matches; Emil choreograph whenever several elements move together | Purpose, implementation, interruption/reduced-motion behavior and evidence; or an explicit static decision when no motion is required. |
 | `implement` | Integration | Driver and scoped specialists, coordinated by orchestrator | Working code following accepted foundation/concept/art-direction/system decisions, states and deviations. |
 | `validate` | Render/functional validation (`visual-validation`) | Existing project tooling, compatible device specialist, bundled tools | Actual static/build/interaction/render evidence at required sizes/states. |
-| `review` | UX/design (`ux-critique`) **and** technical/accessibility (`tech-audit`) | Separate suitable reviewer activations, e.g. Impeccable critique and audit or another compatible evaluator | Two assessments against the original brief, handoffs, implementation and observed renders; located findings and verdicts. |
+| `review` | UX/design (`ux-critique`) **and** technical/accessibility (`tech-audit`), plus `motion-review` when `motion_required` | Separate suitable reviewer activations, e.g. Impeccable critique and audit, Emil improve-animations for motion, or another compatible evaluator | Independent assessments against the original brief, handoffs, implementation and observed renders; located findings and verdicts. |
+
+Who owns each decision, and what advisors may not overrule, is summarized in
+[decision-engine §3, Ownership by stage](decision-engine.md#ownership-by-stage).
 
 These are responsibilities, not a request to run every installed skill. One driver can own
 several capabilities, but must deliver each stage's concrete output. Ownership is limited to
@@ -27,7 +30,9 @@ registry `owns`; the explicit bounded-mode exception in [adapters.md](adapters.m
 serve concept reasoning without becoming a second driver. Outside that mode, normal driver rules
 apply. E.g. Taste does not automatically cover UX analysis, a separate system handoff,
 motion engineering or review. Route uncovered roles. A document command records/normalizes the
-implemented token/component system; its name alone cannot satisfy design-system creation.
+implemented token/component system; it cannot satisfy design-system creation. Concept and art
+direction are separate activations even when frontend-design serves both (bounded concept
+first, then the driver run).
 
 If the user delegated decisions, explore alternatives inside the UX/concept work, choose with
 rationale and continue. Only a requested exploration/selection workflow adds a choice gate.
@@ -186,7 +191,9 @@ The top-level JSON has:
 - `visual_review`: `activation` matching the UX/design review and `criteria` entries with
   `dimension`, `verdict` (`pass`, `fail`, `unverified`), `observation` and rendered `evidence`.
   Required dimensions: `brief-fit`, `creative-advance`, `composition`, `typography`,
-  `palette-and-materials`, `product-identity`, `distinctiveness`, `finish`, `responsive-craft`.
+  `palette-and-materials`, `boldness`, `product-identity`, `distinctiveness`, `finish`,
+  `component-contract`, `responsive-craft`, plus `motion-smoothness` when `motion_required`
+  (the dimensions of the [visual craft gate](quality-gates.md#visual-craft-acceptance)).
   Failed/unverified dimensions block completion even when functional gates are green.
   When the existing fallback rules allow built-in UX review, use `source: built-in`, a unique `id`
   and the real `executor` instead of inventing a skill activation; the same visual dimensions apply.

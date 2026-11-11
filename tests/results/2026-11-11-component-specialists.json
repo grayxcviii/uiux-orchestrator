@@ -1,0 +1,42 @@
+{
+  "candidate": "1.4.4",
+  "kind": "packed installer verification after replacing Lucian with shadcn/ui and Magic UI",
+  "catalog_sha256": "65f32cc9a2190f920422a1db33a1d0cc08f0d63db62964b0391dd066bb55583b",
+  "sources": "Anonymous GitHub Git fetches at catalogue commits (shadcn-ui/ui 8ab27715521cbd4f87ae6886cd989cbb678f6de7, magicuidesign/magicui 1ac985adca3cdfab9b1739253fd14209687c4e9c); no specialist scripts executed.",
+  "profiles": [
+    {
+      "profile": "global",
+      "specialists": 47,
+      "licence_directories": 47,
+      "shadcn_and_magic_ui_installed": true,
+      "lucian_installed": false
+    },
+    {
+      "profile": "web",
+      "specialists": 31,
+      "licence_directories": 31,
+      "shadcn_and_magic_ui_installed": true,
+      "lucian_installed": false,
+      "intact_rerun_reuses_all_sources": true
+    },
+    {
+      "profile": "mobile",
+      "specialists": 23,
+      "licence_directories": 23,
+      "shadcn_and_magic_ui_installed": false,
+      "lucian_installed": false
+    }
+  ],
+  "new_original_notices": {
+    "shadcn": "LICENSE.md (MIT) byte-identical to legal/licenses/shadcn-license",
+    "magicui": "LICENSE.md (MIT) byte-identical to legal/licenses/magicui-license"
+  },
+  "reviewed_skill_content": [
+    "shadcn: skills/shadcn only (SKILL.md, rules, references, evals, small logo PNGs and showcase snippets in the same MIT repository); its SKILL.md runs `npx shadcn@latest info --json` as dynamic context in supporting agents",
+    "magicui: skills/magic-ui only (SKILL.md and two reference files); no assets"
+  ],
+  "limitations": [
+    "Installation and notice retention, not ownership/trademark clearance or specialist runtime validation.",
+    "Real downloads ran on macOS with the codex agent target."
+  ]
+}

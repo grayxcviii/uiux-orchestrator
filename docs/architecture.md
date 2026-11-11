@@ -10,18 +10,20 @@ was actually executed.
 ```mermaid
 flowchart TD
     U[User brief] --> I[Inspect product, project and platform]
-    I --> F[Research and foundation / UUPM or compatible alternative]
+    I --> F[Research and UX foundation / UUPM evidence, then Impeccable shape UX plan]
     F --> C[Concept reasoning / bounded frontend-design or platform-compatible alternative]
     C --> A[Final art direction / one visual driver, Taste when eligible]
     A --> S[Finalize design system / reconcile foundation and final visuals]
-    S --> P[Components and media / verified reuse or sourcing specialist]
-    P --> M[Motion design / Emil or compatible platform specialist]
+    S --> P[Components and media / component contract, project and platform reuse, then library specialists]
+    P --> M[Motion design / primary motion owner per platform, choreography]
     M --> B[Implementation / driver and platform-specific expertise]
     B --> V[Validation / build, interactions, observed renders]
     V --> R1[UX and design review]
     V --> R2[Technical and accessibility review]
+    V --> R3[Motion review when motion ships]
     R1 --> G{Requirements and gates met?}
     R2 --> G
+    R3 --> G
     G -- No --> FIX[Route findings to the responsible stage]
     FIX --> C
     FIX --> A
@@ -62,15 +64,15 @@ designs keep their fidelity requirements; read-only reviews provide recommendati
 | Stage id | Required output | Preferred owner or routing rule |
 |---|---|---|
 | `inspect` | Project/platform facts, commands, asset/tool and skill inventory | Orchestrator inspects actual sources. |
-| `foundation` | Evidence, product/UX analysis, patterns, hierarchy, states and provisional guidelines | UUPM search; Impeccable shape addresses discovery/gaps. Distinguish retrieved recommendations, observed facts and assumptions. |
+| `foundation` | Evidence, product/UX analysis, patterns, hierarchy, states and provisional guidelines | In order: UUPM search (research evidence) → Impeccable shape (UX plan) → Impeccable onboard or a targeted UUPM query for gaps. UUPM style/palette results stay provisional. |
 | `concept` | Alternatives, chosen experience concept, narrative/structure and rationale | frontend-design in bounded `design-reasoning` mode on suitable web tasks; compatible concept specialist elsewhere. |
 | `direction` | Final palette, typography, composition, imagery/materials, identity and responsive direction | One visual driver. Taste is first choice for eligible marketing/product/shop websites. |
-| `system` | Final semantic tokens and component/state conventions, actual code locations and contrast checks | Selected driver if explicitly owned, otherwise a suitable system specialist. Normalize actual generated tokens rather than claim a document title creates a system. |
-| `components` | Reuse/source decisions, real media, rights and gaps | Project/platform components first; Lucian or suitable asset/component expertise for unresolved gaps. |
-| `motion` | Purpose, behavior, timing, interruption, reduced-motion path and implementation plan | Emil on compatible web tasks; Expo/Reanimated and native/platform expertise as appropriate. An explicit static decision is allowed when motion is not required. |
+| `system` | Final semantic tokens and component/state conventions, actual code locations and contrast checks | Create: the driver if it owns the system, else Expo design-system or shadcn; record afterwards with Impeccable document (never counts as creation). |
+| `components` | Reuse/source decisions, real media, rights and gaps | Component contracts from `references/component-intelligence.md`; project/platform components first; shadcn/Magic UI on React or suitable asset/component expertise for unresolved gaps. |
+| `motion` | Purpose, behavior, timing, interruption, reduced-motion path and implementation plan | Primary by platform: Emil animate (web), animate-expo (React Native), platform APIs (native); specialized skills when the task matches; Emil choreograph for groups. Static only on user request. |
 | `implement` | Working code consistent with accepted decisions | Driver plus scoped platform specialists. |
 | `validate` | Actual static/build/interaction/render evidence | Project tooling, compatible device skills and bundled tools. |
-| `review` | Separate UX/design and technical/accessibility assessments with findings and verdicts | Impeccable critique/audit or compatible evaluators, separate activations and independent contexts when available. |
+| `review` | Separate UX/design, technical/accessibility and (when motion ships) motion assessments with findings and verdicts | Impeccable critique/audit, Emil improve-animations or compatible evaluators, separate activations and independent contexts when available. |
 
 Foundation palette/type/system suggestions are hypotheses. Concept reasoning chooses the
 experience approach; it does not finalize the visual system. Art direction then owns final

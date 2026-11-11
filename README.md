@@ -49,6 +49,9 @@ Ask a coding agent for a beautiful interface and you usually get:
   gradient text). Your brand or color request always comes first.
 - **Bold by design.** Every new design commits to one memorable decision, such as an oversized type
   crop or a dramatic photographic composition, and later steps keep it.
+- **Components that hold up on every platform.** A built-in component contract decides the right
+  component and what it must do (states, keyboard, accessibility, motion), then maps it to HTML,
+  SwiftUI, Compose, React Native or Flutter.
 - **Smooth motion, built in.** Choreographed entrances and fluid, interruptible transitions,
   designed with the visuals, with a reduced-motion version.
 - **Checked on screen.** The rendered result is reviewed for brief fit, craft, accessibility and
@@ -72,15 +75,15 @@ New designs and redesigns run the full process. Each stage hands an accepted out
 | # | Stage | What happens |
 |---|---|---|
 | 1 | Inspect | Platform, stack, tokens, components, tooling, installed skills |
-| 2 | Research & UX | Audience, goals, patterns, flows, hierarchy, states |
+| 2 | Research & UX | Research evidence first, then the UX plan: audience, tasks, hierarchy, flows, states |
 | 3 | Concept | 2–3 distinct approaches; one chosen with its rationale |
 | 4 | Art direction | Palette, type, composition, media, the decisive move |
 | 5 | Design system | Final tokens, components, variants, states, contrast |
-| 6 | Components & media | Reuse project components first; source the rest with asset rights checked |
+| 6 | Components & media | Pick each component against a platform-agnostic contract (states, keyboard, accessibility, motion), then reuse project and platform components, use shadcn/Magic UI on React, and check asset rights |
 | 7 | Motion | Motion signature, choreography, transitions, reduced motion |
 | 8 | Build | Working code on your stack, every interaction state |
 | 9 | Validate | Build, interactions and rendered screenshots at real sizes |
-| 10 | Review & refine | Separate design and technical/accessibility reviews; fix and re-check |
+| 10 | Review & refine | Separate design, technical/accessibility and motion reviews; fix and re-check |
 
 Smaller jobs take shorter paths:
 
@@ -135,7 +138,7 @@ suitable skill is unavailable, and are reported as limited.
 | Research & foundation | [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) |
 | Concept reasoning | [frontend-design](https://github.com/anthropics/skills), in an explicitly bounded planning mode |
 | Art direction | [Taste](https://github.com/Leonxlnx/taste-skill), or another compatible visual driver |
-| Components | [Lucian](https://github.com/Seokwoooo/lucian-uxui), project and platform components |
+| Components | [shadcn/ui](https://github.com/shadcn-ui/ui) and [Magic UI](https://github.com/magicuidesign/magicui) on React; project and platform components everywhere, guided by a built-in component contract |
 | Review & polish | [Impeccable](https://github.com/pbakaus/impeccable), [Vercel agent-skills](https://github.com/vercel-labs/agent-skills) |
 | Motion | [Emil Kowalski's skills](https://github.com/emilkowalski/skills), [GSAP skills](https://github.com/greensock/gsap-skills) |
 | Mobile | [Expo](https://github.com/expo/skills), [Software Mansion](https://github.com/software-mansion-labs/skills), [Callstack](https://github.com/callstackincubator/agent-skills), [Android skills](https://github.com/android/skills), [SwiftUI Pro](https://github.com/twostraws/SwiftUI-Agent-Skill) |

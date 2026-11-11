@@ -26,7 +26,7 @@ Full steps (Large; Medium and Small use the subset above):
 | direction | Execute the visual/interaction specialist matching the chosen move, e.g. Impeccable tone, typeset, layout or Emil for motion. Record the scope-specific creative brief and fixed tokens. An existing system does not require a full visual driver. |
 | implement | Apply accepted decisions in the requested component/surface. Preserve architecture, identity, content and behavior except where the task authorizes changes. Reuse the system; route system/component work if an actual gap emerges. |
 | validate | L1 + L2 + observed L4, plus L3 for changed interactions. Compare matching before/after states and check relevant phone/desktop contexts. |
-| review | Medium and Large; for Small, see the size table. Execute a compatible UX/design critique or review specialist against the original brief, baseline and chosen move; perform technical/accessibility checks on the touched scope. Self-check alone does not replace an available reviewer. |
+| review | Medium and Large; for Small, see the size table. Add `motion-review` when the change ships or alters motion. Execute a compatible UX/design critique or review specialist against the original brief, baseline and chosen move; perform technical/accessibility checks on the touched scope. Self-check alone does not replace an available reviewer. |
 | refine | Resolve findings with the appropriate owner, then recheck the affected evidence and review. |
 
 Apply the [creative-improvement contract](../references/visual-design.md#9-breakthrough-ambition-for-new-work-and-edits).

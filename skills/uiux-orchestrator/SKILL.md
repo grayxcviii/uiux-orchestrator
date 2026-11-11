@@ -4,7 +4,7 @@ description: Use when a request involves designing, redesigning, improving, anim
 license: MIT
 compatibility: Agent Skills compatible agents. Written for Claude Code first; works in agents without a Skill tool or subagents by reading files and running steps sequentially.
 metadata:
-  version: "1.4.3"
+  version: "1.4.4"
 ---
 
 # UIUX Orchestrator
@@ -62,7 +62,8 @@ user's brief and the [visual craft gate](core/quality-gates.md#visual-craft-acce
 Technical success, added effects and authorship guesses do not establish visual quality.
 User rejection reopens visual acceptance; an earlier score or green record cannot overrule it.
 
-Stage owners for full creative work are listed in the [orchestration contract §1](core/orchestration.md#1-required-roles-and-outputs)
+Stage owners for full creative work are listed in the [orchestration contract §1](core/orchestration.md#1-required-roles-and-outputs);
+who decides what, and what advisors may not overrule, is in [Ownership by stage](core/decision-engine.md#ownership-by-stage)
 (implementation goes to stack-specific owners); driver order, Taste first for suitable marketing
 sites, is in [decision-engine §4](core/decision-engine.md#4-drivers). Read [core/adapters.md](core/adapters.md)
 before invoking a driver entry in bounded specialist mode.
@@ -191,6 +192,7 @@ before using a version-sensitive API.
 | Cross-platform reference | Load when |
 |---|---|
 | [references/visual-design.md](references/visual-design.md) | direction, improvement, redesign, review of visual quality |
+| [references/component-intelligence.md](references/component-intelligence.md) | the components stage, or any task that adds or changes an interactive component (choice, contract, platform mapping, library filter) |
 | [references/spatial-design.md](references/spatial-design.md) | spatial/3D direction, CSS perspective, rendered 3D assets, or Three.js scenes |
 | [references/motion-principles.md](references/motion-principles.md) | every new surface/redesign (§0 default motion posture), and any motion design, build or review without a motion skill |
 | [references/accessibility.md](references/accessibility.md) | accessibility workflow, review, or a contrast/target/semantics question |

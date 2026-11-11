@@ -180,13 +180,15 @@ test('CLI previews global/all and project-specific selection without network or 
     const result = spawnSync(process.execPath, [cli, 'install', '--dry-run', '--agent', 'codex', ...args], { cwd: root, encoding: 'utf8' });
     assert.equal(result.status, 0, result.stderr); return JSON.parse(result.stdout);
   }
-  assert.equal(plan(['--global']).sources.length, 13);
+  assert.equal(plan(['--global']).sources.length, 14);
   json(join(root, 'package.json'), { dependencies: { next: '1' } });
   const web = plan([]); assert.deepEqual(web.platforms, ['web']);
   assert.ok(web.sources.some(s => s.id === 'anthropic')); assert.ok(!web.sources.some(s => s.id === 'expo'));
+  assert.ok(web.sources.some(s => s.id === 'shadcn')); assert.ok(web.sources.some(s => s.id === 'magicui'));
   json(join(root, 'package.json'), { dependencies: { expo: '1' } });
   const mobile = plan([]); assert.deepEqual(mobile.platforms, ['mobile']);
   assert.ok(mobile.sources.some(s => s.id === 'expo')); assert.ok(!mobile.sources.some(s => s.id === 'taste'));
+  assert.ok(!mobile.sources.some(s => s.id === 'shadcn' || s.id === 'magicui'));
   assert.equal(existsSync(join(root, '.agents')), false);
 });
 

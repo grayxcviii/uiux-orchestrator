@@ -158,7 +158,6 @@
           "impeccable/new-work",
           "uupm/design-system",
           "taste/design-taste-frontend",
-          "lucian/uxui",
           "gsap/core",
           "anthropic/frontend-design"
         ],
@@ -222,7 +221,6 @@
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
-          "lucian/uxui",
           "gsap/core",
           "emil/animate",
           "emil/mobile-native",
@@ -288,8 +286,7 @@
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
-          "gsap/core",
-          "lucian/uxui"
+          "gsap/core"
         ],
         "must_recommend": [],
         "max_status": "Passed",
@@ -345,7 +342,6 @@
           "uupm/design-system",
           "taste/design-taste-frontend",
           "gsap/core",
-          "lucian/uxui",
           "emil/break-ui",
           "anthropic/frontend-design"
         ],
@@ -635,7 +631,6 @@
           "emil/animate-expo",
           "gsap/core",
           "impeccable/animate",
-          "lucian/uxui",
           "emil/mobile-native",
           "callstack/agent-device"
         ],
@@ -724,7 +719,6 @@
           "gsap/core",
           "emil/animate",
           "emil/animate-expo",
-          "lucian/uxui",
           "android/navigation-event",
           "swm/react-native-best-practices"
         ],
@@ -1312,7 +1306,8 @@
           ]
         ],
         "may_select": [
-          "lucian/uxui",
+          "shadcn/ui",
+          "magicui/components",
           "vercel/web-design-guidelines",
           "impeccable/critique",
           "impeccable/audit",
@@ -1410,7 +1405,8 @@
           "impeccable/critique",
           "impeccable/audit",
           "vercel/web-design-guidelines",
-          "lucian/uxui",
+          "shadcn/ui",
+          "magicui/components",
           "emil/animate"
         ],
         "must_not_select": [
@@ -1456,7 +1452,6 @@
           "emil/animate",
           "emil/animate-expo",
           "gsap/core",
-          "lucian/uxui",
           "android/adaptive",
           "expo/native-ui",
           "vercel/web-design-guidelines",
@@ -1613,7 +1608,6 @@
         "may_select": [],
         "must_not_select": [
           "uupm/design-system",
-          "lucian/uxui",
           "taste/design-taste-frontend",
           "gsap/core"
         ],
@@ -1700,7 +1694,8 @@
         ],
         "may_select": [
           "vercel/web-design-guidelines",
-          "lucian/uxui",
+          "shadcn/ui",
+          "magicui/components",
           "emil/animate",
           "uupm/search"
         ],
@@ -1960,7 +1955,8 @@
           "impeccable/audit",
           "vercel/web-design-guidelines",
           "emil/animate",
-          "lucian/uxui"
+          "shadcn/ui",
+          "magicui/components"
         ],
         "must_not_select": [
           "uupm/design-system",
@@ -2017,7 +2013,8 @@
           "impeccable/audit",
           "vercel/web-design-guidelines",
           "emil/animate",
-          "lucian/uxui"
+          "shadcn/ui",
+          "magicui/components"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -2064,5 +2061,8 @@
   "answer_key_changes_license_review": [
     "dickwu/apple-design removed from active routing because no verified licence grant is available; historical results are unchanged.",
     "S37 now requires impeccable/critique with official Apple platform references."
+  ],
+  "answer_key_changes_components": [
+    "Lucian removed from the specialist catalogue (1.4.4): lucian/uxui dropped from must_not_select lists; may_select entries replaced by shadcn/ui and magicui/components (React web only). Historical results are unchanged."
   ]
 }

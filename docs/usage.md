@@ -30,11 +30,11 @@ Remove: `claude plugin uninstall uiux-orchestrator@uiux-orchestrator`.
 ```bash
 npx uiux-orchestrator install           # auto-detect web/mobile and install relevant specialists
 npx uiux-orchestrator install --project # explicit project scope (-p)
-npx uiux-orchestrator install --global  # all 46 supported specialists, for every project (-g)
+npx uiux-orchestrator install --global  # all 47 supported specialists, for every project (-g)
 ```
 
-**Selection:** global installs include the entire supported catalogue: 46 unique skill folders
-from 13 pinned sources, covering 62 routing entries/commands plus the dogfood companion linked
+**Selection:** global installs include the entire supported catalogue: 47 unique skill folders
+from 14 pinned sources, covering 63 routing entries/commands plus the dogfood companion linked
 by agent-device. Project installs include skills
 marked web or mobile in the registry. Shared specialists belong to both groups. Mobile includes
 React Native/Expo, iOS, Android and Flutter guidance; runtime routing still checks the actual
@@ -319,7 +319,8 @@ The commands come from each project's README (checked 2026-11-06):
 | [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill`, then `/plugin install ui-ux-pro-max@ui-ux-pro-max-skill`. Needs Python 3 |
 | [Anthropic frontend-design](https://github.com/anthropics/skills) | `/plugin marketplace add anthropics/skills`, then `/plugin install example-skills@anthropic-agent-skills` |
 | [Vercel web-design-guidelines](https://github.com/vercel-labs/agent-skills) | `npx skills add vercel-labs/agent-skills` |
-| [Lucian UX/UI](https://github.com/Seokwoooo/lucian-uxui) | `npx skills add Seokwoooo/lucian-uxui` |
+| [shadcn/ui](https://github.com/shadcn-ui/ui) | `npx skills add shadcn-ui/ui@shadcn` |
+| [Magic UI](https://github.com/magicuidesign/magicui) | `npx skills add magicuidesign/magicui` |
 
 ### Motion
 

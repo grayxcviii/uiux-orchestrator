@@ -1,9 +1,9 @@
 {
-  "reviewed_on": "2026-11-09",
-  "catalog_sha256": "1eed6c967e46cc1276de2a5e3b8d65f05bbcfe5390a90ba8f7900ad11851c8a4",
-  "scope": "46 folders / 13 pinned sources / 62 registry entries plus dogfood. Packed global (46), web (30) and mobile (23) installs verified with original root notices, five applicable transitive originals, asset guidance, six Taste credit manifests and same-revision repair. No upstream scripts/hooks executed.",
-  "supplemental_sources_sha256": "8847c0ed8938123e0463a5a012bd7d4d097cd708e2215be33e2833d83dea20cf",
-  "verification_record": "tests/results/2026-11-09-transitive-notices.json",
+  "reviewed_on": "2026-11-11",
+  "catalog_sha256": "65f32cc9a2190f920422a1db33a1d0cc08f0d63db62964b0391dd066bb55583b",
+  "scope": "47 folders / 14 pinned sources / 63 registry entries plus dogfood. Packed global (47), web (31) and mobile (23) installs verified with original root notices, applicable transitive originals, asset guidance, Taste credit manifests and same-revision reuse. 1.4.4 replaced Lucian with shadcn/ui and Magic UI (both MIT). No upstream scripts/hooks executed.",
+  "supplemental_sources_sha256": "ecbf6faeb5c30892f9be761974517a613b8b7835221040f23f65356f1e41e0ea",
+  "verification_record": "tests/results/2026-11-11-component-specialists.json",
   "limitations": [
     "Per-asset ownership and trademark clearance are not established; follow asset-usage.md when shipping products.",
     "Software Mansion/Vercel retain README-only MIT declarations at these pins; original notices are not invented."

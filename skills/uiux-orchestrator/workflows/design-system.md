@@ -19,14 +19,18 @@ from the code, not aspirations.
 palettes/type suggestions are provisional; reconcile foundation constraints and the final visual
 brief before committing tokens. Semantic tokens over raw values (`color.bg.surface` → primitive). Every
 color role ships with its on-color and a contrast check. Type scale tied to platform scaling
-(Dynamic Type, `sp`, `textScaler`, `rem`). For Create, the driver comes from the driver table (decision-engine §4); `uupm/design-system`
-`--persist` writes only into a location the user agrees; Expo projects may use `expo/design-system`.
+(Dynamic Type, `sp`, `textScaler`, `rem`). For Create, the owner follows [Ownership by stage](../core/decision-engine.md#ownership-by-stage):
+the driver from the driver table (decision-engine §4) when it owns `design-system`, else
+`expo/design-system` (Expo) or `shadcn/ui` (React on shadcn); `uupm/design-system` `--persist`
+writes only into a location the user agrees. Without a user or brand color direction, tokens
+follow the premium monochrome posture (`references/visual-design.md` §4).
 
 Resolve `design-system` ownership through the decision engine and actually execute the selected
 skill. An existing driver covers this role only when the registry explicitly grants ownership
 and the token/component output is accepted. Otherwise route a suitable system specialist; do not
-count palette selection or a driver name as a completed system. If documentation tooling is
-chosen, it must inventory/normalize actual tokens and components, not merely create a file title.
+count palette selection or a driver name as a completed system. Documentation tooling
+(`impeccable/document`) records a created system; it never counts as creating one, and must
+inventory/normalize actual tokens and components, not merely create a file title.
 Record semantic color pairs, type/spacing/radius/elevation/motion scales, component variants and
 states, code locations, reuse and contrast evidence before dependent UI integration.
 

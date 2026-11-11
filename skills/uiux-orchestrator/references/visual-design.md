@@ -128,6 +128,7 @@ contrast, composition, photography and motion.
 ## 5. Components and states
 
 - Reuse before creating. A new component must exist because no existing one can express the need.
+  Choose components and their contracts with [component-intelligence.md](component-intelligence.md).
 - Every interactive component defines its states:
   - default, pressed/active, focus-visible, disabled, loading;
   - hover on pointer platforms;

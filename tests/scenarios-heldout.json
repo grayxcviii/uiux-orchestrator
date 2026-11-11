@@ -169,7 +169,6 @@
         ],
         "must_not_select": [
           "expo/ui",
-          "lucian/uxui",
           "emil/animate",
           "gsap/core",
           "uupm/design-system",

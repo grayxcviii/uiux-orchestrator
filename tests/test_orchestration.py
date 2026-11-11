@@ -22,13 +22,15 @@ def node_probe(*versions):
 
 def record():
     assignments = [
-        ('foundation', 'ux-analysis', 'uupm/search', 'builder'),
+        ('foundation', 'research-foundation', 'uupm/search', 'builder'),
+        ('foundation', 'ux-analysis', 'impeccable/shape', 'builder'),
         ('concept', 'design-reasoning', 'anthropic/frontend-design', 'builder'),
         ('direction', 'visual-direction', 'taste/design-taste-frontend', 'builder'),
-        ('system', 'design-system', 'impeccable/document', 'builder'),
+        ('system', 'design-system', 'shadcn/ui', 'builder'),
         ('motion', 'motion-build', 'emil/animate', 'builder'),
         ('review', 'ux-critique', 'impeccable/critique', 'reviewer-ux'),
         ('review', 'tech-audit', 'impeccable/audit', 'reviewer-tech'),
+        ('review', 'motion-review', 'emil/improve-animations', 'reviewer-motion'),
     ]
     stages = []
     for stage in ['inspect', 'foundation', 'concept', 'direction', 'system', 'components', 'motion',
@@ -49,7 +51,6 @@ def record():
         next(s for s in stages if s['id'] == stage)['coverage'][slot] = dict(
             source='skill', activation=activation)
     next(a for a in data['activations'] if a['skill'] == 'anthropic/frontend-design')['mode'] = 'design-reasoning'
-    next(s for s in stages if s['id'] == 'foundation')['coverage']['research-foundation'] = dict(source='skill', activation='run-ux-analysis')
     dependencies = {'inspect': [], 'foundation': ['inspect'], 'concept': ['foundation'],
                     'direction': ['concept'], 'system': ['foundation', 'direction'],
                     'components': ['system'], 'motion': ['system', 'components'],
@@ -68,8 +69,8 @@ def record():
         dict(dimension=dimension, verdict='pass', observation=f'Rendered {dimension} assessed against the original brief',
              evidence=['render:390', 'render:1440'])
         for dimension in ['brief-fit', 'creative-advance', 'composition', 'typography',
-                          'palette-and-materials', 'product-identity', 'distinctiveness',
-                          'finish', 'responsive-craft']])
+                          'palette-and-materials', 'boldness', 'product-identity', 'distinctiveness',
+                          'finish', 'component-contract', 'responsive-craft', 'motion-smoothness']])
     return data
 
 
@@ -86,10 +87,11 @@ def use_frontend_driver(data):
     data['routing']['candidates'].append(dict(
         skill=data['driver'], eligible=True, reason='Compatible web driver',
         evidence=['tool:frontend-driver-inspected']))
-    data['activations'].remove(activation(data, 'run-visual-direction'))
-    activation(data, 'run-design-reasoning').pop('mode')
+    # Concept stays a separate bounded run; the driver run owns art direction.
+    activation(data, 'run-visual-direction').update(
+        skill=data['driver'], source=data['driver'], invocation='frontend-design driver target')
     stage(data, 'direction')['coverage']['visual-direction'] = dict(
-        source='driver', activation='run-design-reasoning')
+        source='driver', activation='run-visual-direction')
 
 
 def use_builtin_design_review(data, executor='manual-reviewer'):
@@ -238,12 +240,13 @@ class OrchestrationTests(unittest.TestCase):
 
     def test_genuine_unavailability_is_explicit_limited_fallback(self):
         data = record()
-        data['inventory'][0]['status'] = 'unavailable'
-        data['inventory'][0]['reason'] = 'No installed copy after directory search'
-        for skill in ['impeccable/shape', 'impeccable/onboard']:
-            data['inventory'].append(dict(skill=skill, status='unavailable',
-                                          reason='No installed copy', evidence=['tool:search']))
-        data['activations'] = [a for a in data['activations'] if a['id'] != 'run-ux-analysis']
+        for item in data['inventory']:
+            if item['skill'] in ['uupm/search', 'impeccable/shape']:
+                item.update(status='unavailable', reason='No installed copy after directory search')
+        data['inventory'].append(dict(skill='impeccable/onboard', status='unavailable',
+                                      reason='No installed copy', evidence=['tool:search']))
+        data['activations'] = [a for a in data['activations']
+                               if a['id'] not in ['run-ux-analysis', 'run-research-foundation']]
         for slot in ['research-foundation', 'ux-analysis']:
             stage(data, 'foundation')['coverage'][slot] = dict(
                 source='built-in', reason='No compatible installed candidate', evidence=['tool:search'])
@@ -423,16 +426,74 @@ class OrchestrationTests(unittest.TestCase):
         data['routing'] = dict(surface='operate', reason='Native visual driver', candidates=[dict(
             skill='impeccable/new-work', eligible=True, reason='Compatible native driver',
             evidence=['tool:native-driver'])])
-        data['inventory'].append(dict(skill='impeccable/shape', status='available', evidence=['tool:compatible-native']))
         data['inventory'].append(dict(skill='impeccable/new-work', status='available', evidence=['tool:native-driver']))
         activation(data, 'run-design-reasoning').update(skill='impeccable/shape', source='impeccable', invocation='impeccable shape target')
         activation(data, 'run-design-reasoning').pop('mode')
         activation(data, 'run-visual-direction').update(skill='impeccable/new-work', source='impeccable', invocation='impeccable new-work target')
         data['inventory'].append(dict(skill='impeccable/animate', status='available', evidence=['tool:native-motion']))
         activation(data, 'run-motion-build').update(skill='impeccable/animate', source='impeccable', invocation='impeccable animate target')
+        # The native driver owns the design system; web-only shadcn and Emil reviewers drop out.
+        data['activations'].remove(activation(data, 'run-design-system'))
+        stage(data, 'system')['coverage']['design-system'] = dict(source='driver', activation='run-visual-direction')
+        data['activations'].remove(activation(data, 'run-motion-review'))
+        stage(data, 'review')['coverage']['motion-review'] = dict(
+            source='built-in', reason='No compatible native motion reviewer installed', evidence=['tool:directory-search'])
+        for item in data['inventory']:
+            if item['skill'] in ['shadcn/ui', 'emil/improve-animations']:
+                item.update(status='incompatible', reason='Web-only skill on an iOS surface')
         result = self.check(data)
         self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
 
+
+    def test_document_command_cannot_create_a_design_system(self):
+        data = record()
+        data['inventory'].append(dict(skill='impeccable/document', status='available', evidence=['tool:availability']))
+        activation(data, 'run-design-system').update(skill='impeccable/document', source='impeccable',
+                                                     invocation='impeccable document target')
+        self.rejected(data, 'cannot create')
+
+    def test_research_output_is_not_ux_analysis_when_shape_is_available(self):
+        data = record()
+        stage(data, 'foundation')['coverage']['ux-analysis'] = dict(source='skill', activation='run-research-foundation')
+        self.rejected(data, 'owns ux-analysis')
+
+    def test_research_may_cover_ux_when_shape_is_unavailable(self):
+        data = record()
+        next(i for i in data['inventory'] if i['skill'] == 'impeccable/shape').update(
+            status='unavailable', reason='No installed copy after directory search')
+        data['activations'].remove(activation(data, 'run-ux-analysis'))
+        stage(data, 'foundation')['coverage']['ux-analysis'] = dict(source='skill', activation='run-research-foundation')
+        self.assertEqual(self.check(data).returncode, 0)
+
+    def test_concept_cannot_share_the_art_direction_activation(self):
+        data = record()
+        use_frontend_driver(data)
+        stage(data, 'concept')['coverage']['design-reasoning'] = dict(source='driver', activation='run-visual-direction')
+        self.rejected(data, 'own activation')
+
+    def test_shipped_motion_requires_a_motion_review(self):
+        data = record()
+        del stage(data, 'review')['coverage']['motion-review']
+        self.rejected(data, 'motion-review')
+
+    def test_shipped_motion_requires_a_motion_smoothness_verdict(self):
+        data = record()
+        data['visual_review']['criteria'] = [c for c in data['visual_review']['criteria']
+                                             if c['dimension'] != 'motion-smoothness']
+        self.rejected(data, 'motion-smoothness')
+
+    def test_static_result_needs_no_motion_review(self):
+        data = record()
+        data['motion_required'] = False
+        motion = stage(data, 'motion')
+        motion.update(status='skipped', reason='User asked for a static page')
+        motion['coverage'] = {}
+        data['activations'] = [a for a in data['activations'] if a['id'] not in ['run-motion-build', 'run-motion-review']]
+        del stage(data, 'review')['coverage']['motion-review']
+        data['visual_review']['criteria'] = [c for c in data['visual_review']['criteria']
+                                             if c['dimension'] != 'motion-smoothness']
+        result = self.check(data)
+        self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
 
     def test_documented_input_matrix_matches_checker(self):
         import importlib.util, re

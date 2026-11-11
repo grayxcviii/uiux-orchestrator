@@ -25,7 +25,8 @@ at the recorded upstream revisions. `sources.json` records their URLs and SHA-25
 | impeccable | [impeccable-notice.md](licenses/impeccable-notice.md) | [Original file](https://raw.githubusercontent.com/pbakaus/impeccable/c3bb418ee38ee49a6b999b7752c1368f3123a2bd/NOTICE.md) |
 | uupm | [uupm-license](licenses/uupm-license) | [Original file](https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/LICENSE) |
 | taste | [taste-license](licenses/taste-license) | [Original file](https://raw.githubusercontent.com/Leonxlnx/taste-skill/9b4bf937a1f69348126959c15d2f99a73e65699b/LICENSE) |
-| lucian | [lucian-license](licenses/lucian-license) | [Original file](https://raw.githubusercontent.com/Seokwoooo/lucian-uxui/0067ad85bfcf62a572071fdbe82a4e02f0d2098f/LICENSE) |
+| shadcn | [shadcn-license](licenses/shadcn-license) | [Original file](https://raw.githubusercontent.com/shadcn-ui/ui/8ab27715521cbd4f87ae6886cd989cbb678f6de7/LICENSE.md) |
+| magicui | [magicui-license](licenses/magicui-license) | [Original file](https://raw.githubusercontent.com/magicuidesign/magicui/1ac985adca3cdfab9b1739253fd14209687c4e9c/LICENSE.md) |
 | emil | [emil-license](licenses/emil-license) | [Original file](https://raw.githubusercontent.com/emilkowalski/skills/c8a79627b59d72d764d6ab6f2c87c09a48169833/LICENSE) |
 | gsap | [gsap-license](licenses/gsap-license) | [Original file](https://raw.githubusercontent.com/greensock/gsap-skills/aed9cfd3277740755f6bfc1155c7aa645403b760/LICENSE) |
 | expo | [expo-license](licenses/expo-license) | [Original file](https://raw.githubusercontent.com/expo/skills/a9e5bd3fa00b4e61f632e43f85da73aee1942582/LICENSE) |

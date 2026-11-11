@@ -73,7 +73,7 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     assert.ok(webPlan.sources.some(source => source.id === 'anthropic'));
     assert.equal(webPlan.sources.some(source => source.id === 'expo'), false);
     const globalPlan = JSON.parse(command('npx', [...bootstrap, '--global'], projectB));
-    assert.equal(globalPlan.sources.length, 13);
+    assert.equal(globalPlan.sources.length, 14);
     command('npx', npx, projectA);
     assert.match(readFileSync(localA, 'utf8'), /^name: uiux-orchestrator/m);
     for (const file of ['LICENSE', 'legal/THIRD_PARTY_NOTICES.md', 'legal/licenses/apache-2.0.txt']) {

@@ -58,8 +58,9 @@ For every required slot, resolve ownership in this order:
    system reuse to waive creative work on composition, hierarchy, presentation or feedback.
 2. **Accepted execution coverage:** a compatible specialist already executed this capability,
    or the chosen driver explicitly owns it in the registry. Require its actual accepted output
-   for this slot. One UUPM activation may supply both foundation and UX outputs when it genuinely
-   performs both; do not run another specialist merely to duplicate accepted work. Ownership
+   for this slot. A UUPM activation may supply both foundation and UX outputs only under the
+   exception in [Foundation ownership](#foundation-ownership); do not run another specialist
+   merely to duplicate accepted work. Ownership
    or selecting a skill is never permission to skip the output.
 3. **Specialist:** search the slot's candidates and installed skills. Execute the first suitable,
    compatible available candidate using §3. `priority` orders candidates; `value_if_missing`
@@ -125,14 +126,14 @@ replaces it; `(bundle)` = several skills that count as one pick.
 
 | Slot | Candidates, in preference order | Built-in fallback |
 |---|---|---|
-| research-foundation | `uupm/search`, `impeccable/shape` | project/product evidence + explicitly labeled research gaps |
-| design-reasoning | `anthropic/frontend-design` in bounded `design-reasoning` mode, `impeccable/shape` | concept alternatives and rationale from the accepted foundation |
-| ux-analysis | `impeccable/shape`, `impeccable/onboard`, `uupm/search` | intake + workflow heuristics |
+| research-foundation | `uupm/search` (primary), `impeccable/shape` | project/product evidence + explicitly labeled research gaps |
+| design-reasoning | `anthropic/frontend-design` in bounded `design-reasoning` mode (web), `impeccable/shape` (other platforms) — in full-design, always its own activation, separate from foundation and art direction; scoped improvements follow `improvement.md` sizing | concept alternatives and rationale from the accepted foundation |
+| ux-analysis | `impeccable/shape` (primary) · gap filling: `impeccable/onboard` (first-run, empty states, activation), `uupm/search` (one targeted guideline/pattern) | intake + workflow heuristics |
 | visual-direction | drivers via §4: `taste/design-taste-frontend`, `impeccable/new-work`, `anthropic/frontend-design`, `uupm/design-system` · specialists: `expo/native-ui`, `impeccable/tone` | project tokens + platform conventions |
-| design-system | `impeccable/document`, `expo/design-system`, `impeccable/new-work`, `uupm/design-system` | `workflows/design-system.md` |
-| component-reference | `lucian/uxui`, `expo/ui`, `emil/ask-sonner`, `emil/pick-ui-library` (user) | project → platform/UI-library components |
+| design-system | **create:** the selected driver when it owns `design-system` (`impeccable/new-work`, `uupm/design-system`), `expo/design-system` (Expo), `shadcn/ui` (React projects on shadcn) · **record after build:** `impeccable/document` (never counts as creation) | `workflows/design-system.md` |
+| component-reference | Always first, not a fallback: the contract in `references/component-intelligence.md`, then project components, then platform components · specialists for remaining gaps: `shadcn/ui` (React), `magicui/components` (React motion moments, filtered), `expo/ui` (Expo), `emil/ask-sonner` (toasts), `emil/pick-ui-library` (user) | build from the contract with project tokens and primitives |
 | typography | `impeccable/typeset`, `uupm/search` | tokens + platform type scale |
-| color | `impeccable/colorize`, `uupm/search` | color roles in `references/visual-design.md` |
+| color | `impeccable/colorize` (only when the user or brand wants more color, or a functional accent is missing), `uupm/search` (provisional references) | premium monochrome posture and color roles in `references/visual-design.md` §4 |
 | layout | `impeccable/layout`, `uupm/search` | `references/visual-design.md` §2 |
 | ux-copy | `impeccable/clarify` | plain, specific labels; errors say what happened and what to do |
 | hardening | `impeccable/harden`, `emil/break-ui` | states list in `core/execution-policy.md` |
@@ -141,8 +142,8 @@ replaces it; `(bundle)` = several skills that count as one pick.
 | design-exploration | `impeccable/live`, `emil/prototype` (user) | 2–3 direction records |
 | data-visualization | `uupm/search` | `references/visual-design.md` §8 |
 | motion-discovery | `emil/find-animation-opportunities`, `emil/animation-vocabulary` | purpose test in `workflows/animation.md` |
-| motion-build | `emil/animate`, `emil/animate-expo` (= `expo/expo-animation`, load one), `android/navigation-event`, `vercel/react-view-transitions`, `gsap/*` (bundle; only when GSAP is the chosen tool), `impeccable/animate` (only inside an Impeccable-driven build), `emil/apple-design`, `emil/design-eng` · complements: `emil/choreograph`, `swm/react-native-best-practices` | platform animation APIs + `references/motion-principles.md` |
-| motion-review | `emil/improve-animations`, `emil/remove-animations`, `emil/review-animations` (user) | motion checklist in `workflows/animation.md` |
+| motion-build | **primary by platform:** `emil/animate` (web), `emil/animate-expo` (React Native/Expo; = `expo/expo-animation`, load one), platform animation APIs per `platforms/<platform>.md` §9 (iOS, Android, Flutter) · **specialized, when the task matches:** `vercel/react-view-transitions` (route/state swaps on React), `android/navigation-event` (predictive back), `gsap/*` (bundle; only when GSAP is the chosen tool), `magicui/components` (React, filtered component moments), `impeccable/animate` (only inside an Impeccable-driven build), `emil/apple-design`, `emil/design-eng` · **complements:** `emil/choreograph` (always when several elements move together), `swm/react-native-best-practices` | platform animation APIs + `references/motion-principles.md` |
+| motion-review | `emil/improve-animations` (surface/app motion audit), `emil/remove-animations` (over-animated UI), `emil/review-animations` (user) — required in full-design review when motion ships, and on Medium+ scoped work that changes motion | motion checklist in `workflows/animation.md` + `scripts/motion-trace.mjs` |
 | motion-performance | `emil/animation-performance`, `gsap/performance`, `emil/animate-expo` (its build sequence covers stutter on device), `swm/react-native-best-practices`, `android/compose-performance`, `impeccable/optimize` | platform profiler |
 | ux-critique | `impeccable/critique` | rubric in `workflows/review.md` |
 | tech-audit | `impeccable/audit`, `vercel/web-design-guidelines` | a11y/perf/responsive checks + `scripts/ui-check.mjs` |
@@ -175,6 +176,54 @@ in the report that it was unregistered. Skills the user or environment excluded 
 
 **Version drift.** If the installed version differs from `verified_version`, read the skill's
 SKILL.md frontmatter and first section before trusting the entry.
+
+
+### Foundation ownership
+
+The `foundation` stage runs in this order:
+
+1. **Research foundation: UUPM search (primary).** Product type, UX guidelines, design patterns,
+   industry style references and anti-patterns, stack-specific recommendations, each with its
+   source; assumptions and gaps labeled.
+2. **UX analysis: Impeccable shape (primary),** consuming that evidence. Target users, main
+   tasks, information hierarchy, user flows, states and edge cases, success criteria.
+3. **Gap filling, only for what shape left open:** Impeccable onboard for first-run flows, empty
+   states and activation; a targeted UUPM re-query for one specific guideline or pattern.
+
+| Skill | Owns | Must not |
+|---|---|---|
+| `uupm/search` | Research evidence, guidelines, patterns, stack facts | Decide the final UX flow; set the final palette, type or design system (its style/palette results are provisional references; the art-direction owner decides, and the premium monochrome default and AI-generated signature lists still apply) |
+| `impeccable/shape` | UX plan: flows, information architecture, states, context discovery | Replace specialized lookups (charts, fonts, stack guidance) |
+| `impeccable/onboard` | First-run flows, empty states, activation | Repeat UUPM research or redo shape's overall UX plan |
+
+Exception: one UUPM activation may satisfy both research foundation and UX analysis only when
+its output actually contains every UX analysis output (users, tasks, hierarchy, flows, states)
+**and** Impeccable shape is unavailable or the task is Small. On Medium+ and full-design work
+with shape available, shape performs UX analysis. A research output never counts as completed
+UX analysis by default.
+
+
+### Ownership by stage
+
+One owner per decision. Specialists may advise outside their row; they never overrule its owner.
+
+| Decision | Owner | Advisors / gap fillers | Never |
+|---|---|---|---|
+| Research evidence | `uupm/search` | `impeccable/shape` when UUPM is unavailable | — |
+| UX plan | `impeccable/shape` | `impeccable/onboard`, targeted `uupm/search` | A research output counted as UX analysis by default |
+| Concept | `design-reasoning` owner (2–3 alternatives) | — | In full-design: merged into the foundation or art-direction activation, even when the same skill later drives. Scoped improvements may combine concept and direction as `workflows/improvement.md` allows by size |
+| Final palette, type, composition | The surface's driver, or the scoped visual specialist when no driver applies | `uupm/search`, `impeccable/colorize`, `impeccable/typeset` | Preselected by the orchestrator; chosen outside the color posture |
+| Design system (create) | Driver that owns `design-system`, else the first create candidate in the slot | `impeccable/document` records the result | `impeccable/document` alone counted as creation |
+| Component choice and contract | `references/component-intelligence.md` | Project → platform → library specialists | A library default shipped without meeting the contract |
+| Motion | Primary motion owner for the platform | Specialized motion skills, `emil/choreograph` | Motion skipped on a new surface without a user request for static |
+| Review | Independent `ux-critique` + `tech-audit` (+ `motion-review` when motion ships in full-design, or on Medium+ scoped work that changes motion) | `platform-conformance`, `code-review` | The driver or implementer reviewing its own work without a fresh context |
+
+**Color posture is a constraint, not a palette.** Drivers and specialists choose the actual colors
+inside it: without a user or brand color direction, the premium monochrome posture
+(`references/visual-design.md` §4) applies, and the AI-generated color signatures are excluded
+unless the user or brand requires them. The same holds for the motion posture
+(`references/motion-principles.md` §0). A driver whose house rules contradict the user's brief is
+the wrong driver (§4); a driver's taste does not override the posture.
 
 ## 4. Drivers
 
@@ -221,8 +270,10 @@ action remains unauthorized, record it and try the next eligible driver; never h
 
 The selected driver **authors** the [direction contract](../references/visual-design.md#direction-contract-before-implementation)
 before UI implementation. Give it the original brief, references, scope, governing brand rules
-and technical constraints. Supply the accepted foundation and concept brief. Leave final palette, typography, composition
-and signature details to that driver through its own creative process; the orchestrator does not preselect them.
+and technical constraints. Supply the accepted foundation and concept brief, plus the color and
+motion postures and the AI-generated signature lists as constraints. Leave final palette,
+typography, composition and signature details to that driver through its own creative process
+inside those constraints; the orchestrator does not preselect them.
 Preserve its resulting visual decisions during implementation and independent review, subject
 to user requirements and accessibility floors. For driverless creative refinement, the compatible
 scoped visual/interaction specialist authors that contract. Built-in authorship is allowed only

@@ -24,8 +24,12 @@ INPUTS = {'inspect': [], 'foundation': ['inspect'], 'concept': ['foundation'],
           'validate': ['implement'],
           'review': ['foundation', 'concept', 'direction', 'system', 'validate']}
 VISUAL_DIMENSIONS = {'brief-fit', 'creative-advance', 'composition', 'typography',
-                     'palette-and-materials', 'product-identity', 'distinctiveness',
-                     'finish', 'responsive-craft'}
+                     'palette-and-materials', 'boldness', 'product-identity', 'distinctiveness',
+                     'finish', 'component-contract', 'responsive-craft'}
+MOTION_DIMENSION = 'motion-smoothness'
+MOTION_REVIEW = 'motion-review'
+RECORD_ONLY_SYSTEM = 'impeccable/document'
+UX_OWNER, RESEARCH_TOOL = 'impeccable/shape', 'uupm/search'
 TASTE = 'taste/design-taste-frontend'
 
 
@@ -216,7 +220,10 @@ def validate(data):
         require(evidence(stage.get('evidence')), 'stage evidence missing: ' + phase)
         require(stage.get('accepted') is True, 'handoff not accepted: ' + phase)
         coverage = stage.get('coverage', {})
-        for slot in sorted(set(SLOTS.get(phase, [])) | set(coverage)):
+        required_slots = set(SLOTS.get(phase, []))
+        if phase == 'review' and data.get('motion_required') is True:
+            required_slots.add(MOTION_REVIEW)
+        for slot in sorted(required_slots | set(coverage)):
             require(slot in coverage, 'missing slot coverage: ' + slot)
             item = coverage.get(slot, {})
             source = item.get('source')
@@ -272,6 +279,24 @@ def validate(data):
             else:
                 errors.append('invalid coverage source: ' + slot)
 
+    def covered_skill(phase, slot):
+        item = stages.get(phase, {}).get('coverage', {}).get(slot, {})
+        act = activations.get(item.get('activation')) if item.get('source') in ['skill', 'driver'] else None
+        return (act or {}).get('skill'), item.get('activation') if act else None
+
+    system_skill, _ = covered_skill('system', 'design-system')
+    require(system_skill != RECORD_ONLY_SYSTEM or stages.get('system', {}).get('status') == 'reused',
+            'impeccable/document records a design system; it cannot create one')
+    ux_skill, ux_run = covered_skill('foundation', 'ux-analysis')
+    if ux_skill == RESEARCH_TOOL:
+        require(inventory.get(UX_OWNER, {}).get('status') != 'available',
+                'impeccable/shape is available and owns ux-analysis; research output is not UX analysis')
+    _, concept_run = covered_skill('concept', 'design-reasoning')
+    _, direction_run = covered_skill('direction', 'visual-direction')
+    _, research_run = covered_skill('foundation', 'research-foundation')
+    require(not concept_run or concept_run not in [direction_run, research_run, ux_run],
+            'concept needs its own activation, separate from foundation and art direction')
+
     if data.get('driver'):
         require(data['driver'] in reg and reg[data['driver']].get('role') == 'driver', 'unregistered/non-driver cannot be selected as driver')
         platforms = reg.get(data['driver'], {}).get('platforms', [])
@@ -301,7 +326,8 @@ def validate(data):
                     and text(item.get('summary')) and evidence(item.get('evidence')),
                     'previous visual review needs its source, executor, assessment and evidence')
         criteria = unique(visual.get('criteria', []), 'dimension', 'visual criterion')
-        require(VISUAL_DIMENSIONS.issubset(criteria), 'visual_review missing dimensions: ' + ', '.join(sorted(VISUAL_DIMENSIONS - criteria.keys())))
+        dimensions = VISUAL_DIMENSIONS | ({MOTION_DIMENSION} if data.get('motion_required') is True else set())
+        require(dimensions.issubset(criteria), 'visual_review missing dimensions: ' + ', '.join(sorted(dimensions - criteria.keys())))
         for dimension, item in criteria.items():
             require(text(item.get('observation')) and evidence(item.get('evidence')),
                     'visual criterion needs an observation and rendered evidence: ' + dimension)

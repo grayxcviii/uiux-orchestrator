@@ -134,13 +134,13 @@
       ]
     },
     {
-      "id": "lucian",
-      "repository": "https://github.com/Seokwoooo/lucian-uxui.git",
-      "revision": "0067ad85bfcf62a572071fdbe82a4e02f0d2098f",
+      "id": "shadcn",
+      "repository": "https://github.com/shadcn-ui/ui.git",
+      "revision": "8ab27715521cbd4f87ae6886cd989cbb678f6de7",
       "license": {
         "spdx": "MIT",
         "files": [
-          "LICENSE"
+          "LICENSE.md"
         ],
         "readme_declaration": false,
         "bundled_files": [
@@ -149,14 +149,41 @@
       },
       "skills": [
         {
-          "path": "skills/lucian-uxui",
+          "path": "skills/shadcn",
           "registry_ids": [
-            "lucian/uxui"
+            "shadcn/ui"
           ],
           "groups": [
             "web"
           ],
-          "name": "lucian-uxui"
+          "name": "shadcn"
+        }
+      ]
+    },
+    {
+      "id": "magicui",
+      "repository": "https://github.com/magicuidesign/magicui.git",
+      "revision": "1ac985adca3cdfab9b1739253fd14209687c4e9c",
+      "license": {
+        "spdx": "MIT",
+        "files": [
+          "LICENSE.md"
+        ],
+        "readme_declaration": false,
+        "bundled_files": [
+          "asset-usage.md"
+        ]
+      },
+      "skills": [
+        {
+          "path": "skills/magic-ui",
+          "registry_ids": [
+            "magicui/components"
+          ],
+          "groups": [
+            "web"
+          ],
+          "name": "magic-ui"
         }
       ]
     },

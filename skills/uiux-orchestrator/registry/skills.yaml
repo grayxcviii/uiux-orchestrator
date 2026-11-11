@@ -61,10 +61,10 @@ providers:
         role: specialist
         slots: [research-foundation, ux-analysis, design-reasoning]
         authority: {ux: high}
-        capabilities: [plan UX/UI before code, task discovery]
-        use_when: [new screen or flow with unclear structure, Large design tasks]
-        avoid_when: [Small tasks, structure already defined by user or spec]
-        expected_outputs: [UX plan]
+        capabilities: [plan UX/UI before code, task discovery, context discovery]
+        use_when: ["primary owner of ux-analysis for Medium+ and full-design work, after UUPM research", new screen or flow with unclear structure]
+        avoid_when: [Small tasks, structure already defined by user or spec, "replacing specialized lookups (charts, fonts, stack guidance)"]
+        expected_outputs: ["UX plan: users, main tasks, information hierarchy, flows, states and edge cases, success criteria"]
         priority: recommended
         value_if_missing: low
       - id: impeccable/critique
@@ -127,8 +127,8 @@ providers:
         role: specialist
         slots: [color]
         authority: {color: high}
-        use_when: [monochrome or flat UI needing strategic color within the brand]
-        avoid_when: [brand palette fixed and adequate]
+        use_when: ["the user or brand asks for more color", "a monochrome UI lacks a functional accent (state, primary action)"]
+        avoid_when: [brand palette fixed and adequate, "the premium monochrome posture applies and nobody asked for more color", "adding AI-generated color signatures"]
         priority: optional
         value_if_missing: low
       - id: impeccable/layout
@@ -180,7 +180,8 @@ providers:
         role: specialist
         slots: [ux-analysis]
         authority: {onboarding: high}
-        use_when: [first-run flows, empty states, activation]
+        use_when: ["gap filling after Impeccable shape: first-run flows, empty states, activation"]
+        avoid_when: ["repeating UUPM research or redoing shape's overall UX plan"]
         priority: optional
         value_if_missing: low
       - id: impeccable/animate
@@ -222,7 +223,8 @@ providers:
         slots: [design-system]
         authority: {design-system: high}
         capabilities: ["document: DESIGN.md from existing code", "extract: pull tokens/components into the system"]
-        use_when: [design-system document or extract]
+        use_when: [design-system document or extract, "recording a system after it was created and implemented"]
+        notes: "Records/normalizes an existing system; never counts as design-system creation (decision-engine §3, Ownership by stage)."
         avoid_when: [project already maintains a design system doc in another format the user wants kept]
         side_effects: [writes DESIGN.md]
         priority: recommended
@@ -263,7 +265,7 @@ providers:
         authority: {ux-guidelines: medium, color: medium, typography: medium, data-visualization: high}
         capabilities: ["--domain ux|color|typography|google-fonts|chart|landing|icons|style|product|gsap|react|web", "--stack <stack> implementation guidance", "--rtl"]
         use_when: [one targeted design question the project does not answer, chart type choice (default-on when the user asks which chart), font pairing for a new surface, RTL support]
-        avoid_when: [question already settled by project tokens or an earlier handoff decision]
+        avoid_when: [question already settled by project tokens or an earlier handoff decision, "deciding the final UX flow (Impeccable shape owns UX analysis on Medium+ when available)", "choosing the final palette/type/design system (provisional reference only; art direction decides)"]
         expected_outputs: [ranked recommendations with rationale]
         brief: >-
           One query per question: python3 -I <skill-dir>/scripts/search.py "<2-5 terms>" --domain <d>
@@ -323,38 +325,70 @@ providers:
         value_if_missing: low
         notes: "Before choosing: confirm prerequisites and that the user accepts the kit. Older Taste variants live in Leonxlnx/taste-skill-classics and are not registered."
 
-  # ───────────────────────────── Lucian ─────────────────────────────
-  - provider: lucian
-    source: https://github.com/Seokwoooo/lucian-uxui
-    verified_version: "0067ad8"
-    verified_on: 2026-11-06
-    install_hint: "npx skills add Seokwoooo/lucian-uxui"
+  # ───────────────────────────── shadcn/ui ─────────────────────────────
+  - provider: shadcn
+    source: https://github.com/shadcn-ui/ui
+    verified_version: "8ab2771"
+    verified_on: 2026-11-11
+    install_hint: "npx skills add shadcn-ui/ui@shadcn"
     skills:
-      - id: lucian/uxui
-        names: [lucian-uxui]
-        required_inputs: ["the missing UI part", "framework, styling and theming approach"]
-        expected_outputs: ["ported element(s) with MIT header", "'#ID title: where used, what adapted' list"]
+      - id: shadcn/ui
+        names: [shadcn]
+        required_inputs: ["the needed component(s) from the component-intelligence contract", "framework, package manager and Tailwind setup", "accepted tokens/direction"]
+        expected_outputs: ["components added through the shadcn CLI and composed in project code", "list of registry items added and customizations made"]
         kind: tool
         role: specialist
         invocation: model
-        slots: [component-reference]
-        authority: {interaction-pattern: high}
+        slots: [component-reference, design-system]
+        authority: {component-implementation: high, design-system: medium}
         platforms: [web]
-        frameworks: [any]
-        capabilities: ["search/list/get from 400 elements (001-200 interface parts, 201-400 sections and motion)", "tokens: --ux-* light/dark tokens", "port into React/Vue/Svelte/Astro/HTML"]
-        use_when: ["a specific interactive part is missing from the project and needs a polished reference (pricing toggle, bottom sheet, stepper, OTP, data viz widget)"]
-        avoid_when: ["project UI library already provides the part (shadcn, MUI, etc.)", native/RN/Flutter code generation, whole-page layout]
-        requires: ["node", "HTTPS to lucianlabs.dev or raw.githubusercontent.com (curl fallback)"]
-        side_effects: ["ported files must keep the element's MIT header comment"]
-        limitations: ["never invent element IDs; use only code returned by get", "port structure and motion values as-is; adapt framework, data, colors"]
+        frameworks: [react, nextjs]
+        capabilities: ["search official and community registries before custom UI", "add/compose/fix/style components via CLI", "apply a DESIGN.md or brand spec as shadcn tokens", "Radix or Base UI primitives"]
+        use_when: ["React project with components.json (shadcn initialized)", "new React + Tailwind surface where the user approves initializing shadcn"]
+        avoid_when: ["project uses another component library (MUI, Chakra, Mantine…) — project truth wins", "non-React stacks", "native/RN/Flutter"]
+        requires: ["node", "network for npx shadcn@latest and registries"]
+        side_effects: ["SKILL.md runs `npx shadcn@latest info --json` for context when loaded in agents that support dynamic context", "CLI writes component source files and may edit CSS variables, components.json and dependencies"]
+        limitations: ["presets/apply overwrite theme, fonts and detected components; never run apply/init on an existing system without permission", "default themes are neutral: map them to the accepted direction instead of shipping defaults"]
         brief: >-
-          node <skill-dir>/scripts/lucian-uxui.mjs search <part words> → get <ids> (≤3) → tokens once.
-          Port into the project's component style; map --ux-* tokens to project tokens (no new color
-          values); keep the MIT header comment; reuse project primitives (Button, Field) inside it.
-          Report "#ID title: where used, what adapted".
+          Pass the components needed and their contracts from references/component-intelligence.md.
+          Search registries first, add with the project's package runner, compose existing
+          components, keep semantic tokens mapped to the accepted direction (no raw colors), and
+          verify every contract state. Never run init/apply/preset on an existing project without
+          explicit permission.
+        priority: recommended
+        value_if_missing: medium
+
+  # ───────────────────────────── Magic UI ─────────────────────────────
+  - provider: magicui
+    source: https://github.com/magicuidesign/magicui
+    verified_version: "1ac985a"
+    verified_on: 2026-11-11
+    install_hint: "npx skills add magicuidesign/magicui"
+    skills:
+      - id: magicui/components
+        names: [magic-ui]
+        required_inputs: ["section/moment and the accepted motion signature", "React + Tailwind + shadcn status"]
+        expected_outputs: ["Magic UI component(s) added via the shadcn registry and integrated", "which components were used and why each passes the motion filter"]
+        kind: tool
+        role: specialist
+        invocation: model
+        slots: [component-reference, motion-build]
+        authority: {motion-components: medium}
+        platforms: [web]
+        frameworks: [react, nextjs]
+        capabilities: ["animated React components through `npx shadcn@latest add @magicui/<slug>`", "section recipes (hero, feature grid, CTA, testimonials)"]
+        use_when: ["React + Tailwind project with shadcn initialized (or approved) and a Persuade/Experience surface whose motion signature a Magic UI component implements"]
+        avoid_when: ["the component is an AI-generated color or motion signature (shimmer/shiny/rainbow buttons, gradient or aurora text, glowing borders/beams, meteors, particles, confetti, typing text, endless logo marquee, counters on fake metrics) unless the user asked for it", "Operate surfaces where motion must stay quiet", "non-React stacks"]
+        requires: ["node", "shadcn initialized", "network for the @magicui registry"]
+        side_effects: ["adds component source files, keyframes and motion dependencies to the project"]
+        limitations: ["React/Next.js + Tailwind only", "many showcase effects conflict with the AI-signature lists; apply the filter in references/component-intelligence.md"]
+        brief: >-
+          Use only components that pass the Magic UI filter in references/component-intelligence.md
+          and implement the recorded motion signature. Keep props/className customization over
+          rewrites, map colors to the accepted tokens, use the motion tokens, and keep a
+          reduced-motion path. Never stack several high-motion effects in one viewport.
         priority: optional
         value_if_missing: low
-        notes: "Native projects: may read an element's spec (detents, spring values, timing) as reference only; never port its HTML/JS."
 
   # ───────────────────────────── Emil Kowalski ─────────────────────────────
   - provider: emil
@@ -437,7 +471,7 @@ providers:
         authority: {motion: high}
         platforms: [web, react-native]
         capabilities: [codebase-wide motion audit, "prioritized self-contained plans; read-only"]
-        use_when: ["'improve/audit the animations' across an app or several flows"]
+        use_when: ["'improve/audit the animations' across an app or several flows", "motion-review of a new or redesigned surface whose motion shipped"]
         avoid_when: ["single component (review it directly)", review-only of one diff]
         expected_outputs: [prioritized audit, implementation plans]
         brief: "Read-only. Ask for the audit + plans; the orchestrator (or the user) decides which plans to implement in a separate step."
@@ -874,4 +908,9 @@ references:
   - {id: ref/web-baseline, url: "https://webstatus.dev", platforms: [web], topics: [browser support], checked: "2026-11-06"}
   - {id: ref/core-web-vitals, url: "https://web.dev/articles/vitals", platforms: [web], topics: [performance], checked: "2026-11-06"}
   - {id: ref/flutter-material-ui, url: "https://docs.flutter.dev/release/breaking-changes/material-ui-and-cupertino-ui", platforms: [flutter], topics: [components, migration], checked: "2026-11-06"}
-  - {id: ref/lucian-gallery, url: "https://lucianlabs.dev/uxui-prompt/", platforms: [web], topics: [components, interaction], checked: "2026-11-06 (repo)"}
+  - {id: ref/wai-aria-apg, url: "https://www.w3.org/WAI/ARIA/apg/patterns/", platforms: [web], topics: [components, interaction, accessibility], checked: "2026-11-11"}
+  - {id: ref/rn-reusables, url: "https://reactnativereusables.com", platforms: [react-native], topics: [components], checked: "2026-11-11"}
+  - {id: ref/flutter-widget-catalog, url: "https://docs.flutter.dev/ui/widgets", platforms: [flutter], topics: [components], checked: "2026-11-11"}
+  - {id: ref/compose-material3, url: "https://developer.android.com/develop/ui/compose/components", platforms: [android], topics: [components], checked: "2026-11-11"}
+  - {id: ref/apple-hig-components, url: "https://developer.apple.com/design/human-interface-guidelines/components", platforms: [ios], topics: [components], checked: "2026-11-11"}
+  - {id: ref/a2ui-catalog, url: "https://a2ui.org/concepts/catalogs/", platforms: [web, ios, android, react-native, flutter], topics: [components, vocabulary], checked: "2026-11-11"}

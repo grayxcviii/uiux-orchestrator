@@ -26,6 +26,9 @@ brand constraints, available content/assets, success criteria and explicit disli
 3. Return a concept brief with alternatives, rationale, constraints, provisional visual ideas and
    what the art-direction stage must preserve. Apply the skill's specificity/self-critique work.
 
+When frontend-design is also the surface's driver, this bounded concept run is a separate,
+earlier activation; the driver run then consumes the accepted concept.
+
 Palette/font/token sketches from frontend-design remain suggestions at this stage. Do not create
 production UI, copy a kit, mutate project tokens, select the final visual system or overrule the
 later art-direction owner. Record `mode: design-reasoning` on the real activation receipt and

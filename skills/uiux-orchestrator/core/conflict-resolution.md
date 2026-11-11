@@ -16,7 +16,7 @@ navigation, accessibility, tooling — never "skill A wins everything".
 |---|---|---|
 | 1 | The user's explicit instruction in this task | "Use our brand purple" beats any skill's palette preference — and if a skill's rule forbids it outright (Taste: never violet), that skill is the wrong driver. |
 | 2 | Non-negotiable floors: WCAG 2.2 AA contrast, target size ≥ 24×24 CSS px (web) / Android 48×48dp / iOS HIG minimum 28×28pt with 44×44pt as the default for touch-first controls, visible focus, reduced-motion support, no data loss | A skill's light-gray caption that fails contrast loses. The user may override only after being told the consequence. |
-| 3 | Project truth for in-scope refinement: tokens, components, libraries, architecture, brand | Existing shadcn `Dialog` beats a Lucian modal; installed framer-motion beats GSAP. |
+| 3 | Project truth for in-scope refinement: tokens, components, libraries, architecture, brand | Existing MUI `Dialog` beats adding a shadcn dialog; installed framer-motion beats GSAP. |
 | 4 | Platform conventions | iOS back-swipe and large titles, Android predictive back and M3 components beat web patterns ported to mobile. |
 | 5 | Decisions already recorded in this task's handoff | Review does not re-pick the palette the direction stage chose. |
 | 6 | Domain authority (registry `authority` for that dimension) | Motion timing: Emil > GSAP preset > UUPM rule. Marketing visual direction: the chosen driver. |
@@ -41,7 +41,7 @@ navigation, accessibility, tooling — never "skill A wins everything".
 | Skill house rules (Taste "one section per screen", Impeccable craft-floor bans) vs. project | House rules apply only to surfaces that skill drives. If they would force changes to project truth, that skill is the wrong driver for this project. |
 | Project styling that customized an old system component look vs. a new OS design (e.g. opaque tab bar fills vs. iOS 26+ Liquid Glass) | Not brand truth: it was a customization of the previous system look. Keep the brand (colors via tint and accents), adopt the new system behavior on the new OS, and gate the old customization by OS availability. Ask only if the user explicitly wants the old look. |
 | A workflow rule vs. a skill's recipe for the same thing (e.g. CSS `grid-template-rows` accordion vs. a JS height-measuring recipe) | The workflow rule wins when it is cheaper and meets the same quality; the skill's recipe stays an option. |
-| A skill's fidelity rule (e.g. Lucian "port structure and values as-is") vs. layout fit, responsiveness or accessibility | Rungs 2–4 win: adapt the minimum needed (e.g. fluid widths), keep the rest as-is, and record the deviation. |
+| A skill's fidelity rule (e.g. "keep the component's API and internals intact") vs. layout fit, responsiveness or accessibility | Rungs 2–4 win: adapt the minimum needed (e.g. fluid widths), keep the rest as-is, and record the deviation. |
 | Project tokens that fail a floor (e.g. danger text on dark < 4.5:1) | Floors win in scope: fix locally by deriving from tokens (e.g. `color-mix` of existing tokens), not raw new hex; recommend the token fix to the user (shared → ask). |
 | Web guidance applied to native (hover states, 100vh, CSS easing names) | Translate the principle, not the API. Platform conventions win. |
 | Reviewer wants to change visual direction | Only with a concrete defect (rung 1–4 violated). Taste preferences alone do not reopen a recorded decision. |

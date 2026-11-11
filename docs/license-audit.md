@@ -186,3 +186,21 @@ This closes the identified missing-notice delivery defects; it does not establis
 every photograph/icon, validate source-platform documentation rights, or remove the existing
 README-only declaration limitation for Software Mansion and Vercel. No unverified licence was
 invented for those authors, and no upstream scripts/hooks were executed in this check.
+
+## Component specialists — 2026-11-11 (1.4.4)
+
+Lucian UX/UI was removed from the catalogue, registry, routing and notices. Two MIT-licensed
+official skills were added for the web group: `shadcn-ui/ui` (`skills/shadcn`, pinned at
+`8ab27715521cbd4f87ae6886cd989cbb678f6de7`) and `magicuidesign/magicui` (`skills/magic-ui`,
+pinned at `1ac985adca3cdfab9b1739253fd14209687c4e9c`). Their root `LICENSE.md` files are
+bundled unmodified with SHA-256 provenance in `sources.json`. Only the selected skill folders
+are fetched; the shadcn folder contains small logo images and showcase snippets from the same
+MIT repository, and the Magic UI folder contains Markdown only. The shadcn SKILL.md runs
+`npx shadcn@latest info --json` as dynamic context in agents that support it; this is recorded
+as a side effect in the registry.
+
+The catalogue now has 47 specialist folders from 14 pinned sources (63 registry entries). Packed
+global (47), web (31) and mobile (23) installs were verified with original notices; an intact
+re-run kept all web sources. Results: [component specialist installation](../tests/results/2026-11-11-component-specialists.json).
+No upstream scripts/hooks were executed.
+
