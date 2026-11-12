@@ -1,0 +1,16 @@
+[
+ {"id":"T01","activate":["react-native-best-practices"],"uiux_orchestrator":false,"would_ask_first":false,"reason":"General repo review in an RN project; react-native-best-practices says MUST USE for reviewing any RN code; nothing UI-specific to justify the orchestrator."},
+ {"id":"T02","activate":["react-native-best-practices"],"uiux_orchestrator":false,"would_ask_first":false,"reason":"PR bug review in an RN project matches react-native-best-practices; not a UI design task."},
+ {"id":"T03","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Evaluating a Node CLI tool; no installed skill covers it."},
+ {"id":"T04","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Backend auth security review; no installed skill matches."},
+ {"id":"T05","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Backend architecture and folder structure; no UI or framework skill applies."},
+ {"id":"T06","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Package adoption evaluation; no matching skill (pick-ui-library is user-invocable only and UI-specific)."},
+ {"id":"T07","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Unit tests for an API client; no installed skill covers testing."},
+ {"id":"T08","activate":["uiux-orchestrator","react-native-best-practices"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Fixing a broken screen layout on RN is literally 'fixing a user interface on React Native'; RN best-practices also mandates itself for RN debugging."},
+ {"id":"T09","activate":["uiux-orchestrator","react-native-best-practices"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"UI review of an RN screen with several overlapping review skills (impeccable, ui-ux-pro-max, apple-design); orchestrator explicitly claims this overlap case."},
+ {"id":"T10","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Polishing a Next.js page is improving a UI; impeccable/emil-design-eng compete but orchestrator is the router for overlapping UI skills."},
+ {"id":"T11","activate":["uiux-orchestrator","react-native-best-practices"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Expo sheet animation has conflicting skills (expo-animation, animate-expo, expo-ui says avoid Reanimated for sheets); orchestrator's overlap/conflict clause wins, though expo-animation is a close direct pick."},
+ {"id":"T12","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Reviewing onboarding UX in Next.js is a UI review; web-design-guidelines also fits but orchestrator covers choosing among review skills."},
+ {"id":"T13","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Designing a Vue landing page; many design skills overlap (frontend-design, design-taste-frontend, impeccable, ui-ux-pro-max) so orchestrator is the natural entry."},
+ {"id":"T14","activate":["react-native-best-practices"],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Code-quality review of hooks/state/re-renders is RN engineering, not UI design; react-native-best-practices matches directly."}
+]

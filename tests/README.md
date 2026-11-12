@@ -10,6 +10,7 @@
 | `harness/` | Harness README (decision schema, prompts), installed-skill metadata, shuffled batches |
 | `fixtures/` | Sample apps for execution runs (`web-app`, `expo-onboarding`) |
 | `benchmark.md` | **Current benchmark: measured metrics vs. targets, cost, threats to validity** |
+| `fixtures/detect/` + `fixtures/detect-expected.json` | Eight minimal projects (Next.js + shadcn, UIKit, Android Views, RN CLI, Flutter, Expo monorepo, Expo SDK 52, Angular Material) and the platform/framework each must be detected as, for project-intelligence probes |
 | `results/` | Raw, dated results of every run (never edited after the fact except to add scoring notes) |
 
 The scenario format:

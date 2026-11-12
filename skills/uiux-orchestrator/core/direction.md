@@ -30,7 +30,7 @@ conscious" → personality `natural`; "banking app" → product type `banking-fi
 | Content | `content` | Photography, data, long text, illustration… |
 | Platform | `platform` | From project intelligence; adapts treatments, never decides identity alone |
 | Explicit visual preference | `explicit_style`, `explicit_visual` (`color`, `motion`, `ambition`, `typography`…) | `explicit_style` only when the user names a style ("Swiss Grid", "brutalist"); adjectives such as dark, colorful or minimal go to `explicit_visual` or `personality`. `motion`: `static`, `quiet` or `expressive` set the level, other text becomes a treatment; `ambition`: `bold`, `confident` or `quiet` |
-| Governing brand | `brand.governing` | Project tokens/brand guide that define identity |
+| Governing brand | `brand: { "governing": true }` | Project tokens, components or a brand guide that define identity |
 | Interaction | `delegated`, `interactive` | "You decide" → `delegated: true`; non-interactive run → `interactive: false` |
 
 Every dimension carries a `source`: `explicit` (the user or project states it), `inferred` (a
@@ -45,8 +45,9 @@ node <skill-dir>/scripts/direction.mjs --context '<context json>'   # or pipe th
 ```
 
 The script is deterministic and reads [registry/styles.json](../registry/styles.json). Keep the
-input and output in working context; do not write process files. Without Node, apply §3–§6 by
-hand with the index in §8 and the library entries of the candidates (search `"id": "<id>"`).
+input and output in working context; do not write process files. Without Node, apply the rules in
+[direction-rules.md](../references/direction-rules.md) by hand with the library entries of the
+candidates (search `"id": "<id>"`).
 
 ## 3. Modes and sufficiency
 
@@ -85,63 +86,18 @@ whose relevant candidates are all refined-neutral, gets no question. Merge it in
 question batch. If nobody can answer, proceed with the default and state the assumption. After
 the answer, update the context (`source: explicit`) and run the engine again.
 
-## 5. Scoring
+## 5. Composition at a glance
 
-`score(style) = Σ weight × match / Σ weight of known dimensions × 100`. This is relative
-suitability for this context, not design quality.
+The record has one **primary** (its typography and color are the identity), at most one
+**secondary** (a listed pairing that lends layout, surface and imagery, only when brand
+personality is known), **functional** directions per extra surface (reusing primary and
+secondary first; Native Clean or Instrument for Operate and dense screens; at most three styles
+in total), plus ambition, color posture and motion level. Accessibility floors and explicit user
+requirements outrank every style treatment. Scoring weights, composition order, validation and
+the style index are in [direction-rules.md](../references/direction-rules.md); read them only
+when applying the engine by hand or extending the library.
 
-| Group | Weight | Fields |
-|---|---:|---|
-| Product | 20 | product type, category |
-| Business goal | 20 | goals |
-| Audience | 15 | audience |
-| Personality | 15 | personality, positioning |
-| UX | 15 | surface mode, density |
-| Content | 10 | content |
-| Platform | 5 | platform |
-
-Match levels come from each style's `fit` lists: strong 1, ok 0.6, unlisted 0.3, conflict 0
-(reported). Several values in one field are averaged. Unknown groups are left out of both sums,
-and `coverage` (known weight / 100) sets confidence. `exclude_when` rules remove a style for
-hard mismatches (Neo-Brutalist for children, patients, healthcare or kids; Editorial Luxury and
-Dark Premium for children or kids); an explicit request overrides them with a warning. Ties follow `default_order`, then
-library order. The semantic work is the extraction in §1; the script only applies structured
-compatibility to it, so synonyms never decide the result.
-
-## 6. Composition and validation
-
-- **Primary**: the leader, or the explicit style. Its typography and color are the identity.
-- **Secondary** (at most one): only when brand personality or positioning is known
-  (`secondary_requires`), also for a named style; listed in the primary's `pairs_with`, no clash, no fit conflict with the
-  known context, score ≥ 60 and within 25 points of the primary (explicit mode: no gap rule). It
-  may lend layout, surface and imagery treatments, never identity. Functional-only styles
-  (Instrument) are never secondary. Unknown personality → no secondary, so an unclear brief does
-  not drift toward, say, luxury.
-- **Functional** (per extra surface in `surfaces`, each `{ name, page_type, surface_mode?, density? }`):
-  a style *fits* a surface when its mode fit is strong or ok and its density fit is not a
-  conflict; it *fits well* when both are strong. Order: the primary if it fits well; for Operate
-  surfaces or a density the primary does not fit well, a functional-neutral style that fits well
-  (Native Clean before Instrument); an already chosen style that fits; a new compatible style
-  that fits well; else the primary. New styles are added only while the total stays ≤ 3, and
-  none may clash with the primary or the secondary. Functional directions inherit the primary's
-  color and type tokens and change only density, layout and components.
-- **Treatments**: typography, color, layout, components, surface, motion and imagery from the
-  primary (plus the secondary's lent fields); `explicit_visual` values override them.
-- **Ambition**: the primary's (`bold`, `confident`, `quiet`); `quiet` for dense Operate surfaces;
-  `confident` instead of `bold` under a governing brand unless the user asks for bold.
-- **Color posture**: user color direction → brand → the primary's posture (`monochrome` with
-  [archetypes](../references/visual-design.md#default-color-posture-premium-monochrome), `chromatic`
-  with its rule, or `system`). The AI-generated color and motion signatures stay excluded in
-  every posture unless the user or brand requires them.
-- **Motion**: the primary's level and character inside [motion-principles §0](../references/motion-principles.md#0-default-posture-smooth-choreographed-motion); a requested `static`, `quiet` or `expressive` sets the level.
-
-Validation in the record: at most three distinct styles (more is a `fail`), no clashing
-pairings, functional compatibility with primary and secondary, explicit-style fit warnings and the accessibility notes of the chosen styles as
-constraints. Accessibility floors and explicit user requirements outrank every style treatment
-([conflict-resolution](conflict-resolution.md)); decoration never overrides usability. Rendered
-proof of direction fit is part of the [visual craft gate](quality-gates.md#visual-craft-acceptance).
-
-## 7. The record and who consumes it
+## 6. The record and who consumes it
 
 The engine output is the record: `design_decision` (mode, confidence, coverage), `context` with
 sources, `unknown`, `assumptions`, `candidates`, `excluded`, `direction` (primary, secondary,
@@ -163,33 +119,4 @@ neutral; fix the context and run again.
 
 Re-run the engine (once) when foundation research, the user's answer or project intelligence
 changes a decisive dimension. A driver whose house rules contradict the record is the wrong
-driver ([decision-engine §4](decision-engine.md#4-drivers)).
-
-## 8. Style index
-
-| Style | Family | Ambition | Typical fit | Avoid / excluded |
-|---|---|---|---|---|
-| Bold Modern | refined-neutral | bold | tech, launches, premium brands; Persuade | nostalgic, warm or rebellious briefs; kids |
-| Modern Minimal | refined-neutral | confident | everyday commerce, SaaS, most products | rebellious, playful briefs |
-| Editorial Luxury | refined-neutral | bold | luxury fashion, beauty, real estate, travel | budget; children, kids (excluded) |
-| Dark Premium | refined-neutral | bold | automotive, entertainment, gaming, music, premium tech | warm/friendly; children, kids (excluded) |
-| Swiss Grid | refined-neutral | confident | portfolios, editorial, design-led brands | playful, warm; kids |
-| Native Clean | quiet-functional | quiet | utilities, banking, booking, settings | brand sites, portfolios |
-| Instrument | quiet-functional | quiet | dashboards, analytics, logistics, fintech operations | Persuade surfaces; children (excluded) |
-| Warm Humanist | warm-natural | confident | healthcare, wellness, education, community | luxury, rebellious |
-| Organic Tactile | warm-natural | confident | sustainability, wellness, food, travel | technical, high density, crypto |
-| Color Block | expressive-color | bold | youth brands, sports, entertainment, music and events | luxury, calm, monitoring |
-| Neo-Brutalist | expressive-color | bold | dev tools, creative communities, streetwear | trust-first products, legal; children, patients, healthcare, kids (excluded) |
-| Playful Illustrated | expressive-color | bold | kids, education, games, toy shops | enterprise, luxury, legal |
-| Retro Modern | expressive-color | bold | food, entertainment, music, creative brands | technical, task efficiency |
-
-Deferred (honored only as explicit custom directions): Glass Modern, Spatial Futurism; reasons
-are in the library's `deferred` list.
-
-**Extending the library:** add an entry to `registry/styles.json` with the same fields (id,
-name, aliases, family, label, persona, ambition, color_posture, motion, fit, exclude_when,
-pairs_with, clashes_with, functional_neutral, as_secondary, treatments, accessibility,
-platform_notes). Aliases are style names only, never adjectives such as "dark" or "minimal".
-Pairings are symmetric: list the new style in each partner's `pairs_with` (and clashes in
-`clashes_with`). Add scenarios to `tests/direction-scenarios.json`. Vocabulary, labels,
-thresholds and platform families are data in the same file; no code change is needed.
+driver ([full-design §4](full-design.md#4-drivers)).

@@ -1,0 +1,352 @@
+[
+  {
+    "id": "S40",
+    "platform": "web",
+    "intents": [
+      "new-ui-design"
+    ],
+    "workflow": "design",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Large",
+    "risk": "low",
+    "driver": "taste/design-taste-frontend",
+    "selected_skills": [
+      "ui-ux-pro-max (uupm/search)",
+      "impeccable shape",
+      "frontend-design (bounded design-reasoning mode)",
+      "design-taste-frontend",
+      "animate",
+      "choreograph",
+      "impeccable critique",
+      "impeccable audit",
+      "improve-animations"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "multi-agent",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/direction.md",
+      "scripts/direction.mjs",
+      "core/orchestration.md",
+      "core/decision-engine.md",
+      "core/adapters.md",
+      "workflows/design.md",
+      "core/skill-registry.md",
+      "core/quality-gates.md",
+      "registry/skills.yaml (entries: impeccable shared/new-work/shape/critique/audit, uupm/*, taste, frontend-design, emil/animate, choreograph, improve-animations, shadcn, magicui, vercel)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Full-design marketing page; direction.mjs (inferred, delegated, no question): Editorial Luxury, bold, premium monochrome, expressive motion; Taste eligible via probe-runtime finding Node24 under the runtime manager (invoke by absolute path, no PATH change) + Chrome + authorized local kit; system stage has no compatible create owner (HTML, drivers can't double) -> built-in, capping at Passed with limitations; Hanoi facts/prices as marked placeholders; no publish."
+  },
+  {
+    "id": "S01",
+    "platform": "web",
+    "intents": [
+      "ui-improvement"
+    ],
+    "workflow": "improvement",
+    "fast_path": true,
+    "mutation": "allowed",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/execution-policy.md",
+      "workflows/improvement.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Exact correction: change @theme --color-primary to a green (only Button.vue consumes it, so the token change is the requested scope); check AA contrast of label on green and hover/focus states; L1+L2+L4 in Chrome."
+  },
+  {
+    "id": "S18",
+    "platform": "ios",
+    "intents": [
+      "ui-review"
+    ],
+    "workflow": "review",
+    "fast_path": false,
+    "mutation": "read-only",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "impeccable critique",
+      "agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/review.md",
+      "core/skill-registry.md",
+      "platforms/ios.md",
+      "core/quality-gates.md",
+      "registry/skills.yaml (impeccable critique, agent-device, swiftui-pro)"
+    ],
+    "registry_read_fully": false,
+    "notes": "UX problems on one SwiftUI screen = ux-critique + Apple platform-conformance, both served by Impeccable critique in native mode (no .impeccable writes, no PRODUCT.md); render on the simulator via agent-device at SE/large iPhone; findings L0+L4; checkout is a critical path so a11y issues are high severity."
+  },
+  {
+    "id": "S32",
+    "platform": "ios",
+    "intents": [
+      "ui-review",
+      "responsive"
+    ],
+    "workflow": "review",
+    "fast_path": false,
+    "mutation": "read-only",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "impeccable critique"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Needs review",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/review.md",
+      "core/skill-registry.md",
+      "platforms/ios.md",
+      "core/quality-gates.md",
+      "registry/skills.yaml (impeccable critique, agent-device)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Core ask is visual verification on iPhone SE and iPad; no Xcode/simulator so agent-device's requirement fails and nothing renders -> code-only size-class/Dynamic Type review (L0) and Needs review per quality-gates, with exact simctl/xcodebuild commands for the user to run."
+  },
+  {
+    "id": "S37",
+    "platform": "ios",
+    "intents": [
+      "ui-review"
+    ],
+    "workflow": "review",
+    "fast_path": false,
+    "mutation": "read-only",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "apple-design (dickwu/apple-design-skill, unregistered HIG reviewer)",
+      "agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/review.md",
+      "core/skill-registry.md",
+      "platforms/ios.md (§0 Liquid Glass/glass APIs, §12)",
+      "core/conflict-resolution.md (Liquid Glass row, via grep)",
+      "core/quality-gates.md",
+      "registry/skills.yaml (impeccable critique, emil/apple-design, agent-device, swiftui-pro)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Report-only platform-conformance review of app chrome; review.md asks for an HIG reviewer on Apple platforms and the installed unregistered dickwu apple-design is a clearly closer fit than Impeccable critique (medium platform-conformance authority), so it takes the slot; ios.md §0 for iOS 26/Xcode 27 Liquid Glass facts (opaque toolbarBackground/presentationBackground fills, glass-on-glass); render on iOS 27 simulator via agent-device; L0+L4."
+  },
+  {
+    "id": "S36",
+    "platform": "web",
+    "intents": [
+      "new-ui-design"
+    ],
+    "workflow": "design",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "frontend-design (bounded design-reasoning mode)",
+      "animate",
+      "impeccable critique",
+      "impeccable audit"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/direction.md",
+      "scripts/direction.mjs",
+      "core/orchestration.md",
+      "core/decision-engine.md",
+      "core/adapters.md",
+      "workflows/design.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (frontend-design, impeccable shape/critique/audit, emil/animate, uupm/search)"
+    ],
+    "registry_read_fully": false,
+    "notes": "New Read page inside a governing docs system: driver none, direction.mjs brand mode (quiet motion, brand color), tokens/MDX components/page templates verified reuse for system+components; concept via frontend-design bounded adapter (entry layout, version anchors, filtering), quiet CSS motion via Emil animate, then Impeccable critique + audit in fresh contexts; L1+L2+L4 in Chrome."
+  },
+  {
+    "id": "S03",
+    "platform": "web",
+    "intents": [
+      "new-ui-design"
+    ],
+    "workflow": "design",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "elevated",
+    "driver": null,
+    "selected_skills": [
+      "ui-ux-pro-max (uupm/search)",
+      "impeccable shape",
+      "frontend-design (bounded design-reasoning mode)",
+      "shadcn",
+      "animate",
+      "choreograph",
+      "impeccable critique",
+      "impeccable audit",
+      "improve-animations"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/direction.md",
+      "scripts/direction.mjs",
+      "core/orchestration.md",
+      "core/decision-engine.md",
+      "core/adapters.md",
+      "workflows/design.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (uupm/search, impeccable shape/onboard/critique/audit, frontend-design, shadcn, magicui, emil/animate, choreograph, improve-animations)"
+    ],
+    "registry_read_fully": false,
+    "notes": "New Operate screen treated as full-design with no driver (existing shadcn system governs; direction.mjs brand mode, quiet motion); system = verified reuse of globals.css tokens + Card/Button/Badge/Tabs/Switch, shadcn for missing parts (e.g. DropdownMenu/Checkbox); CSS motion only (no library added), choreograph for mark-read/dismiss list gaps; elevated for new route/nav entry and read/unread state; independent critique + audit + motion review in fresh subagent contexts."
+  },
+  {
+    "id": "S12",
+    "platform": "ios",
+    "intents": [
+      "animation"
+    ],
+    "workflow": "animation",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/direction.md",
+      "scripts/direction.mjs",
+      "core/decision-engine.md",
+      "workflows/animation.md",
+      "core/skill-registry.md",
+      "platforms/ios.md (§0, §9, §11)",
+      "core/quality-gates.md",
+      "registry/skills.yaml (emil/animate, emil/apple-design, emil/design-eng, improve-animations, review-animations)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Design+build sub-type; no compatible motion-build skill on native iOS (Emil animate/apple-design/design-eng are web; ios.md says principles only), so platform APIs: spring scale + symbolEffect(.bounce) + sensoryFeedback (iOS 17), interruptible, Reduce Motion cross-fade; motion-review candidates are web/RN only -> built-in checklist; agent-device excluded so simctl L2+L4; haptic feel needs L5 device -> limited."
+  },
+  {
+    "id": "S16",
+    "platform": "web",
+    "intents": [
+      "animation"
+    ],
+    "workflow": "animation",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "elevated",
+    "driver": null,
+    "selected_skills": [
+      "remove-animations"
+    ],
+    "recommended_to_user": [
+      "review-animations"
+    ],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/animation.md",
+      "core/skill-registry.md",
+      "core/quality-gates.md",
+      "registry/skills.yaml (emil/remove-animations, improve-animations, review-animations, animation-performance)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Remove sub-type (inspect -> audit -> subtract -> validate) routed to Emil remove-animations: drop per-card page-load fade-ins and purposeless @vueuse/motion/CSS transitions, keep feedback/state-change motion; no dependency removal or retuning without permission; elevated because shared components change; L1+L2+L4 with motion-trace.mjs before/after in Chrome."
+  },
+  {
+    "id": "S22",
+    "platform": "react-native-expo",
+    "intents": [
+      "ui-bug-fix"
+    ],
+    "workflow": "bug-fix",
+    "fast_path": true,
+    "mutation": "allowed",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/execution-policy.md",
+      "workflows/bug-fix.md",
+      "platforms/react-native.md (§0 via grep)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Known cause: SDK 54 enforces Android edge-to-edge and react-native's SafeAreaView is deprecated/no-op on Android; switch to react-native-safe-area-context (already present via Expo Router, no new dep) with bottom edge or FlatList contentContainerStyle paddingBottom = insets.bottom, no double top inset under the stack header; reproduce and verify with emulator screenshots (L4), regression on gesture vs 3-button nav."
+  }
+]

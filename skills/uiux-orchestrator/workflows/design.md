@@ -11,15 +11,23 @@ not dropped merely because a driver was selected, a spec seems obvious or the ta
 Implementing a verified supplied design is the explicit exception described below; follow its
 fidelity workflow rather than inventing an alternative concept.
 
+**A new screen inside an established design system** (its tokens, components and patterns govern
+the surface) is not full-design. Run `inspect → ux (when flows or states are open) → direction
+→ components → motion → implement → validate → review → refine → report`: verified system reuse
+replaces foundation and system creation, the scoped visual specialist weighs 2–3 approaches inline
+(no separate concept activation), and review is one UX/design reviewer plus technical/accessibility
+checks on the new screen. Full-design applies to a surface without a governing system, a new
+visual world, or Redesign/Replace.
+
 | Step | Run when | Skip when | Notes |
 |---|---|---|---|
 | inspect | always | — | Find where the new UI lives, neighbours, tokens, components to reuse. |
-| foundation | every full-design surface | exact supplied foundation/specification verified under a scoped workflow | Run research foundation (UUPM search) → UX analysis (Impeccable shape) → gap filling, per [Foundation ownership](../core/decision-engine.md#foundation-ownership). Distinguish sources from assumptions; UUPM style/palette results stay provisional references. |
+| foundation | every full-design surface | exact supplied foundation/specification verified under a scoped workflow | Run research foundation (UUPM search) → UX analysis (Impeccable shape) → gap filling, per [Foundation ownership](../core/full-design.md#2-foundation-ownership). Distinguish sources from assumptions; UUPM style/palette results stay provisional references. |
 | concept | every full-design surface | exact supplied concept verified under a scoped workflow | Execute `design-reasoning` as its own activation: frontend-design bounded mode on web, Impeccable shape elsewhere (separate from its foundation run). Accept alternatives, chosen experience concept and rationale before final art direction. |
 | direction | unresolved visual/interaction decisions or full-design creative work | exact supplied direction verified with no unresolved creative judgment | Author the direction contract inside the [design direction record](../core/direction.md) and record it before implementation. Inside an existing system, execute compatible scoped visual expertise; choose a full driver only for eligible original/replacement worlds. Tokens alone do not settle composition or experience decisions. |
 | system | every new surface; token/component changes | scoped tasks only, when the existing system fully settles it | Create the system with its owner (driver, Expo design-system or shadcn), then optionally record it with Impeccable document. Finalize tokens, components/states and contrast evidence from foundation constraints and final art direction. Full-design may verify reuse but cannot silently omit the stage. |
 | components | every full-design task; unresolved parts on scoped tasks | scoped tasks only, when reuse is already established | Full-design records verified sourcing/reuse. Choose each component and its contract with [component-intelligence.md](../references/component-intelligence.md); order: project component → platform component → installed library specialist (shadcn/Magic UI on React) → platform references → build from the contract. |
-| motion | **default** for every new surface: a motion signature plus smooth transitions and feedback per [motion-principles §0](../references/motion-principles.md#0-default-posture-smooth-choreographed-motion) | the user asked for a static result, or truly static content with no state changes (record the reason) | Hand to `animation.md` steps *design* and *build* only. Route `motion-build` (Emil first) and, for choreographed groups, `choreograph`. |
+| motion | **default** for every new surface: a motion signature plus smooth transitions and feedback per [motion-principles §0](../references/motion-principles.md#0-default-posture-smooth-choreographed-motion) | the user asked for a static result, or truly static content with no state changes (record the reason) | Hand to `animation.md` steps *design* and *build* only. Route `motion-build` (Emil first); add `choreograph` only for a complex multi-group sequence. |
 | implement | always (unless plan-only) | — | Apply execution-policy implementation standards. |
 | validate | always | — | Gate below. |
 | review | every new surface; Medium+ scoped tasks | Small specified component under the fast path | Execute both `ux-critique` and `tech-audit` for full-design, plus `motion-review` when motion shipped. Give reviewers the original brief, handoffs, diff and rendered output. Use separate reviewer contexts when available; declare sequential limitations otherwise. Add platform review when applicable. |

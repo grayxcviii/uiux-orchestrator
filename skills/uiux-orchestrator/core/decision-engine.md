@@ -1,122 +1,90 @@
 # Decision engine
 
-Input: Intake record + Project Profile. Output: an **Execution Plan** (§8) that records all twelve
-decisions: workflow, investigation depth, which slots get a specialist (UX analysis, visual
-direction, design system, components, motion, accessibility audit…), platform guidance, the
-independent reviewer, validation tools, and when the task is done.
-
-The engine reasons about capability slots. Skill facts live in `registry/skills.yaml`. The slot
-index (§3) is the routing table; `scripts/validate.py` keeps it in sync with the registry.
+Input: Intake record + Project Profile (+ the design direction record when design judgment is
+open). Output: the **Execution Plan** (§8). Skill facts live in `registry/skills.yaml`; the slot
+index (§3) is the routing table, kept in sync with the registry by `scripts/validate.py`.
 
 ## 1. Compose the workflow
 
-Workflows are built from a shared step library. Each workflow file says which steps it uses, in
-which order, and when a step may be skipped.
+Workflows are built from these steps; each workflow file lists its steps, order and skip rules.
 
-| Step | Purpose | Slots it may need | Handoff |
-|---|---|---|---|
-| `inspect` | Read the current implementation of the target | — | profile |
-| `audit-current` | Find UX/visual/technical problems in what exists | ux-critique, tech-audit, platform-conformance | review record |
-| `foundation` | Research, product context, UX and provisional guidelines | research-foundation, ux-analysis | foundation record |
-| `concept` | Experience concepts, alternatives, reasoning | design-reasoning | concept brief |
-| `ux` | Scoped UX decisions outside full creative work | ux-analysis, ux-copy | UX record |
-| `direction` | Final art direction consuming the concept | visual-direction, typography, color, layout | direction record |
-| `system` | Token/component decisions | design-system | system record |
-| `components` | Source each needed part (incl. charts) | component-reference, data-visualization, navigation | component record |
-| `motion` | Motion discovery/design | motion-discovery, motion-build | motion record |
-| `implement` | Write the code | motion-build, responsive, hardening | implementation record |
-| `validate` | Evidence per quality gates | visual-validation | evidence |
-| `review` | Independent check of the result | ux-critique, tech-audit, platform-conformance, code-review, motion-review | review record |
-| `refine` | Fix findings, re-verify | polish + any slot a finding needs | refinement record |
-| `report` | Final report | — | — |
+| Step | Purpose | Slots it may need |
+|---|---|---|
+| `inspect` | Read the current implementation of the target | — |
+| `audit-current` | Find UX/visual/technical problems in what exists | ux-critique, tech-audit, platform-conformance |
+| `foundation` | Research, product context, UX and provisional guidelines | research-foundation, ux-analysis |
+| `concept` | Experience concepts, alternatives, reasoning | design-reasoning |
+| `ux` | Scoped UX decisions outside full creative work | ux-analysis, ux-copy |
+| `direction` | Final art direction consuming the concept | visual-direction, typography, color, layout |
+| `system` | Token/component decisions | design-system |
+| `components` | Source each needed part (incl. charts) | component-reference, data-visualization, navigation |
+| `motion` | Motion discovery/design | motion-discovery, motion-build |
+| `implement` | Write the code | motion-build, responsive, hardening |
+| `validate` | Evidence per quality gates | visual-validation |
+| `review` | Independent check of the result | ux-critique, tech-audit, platform-conformance, code-review, motion-review |
+| `refine` | Fix findings, re-verify | polish + any slot a finding needs |
+| `report` | Final report | — |
 
-1. Base workflow = the primary intent's workflow (`core/intake.md`). Load that one file.
-2. For each secondary intent, add only that workflow's *distinct* steps (marked in each file).
-3. Drop steps whose skip condition holds; record dropped steps in one line.
-
-Investigation depth (record it): **shallow** — target file and what it imports (Small);
-**standard** — the full Project Profile (Medium); **deep** — profile plus neighbouring screens, a
-design-system inventory and usage counts of everything shared that will change (Large/high risk).
+Base workflow = the primary intent's workflow; each secondary intent adds only its *distinct*
+steps; drop steps whose skip condition holds (one line each). Investigation depth: **shallow**
+(target file and its imports, Small), **standard** (full Project Profile, Medium), **deep**
+(profile, neighbouring screens, design-system inventory and usage counts of every shared thing
+that will change; Large/high risk).
 
 ## 2. Assign and execute required capabilities
 
-**Which slots are required.**
+**Required slots.** Full-design ([full-design.md §1](full-design.md#1-required-roles-and-outputs)):
+every slot of every stage, with no size discount. Scoped workflows (improvement, Refresh,
+animation, bug-fix, design-system Extend/Document, accessibility, review): the slots the workflow
+step names for this size, plus any that pass the outcome test below.
 
-- **Full-design** ([orchestration.md §1](orchestration.md#1-required-roles-and-outputs)): every
-  slot of every stage is required. There is no size discount.
-- **Scoped workflows** (improvement, Refresh, animation, bug-fix, design-system Extend/Document,
-  accessibility, review): a slot is required when the workflow step names it for this size, or
-  when it passes the outcome test below.
-
-For every required slot, resolve ownership in this order:
+Resolve each required slot in this order:
 
 1. **Verified reuse:** a supplied specification or inspected project system completely settles
-   this decision. Record the exact source, what was checked and what is reused. A vague brand
+   the decision. Record the source, what was checked and what is reused. A vague brand
    description, an empty starter or a similar-looking component does not settle it.
-   Existing tokens settle token values, not all design judgment. For open-ended refinement,
-   still assign `design-reasoning` and the appropriate visual/interaction capability; do not use
-   system reuse to waive creative work on composition, hierarchy, presentation or feedback.
-2. **Accepted execution coverage:** a compatible specialist already executed this capability,
-   or the chosen driver explicitly owns it in the registry. Require its actual accepted output
-   for this slot. A UUPM activation may supply both foundation and UX outputs only under the
-   exception in [Foundation ownership](#foundation-ownership); do not run another specialist
-   merely to duplicate accepted work. Ownership
-   or selecting a skill is never permission to skip the output.
-3. **Specialist:** search the slot's candidates and installed skills. Execute the first suitable,
-   compatible available candidate using §3. `priority` orders candidates; `value_if_missing`
-   controls install hints. Neither makes an available owner optional.
-4. **Evidenced fallback:** only after checking relevant alternatives and recording why each is
-   missing, incompatible, excluded, user-invoked-only or blocked by an unmet prerequisite.
-   Execute the built-in method, label degraded coverage and apply the orchestration status ceiling.
+   Existing tokens settle token values, not all design judgment: open-ended refinement still
+   needs concept alternatives (inline at Small/Medium inside a system, see `design-reasoning` in §3)
+   and the visual/interaction capability.
+2. **Accepted execution coverage:** a specialist already executed this capability, or the chosen
+   driver owns it in the registry (`owns`). Require its accepted output for this slot; never run
+   a second specialist to duplicate it. Owning a slot is never permission to skip its output.
+3. **Specialist:** execute the first suitable, compatible, available candidate from §3.
+   `priority` orders candidates and `value_if_missing` controls install hints; neither makes an
+   available owner optional.
+4. **Evidenced fallback:** only after recording why each relevant alternative is missing,
+   incompatible, excluded, user-invoked-only or blocked by a prerequisite. Label degraded
+   coverage and apply the orchestration status ceiling.
 
-An invocation that failed does not fill the slot. Follow the activation failure protocol in
-[skill-registry.md](skill-registry.md) and [orchestration.md](orchestration.md), then route again.
-Never proceed to a dependent phase with a merely planned activation or unaccepted handoff.
-
-"I can do this", "built-in is enough", "the problems are obvious", time/token pressure,
-`cost: heavy`, or a nominal limit on skill count do not justify bypassing a required owner.
-Do not load redundant skills for a capability already executed and accepted. Full-design has no
-maximum number of necessary roles; explain scope-based omissions instead of optimizing the count.
+An invocation that failed does not fill the slot: follow the failure protocol in
+[orchestration.md](orchestration.md) and route again. Never start a dependent phase on a merely
+planned activation or an unaccepted handoff. "I can do this", "built-in is enough", "the problems
+are obvious", time/token pressure, `cost: heavy` or a skill-count limit never justify bypassing a
+required owner. Full-design has no maximum number of roles.
 
 ### Scoped workflows: outcome test and size
 
 For a slot the scoped workflow does not already require:
 
-1. **Outcome test.** Would a specialist give a different, better result than the project's
-   existing truth plus the built-in fallback? *No — the project already answers it* (tokens,
-   component, known cause) → project truth. *No — built-in is enough* → built-in. *Yes* → route (§3).
-2. **Default-on presumption.** If the slot's shortlist has an available, compatible candidate with
-   `priority: recommended` and `value_if_missing: high`, presume *Yes*, unless one of these holds:
-   - the task is Small and is not itself a review/audit or an explicit request for the judgment
-     that skill provides (then the plain outcome test and the workflow's Small instructions rule);
-   - the entry is `cost: heavy` and the slot is not central (central = the slot's output is the
-     deliverable, e.g. a review request, or the evidence base of the workflow, e.g. a redesign's
-     audit-current);
-   - a concrete, task-specific reason is recorded (e.g. "the user supplied the exact spec", "the
-     change is one class on one element", "read-only task and the skill must write files").
-   An entry without `cost` is `light`.
+1. **Outcome test.** Would a specialist give a better result than project truth plus the built-in
+   fallback? No, the project answers it (tokens, component, known cause) → project truth. No,
+   built-in is enough → built-in. Yes → route (§3).
+2. **Default-on presumption.** A shortlisted, available, compatible candidate with
+   `priority: recommended` and `value_if_missing: high` presumes *Yes*, unless: the task is Small
+   and neither a review/audit nor an explicit request for that judgment; the entry is
+   `cost: heavy` and the slot is not central (its output is the deliverable or the workflow's
+   evidence base, e.g. a redesign's audit-current); or a concrete task reason is recorded ("the
+   user supplied the exact spec", "one class on one element", "read-only task and the skill must
+   write files"). No `cost` means `light`. "The problems are obvious", "I can do this myself",
+   "Small task" for a requested review, or "heavy" for a central slot are not reasons.
 
-| Not a reason to skip a default-on specialist | Why |
-|---|---|
-| "The problems are obvious" | A specialist finds the non-obvious ones; that is its value. |
-| "I can do this myself" / "built-in is good enough" | True for every capable agent; it would make every specialist unused. |
-| "Small task" when the task is a review or the user asked for that judgment | The specialist's output is the deliverable. |
-| "Heavy for such a small screen / it spawns sub-agents" when the slot is central | `cost: heavy` is weighed only for non-central slots. If sub-agents are unavailable, run the skill's sequential path. |
+Typical results: exact correction → 0 routed slots (fast path when it qualifies); Small
+open-ended refinement → 1 scoped specialist; Medium → 1–3; Large → 2–5; a review routes its
+evaluator. More than 5 outside full-design is probably over-engineered: re-run the outcome test.
 
-Typical scoped results:
-
-- **Exact correction**, at any size: 0 routed slots, so use the fast path when it qualifies.
-- **Small open-ended refinement:** 1 scoped specialist.
-- **Medium:** 1–3 routed slots.
-- **Large:** 2–5 routed slots.
-- **Review:** routes its evaluator.
-
-More than 5 outside full-design means the plan is probably over-engineered, so re-run the
-outcome test.
-
-**Accessibility audit decision:** required for accessibility intents, applicable review scope,
-new surfaces and redesigns. Full creative work always includes the technical/accessibility
-review as well as the UX/design review. Scoped fixes still meet accessibility floors.
+**Accessibility audit:** required for accessibility intents, applicable reviews, new surfaces and
+redesigns; full creative work always includes the technical/accessibility review. Scoped fixes
+still meet accessibility floors.
 
 ## 3. Slot index and routing
 
@@ -127,7 +95,7 @@ replaces it; `(bundle)` = several skills that count as one pick.
 | Slot | Candidates, in preference order | Built-in fallback |
 |---|---|---|
 | research-foundation | `uupm/search` (primary), `impeccable/shape` | project/product evidence + explicitly labeled research gaps |
-| design-reasoning | `anthropic/frontend-design` in bounded `design-reasoning` mode (web), `impeccable/shape` (other platforms) — in full-design, always its own activation, separate from foundation and art direction; scoped improvements follow `improvement.md` sizing | concept alternatives and rationale from the accepted foundation |
+| design-reasoning | `anthropic/frontend-design` in bounded `design-reasoning` mode (web), `impeccable/shape` (other platforms) — its own activation, separate from foundation and art direction, for full-design, Redesign/Replace, Large scoped work and requested explorations. Inside an established system at Small or Medium size, the scoped visual specialist (built-in when none applies) weighs 2–3 approaches inline instead; no separate activation | concept alternatives and rationale from the accepted foundation |
 | ux-analysis | `impeccable/shape` (primary) · gap filling: `impeccable/onboard` (first-run, empty states, activation), `uupm/search` (one targeted guideline/pattern) | intake + workflow heuristics |
 | visual-direction | drivers via §4: `taste/design-taste-frontend`, `impeccable/new-work`, `anthropic/frontend-design`, `uupm/design-system` · specialists: `expo/native-ui`, `impeccable/tone` | project tokens + platform conventions |
 | design-system | **create:** the selected driver when it owns `design-system` (`impeccable/new-work`, `uupm/design-system`), `expo/design-system` (Expo), `shadcn/ui` (React projects on shadcn) · **record after build:** `impeccable/document` (never counts as creation) | `workflows/design-system.md` |
@@ -142,8 +110,8 @@ replaces it; `(bundle)` = several skills that count as one pick.
 | design-exploration | `impeccable/live`, `emil/prototype` (user) | 2–3 direction records |
 | data-visualization | `uupm/search` | `references/visual-design.md` §8 |
 | motion-discovery | `emil/find-animation-opportunities`, `emil/animation-vocabulary` | purpose test in `workflows/animation.md` |
-| motion-build | **primary by platform:** `emil/animate` (web), `emil/animate-expo` (React Native/Expo; = `expo/expo-animation`, load one), platform animation APIs per `platforms/<platform>.md` §9 (iOS, Android, Flutter) · **specialized, when the task matches:** `vercel/react-view-transitions` (route/state swaps on React), `android/navigation-event` (predictive back), `gsap/*` (bundle; only when GSAP is the chosen tool), `magicui/components` (React, filtered component moments), `impeccable/animate` (only inside an Impeccable-driven build), `emil/apple-design`, `emil/design-eng` · **complements:** `emil/choreograph` (always when several elements move together), `swm/react-native-best-practices` | platform animation APIs + `references/motion-principles.md` |
-| motion-review | `emil/improve-animations` (surface/app motion audit), `emil/remove-animations` (over-animated UI), `emil/review-animations` (user) — required in full-design review when motion ships, and on Medium+ scoped work that changes motion | motion checklist in `workflows/animation.md` + `scripts/motion-trace.mjs` |
+| motion-build | **primary by platform:** `emil/animate` (web), `emil/animate-expo` (React Native/Expo; = `expo/expo-animation`, load one), platform animation APIs per `platforms/<platform>.md` §9 (iOS, Android, Flutter) · **specialized, when the task matches:** `vercel/react-view-transitions` (route/state swaps on React), `android/navigation-event` (predictive back), `gsap/*` (bundle; only when GSAP is the chosen tool), `magicui/components` (React, filtered component moments), `impeccable/animate` (only inside an Impeccable-driven build), `emil/apple-design`, `emil/design-eng` · **complements:** `emil/choreograph` (when the motion design includes a complex sequence: several groups, scroll-linked or multi-step interruptible choreography; not for ordinary state transitions or one staggered entrance, which the primary owner sets), `swm/react-native-best-practices` | platform animation APIs + `references/motion-principles.md` |
+| motion-review | `emil/improve-animations` (surface/app motion audit), `emil/remove-animations` (over-animated UI), `emil/review-animations` (user) — required in full-design review when motion ships (the record checker enforces it), for Medium+ animation work, and for scoped work whose deliverable is motion or spans several flows. `improve-animations` fits app-wide or multi-flow audits; other scoped work that changes motion applies the motion checklist | motion checklist in `workflows/animation.md` + `scripts/motion-trace.mjs` |
 | motion-performance | `emil/animation-performance`, `gsap/performance`, `emil/animate-expo` (its build sequence covers stutter on device), `swm/react-native-best-practices`, `android/compose-performance`, `impeccable/optimize` | platform profiler |
 | ux-critique | `impeccable/critique` | rubric in `workflows/review.md` |
 | tech-audit | `impeccable/audit`, `vercel/web-design-guidelines` | a11y/perf/responsive checks + `scripts/ui-check.mjs` |
@@ -178,31 +146,6 @@ in the report that it was unregistered. Skills the user or environment excluded 
 SKILL.md frontmatter and first section before trusting the entry.
 
 
-### Foundation ownership
-
-The `foundation` stage runs in this order:
-
-1. **Research foundation: UUPM search (primary).** Product type, UX guidelines, design patterns,
-   industry style references and anti-patterns, stack-specific recommendations, each with its
-   source; assumptions and gaps labeled.
-2. **UX analysis: Impeccable shape (primary),** consuming that evidence. Target users, main
-   tasks, information hierarchy, user flows, states and edge cases, success criteria.
-3. **Gap filling, only for what shape left open:** Impeccable onboard for first-run flows, empty
-   states and activation; a targeted UUPM re-query for one specific guideline or pattern.
-
-| Skill | Owns | Must not |
-|---|---|---|
-| `uupm/search` | Research evidence, guidelines, patterns, stack facts | Decide the final UX flow; set the final palette, type or design system (its style/palette results are evidence for the [direction record](direction.md) and provisional references for the art-direction owner; they never override the record, and the AI-generated signature lists still apply) |
-| `impeccable/shape` | UX plan: flows, information architecture, states, context discovery | Replace specialized lookups (charts, fonts, stack guidance) |
-| `impeccable/onboard` | First-run flows, empty states, activation | Repeat UUPM research or redo shape's overall UX plan |
-
-Exception: one UUPM activation may satisfy both research foundation and UX analysis only when
-its output actually contains every UX analysis output (users, tasks, hierarchy, flows, states)
-**and** Impeccable shape is unavailable or the task is Small. On Medium+ and full-design work
-with shape available, shape performs UX analysis. A research output never counts as completed
-UX analysis by default.
-
-
 ### Ownership by stage
 
 One owner per decision. Specialists may advise outside their row; they never overrule its owner.
@@ -212,12 +155,12 @@ One owner per decision. Specialists may advise outside their row; they never ove
 | Research evidence | `uupm/search` | `impeccable/shape` when UUPM is unavailable | — |
 | UX plan | `impeccable/shape` | `impeccable/onboard`, targeted `uupm/search` | A research output counted as UX analysis by default |
 | Design direction: style family, ambition, color posture, motion level | Orchestrator via [direction.md](direction.md) (`scripts/direction.mjs`) | `uupm/search` evidence, `impeccable/shape` audience findings, the user's answer | Re-chosen by a driver or specialist; a named style replaced by ranking |
-| Concept | `design-reasoning` owner (2–3 alternatives inside the direction record) | — | In full-design: merged into the foundation or art-direction activation, even when the same skill later drives. Scoped improvements may combine concept and direction as `workflows/improvement.md` allows by size |
+| Concept | `design-reasoning` owner (2–3 alternatives inside the direction record); inline in the scoped visual specialist for Small/Medium work inside an established system | — | In full-design: merged into the foundation or art-direction activation, even when the same skill later drives |
 | Final palette, type, composition | The surface's driver, or the scoped visual specialist when no driver applies | `uupm/search`, `impeccable/colorize`, `impeccable/typeset` | Preselected as values by the orchestrator; chosen outside the direction record or its color posture |
 | Design system (create) | Driver that owns `design-system`, else the first create candidate in the slot | `impeccable/document` records the result | `impeccable/document` alone counted as creation |
 | Component choice and contract | `references/component-intelligence.md` | Project → platform → library specialists | A library default shipped without meeting the contract |
 | Motion | Primary motion owner for the platform | Specialized motion skills, `emil/choreograph` | Motion skipped on a new surface without a user request for static |
-| Review | Independent `ux-critique` + `tech-audit` (+ `motion-review` when motion ships in full-design, or on Medium+ scoped work that changes motion) | `platform-conformance`, `code-review` | The driver or implementer reviewing its own work without a fresh context |
+| Review | Independent `ux-critique` + `tech-audit` (+ `motion-review` when motion ships in full-design, for Medium+ animation work, or when motion is the scoped deliverable) | `platform-conformance`, `code-review` | The driver or implementer reviewing its own work without a fresh context |
 
 **Color posture is a constraint, not a palette.** Drivers and specialists choose the actual colors
 inside it. The direction record sets it: the user's color direction, then the brand's, then the
@@ -245,74 +188,21 @@ a kit does not waive the visual brief. Unavailable or incompatible candidates fa
 | App UI greenfield and no driver above is available | `uupm/design-system` |
 | Otherwise | none — built-in direction from `references/visual-design.md` and the platform file |
 
-Route from the **original user brief and inspected project**, before inventing palette, effects
-or media requirements. A self-proposed 3D scene or parallax effect is not a user constraint that
-can be used to exclude a photo-led driver. An explicitly selected concept or an existing brand
-does constrain routing; record its provenance when it rules a driver out.
-
-For web marketing, record Taste's eligibility even when another driver is chosen. Verify its
-actual installed instructions and Node runtimes, not just the registry summary or PATH version.
-Use the [runtime probe](skill-registry.md#availability-detection); a compatible alternate binary
-counts without installing anything or changing shell defaults. An eligible Taste must execute
-unless the user explicitly chose another driver. A genuine brief conflict, missing prerequisite,
-excluded skill or unauthorized side effect is a valid recorded exclusion, not an invitation to
-force Taste on every surface. Necessary local kit files inside an authorized new surface do not
-by themselves require another permission question.
-
-For eligible marketing, product-launch and shop websites, Taste is the first-choice driver,
-including requests for distinctive or non-template design. If it is installed and compatible,
-activate its actual pipeline; naming it in a plan or borrowing its aesthetic advice is not use.
-Skipping it requires a concrete eligibility, brief-fit or permission reason, recorded in the
-plan. The agent's ability to build a page itself is not a reason to bypass the driver.
-
-A driver's necessary local assets/context inside the requested new surface may already be
-authorized by the build task. Check scope and existing authorization before asking. Ask once
-only for genuinely unauthorized writes, dependencies or incompatible house rules. If a required
-action remains unauthorized, record it and try the next eligible driver; never hide the reason.
-
-The selected driver **authors** the [direction contract](../references/visual-design.md#direction-contract-before-implementation)
-before UI implementation. Give it the original brief, references, scope, governing brand rules
-and technical constraints. Supply the accepted foundation and concept brief, plus the color and
-motion postures and the AI-generated signature lists as constraints. Leave final palette,
-typography, composition and signature details to that driver through its own creative process
-inside those constraints; the orchestrator does not preselect them.
-Preserve its resulting visual decisions during implementation and independent review, subject
-to user requirements and accessibility floors. For driverless creative refinement, the compatible
-scoped visual/interaction specialist authors that contract. Built-in authorship is allowed only
-after relevant specialist alternatives are checked and unavailable. The contract records the
-chosen design; it is not a second house style imposed
-on the driver.
-
-**Independent review of a driven surface** uses a different evaluator than the driver: prefer
-another skill (e.g. `vercel/web-design-guidelines`); another command of the driver's skill counts
-only when run in a fresh context.
-
-Roles: `specialist` answers one scoped question or produces one artifact; `reviewer` evaluates and
-does not edit unless a fix step asks; references are read, never run.
+Driver eligibility (brief fit, Taste for web marketing, runtime probes, authorization) and
+how the driver authors the direction contract are in [full-design.md §4](full-design.md#4-drivers).
 
 ## 5. Load progressively
 
-| Layer | What | When |
-|---|---|---|
-| 1 | The slot index (§3) + the registry entries of shortlisted ids | During routing |
-| 2 | The chosen skill's SKILL.md (or the one command reference of a multi-command skill) | When its slot executes |
-| 3 | That skill's references, scripts, data | Only when its own instructions require them for this task |
-
-Never load two skills for one slot "to compare". Never re-read a file already in context unless it
-changed. Prefer a skill's targeted command over its full pipeline.
+Load the slot index and the shortlisted registry entries while routing; the chosen skill's
+SKILL.md (or its one command reference) when its slot executes; its own references, scripts and
+data only when its instructions require them. Never load two skills for one slot "to compare",
+never re-read an unchanged file, and prefer a skill's targeted command over its full pipeline.
 
 ## 6. Handoff brief to a specialist
 
-This one-slot brief is for specialists, including a registered bounded adapter invoked with
-its explicit mode and `scoped_brief`. In concept mode, frontend-design supplies reasoning and
-provisional suggestions only; the visual driver remains the sole art-direction authority.
-
-A selected **driver** receives the whole surface and
-its owned stages (§4), including its required creative, asset-selection and validation process.
-Do not apply the slice shortcut below to strip a driver's pipeline. If a necessary step is
-incompatible or unauthorized, resolve that condition or select the next eligible driver and
-report the fallback; do not label a hand-built substitute as a Taste-driven result.
-
+For specialists, including a registered bounded adapter invoked with its explicit mode and
+`scoped_brief` (in concept mode, frontend-design supplies reasoning and provisional suggestions
+only). A selected **driver** follows [full-design.md §4](full-design.md#4-drivers) instead.
 Start from the entry's `brief`, then state what is already decided:
 
 ```text
@@ -322,19 +212,18 @@ Direction: <record: mode, primary/secondary/functional, ambition, color posture,
 Out of scope: <everything else>     Return: <the artifact you need>
 ```
 
-Merge a driver's own interview questions into the orchestrator's single question batch. If a
-skill insists on steps outside the slice (writing context files, copying a kit, rerunning
-discovery), run only what the slice needs and note what was skipped; if it cannot work without
-them, record why it is incompatible with the slice and try the next compatible candidate.
-Built-in fallback is allowed only after the alternative checks in orchestration.md.
+Merge a skill's own interview questions into the orchestrator's single question batch. If it
+insists on steps outside the slice (context files, kits, rerunning discovery), run only what the
+slice needs and note what was skipped; if it cannot work without them, record why and try the
+next compatible candidate.
 
 ## 7. Execution mode
 
 | Size / risk | Mode id | How |
 |---|---|---|
-| Small or Medium, not high risk | `single` | Execute routed specialists and collect handoffs. Full creative work requires separate review activations; use fresh reviewer context when available, otherwise declare `sequential-review` and its limitation. Scoped self-checks follow their own gate. |
-| Large or high risk, subagents available | `multi-agent` | Design/UX → implementation → **independent reviewer**, who gets requirements, handoff records and the diff — not the implementer's conclusions — and is told to look for failures. |
-| Large or high risk, no subagents | `sequential-review` | Same stages in one agent. Before reviewing, write the gate checklist, then re-read the diff and screenshots against it as if someone else wrote them. |
+| Small or Medium, not high risk | `single` | Execute routed specialists and collect handoffs. Full creative work still needs separate review activations: fresh reviewer context when available, else `sequential-review` with its limitation. |
+| Large or high risk, subagents available | `multi-agent` | Design/UX → implementation → **independent reviewer**, given requirements, handoffs and the diff (not the implementer's conclusions) and told to look for failures. |
+| Large or high risk, no subagents | `sequential-review` | Same stages in one agent: write the gate checklist first, then re-read the diff and screenshots against it as if someone else wrote them. |
 
 Never spawn an agent only to increase the count of agents.
 

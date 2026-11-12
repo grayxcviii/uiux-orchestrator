@@ -135,7 +135,11 @@ export function decide(input, library = loadLibrary()) {
   const surfaces = readSurfaces(input.surfaces, library, warnings)
   const delegated = Boolean(input.delegated)
   const interactive = input.interactive !== false
-  const brand = Boolean(input.brand?.governing)
+  // brand: { governing: true }, true, or the { value, source } shape used by other fields.
+  const rawBrand = input.brand
+  const brand = rawBrand === true || rawBrand?.governing === true || rawBrand?.value === true || rawBrand?.value?.governing === true
+  if (rawBrand !== undefined && rawBrand !== null && !brand && !(rawBrand === false || rawBrand?.governing === false || rawBrand?.value === false))
+    warnings.push('brand must be { "governing": true | false }; the value given was not understood, so no governing brand is assumed.')
   let explicitName = input.explicit_style ?? null
   if (explicitName !== null && typeof explicitName !== 'string') { warnings.push('explicit_style must be a style name string; ignored.'); explicitName = null }
   if (explicitName !== null && !explicitName.trim()) explicitName = null
@@ -340,7 +344,10 @@ function readContext(arg) {
   return JSON.parse(arg.trim().startsWith('{') ? arg : fs.readFileSync(arg, 'utf8'))
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+const isMain = () => {
+  try { return Boolean(process.argv[1]) && fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url)) } catch { return false }
+}
+if (isMain()) {
   const argv = process.argv.slice(2)
   const value = flag => { const i = argv.indexOf(flag); return i === -1 ? undefined : argv[i + 1] }
   try {

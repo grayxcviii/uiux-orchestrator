@@ -1,0 +1,16 @@
+[
+ {"id":"T01","project":"React Native app (comecrew-app)","prompt":"đánh giá repo này"},
+ {"id":"T02","project":"React Native app","prompt":"Review this PR for bugs before I merge it."},
+ {"id":"T03","project":"Node CLI tool","prompt":"Đánh giá tool này có ổn không, có nên dùng không?"},
+ {"id":"T04","project":"Next.js app","prompt":"Review the authentication API code for security issues."},
+ {"id":"T05","project":"Next.js app","prompt":"Đánh giá kiến trúc backend và cách tổ chức thư mục."},
+ {"id":"T06","project":"Any","prompt":"Evaluate whether this npm package is worth adopting."},
+ {"id":"T07","project":"Next.js app","prompt":"Write unit tests for the API client."},
+ {"id":"T08","project":"React Native app","prompt":"Màn hình đăng nhập bị lệch trên iPhone SE, sửa giúp mình."},
+ {"id":"T09","project":"React Native app","prompt":"Đánh giá giao diện màn hình profile, chỗ nào chưa ổn?"},
+ {"id":"T10","project":"Next.js app","prompt":"Make the settings page feel more polished."},
+ {"id":"T11","project":"Expo app","prompt":"Thêm animation khi mở bottom sheet."},
+ {"id":"T12","project":"Next.js app","prompt":"Review the onboarding UX and tell me what to fix."},
+ {"id":"T13","project":"Vue app","prompt":"Design a landing page for our clothing store."},
+ {"id":"T14","project":"React Native app","prompt":"Review the code quality of the checkout screen component (hooks, state, re-renders)."}
+]

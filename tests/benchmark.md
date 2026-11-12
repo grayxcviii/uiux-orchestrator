@@ -1,5 +1,7 @@
 # Benchmark — uiux-orchestrator routing and execution
 
+> **Latest:** [2026-11-12 paired routing runs](results/2026-11-12-context-reduction.md): after the context-reduction refactor and routing-rule changes, skill selection 100% (main and held-out), unnecessary invocations 14% main / 6% held-out, agent tokens −10% vs. v1.5.0. The tables below are older (v0.3–v1.0); the 1.3.0 runtime and routing hardening probes are in [results/2026-11-10-routing-hardening.md](results/2026-11-10-routing-hardening.md).
+
 - Date: 2026-11-06
 - Agent: Claude Code subagents, model Opus 5.5
 - Skill versions: v0.3.0 (rep1, rep2), v0.4.0 candidate (rep3, held-out)

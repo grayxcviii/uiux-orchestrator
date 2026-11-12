@@ -79,6 +79,7 @@ preserved explicitly. No specialist implementation is bundled in the npm tarball
 Existing user-managed directories/symlinks are kept and reported as unverified. Managed copies
 at the pinned revision with intact licences are reused without a download. A failed download,
 missing licence or unexpected skill name fails installation; it is not reported as full success.
+The per-release licence and notice review is recorded in [license-audit.md](license-audit.md).
 CLI selection and local Git installation are covered by offline tests; real upstream installs
 were also checked in isolated global, web and mobile profiles.
 

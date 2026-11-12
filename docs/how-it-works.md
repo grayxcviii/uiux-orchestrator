@@ -163,12 +163,15 @@ and caveats are in [tests/benchmark.md](../tests/benchmark.md).
 skills/uiux-orchestrator/     the skill (the only part an agent loads)
   SKILL.md                    hub: pipeline, fast path, workflows, rules, report format
   core/                       intake, project intelligence, design direction, decision engine,
-                              skill registry, conflict resolution, handoff, execution policy,
-                              quality gates
+                              skill registry, orchestration, conflict resolution, handoff,
+                              execution policy, quality gates, report; full-design profile and
+                              execution record (loaded only for full creative work)
   workflows/                  design, redesign, improvement, animation, review, bug-fix,
                               design-system, accessibility
   platforms/                  web, react-native, ios, android, flutter (version gates + 12 topics)
-  references/                 visual-design, motion-principles, accessibility (WCAG 2.2 AA)
+  references/                 visual-design, motion-principles, accessibility (WCAG 2.2 AA),
+                              component intelligence, spatial design, validation tooling,
+                              direction rules (manual scoring and style index)
   registry/skills.yaml        verified metadata for external skills + reference sources
   registry/styles.json        Style Library: styles, fit rules, pairings, treatments
   scripts/                    ui-check, motion-trace (zero-dependency CDP), direction (style decision)

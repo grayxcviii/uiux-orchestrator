@@ -217,7 +217,8 @@
           "impeccable/harden",
           "uupm/search",
           "impeccable/audit",
-          "expo/router"
+          "expo/router",
+          "emil/improve-animations"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -282,7 +283,8 @@
           "emil/animate",
           "impeccable/typeset",
           "impeccable/colorize",
-          "impeccable/layout"
+          "impeccable/layout",
+          "emil/improve-animations"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -1311,7 +1313,8 @@
           "vercel/web-design-guidelines",
           "impeccable/critique",
           "impeccable/audit",
-          "emil/animate"
+          "emil/animate",
+          "emil/improve-animations"
         ],
         "must_not_select": [
           "uupm/design-system",
@@ -1407,7 +1410,8 @@
           "vercel/web-design-guidelines",
           "shadcn/ui",
           "magicui/components",
-          "emil/animate"
+          "emil/animate",
+          "emil/improve-animations"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -1697,7 +1701,8 @@
           "shadcn/ui",
           "magicui/components",
           "emil/animate",
-          "uupm/search"
+          "uupm/search",
+          "emil/improve-animations"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -1956,7 +1961,8 @@
           "vercel/web-design-guidelines",
           "emil/animate",
           "shadcn/ui",
-          "magicui/components"
+          "magicui/components",
+          "emil/improve-animations"
         ],
         "must_not_select": [
           "uupm/design-system",
@@ -2014,7 +2020,8 @@
           "vercel/web-design-guidelines",
           "emil/animate",
           "shadcn/ui",
-          "magicui/components"
+          "magicui/components",
+          "emil/improve-animations"
         ],
         "must_not_select": [
           "taste/design-taste-frontend",
@@ -2050,7 +2057,8 @@
     "S17: must_not += dickwu/apple-design (web)",
     "S21: must_not += dickwu/apple-design (Android)",
     "S35–S39 added for anthropic/frontend-design and dickwu/apple-design",
-    "S21, S22: may += callstack/agent-device (v0.4 rule: validation-only tooling allowed on the fast path)"
+    "S21, S22: may += callstack/agent-device (v0.4 rule: validation-only tooling allowed on the fast path)",
+    "2026-11-12, S04, S05, S27, S29, S35, S40, S41: may_select += emil/improve-animations. These are full-design surfaces whose motion ships; since 1.4.2 the record checker (scripts/check-orchestration.py) requires motion-review coverage for them, so selecting the registered motion reviewer is allowed, not unnecessary. No must/must-not lists changed."
   ],
   "answer_key_changes_v4": [
     "S29: driver/must accept anthropic/frontend-design (key predates that integration; a single page with brand tokens fits its driver row)",

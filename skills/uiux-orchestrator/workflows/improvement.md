@@ -12,7 +12,7 @@ number of activations does.
 | Size | Steps | Specialist activations | Review |
 |---|---|---|---|
 | **Small** (one component or local region) | `inspect → concept+direction → implement → validate → report` | **One** scoped specialist matching the ask: e.g. Impeccable polish, typeset or layout, frontend-design's bounded adapter on web, or Emil for motion. It weighs 2–3 approaches inline and owns the chosen move. | Self-check against the brief with matching before/after L4. Add a reviewer activation only when the user asks for review, or when the change touches shared components or a critical path. |
-| **Medium** (a screen or flow) | `inspect → concept → direction → implement → validate → review → refine → report` | Concept and scoped direction, as separate activations or one specialist that genuinely covers both. `audit-current` is the concept owner's baseline inspection unless the ask is "find problems". | One UX/design reviewer activation; technical/accessibility checks on the touched scope. |
+| **Medium** (a screen or flow) | `inspect → concept → direction → implement → validate → review → refine → report` | One scoped visual/interaction specialist that weighs 2–3 approaches inline and owns the chosen move; a separate concept activation only when the user asks for alternatives. `audit-current` is that specialist's baseline inspection unless the ask is "find problems". | One UX/design reviewer activation; technical/accessibility checks on the touched scope. |
 | **Large** | Full table below | Full table below | UX/design reviewer plus technical/accessibility review, with the execution mode from decision-engine §7. |
 
 Full steps (Large; Medium and Small use the subset above):
@@ -22,11 +22,11 @@ Full steps (Large; Medium and Small use the subset above):
 |---|---|
 | inspect | Target, neighbours, current states, product context and binding system tokens; capture the baseline when rendering is available. |
 | audit-current | Execute the compatible critique or focused specialist matching the ask. Identify the highest-impact opportunity inside scope. |
-| concept | Execute `design-reasoning`; frontend-design's bounded adapter fits compatible web refinement, otherwise use the relevant concept specialist. Develop 2–3 distinct approaches and accept the chosen rationale/benefit. Reuse inspected product/system context as the foundation. |
+| concept | Large: execute `design-reasoning`; frontend-design's bounded adapter fits compatible web refinement, otherwise use the relevant concept specialist. Small/Medium: inline in the direction specialist. Develop 2–3 distinct approaches and accept the chosen rationale/benefit. Reuse inspected product/system context as the foundation. |
 | direction | Execute the visual/interaction specialist matching the chosen move, e.g. Impeccable tone, typeset, layout or Emil for motion. Record the scope-specific creative brief and fixed tokens inside the [design direction record](../core/direction.md) (usually brand mode). An existing system does not require a full visual driver. |
 | implement | Apply accepted decisions in the requested component/surface. Preserve architecture, identity, content and behavior except where the task authorizes changes. Reuse the system; route system/component work if an actual gap emerges. |
 | validate | L1 + L2 + observed L4, plus L3 for changed interactions. Compare matching before/after states and check relevant phone/desktop contexts. |
-| review | Medium and Large; for Small, see the size table. Add `motion-review` when the change ships or alters motion. Execute a compatible UX/design critique or review specialist against the original brief, baseline and chosen move; perform technical/accessibility checks on the touched scope. Self-check alone does not replace an available reviewer. |
+| review | Medium and Large; for Small, see the size table. Add `motion-review` only when motion is the deliverable or spans several flows; otherwise apply the motion checklist in [animation.md](animation.md). Execute a compatible UX/design critique or review specialist against the original brief, baseline and chosen move; perform technical/accessibility checks on the touched scope. Self-check alone does not replace an available reviewer. |
 | refine | Resolve findings with the appropriate owner, then recheck the affected evidence and review. |
 
 Apply the [creative-improvement contract](../references/visual-design.md#9-breakthrough-ambition-for-new-work-and-edits).

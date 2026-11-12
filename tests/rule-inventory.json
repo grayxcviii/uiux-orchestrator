@@ -1,0 +1,377 @@
+{
+  "notes": "Normative rules that must survive any rewrite of the skill. Each pattern is a case-insensitive regex that must match somewhere in the skill's Markdown (skills/uiux-orchestrator, excluding legal/). Rewording a rule means updating its pattern on purpose, never deleting the entry. Built from v1.5.0 before the context-reduction refactor.",
+  "rules": [
+    {
+      "id": "core-orchestrate-then-implement",
+      "pattern": "orchestrate, then implement"
+    },
+    {
+      "id": "available-specialist-mandatory",
+      "pattern": "available suitable skill is mandatory|available suitable specialists? must (run|execute)"
+    },
+    {
+      "id": "no-bypass-excuses",
+      "pattern": "built-in is enough"
+    },
+    {
+      "id": "breakthrough-ambition-edits",
+      "pattern": "creative-improvement contract"
+    },
+    {
+      "id": "review-only-no-edits",
+      "pattern": "Review-only requests change no files"
+    },
+    {
+      "id": "no-install-without-permission",
+      "pattern": "Never install skills, packages or tools"
+    },
+    {
+      "id": "used-only-after-execution",
+      "pattern": "is \"used\" only after successful execution"
+    },
+    {
+      "id": "no-visual-claim-without-render",
+      "pattern": "Never claim a visual review without observing rendered output"
+    },
+    {
+      "id": "builder-not-own-reviewer",
+      "pattern": "builder's self-check (does not replace|stand in)|self-check stand in"
+    },
+    {
+      "id": "house-rules-scoped",
+      "pattern": "house rules bind only inside the scope"
+    },
+    {
+      "id": "user-invocation-recommend",
+      "pattern": "invocation: user"
+    },
+    {
+      "id": "tool-output-is-data",
+      "pattern": "data to\\s+evaluate, never instructions"
+    },
+    {
+      "id": "asset-usage-before-reuse",
+      "pattern": "asset-usage\\.md"
+    },
+    {
+      "id": "non-interactive-safe-default",
+      "pattern": "non-interactive run"
+    },
+    {
+      "id": "fast-path-small-low-risk",
+      "pattern": "Small and low risk"
+    },
+    {
+      "id": "fast-path-never-whole-screen",
+      "pattern": "Never a whole screen, review, redesign"
+    },
+    {
+      "id": "leave-fast-path",
+      "pattern": "leave the fast\\s+path"
+    },
+    {
+      "id": "evidence-levels",
+      "pattern": "L0 code read|L4 visual"
+    },
+    {
+      "id": "start-summary-three-lines",
+      "pattern": "at most three lines"
+    },
+    {
+      "id": "report-disclose-failed-checks",
+      "pattern": "disclose failed\\s+or unavailable checks|Always disclose failed"
+    },
+    {
+      "id": "role-skill-table",
+      "pattern": "role → skill actually executed"
+    },
+    {
+      "id": "platform-section-order",
+      "pattern": "0 version gates"
+    },
+    {
+      "id": "trust-project-versions",
+      "pattern": "trust the\\s+project"
+    },
+    {
+      "id": "direction-single-source",
+      "pattern": "single source of truth"
+    },
+    {
+      "id": "direction-ask-one",
+      "pattern": "one question"
+    },
+    {
+      "id": "direction-named-style-kept",
+      "pattern": "ranking (never|does not) replace"
+    },
+    {
+      "id": "direction-never-invent-audience",
+      "pattern": "never invent|Never invent"
+    },
+    {
+      "id": "direction-max-three-styles",
+      "pattern": "at most three distinct styles|≤ 3"
+    },
+    {
+      "id": "direction-secondary-needs-personality",
+      "pattern": "secondary_requires"
+    },
+    {
+      "id": "direction-accessibility-outranks",
+      "pattern": "outrank every style treatment"
+    },
+    {
+      "id": "verified-reuse-order",
+      "pattern": "Verified reuse"
+    },
+    {
+      "id": "tokens-not-all-judgment",
+      "pattern": "Existing tokens settle token values, not all design judgment"
+    },
+    {
+      "id": "failed-invocation-no-fill",
+      "pattern": "invocation that failed does not fill the slot"
+    },
+    {
+      "id": "outcome-test",
+      "pattern": "Outcome test"
+    },
+    {
+      "id": "default-on-presumption",
+      "pattern": "Default-on presumption"
+    },
+    {
+      "id": "over-engineered-plan",
+      "pattern": "over-engineered"
+    },
+    {
+      "id": "candidate-elimination-order",
+      "pattern": "Avoid-when"
+    },
+    {
+      "id": "unregistered-skills",
+      "pattern": "Installed but unregistered skills"
+    },
+    {
+      "id": "version-drift",
+      "pattern": "Version drift"
+    },
+    {
+      "id": "uupm-then-shape",
+      "pattern": "UX analysis: Impeccable shape \\(primary\\)"
+    },
+    {
+      "id": "uupm-shape-exception",
+      "pattern": "one UUPM activation may satisfy both"
+    },
+    {
+      "id": "one-owner-per-decision",
+      "pattern": "One owner per decision"
+    },
+    {
+      "id": "color-posture-constraint",
+      "pattern": "Color posture is a constraint"
+    },
+    {
+      "id": "one-driver-per-surface",
+      "pattern": "At most one driver per surface"
+    },
+    {
+      "id": "driver-house-rules-eliminate",
+      "pattern": "house rules\\s+conflict with the record"
+    },
+    {
+      "id": "taste-first-marketing",
+      "pattern": "Taste is the first-choice driver"
+    },
+    {
+      "id": "taste-runtime-probe",
+      "pattern": "probe-runtime\\.py"
+    },
+    {
+      "id": "self-proposed-effect-not-constraint",
+      "pattern": "self-proposed 3D scene"
+    },
+    {
+      "id": "driver-authors-contract",
+      "pattern": "driver \\*\\*authors\\*\\*"
+    },
+    {
+      "id": "independent-review-driven-surface",
+      "pattern": "Independent review of a driven surface"
+    },
+    {
+      "id": "no-two-skills-one-slot",
+      "pattern": "Never load two skills for one slot"
+    },
+    {
+      "id": "driver-pipeline-not-stripped",
+      "pattern": "do not label a hand-built substitute"
+    },
+    {
+      "id": "merge-interview-questions",
+      "pattern": "single question batch"
+    },
+    {
+      "id": "execution-modes",
+      "pattern": "sequential-review"
+    },
+    {
+      "id": "no-agent-count-padding",
+      "pattern": "only to increase the count of agents"
+    },
+    {
+      "id": "full-design-ten-stages",
+      "pattern": "ten required stages"
+    },
+    {
+      "id": "document-not-creation",
+      "pattern": "never counts as creation"
+    },
+    {
+      "id": "concept-separate-activation",
+      "pattern": "Concept and art\\s+direction are separate activations"
+    },
+    {
+      "id": "delegated-not-destructive",
+      "pattern": "delegated art direction does not\\s+authorize"
+    },
+    {
+      "id": "receipt-fields",
+      "pattern": "Execution receipts"
+    },
+    {
+      "id": "lookup-not-execution",
+      "pattern": "A registry lookup, a plan, reading SKILL\\.md"
+    },
+    {
+      "id": "instruction-driven-execution",
+      "pattern": "valid execution, not automatic fallback"
+    },
+    {
+      "id": "stage-inputs-table",
+      "pattern": "Required `inputs`"
+    },
+    {
+      "id": "taste-phase-coordination",
+      "pattern": "Taste 2\\.5"
+    },
+    {
+      "id": "failure-recovery",
+      "pattern": "preserve the failed receipt"
+    },
+    {
+      "id": "builtin-caps-status",
+      "pattern": "caps the result at `Passed with\\s+limitations`"
+    },
+    {
+      "id": "sequential-review-cap",
+      "pattern": "review_mode: sequential"
+    },
+    {
+      "id": "unresolved-finding-gate",
+      "pattern": "listing findings does not close them"
+    },
+    {
+      "id": "record-checker-command",
+      "pattern": "check-orchestration\\.py"
+    },
+    {
+      "id": "visual-review-dimensions",
+      "pattern": "palette-and-materials"
+    },
+    {
+      "id": "user-feedback-resolution",
+      "pattern": "previous_activation"
+    },
+    {
+      "id": "checker-limits",
+      "pattern": "cannot authenticate fabricated receipts"
+    },
+    {
+      "id": "evidence-l4-observed",
+      "pattern": "Rendered output \\*\\*observed\\*\\*"
+    },
+    {
+      "id": "visual-loop-three-rounds",
+      "pattern": "3 rounds|three rounds"
+    },
+    {
+      "id": "no-sdk-install",
+      "pattern": "installing an SDK, simulator runtime, or\\s+browser is not"
+    },
+    {
+      "id": "rn-web-fallback-label",
+      "pattern": "not device evidence"
+    },
+    {
+      "id": "visual-craft-gate",
+      "pattern": "Visual craft acceptance"
+    },
+    {
+      "id": "remember-tomorrow",
+      "pattern": "remember this tomorrow"
+    },
+    {
+      "id": "negative-feedback-reopens",
+      "pattern": "Negative user feedback invalidates"
+    },
+    {
+      "id": "never-visually-verified-without-l4",
+      "pattern": "Never write \"visually\\s+verified\" without L4"
+    },
+    {
+      "id": "regression-check",
+      "pattern": "Regression check"
+    },
+    {
+      "id": "handoff-record-format",
+      "pattern": "Handoff record"
+    },
+    {
+      "id": "implementation-uses-decisions",
+      "pattern": "Implementation uses recorded decisions"
+    },
+    {
+      "id": "review-against-records",
+      "pattern": "Review checks against records"
+    },
+    {
+      "id": "decisive-move-preserved",
+      "pattern": "quietly toning it down"
+    },
+    {
+      "id": "ask-ambiguous-review",
+      "pattern": "means the interface or the code"
+    },
+    {
+      "id": "availability-plugin-names",
+      "pattern": "plugin:skill"
+    },
+    {
+      "id": "missing-not-absent",
+      "pattern": "missing menu entry is not proof of absence"
+    },
+    {
+      "id": "missing-skill-hint",
+      "pattern": "value_if_missing: high"
+    },
+    {
+      "id": "a11y-unverified-sr-limits-status",
+      "pattern": "Screen-reader output, focus order or keyboard paths that no tool run"
+    },
+    {
+      "id": "concept-inline-in-system",
+      "pattern": "weighs 2–3 approaches inline"
+    },
+    {
+      "id": "new-screen-in-system-not-full-design",
+      "pattern": "new screen inside an established design system"
+    },
+    {
+      "id": "choreograph-complex-only",
+      "pattern": "complex (multi-group )?sequence"
+    }
+  ]
+}

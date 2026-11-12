@@ -4,6 +4,33 @@ Platform-neutral principles. They apply on top of a project's design system and 
 conventions, never in place of them. Platform type scales, spacing units and components live in
 `platforms/<platform>.md`.
 
+
+## 0. Visual quality contract
+
+Whenever design judgment is open, [core/direction.md](../core/direction.md) chooses the design
+direction (a named style, else the governing brand, else one inferred from product, goal,
+audience and personality, else the library default) and asks one question only when the
+unknowns could change it. Its record is the single source of truth for style family, ambition,
+color posture and motion level; no driver or specialist re-chooses them.
+
+Inside it, art direction is contemporary and product-specific, with one named decisive move that
+survives build and review. Without a user, brand or style color direction, use the
+[premium monochrome posture](#default-color-posture-premium-monochrome); never use the
+[AI-generated color signatures](#ai-generated-color-signatures-avoid) unless a user or brand
+requires them, and an explicit colorful request must not silently become muted. Motion is
+designed with the direction, not added later ([motion-principles §0](motion-principles.md#0-default-posture-smooth-choreographed-motion));
+static only when the user asks for it.
+
+Before writing UI, the selected driver (or the scoped visual specialist; built-in only after
+evidenced candidate checks) authors the [direction contract](#direction-contract-before-implementation)
+and it is carried into specialist briefs and implementation, even on Medium single-agent tasks.
+Preserve supplied designs and governing brand systems. Choose media and depth from the subject:
+promotional or "creative" does not automatically mean 3D; load [spatial-design.md](spatial-design.md)
+for requested or chosen 3D. Review the render against both the brief and the
+[visual craft gate](../core/quality-gates.md#visual-craft-acceptance): technical success, added
+effects and authorship guesses do not establish visual quality, and user rejection reopens
+visual acceptance.
+
 ## 1. Hierarchy first
 
 Every screen answers three questions in this order:

@@ -13,8 +13,9 @@ as the audit record.
 3. **audit-current** — One slot per dimension the user asked about (decision-engine §3):
    - UX / visual quality → `ux-critique`.
    - Technical: accessibility, performance, responsive, web rule compliance → `tech-audit`.
-   - Platform conventions → `platform-conformance` (HIG reviewer for Apple platforms; Impeccable
-     critique's native guidance for Android; the platform file as fallback; web has none).
+   - Platform conventions → `platform-conformance`: Impeccable critique's native guidance for iOS and
+     Android (it loads the platform's HIG / Material guidance); the platform file as fallback; web has
+     none. An unregistered HIG skill joins only when critique is unavailable.
    - Code quality, when asked or on Large reviews → `code-review`.
    - Motion → the animation workflow's *review* sub-type.
    "Review the screen / find UX problems" = `ux-critique` (+ `platform-conformance` on Apple

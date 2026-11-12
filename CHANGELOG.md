@@ -4,6 +4,42 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.5.1] - 2026-11-12
+
+### Changed
+- Context reduction: SKILL.md body from about 2,100 to about 1,000 words. Full-design-only
+  material moved to `core/full-design.md` (stages, foundation ownership, driver phases, driver
+  eligibility) and `core/execution-record.md` (record checker schema); the report format to
+  `core/report.md`; capture tooling to `references/validation-tooling.md`; manual direction
+  scoring and the style index to `references/direction-rules.md`. The skill text read for
+  "improve one screen" fell from about 22,400 to about 16,400 words.
+- The skill description now says when not to use it (code, repository, pull-request, tool,
+  backend or architecture reviews, writing tests), and intake asks before starting UI work when
+  "review / đánh giá this" is ambiguous.
+
+- Routing: a new screen inside an established design system is no longer full-design; concept
+  alternatives come inline from the scoped visual specialist (a separate `design-reasoning`
+  activation stays for full-design, Redesign/Replace, Large work and explorations).
+  `emil/choreograph` is limited to complex multi-group sequences and scoped motion review to
+  motion deliverables or multi-flow work. iOS platform conformance uses Impeccable critique's native
+  guidance. Accessibility work states that unverified screen-reader or keyboard behavior caps the
+  status at `Passed with limitations`.
+- Answer key v3: `emil/improve-animations` is allowed for full-design scenarios whose motion ships.
+
+### Added
+- `tests/rule-inventory.json` and `tests/skill-rules.test.mjs`: 90 normative rules that must stay
+  present, every skill file reachable from SKILL.md, and every anchor link valid.
+- Paired routing benchmark (v1.5.0, the refactor, and the refactor plus routing rules):
+  `tests/results/2026-11-12-context-reduction.md`. Skill selection 90% → 100% (main), unnecessary
+  invocations 24% → 14% (main) and 33% → 6% (held-out), agent tokens −10%.
+
+- CONTRIBUTING: media over about 1 MB goes to GitHub Releases, not the repository; links to the
+  licence audit and the 1.3.0 routing-hardening record.
+
+### Fixed
+- `scripts/direction.mjs` printed nothing when reached through a symlinked path, and ignored
+  `brand` given in the `{ value, source }` shape; it now accepts it and warns on other shapes.
+
 ## [1.5.0] - 2026-11-12
 
 ### Added

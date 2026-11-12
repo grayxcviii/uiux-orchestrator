@@ -1,0 +1,16 @@
+[
+ {"id":"T01","activate":["react-native-best-practices"],"uiux_orchestrator":false,"would_ask_first":false,"reason":"General repo evaluation reads as code review; orchestrator explicitly excludes 'review this repo', RN skill says MUST USE for reviewing RN code"},
+ {"id":"T02","activate":["react-native-best-practices"],"uiux_orchestrator":false,"would_ask_first":false,"reason":"PR bug review is code review, excluded by orchestrator; RN best-practices covers reviewing RN code"},
+ {"id":"T03","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Evaluating a CLI tool/package is explicitly excluded; no installed skill fits"},
+ {"id":"T04","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"API security review is backend; no matching skill, orchestrator excludes API"},
+ {"id":"T05","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Backend architecture and folder structure review is excluded; no relevant skill"},
+ {"id":"T06","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Package adoption evaluation is explicitly excluded; pick-ui-library is user-invocable only"},
+ {"id":"T07","activate":[],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Writing unit tests is explicitly excluded; no test skill installed"},
+ {"id":"T08","activate":["uiux-orchestrator","react-native-best-practices"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Fixing a misaligned RN screen is UI fixing on React Native; RN best-practices also mandatory for RN code edits"},
+ {"id":"T09","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Explicitly reviewing the interface of a RN screen for UX/visual issues"},
+ {"id":"T10","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Improving/polishing a Next.js UI; orchestrator claims routing among overlapping impeccable/emil-design-eng skills"},
+ {"id":"T11","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Animating UI in Expo; orchestrator explicitly covers animation with overlapping expo-animation/animate-expo skills installed"},
+ {"id":"T12","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Reviewing onboarding UX on web is a core orchestrator trigger"},
+ {"id":"T13","activate":["uiux-orchestrator"],"uiux_orchestrator":true,"would_ask_first":false,"reason":"Designing a new Vue landing page is UI design on web"},
+ {"id":"T14","activate":["react-native-best-practices"],"uiux_orchestrator":false,"would_ask_first":false,"reason":"Code quality of hooks/state/re-renders is explicitly excluded from orchestrator; RN best-practices fits"}
+]

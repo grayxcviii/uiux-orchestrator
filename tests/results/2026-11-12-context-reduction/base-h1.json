@@ -1,0 +1,292 @@
+[
+ {
+  "id": "H01",
+  "platform": "web",
+  "intents": [
+   "ui-improvement"
+  ],
+  "workflow": "improvement",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "elevated",
+  "driver": null,
+  "selected_skills": [
+   "frontend-design (bounded design-reasoning mode)",
+   "impeccable tone",
+   "impeccable critique"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/direction.md",
+   "scripts/direction.mjs",
+   "core/orchestration.md",
+   "core/decision-engine.md",
+   "core/adapters.md",
+   "workflows/improvement.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (impeccable shared, tone, critique, audit, polish, typeset, layout; anthropic/frontend-design; taste; vercel/web-design-guidelines)",
+   "core/quality-gates.md (levels, status)"
+  ],
+  "registry_read_fully": false,
+  "notes": "Open-ended polish of one screen = creative refinement, Medium; brand mode (app.css @theme) -> native-clean primary, warm-humanist secondary, quiet ambition; no driver (existing system governs, Taste excluded: refinement inside a system); auth critical path -> elevated; keep shared Button/Input untouched unless authorized; L1 svelte-check + L2 vite build + L4 before/after via ui-check.mjs in Chrome."
+ },
+ {
+  "id": "H02",
+  "platform": "ios",
+  "intents": [
+   "ui-bug-fix"
+  ],
+  "workflow": "bug-fix",
+  "fast_path": true,
+  "mutation": "allowed",
+  "size": "Small",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "workflows/bug-fix.md",
+   "platforms/ios.md (§0, §6, §11, §12)",
+   "core/quality-gates.md (levels, status)"
+  ],
+  "registry_read_fully": false,
+  "notes": "Root cause: .toolbarBackground(Color.white, for: .tabBar) paints an opaque fill over the Liquid Glass tab bar that Xcode 27 builds always get; target is iOS 26 so remove it (no availability gate needed), express brand via .tint; reproduce/verify with xcrun simctl screenshots light/dark on the iOS 27 simulator (glass fidelity on device is L5, not required by the gate)."
+ },
+ {
+  "id": "H03",
+  "platform": "react-native-expo",
+  "intents": [
+   "new-ui-design"
+  ],
+  "workflow": "design",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "impeccable shape",
+   "animate-expo",
+   "react-native-best-practices (gestures/animations reference only)",
+   "impeccable critique",
+   "agent-device"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed with limitations",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/direction.md",
+   "scripts/direction.mjs",
+   "core/orchestration.md",
+   "core/decision-engine.md",
+   "workflows/design.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (impeccable shared, shape, critique; expo shared, ui, native-ui, expo-animation; emil animate-expo; swm/react-native-best-practices; callstack/agent-device)",
+   "platforms/react-native.md (§0, sheets)",
+   "core/quality-gates.md (levels, status)",
+   "core/execution-policy.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "New component with unspecified layout/states inside an existing app -> scoped design, not fast path; keep @gorhom/bottom-sheet (expo/ui excluded: @expo/ui not installed, adding it needs permission + rebuild); dual-thumb price slider built with Reanimated 4.7 + Gesture Handler (no new dependency); filters pass through the existing search state/hook contract (if the query/API contract must change, that is a data-flow change needing permission); only iOS simulator, so Android sheet/back behaviour and on-device gesture feel remain limitations."
+ },
+ {
+  "id": "H04",
+  "platform": "android",
+  "intents": [
+   "accessibility",
+   "ui-review"
+  ],
+  "workflow": "accessibility",
+  "fast_path": false,
+  "mutation": "read-only",
+  "size": "Small",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "impeccable audit (native variant)",
+   "agent-device"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "workflows/accessibility.md",
+   "workflows/review.md (finding format)",
+   "core/skill-registry.md",
+   "registry/skills.yaml (impeccable shared, audit, critique; callstack/agent-device; android shared)",
+   "platforms/android.md (§0, §11)",
+   "core/quality-gates.md (levels, status)"
+  ],
+  "registry_read_fully": false,
+  "notes": "Accessibility-only, read-only review of one screen; tech-audit is default-on and central; skip Impeccable PRODUCT.md/DESIGN.md writes; no direction run (review-only); evidence: gradlew lint a11y checks (L1), agent-device UI tree/TalkBack labels and adb screenshots at font_scale 2.0 and dark (L4), settings restored; findings in review.md format with WCAG 2.2 AA severity."
+ },
+ {
+  "id": "H05",
+  "platform": "web",
+  "intents": [
+   "animation",
+   "ui-improvement"
+  ],
+  "workflow": "animation",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "elevated",
+  "driver": null,
+  "selected_skills": [
+   "find-animation-opportunities",
+   "animate",
+   "choreograph",
+   "improve-animations"
+  ],
+  "recommended_to_user": [
+   "review-animations"
+  ],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed with limitations",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/direction.md",
+   "scripts/direction.mjs",
+   "core/orchestration.md",
+   "core/decision-engine.md",
+   "workflows/animation.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (emil shared, animate, choreograph, find-animation-opportunities, improve-animations, review-animations; gsap shared; impeccable tone)",
+   "core/quality-gates.md (levels, status)"
+  ],
+  "registry_read_fully": false,
+  "notes": "'Make it feel delightful and alive' = Discover + build sub-type; tool ladder stays on CSS transitions + Vue <Transition>/<TransitionGroup>, no animation library added (GSAP skills ignored unless GSAP is chosen with permission); motion level expressive, existing visual identity kept; onboarding is a critical path -> elevated, reduced-motion path mandatory; L2 vite build + L4 frames via motion-trace.mjs in Chrome, feel claims need L5 on a real phone."
+ },
+ {
+  "id": "H06",
+  "platform": "react-native-cli",
+  "intents": [
+   "animation",
+   "ui-bug-fix"
+  ],
+  "workflow": "animation",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "animate-expo (motion-performance, decisions only, APIs translated to Reanimated 3)",
+   "agent-device"
+  ],
+  "recommended_to_user": [
+   "review-animations"
+  ],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "workflows/animation.md",
+   "workflows/bug-fix.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (emil animate-expo, animation-performance, improve-animations, review-animations; swm/react-native-best-practices; android/compose-performance; impeccable optimize; callstack/agent-device)",
+   "platforms/react-native.md (§0)",
+   "core/quality-gates.md (levels, status)"
+  ],
+  "registry_read_fully": false,
+  "notes": "Optimize sub-type (inspect -> measure -> fix -> re-measure); RN 0.74 old arch + Reanimated 3.10: swm excluded (requires New Architecture), web/Compose perf skills excluded by platform; never upgrade Reanimated/enable New Arch without permission; measure JS vs UI thread with perf monitor in a release build on the physical Android device (L5) before and after."
+ },
+ {
+  "id": "H07",
+  "platform": "web",
+  "intents": [
+   "design-exploration"
+  ],
+  "workflow": "design",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "frontend-design (bounded design-reasoning mode)",
+   "impeccable live"
+  ],
+  "recommended_to_user": [
+   "prototype"
+  ],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/direction.md",
+   "scripts/direction.mjs",
+   "core/orchestration.md",
+   "core/decision-engine.md",
+   "core/adapters.md",
+   "workflows/design.md (exploration)",
+   "core/skill-registry.md",
+   "registry/skills.yaml (anthropic/frontend-design; impeccable shared, live, new-work; emil/prototype; taste/design-taste-frontend)",
+   "core/quality-gates.md (levels, status)"
+  ],
+  "registry_read_fully": false,
+  "notes": "Exploration: 3 short direction records + quick prototypes behind a switch on the existing pricing route, no full implementation until one is picked; brand mode (bold-modern primary; alternatives drawn from modern-minimal and another family within brand tokens); Taste considered and excluded (refinement inside an existing site system / kit adoption) and new-work avoided (no Replace confirmed); keep real prices; L2 + L4 renders of each direction at 390/1280 in Chrome."
+ },
+ {
+  "id": "H08",
+  "platform": "flutter",
+  "intents": [
+   "ui-improvement"
+  ],
+  "workflow": "improvement",
+  "fast_path": true,
+  "mutation": "allowed",
+  "size": "Small",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "workflows/improvement.md (exact correction)",
+   "core/execution-policy.md",
+   "platforms/flutter.md (§0)",
+   "core/quality-gates.md (levels, status)"
+  ],
+  "registry_read_fully": false,
+  "notes": "Exact value fix; CardTheme is global, so changing it would alter every card beyond the ask (elevated) -> safe default is a home-screen-scoped override (Theme(cardTheme: copyWith shape radius 16) or Card shape), offer the global change in the report; flutter analyze (L1), flutter build ios --simulator (L2), simulator screenshot of home (L4)."
+ }
+]

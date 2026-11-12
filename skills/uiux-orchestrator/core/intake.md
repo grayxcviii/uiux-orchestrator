@@ -97,6 +97,7 @@ default, state it in the start summary, and proceed.
 
 | Usually ask | Never ask |
 |---|---|
+| Whether an ambiguous "review / evaluate / đánh giá this" means the interface or the code, repository or tool. Ask before launching any specialist or reviewer; if it means code, stop using this skill | Whether a request that names screens, UI, UX, layout, styling, motion or accessibility is about the interface |
 | Redesign Replace vs. Refresh when signals conflict on a large scope | Framework, styling, tokens, component library (read the project) |
 | Adding a dependency or upgrading a library | Which file a screen lives in (search) |
 | Destructive change to shared components | Preferred spacing/colors when tokens exist |
@@ -107,28 +108,20 @@ Ask once, batched, with a recommended default.
 
 ## Visual intent (when design judgment is in scope)
 
-Capture the user's requested look, color intensity, mood, depth/motion and explicit dislikes
-as constraints, not just an objective such as "make it beautiful". Retain supplied references
-and brand limits. When references are available, inspect their relevant visual details; do not
-invent references or claim to have viewed them. Carry this brief into driver selection and
-the direction contract in [visual-design.md §6](../references/visual-design.md#6-avoiding-generic-ai-generated-ui).
+Capture the requested look, color intensity, mood, depth/motion and explicit dislikes as
+constraints, not just "make it beautiful", plus supplied references and brand limits. Inspect
+references you actually have; never invent references or claim to have viewed them. Record these
+signals in `design_context` with their sources and never invent audience, brand personality or
+positioning: the style, **ambition level** (`bold`, `confident` or `quiet`) and color posture
+come from the [design direction record](direction.md). "Modern" alone does not select neon,
+gradients or retro editorial styling; an explicit "colorful" request needs visible chromatic
+presence, not a tiny accent on a gray template. When the user delegated the direction, state it
+and proceed; this adds no approval step.
 
-Record these signals in `design_context` with their sources; never invent audience, brand
-personality or positioning. The style, **ambition level** (`bold`, `confident` or `quiet`) and
-color posture then come from the [design direction record](direction.md): a named style is
-kept, a governing brand leads, otherwise the direction is inferred, and the library default is
-a bold, contemporary direction in the
-[premium monochrome posture](../references/visual-design.md#default-color-posture-premium-monochrome)
-(black/white/dark, one temperature, at most one rare accent). Every posture avoids the
-[AI-generated color signatures](../references/visual-design.md#ai-generated-color-signatures-avoid). "Modern" alone does not select
-neon, gradients or retro editorial styling. For an explicit "colorful" request, plan visible
-chromatic presence; do not reduce it to a tiny accent on a gray template. State the
-concrete direction you choose and proceed when the user delegated it. This adds no approval step.
-
-Record whether **design judgment is open**. It is open for delegated polish, visual/UX
-improvement, Refresh and new concepts—even one component with existing tokens. Default its
-creative ambition to breakthrough: a meaningful distinctive improvement inside the authorized
-scope. Route the creative-refinement branch of `improvement.md` (its size table scales the number
-of activations, not the ambition) or Refresh concept/direction steps; do not classify it as an exact fix merely because the task is Small or tokens already exist.
-For an exact value/text fix or supplied design, fulfill that specification without unrelated
-redesign. An existing brand constrains identity; it does not freeze layout or interaction ideas.
+Record whether **design judgment is open**: it is for delegated polish, visual/UX improvement,
+Refresh and new concepts, even one component with existing tokens. Its ambition defaults to a
+meaningful, distinctive improvement inside the authorized scope: route the creative-refinement
+branch of `improvement.md` (its size table scales the number of activations, not the ambition)
+or Refresh concept/direction steps, and do not call it an exact fix because the task is Small or
+tokens exist. An exact value/text fix or supplied design is fulfilled without unrelated redesign.
+An existing brand constrains identity; it does not freeze layout or interaction ideas.

@@ -58,8 +58,18 @@ To move one forward:
 5. Install locally with `claude plugin install uiux-orchestrator --marketplace .` and check
    `claude plugin details <name>@uiux-orchestrator`: only the intended skills should load.
 
+## Media and large files
+
+Git keeps every committed file in the history forever, so the repository only holds media the
+README needs. Images, GIFs or videos over about 1 MB go to a GitHub Release (or another CDN) and
+the README links to them. Demo apps, recordings and marketing material stay in the ignored
+`examples/` and `marketing/` folders. Do not re-encode or replace an existing committed asset just
+to shrink it: the old version stays in the history and the repository grows.
+
 ## Pull requests
 
 - One topic per PR.
 - Run `python3 scripts/validate.py`. It must print `OK`.
 - If routing behaviour changes, include a scenario run (before/after) in `tests/results/`.
+- Rewording or moving a rule: `npm test` checks that every rule in `tests/rule-inventory.json`
+  is still present and every skill file stays reachable from SKILL.md.

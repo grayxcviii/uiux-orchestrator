@@ -30,3 +30,5 @@ Steps: `inspect → automated check → manual check → (fix → validate) → 
 Floors met for the scope · automated check run where a tool exists (name it) · manual checks
 listed with results · unfixable/out-of-scope issues listed with severity · L1 + tool check + L4
 large-text capture where rendering is possible.
+Screen-reader output, focus order or keyboard paths that no tool run or manual pass actually
+verified are limitations: the best status is then `Passed with limitations`, never `Passed`.

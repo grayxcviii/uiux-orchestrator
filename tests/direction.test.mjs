@@ -216,3 +216,26 @@ test('questions stay rare outside brand-expressive gaps', () => {
   // the threshold guards against the engine asking for every one of them.
   assert.ok(asked < total, `${asked}/${total}`)
 })
+
+test('CLI works when the skill is reached through a symlink', async () => {
+  const { mkdtempSync, symlinkSync, rmSync } = await import('node:fs')
+  const { tmpdir } = await import('node:os')
+  const { join, resolve } = await import('node:path')
+  const dir = mkdtempSync(join(tmpdir(), 'uiux-link-'))
+  try {
+    symlinkSync(resolve('skills/uiux-orchestrator'), join(dir, 'skill'))
+    const out = spawnSync(process.execPath, [join(dir, 'skill/scripts/direction.mjs'), '--vocabulary'], { encoding: 'utf8' })
+    assert.equal(out.status, 0, out.stderr)
+    assert.ok(JSON.parse(out.stdout).styles.length >= 13)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('brand accepts the documented and the value/source shapes, and warns otherwise', () => {
+  for (const brand of [{ governing: true }, true, { value: true, source: 'explicit' }]) {
+    assert.equal(decide({ product_type: 'saas', brand }, library).design_decision.mode, 'brand', JSON.stringify(brand))
+  }
+  const odd = decide({ product_type: 'saas', brand: 'yes please' }, library)
+  assert.notEqual(odd.design_decision.mode, 'brand')
+  assert.ok(odd.warnings.some(w => w.includes('brand must be')))
+  assert.equal(decide({ product_type: 'saas', brand: { governing: false } }, library).warnings.length, 0)
+})
