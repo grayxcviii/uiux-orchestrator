@@ -4,7 +4,7 @@ description: Use when a request involves designing, redesigning, improving, anim
 license: MIT
 compatibility: Agent Skills compatible agents. Written for Claude Code first; works in agents without a Skill tool or subagents by reading files and running steps sequentially.
 metadata:
-  version: "1.4.5"
+  version: "1.5.0"
 ---
 
 # UIUX Orchestrator
@@ -37,9 +37,14 @@ several stages only with separate accepted outputs; its name never substitutes f
 Keep execution receipts and handoffs as defined in the orchestration contract. Full-design
 completion requires its bundled record checker as well as the UI workflow's evidence gates.
 
-**Visual quality contract:** original designs and visual redesigns default to **bold**,
-contemporary, product-specific art direction with one named decisive move that survives build
-and review. Without a user or brand color direction, use the
+**Visual quality contract:** whenever design judgment is open, [core/direction.md](core/direction.md)
+chooses the design direction from the Style Library: an explicitly named style, else the
+governing brand, else a direction inferred from product, goal, audience and personality, else
+the library default. It asks one question only when the unknowns could change the direction.
+Its record is the single source of truth for style family, ambition, color posture and motion
+level; no driver or specialist re-chooses them. Inside it, art direction is contemporary and
+product-specific with one named decisive move that survives build and review. Without a user,
+brand or selected-style color direction, use the
 [premium monochrome posture](references/visual-design.md#default-color-posture-premium-monochrome):
 black/white/dark OKLCH value ramps, one temperature, at most one rare accent, richness from
 photography, material and type. Never use the [AI-generated color signatures](references/visual-design.md#ai-generated-color-signatures-avoid)
@@ -77,7 +82,7 @@ already read it in this session.
 |---|---|---|---|
 | 1 | Intake | Classify intent(s), objective, scope, constraints, mutation permission; estimate complexity and risk (provisional until stage 2). Decide whether a question is truly needed. | [core/intake.md](core/intake.md) |
 | 2 | Project intelligence | Inspect the project before deciding anything: platform, framework, styling, tokens, components, motion stack, navigation/state, commands, visual tooling. Then finalize size and risk. | [core/project-intelligence.md](core/project-intelligence.md) |
-| 3 | Decide | Compose the workflow, decide which capability slots get a specialist, route each through the slot index, pick at most one driver per surface, choose execution mode, record the plan. | [core/orchestration.md](core/orchestration.md) → [core/decision-engine.md](core/decision-engine.md) (includes the slot index) → [core/adapters.md](core/adapters.md) for a bounded driver entry → the chosen `workflows/*.md` → [core/skill-registry.md](core/skill-registry.md) (availability, once per session) → only the shortlisted entries of [registry/skills.yaml](registry/skills.yaml), found by searching `id: <id>` |
+| 3 | Decide | When design judgment is open, decide the design direction first (one question at most). Then compose the workflow, decide which capability slots get a specialist, route each through the slot index, pick at most one driver per surface, choose execution mode, record the plan. | [core/direction.md](core/direction.md) + `node <skill-dir>/scripts/direction.mjs` (design judgment open) → [core/orchestration.md](core/orchestration.md) → [core/decision-engine.md](core/decision-engine.md) (includes the slot index) → [core/adapters.md](core/adapters.md) for a bounded driver entry → the chosen `workflows/*.md` → [core/skill-registry.md](core/skill-registry.md) (availability, once per session) → only the shortlisted entries of [registry/skills.yaml](registry/skills.yaml), found by searching `id: <id>` |
 | 4 | Execute | Run steps; every stage hands off a record; resolve conflicts per dimension. | [core/handoff.md](core/handoff.md), [core/conflict-resolution.md](core/conflict-resolution.md) when two sources disagree, [core/execution-policy.md](core/execution-policy.md) before the first edit |
 | 5 | Validate | Gather evidence at the levels the workflow requires; loop fix → verify; assign a status. | [core/quality-gates.md](core/quality-gates.md); bundled tools (web): `node <skill-dir>/scripts/ui-check.mjs --help`, `node <skill-dir>/scripts/motion-trace.mjs --help` |
 | 6 | Report | What was done, skills used and why, key changes, evidence, limitations. | format below |
@@ -158,7 +163,7 @@ Skip the start summary on the fast path. Otherwise show once, at most three line
 
 ```text
 Task: <scope and objective> · <platform>
-Approach: <key decision, constraints and specialist if it matters>
+Approach: <direction (mode, primary) or the key decision, constraints and specialist if it matters>
 Checks: <planned evidence and known tooling limit>
 ```
 

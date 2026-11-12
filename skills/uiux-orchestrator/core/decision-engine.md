@@ -133,7 +133,7 @@ replaces it; `(bundle)` = several skills that count as one pick.
 | design-system | **create:** the selected driver when it owns `design-system` (`impeccable/new-work`, `uupm/design-system`), `expo/design-system` (Expo), `shadcn/ui` (React projects on shadcn) · **record after build:** `impeccable/document` (never counts as creation) | `workflows/design-system.md` |
 | component-reference | Always first, not a fallback: the contract in `references/component-intelligence.md`, then project components, then platform components · specialists for remaining gaps: `shadcn/ui` (React), `magicui/components` (React motion moments, filtered), `expo/ui` (Expo), `emil/ask-sonner` (toasts), `emil/pick-ui-library` (user) | build from the contract with project tokens and primitives |
 | typography | `impeccable/typeset`, `uupm/search` | tokens + platform type scale |
-| color | `impeccable/colorize` (only when the user or brand wants more color, or a functional accent is missing), `uupm/search` (provisional references) | premium monochrome posture and color roles in `references/visual-design.md` §4 |
+| color | `impeccable/colorize` (only when the user, brand or a chromatic direction record wants more color, or a functional accent is missing), `uupm/search` (provisional references) | the direction record's color posture (premium monochrome by default) and color roles in `references/visual-design.md` §4 |
 | layout | `impeccable/layout`, `uupm/search` | `references/visual-design.md` §2 |
 | ux-copy | `impeccable/clarify` | plain, specific labels; errors say what happened and what to do |
 | hardening | `impeccable/harden`, `emil/break-ui` | states list in `core/execution-policy.md` |
@@ -192,7 +192,7 @@ The `foundation` stage runs in this order:
 
 | Skill | Owns | Must not |
 |---|---|---|
-| `uupm/search` | Research evidence, guidelines, patterns, stack facts | Decide the final UX flow; set the final palette, type or design system (its style/palette results are provisional references; the art-direction owner decides, and the premium monochrome default and AI-generated signature lists still apply) |
+| `uupm/search` | Research evidence, guidelines, patterns, stack facts | Decide the final UX flow; set the final palette, type or design system (its style/palette results are evidence for the [direction record](direction.md) and provisional references for the art-direction owner; they never override the record, and the AI-generated signature lists still apply) |
 | `impeccable/shape` | UX plan: flows, information architecture, states, context discovery | Replace specialized lookups (charts, fonts, stack guidance) |
 | `impeccable/onboard` | First-run flows, empty states, activation | Repeat UUPM research or redo shape's overall UX plan |
 
@@ -211,16 +211,18 @@ One owner per decision. Specialists may advise outside their row; they never ove
 |---|---|---|---|
 | Research evidence | `uupm/search` | `impeccable/shape` when UUPM is unavailable | — |
 | UX plan | `impeccable/shape` | `impeccable/onboard`, targeted `uupm/search` | A research output counted as UX analysis by default |
-| Concept | `design-reasoning` owner (2–3 alternatives) | — | In full-design: merged into the foundation or art-direction activation, even when the same skill later drives. Scoped improvements may combine concept and direction as `workflows/improvement.md` allows by size |
-| Final palette, type, composition | The surface's driver, or the scoped visual specialist when no driver applies | `uupm/search`, `impeccable/colorize`, `impeccable/typeset` | Preselected by the orchestrator; chosen outside the color posture |
+| Design direction: style family, ambition, color posture, motion level | Orchestrator via [direction.md](direction.md) (`scripts/direction.mjs`) | `uupm/search` evidence, `impeccable/shape` audience findings, the user's answer | Re-chosen by a driver or specialist; a named style replaced by ranking |
+| Concept | `design-reasoning` owner (2–3 alternatives inside the direction record) | — | In full-design: merged into the foundation or art-direction activation, even when the same skill later drives. Scoped improvements may combine concept and direction as `workflows/improvement.md` allows by size |
+| Final palette, type, composition | The surface's driver, or the scoped visual specialist when no driver applies | `uupm/search`, `impeccable/colorize`, `impeccable/typeset` | Preselected as values by the orchestrator; chosen outside the direction record or its color posture |
 | Design system (create) | Driver that owns `design-system`, else the first create candidate in the slot | `impeccable/document` records the result | `impeccable/document` alone counted as creation |
 | Component choice and contract | `references/component-intelligence.md` | Project → platform → library specialists | A library default shipped without meeting the contract |
 | Motion | Primary motion owner for the platform | Specialized motion skills, `emil/choreograph` | Motion skipped on a new surface without a user request for static |
 | Review | Independent `ux-critique` + `tech-audit` (+ `motion-review` when motion ships in full-design, or on Medium+ scoped work that changes motion) | `platform-conformance`, `code-review` | The driver or implementer reviewing its own work without a fresh context |
 
 **Color posture is a constraint, not a palette.** Drivers and specialists choose the actual colors
-inside it: without a user or brand color direction, the premium monochrome posture
-(`references/visual-design.md` §4) applies, and the AI-generated color signatures are excluded
+inside it. The direction record sets it: the user's color direction, then the brand's, then the
+selected style's posture (the premium monochrome posture of `references/visual-design.md` §4 for
+monochrome styles and the library default). The AI-generated color signatures are excluded
 unless the user or brand requires them. The same holds for the motion posture
 (`references/motion-principles.md` §0). A driver whose house rules contradict the user's brief is
 the wrong driver (§4); a driver's taste does not override the posture.
@@ -230,8 +232,8 @@ the wrong driver (§4); a driver's taste does not override the posture.
 A driver runs a whole pipeline for one surface (direction → build → checks) with its own files
 and rules. **At most one driver per surface per task**; choose it first, then route only the slots
 it does not `own`. A driver never refines a design system it does not own. Pass the intake's
-visual intent into selection: eliminate a candidate whose house rules conflict with the user's
-requested palette, effects, composition or motion, even if its general use-case matches. Accepting
+visual intent and the direction record into selection: eliminate a candidate whose house rules
+conflict with the record or the user's requested palette, effects, composition or motion, even if its general use-case matches. Accepting
 a kit does not waive the visual brief. Unavailable or incompatible candidates fall through.
 
 | Situation (first eligible match wins) | Driver |
@@ -316,6 +318,7 @@ Start from the entry's `brief`, then state what is already decided:
 ```text
 Task slice: <the one slot>          Target: <files/screen>
 Platform/stack: <from profile>      Must keep: <tokens, components, decisions already made>
+Direction: <record: mode, primary/secondary/functional, ambition, color posture, motion, treatments>
 Out of scope: <everything else>     Return: <the artifact you need>
 ```
 

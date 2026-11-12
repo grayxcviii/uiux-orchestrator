@@ -4,6 +4,32 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.5.0] - 2026-11-12
+
+### Added
+- Design direction decision (`core/direction.md`): context analysis with explicit / inferred /
+  default / unknown sources, an information-sufficiency check that asks at most one question
+  only when unknown audience or personality would change the style family on a brand-expressive
+  surface, and a composed direction (primary, at most one secondary, functional directions per
+  surface, treatments, ambition, color posture, motion level). Its record is the single source
+  of truth for direction; drivers author the concrete direction contract inside it.
+- Style Library (`registry/styles.json`): 13 data-driven styles in four families with fit rules,
+  exclusions, pairings, clashes, treatments, accessibility notes and platform notes. Glass
+  Modern and Spatial Futurism are deferred and honored only as explicit custom directions.
+- `scripts/direction.mjs`: zero-dependency deterministic scoring and composition, with
+  `--vocabulary` and stdin input.
+- `tests/direction-scenarios.json` and `tests/direction.test.mjs`: 24 scenarios (the ten
+  reference prompts plus edge cases) and invariant, consistency, extensibility, malformed-input,
+  style-cap and CLI tests.
+
+### Changed
+- Ownership by stage adds the design direction row; UUPM style results become evidence for the
+  record. Color posture, ambition (`bold`, `confident`, `quiet`) and motion level now come from
+  the record. The premium monochrome, bold direction stays the default when context is too thin,
+  and the AI-generated signature lists apply to every style.
+- Intake records `design_context`; "When to ask" covers the direction question. The visual craft
+  gate's brief-fit dimension checks the render against the record.
+
 ## [1.4.5] - 2026-11-12
 
 ### Added

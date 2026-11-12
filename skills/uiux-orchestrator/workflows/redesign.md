@@ -30,7 +30,7 @@ within the existing brand/tokens (concept, direction and before/after rows below
 
 Rules:
 - At `direction`, record the [direction contract](../references/visual-design.md#direction-contract-before-implementation)
-  before implementation, including the requested visual qualities and concrete ways to achieve
+  inside the [design direction record](../core/direction.md) (Refresh: brand mode) before implementation, including the requested visual qualities and concrete ways to achieve
   them. Check the first representative render against the brief before extending the treatment.
 - For modernization/3D requests, audit composition, typography, depth and materials alongside
   usability. Apply [visual-design.md §6](../references/visual-design.md#6-avoiding-generic-ai-generated-ui)

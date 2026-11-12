@@ -12,7 +12,9 @@ Sources: Apple HIG — Motion; Material 3 — Motion; WCAG 2.2 SC 2.3.3 (AAA) an
 
 Motion is part of the design, not a finishing extra. For every new surface, redesign and
 open-ended improvement, plan motion together with the visual direction and ship it, unless the
-user asks for a static result:
+user asks for a static result. The [direction record](../core/direction.md) sets the level and
+character: `expressive` styles carry the full signature below, `quiet` styles keep Persuade
+surfaces to restrained entrances and Operate-style continuity:
 
 - **Persuade/Experience surfaces** (landing, product, campaign, onboarding): one **motion
   signature** that carries the concept, a choreographed first-view entrance, smooth section and

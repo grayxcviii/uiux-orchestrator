@@ -1,0 +1,1189 @@
+{
+  "version": 1,
+  "notes": "Style Library for core/direction.md. Scores are relative suitability for the extracted context, not design quality. Fit lists: strong = 1, ok = 0.6, unlisted = 0.3 (neutral), conflict = 0 (recorded). Array order breaks ties after default_order.",
+  "weights": {
+    "product": 20,
+    "business_goal": 20,
+    "audience": 15,
+    "personality": 15,
+    "ux": 15,
+    "content": 10,
+    "platform": 5
+  },
+  "groups": {
+    "product": ["product_type", "category"],
+    "business_goal": ["business_goal"],
+    "audience": ["audience"],
+    "personality": ["personality", "positioning"],
+    "ux": ["surface_mode", "density"],
+    "content": ["content"],
+    "platform": ["platform"]
+  },
+  "decisive_groups": ["audience", "personality"],
+  "levels": {
+    "strong": 1,
+    "ok": 0.6,
+    "neutral": 0.3,
+    "conflict": 0
+  },
+  "thresholds": {
+    "clarify_modes": ["persuade", "experience", "read"],
+    "min_coverage": 0.35,
+    "flip_margin": 5,
+    "ask_gap": 20,
+    "secondary_min": 60,
+    "secondary_gap": 25,
+    "secondary_requires": ["personality"],
+    "functional_min": 50,
+    "max_options": 4,
+    "max_styles": 3,
+    "high_confidence_coverage": 0.7,
+    "high_confidence_margin": 8,
+    "medium_confidence_coverage": 0.4
+  },
+  "group_labels": {
+    "product": "product",
+    "business_goal": "business goal",
+    "audience": "audience",
+    "personality": "brand personality / positioning",
+    "ux": "UX mode",
+    "content": "content",
+    "platform": "platform"
+  },
+  "category_labels": {
+    "food-hospitality": "food and hospitality",
+    "media-entertainment": "media and entertainment",
+    "creative-arts": "creative",
+    "real-estate": "real estate",
+    "sports-fitness": "sports and fitness",
+    "home-living": "home and living",
+    "government-civic": "public service",
+    "b2b-services": "B2B",
+    "developer-tools": "developer tools",
+    "legal-insurance": "legal or insurance",
+    "music-events": "music and events",
+    "crypto-web3": "crypto"
+  },
+  "platform_families": {
+    "mobile": ["ios", "android", "react-native", "flutter"],
+    "web": ["web", "desktop"]
+  },
+  "default_order": ["bold-modern", "modern-minimal", "native-clean"],
+  "vocabulary": {
+    "product_type": ["ecommerce", "saas", "marketplace", "booking", "content-media", "portfolio", "community", "utility", "banking-fintech", "learning", "brand-site", "game", "nonprofit"],
+    "category": ["fashion", "beauty", "finance", "healthcare", "technology", "developer-tools", "education", "kids", "food-hospitality", "travel", "wellness", "media-entertainment", "creative-arts", "real-estate", "automotive", "sports-fitness", "home-living", "sustainability", "gaming", "government-civic", "b2b-services", "legal-insurance", "logistics", "music-events", "crypto-web3"],
+    "business_goal": ["conversion", "discovery", "engagement", "retention", "trust", "task-efficiency", "learning", "brand-awareness", "monitoring", "lead-generation", "self-expression"],
+    "audience": ["children", "teens", "gen-z", "young-adults", "adults", "families", "professionals", "enterprise", "developers", "creatives", "seniors", "affluent", "general", "patients"],
+    "personality": ["luxurious", "minimal", "bold", "playful", "friendly", "warm", "calm", "natural", "professional", "technical", "trustworthy", "rebellious", "energetic", "nostalgic", "sophisticated", "innovative", "crafted", "approachable"],
+    "positioning": ["budget", "mainstream", "premium", "luxury"],
+    "page_type": ["landing", "homepage", "marketing-campaign", "product-listing", "product-detail", "checkout", "search", "feed", "article", "docs", "portfolio", "dashboard", "analytics", "settings", "onboarding", "profile", "booking-flow", "form", "auth", "app-home"],
+    "surface_mode": ["persuade", "operate", "read", "experience"],
+    "density": ["low", "medium", "high"],
+    "content": ["photography", "product-imagery", "data", "long-text", "illustration", "video", "user-generated", "sparse"],
+    "platform": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+  },
+  "page_modes": {
+    "landing": "persuade",
+    "homepage": "persuade",
+    "marketing-campaign": "persuade",
+    "product-detail": "persuade",
+    "onboarding": "persuade",
+    "product-listing": "read",
+    "feed": "read",
+    "article": "read",
+    "docs": "read",
+    "portfolio": "experience",
+    "search": "operate",
+    "checkout": "operate",
+    "dashboard": "operate",
+    "analytics": "operate",
+    "settings": "operate",
+    "profile": "operate",
+    "booking-flow": "operate",
+    "form": "operate",
+    "auth": "operate",
+    "app-home": "operate"
+  },
+  "styles": [
+    {
+      "id": "bold-modern",
+      "name": "Bold Modern",
+      "family": "refined-neutral",
+      "aliases": ["bold modern", "bold contemporary"],
+      "label": "bold and contemporary",
+      "persona": "bold, confident and contemporary",
+      "ambition": "bold",
+      "color_posture": {
+        "mode": "monochrome",
+        "archetypes": ["Black + signal", "Graphite", "Ink & paper"]
+      },
+      "motion": {
+        "level": "expressive",
+        "character": "one choreographed signature moment, confident scale and crop transitions"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["brand-site", "saas", "ecommerce"],
+          "ok": ["portfolio", "content-media", "marketplace", "game"]
+        },
+        "category": {
+          "strong": ["technology", "sports-fitness", "automotive"],
+          "ok": ["media-entertainment", "fashion", "finance", "developer-tools", "creative-arts", "crypto-web3", "music-events"],
+          "conflict": ["kids"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "conversion"],
+          "ok": ["engagement", "discovery", "lead-generation"]
+        },
+        "audience": {
+          "strong": ["young-adults", "professionals"],
+          "ok": ["adults", "general", "gen-z", "creatives", "developers", "enterprise"]
+        },
+        "personality": {
+          "strong": ["bold", "innovative"],
+          "ok": ["sophisticated", "technical", "energetic", "minimal"],
+          "conflict": ["nostalgic", "warm", "rebellious"]
+        },
+        "positioning": {
+          "strong": ["premium"],
+          "ok": ["mainstream", "luxury"]
+        },
+        "surface_mode": {
+          "strong": ["persuade", "experience"],
+          "ok": ["read", "operate"]
+        },
+        "density": {
+          "strong": ["low"],
+          "ok": ["medium"]
+        },
+        "content": {
+          "strong": ["photography", "product-imagery", "video"],
+          "ok": ["sparse"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["modern-minimal", "instrument", "native-clean", "swiss-grid", "color-block", "dark-premium"],
+      "clashes_with": ["organic-tactile", "playful-illustrated", "retro-modern", "warm-humanist"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "oversized grotesk display, tight tracking, strong scale contrast with a plain body face",
+        "color": "premium monochrome with real value range; at most one rare signal accent",
+        "layout": "one decisive move: full-bleed field, cropped type or extreme scale contrast; generous section rhythm",
+        "components": "flat, crisp controls; strong primary action; few radii",
+        "surface": "flat fields, photography and material for depth; no glow",
+        "motion": "choreographed first-view entrance and one signature transition; quick state feedback",
+        "imagery": "dramatic full-color or graded-mono photography with confident crops"
+      },
+      "accessibility": ["Oversized type must still wrap and reflow at 200% text size.", "Signal accent must not be the only state indicator."],
+      "platform_notes": {
+        "web": "scale contrast via clamp() type; full-bleed sections",
+        "mobile": "keep the decisive move in one hero area; controls stay platform-standard"
+      }
+    },
+    {
+      "id": "modern-minimal",
+      "name": "Modern Minimal",
+      "family": "refined-neutral",
+      "aliases": ["modern minimal", "minimalist", "clean minimal"],
+      "label": "minimalist everyday",
+      "persona": "minimalist everyday, modern and clean",
+      "ambition": "confident",
+      "color_posture": {
+        "mode": "monochrome",
+        "archetypes": ["Gallery white", "Stone", "Ink & paper"]
+      },
+      "motion": {
+        "level": "quiet",
+        "character": "smooth, quick, quiet continuity; restrained entrances"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["ecommerce", "saas", "brand-site"],
+          "ok": ["utility", "marketplace", "portfolio", "booking", "content-media", "banking-fintech", "learning", "community"]
+        },
+        "category": {
+          "strong": ["fashion", "technology", "home-living"],
+          "ok": ["finance", "healthcare", "wellness", "beauty", "travel", "b2b-services", "developer-tools", "education", "food-hospitality", "sustainability", "real-estate", "logistics", "legal-insurance", "crypto-web3"]
+        },
+        "business_goal": {
+          "strong": ["conversion", "discovery", "task-efficiency"],
+          "ok": ["trust", "brand-awareness", "retention", "engagement", "lead-generation"]
+        },
+        "audience": {
+          "strong": ["general", "adults", "young-adults", "professionals"],
+          "ok": ["families", "affluent", "creatives", "developers", "enterprise", "seniors"]
+        },
+        "personality": {
+          "strong": ["minimal", "calm", "sophisticated", "professional"],
+          "ok": ["trustworthy", "innovative", "friendly", "approachable"],
+          "conflict": ["playful", "rebellious", "nostalgic"]
+        },
+        "positioning": {
+          "strong": ["mainstream", "premium"],
+          "ok": ["luxury", "budget"]
+        },
+        "surface_mode": {
+          "strong": ["persuade", "operate", "read"],
+          "ok": ["experience"]
+        },
+        "density": {
+          "strong": ["medium"],
+          "ok": ["low", "high"]
+        },
+        "content": {
+          "strong": ["product-imagery", "photography"],
+          "ok": ["data", "long-text", "sparse"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["editorial-luxury", "native-clean", "instrument", "swiss-grid", "organic-tactile", "warm-humanist", "bold-modern", "dark-premium", "color-block"],
+      "clashes_with": ["neo-brutalist", "retro-modern"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "one contemporary sans family, clear 4-5 step scale, regular/medium weights",
+        "color": "premium monochrome, one temperature, one restrained accent",
+        "layout": "calm grid, generous whitespace, content-first product presentation",
+        "components": "quiet controls, subtle radii, hairline dividers instead of nested cards",
+        "surface": "flat surfaces with soft single-level elevation",
+        "motion": "short eased transitions, continuity on state and route changes",
+        "imagery": "clean product imagery on neutral fields"
+      },
+      "accessibility": ["Avoid low-contrast mid-grays for text (lazy mono).", "Hairline dividers need 3:1 when they convey structure."],
+      "platform_notes": {
+        "web": "max-width content column, responsive grid",
+        "mobile": "platform navigation and controls, spacious lists"
+      }
+    },
+    {
+      "id": "native-clean",
+      "name": "Native Clean",
+      "family": "quiet-functional",
+      "aliases": ["native clean", "platform native", "native look"],
+      "label": "clean and platform-native",
+      "persona": "a clean, platform-native app",
+      "ambition": "quiet",
+      "color_posture": {
+        "mode": "system",
+        "archetypes": [],
+        "rule": "platform semantic colors with one brand accent; dynamic color allowed on Android"
+      },
+      "motion": {
+        "level": "quiet",
+        "character": "system transitions and springs, immediate press feedback"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["utility", "banking-fintech", "booking"],
+          "ok": ["saas", "community", "learning", "ecommerce", "marketplace"],
+          "conflict": ["brand-site", "portfolio"]
+        },
+        "category": {
+          "strong": ["finance", "healthcare", "technology"],
+          "ok": ["travel", "wellness", "education", "food-hospitality", "sports-fitness", "government-civic", "home-living", "logistics", "legal-insurance"]
+        },
+        "business_goal": {
+          "strong": ["task-efficiency", "trust", "retention"],
+          "ok": ["engagement", "monitoring", "conversion"],
+          "conflict": ["brand-awareness", "self-expression"]
+        },
+        "audience": {
+          "strong": ["general", "adults", "professionals", "seniors", "patients"],
+          "ok": ["young-adults", "families", "enterprise"],
+          "conflict": ["children"]
+        },
+        "personality": {
+          "strong": ["trustworthy", "calm", "minimal", "professional"],
+          "ok": ["friendly", "approachable"],
+          "conflict": ["rebellious", "nostalgic", "luxurious"]
+        },
+        "positioning": {
+          "ok": ["mainstream", "premium", "budget"]
+        },
+        "surface_mode": {
+          "strong": ["operate"],
+          "ok": ["read"],
+          "conflict": ["experience"]
+        },
+        "density": {
+          "strong": ["medium"],
+          "ok": ["high", "low"]
+        },
+        "content": {
+          "ok": ["data", "user-generated", "sparse"]
+        },
+        "platform": {
+          "strong": ["ios", "android", "react-native", "flutter"],
+          "ok": ["web", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["modern-minimal", "instrument", "warm-humanist", "editorial-luxury", "bold-modern", "dark-premium", "playful-illustrated"],
+      "clashes_with": [],
+      "functional_neutral": true,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "system font stack with platform text styles and Dynamic Type / font scale",
+        "color": "semantic system colors plus one brand accent",
+        "layout": "platform navigation, grouped lists, standard spacing",
+        "components": "platform components first (HIG / Material 3)",
+        "surface": "system materials and elevation",
+        "motion": "system navigation transitions, springs, haptics where the platform expects them",
+        "imagery": "minimal; icons from the platform set"
+      },
+      "accessibility": ["Respect platform minimum target sizes and text scaling.", "Do not override system contrast settings."],
+      "platform_notes": {
+        "web": "follow the host OS look loosely; standard form controls",
+        "mobile": "HIG on iOS, Material 3 on Android; one codebase may differ per platform"
+      }
+    },
+    {
+      "id": "warm-humanist",
+      "name": "Warm Humanist",
+      "family": "warm-natural",
+      "aliases": ["warm humanist", "humanist"],
+      "label": "friendly and warm",
+      "persona": "friendly, warm and approachable",
+      "ambition": "confident",
+      "color_posture": {
+        "mode": "chromatic",
+        "rule": "warm off-white base with 2-3 earthy saturated roles (tomato, ochre, forest); tinted neutrals"
+      },
+      "motion": {
+        "level": "quiet",
+        "character": "gentle springs with little overshoot, soft entrances"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["booking", "community", "learning"],
+          "ok": ["saas", "ecommerce", "utility", "nonprofit", "marketplace"]
+        },
+        "category": {
+          "strong": ["healthcare", "wellness", "education", "food-hospitality", "home-living"],
+          "ok": ["finance", "travel", "kids", "sustainability", "legal-insurance"]
+        },
+        "business_goal": {
+          "strong": ["trust", "engagement", "retention"],
+          "ok": ["conversion", "learning", "task-efficiency"]
+        },
+        "audience": {
+          "strong": ["families", "general", "patients", "seniors", "adults"],
+          "ok": ["young-adults", "children"]
+        },
+        "personality": {
+          "strong": ["friendly", "warm", "approachable", "calm"],
+          "ok": ["trustworthy", "playful", "natural"],
+          "conflict": ["luxurious", "rebellious", "technical"]
+        },
+        "positioning": {
+          "strong": ["mainstream"],
+          "ok": ["budget", "premium"],
+          "conflict": ["luxury"]
+        },
+        "surface_mode": {
+          "strong": ["operate", "persuade"],
+          "ok": ["read"]
+        },
+        "density": {
+          "strong": ["low", "medium"],
+          "conflict": ["high"]
+        },
+        "content": {
+          "strong": ["illustration", "photography"],
+          "ok": ["user-generated"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["native-clean", "playful-illustrated", "organic-tactile", "modern-minimal", "retro-modern"],
+      "clashes_with": ["neo-brutalist", "dark-premium", "editorial-luxury", "bold-modern"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "rounded or humanist sans, comfortable sizes, medium weights",
+        "color": "warm off-white with earthy saturated roles; never violet",
+        "layout": "open spacing, friendly grouping, clear single next step",
+        "components": "generous radii, soft fills, friendly empty states",
+        "surface": "soft tinted surfaces, low elevation",
+        "motion": "gentle springs, encouraging feedback",
+        "imagery": "warm real photography or simple illustration of people"
+      },
+      "accessibility": ["Saturated role colors need 4.5:1 text contrast or a darker text variant.", "Friendly copy must stay specific."],
+      "platform_notes": {
+        "web": "comfortable reading width, clear CTAs",
+        "mobile": "large targets, bottom actions"
+      }
+    },
+    {
+      "id": "color-block",
+      "name": "Color Block",
+      "family": "expressive-color",
+      "aliases": ["color block", "colour block", "color blocking"],
+      "label": "bold and colorful",
+      "persona": "bold, colorful and youthful (e.g. pop or streetwear)",
+      "ambition": "bold",
+      "color_posture": {
+        "mode": "chromatic",
+        "rule": "2-3 flat saturated fields with large area; no gradients; tinted neutrals"
+      },
+      "motion": {
+        "level": "expressive",
+        "character": "punchy wipes and block transitions, decisive easing"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["brand-site", "ecommerce", "community"],
+          "ok": ["learning", "saas", "game", "marketplace"]
+        },
+        "category": {
+          "strong": ["media-entertainment", "sports-fitness", "music-events"],
+          "ok": ["fashion", "food-hospitality", "education", "technology", "beauty", "gaming"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "engagement"],
+          "ok": ["conversion", "discovery", "self-expression"],
+          "conflict": ["monitoring"]
+        },
+        "audience": {
+          "strong": ["gen-z", "teens", "young-adults"],
+          "ok": ["general", "creatives", "children"]
+        },
+        "personality": {
+          "strong": ["bold", "energetic", "playful"],
+          "ok": ["friendly", "innovative"],
+          "conflict": ["calm", "luxurious", "sophisticated", "natural"]
+        },
+        "positioning": {
+          "strong": ["mainstream"],
+          "ok": ["budget", "premium"],
+          "conflict": ["luxury"]
+        },
+        "surface_mode": {
+          "strong": ["persuade", "experience"],
+          "ok": ["read"]
+        },
+        "density": {
+          "strong": ["low"],
+          "ok": ["medium"],
+          "conflict": ["high"]
+        },
+        "content": {
+          "strong": ["photography", "illustration", "sparse"],
+          "ok": ["video"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["modern-minimal", "swiss-grid", "playful-illustrated", "bold-modern", "neo-brutalist", "retro-modern"],
+      "clashes_with": ["editorial-luxury", "dark-premium", "organic-tactile"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "heavy grotesk display, tight leading, big numerals",
+        "color": "flat saturated blocks per section with defined roles",
+        "layout": "each section one color field; strong blocks and asymmetric splits",
+        "components": "solid filled buttons, bold outlines, minimal shadows",
+        "surface": "flat color, no gradients or glass",
+        "motion": "wipes and block reveals, snappy feedback",
+        "imagery": "cut-out or high-energy photography on color fields"
+      },
+      "accessibility": ["Check text contrast on every saturated field.", "Do not encode state by hue alone."],
+      "platform_notes": {
+        "web": "full-width color sections",
+        "mobile": "color fields in hero and cards; neutral controls in dense screens"
+      }
+    },
+    {
+      "id": "swiss-grid",
+      "name": "Swiss Grid",
+      "family": "refined-neutral",
+      "aliases": ["swiss grid", "swiss", "international style", "international typographic"],
+      "label": "design-led and typographic",
+      "persona": "rigorous, design-led and typographic",
+      "ambition": "confident",
+      "color_posture": {
+        "mode": "monochrome",
+        "archetypes": ["Ink & paper"],
+        "rule": "black, white and one structural primary (red, blue or yellow)"
+      },
+      "motion": {
+        "level": "quiet",
+        "character": "precise slides along the grid, little overshoot"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["portfolio", "content-media", "brand-site"],
+          "ok": ["saas", "ecommerce", "learning"]
+        },
+        "category": {
+          "strong": ["creative-arts", "media-entertainment"],
+          "ok": ["technology", "fashion", "education", "government-civic", "developer-tools", "b2b-services", "real-estate", "legal-insurance"],
+          "conflict": ["kids"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "discovery"],
+          "ok": ["conversion", "learning", "lead-generation"]
+        },
+        "audience": {
+          "strong": ["creatives", "professionals"],
+          "ok": ["adults", "young-adults", "enterprise"],
+          "conflict": ["children"]
+        },
+        "personality": {
+          "strong": ["minimal", "sophisticated", "professional"],
+          "ok": ["bold", "technical", "innovative"],
+          "conflict": ["playful", "warm"]
+        },
+        "positioning": {
+          "strong": ["premium"],
+          "ok": ["mainstream", "luxury"]
+        },
+        "surface_mode": {
+          "strong": ["read", "persuade", "experience"],
+          "ok": ["operate"]
+        },
+        "density": {
+          "strong": ["medium"],
+          "ok": ["low", "high"]
+        },
+        "content": {
+          "strong": ["long-text", "photography"],
+          "ok": ["data", "product-imagery"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["modern-minimal", "editorial-luxury", "color-block", "instrument", "bold-modern", "neo-brutalist"],
+      "clashes_with": ["playful-illustrated", "organic-tactile", "retro-modern"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "neo-grotesk, flush-left ragged-right, strict baseline and scale",
+        "color": "black and white with one structural primary",
+        "layout": "visible modular grid, asymmetric columns, numbered sections",
+        "components": "rectangular, rule lines, text-forward controls",
+        "surface": "flat paper-like fields",
+        "motion": "grid-aligned slides and reveals",
+        "imagery": "rectangular crops aligned to the grid"
+      },
+      "accessibility": ["Small caption sizes must stay readable (≥ 12 px web).", "Structural primary color needs contrast where it carries text."],
+      "platform_notes": {
+        "web": "12-column grid, sticky section markers",
+        "mobile": "collapse to 4-6 columns; keep the type system"
+      }
+    },
+    {
+      "id": "neo-brutalist",
+      "name": "Neo-Brutalist",
+      "family": "expressive-color",
+      "aliases": ["neo-brutalist", "neo brutalist", "brutalist", "neubrutalism"],
+      "label": "raw and rebellious",
+      "persona": "raw and rebellious (e.g. streetwear, underground)",
+      "ambition": "bold",
+      "color_posture": {
+        "mode": "chromatic",
+        "rule": "high-contrast flat colors with black borders and hard offset shadows"
+      },
+      "motion": {
+        "level": "expressive",
+        "character": "snappy, near-linear movement; hard state flips"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["brand-site", "community", "portfolio"],
+          "ok": ["ecommerce", "saas", "content-media"]
+        },
+        "category": {
+          "strong": ["developer-tools", "creative-arts"],
+          "ok": ["fashion", "media-entertainment", "gaming", "technology", "music-events", "crypto-web3"],
+          "conflict": ["finance", "government-civic", "legal-insurance"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "self-expression"],
+          "ok": ["engagement", "conversion", "discovery"],
+          "conflict": ["trust"]
+        },
+        "audience": {
+          "strong": ["gen-z", "developers", "creatives"],
+          "ok": ["young-adults", "teens"],
+          "conflict": ["seniors", "families"]
+        },
+        "personality": {
+          "strong": ["rebellious", "bold", "energetic"],
+          "ok": ["playful", "technical", "innovative"],
+          "conflict": ["calm", "luxurious", "trustworthy", "sophisticated"]
+        },
+        "positioning": {
+          "ok": ["budget", "mainstream", "premium"],
+          "conflict": ["luxury"]
+        },
+        "surface_mode": {
+          "strong": ["persuade", "experience"],
+          "ok": ["read", "operate"]
+        },
+        "density": {
+          "ok": ["low", "medium"]
+        },
+        "content": {
+          "ok": ["photography", "user-generated", "sparse", "product-imagery"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [
+        {
+          "dimension": "audience",
+          "values": ["children", "patients"]
+        },
+        {
+          "dimension": "category",
+          "values": ["healthcare", "kids"]
+        }
+      ],
+      "pairs_with": ["color-block", "swiss-grid", "retro-modern"],
+      "clashes_with": ["editorial-luxury", "dark-premium", "organic-tactile", "warm-humanist", "modern-minimal"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "chunky grotesk or mono accents, oversized labels",
+        "color": "flat high-contrast colors, black outlines",
+        "layout": "visible boxes, offset blocks, deliberate misalignment",
+        "components": "thick borders, hard offset shadows, obvious pressed states",
+        "surface": "flat, no blur",
+        "motion": "snappy offsets and flips",
+        "imagery": "raw photography, stickers, user content"
+      },
+      "accessibility": ["Hard shadows must not reduce text contrast.", "Deliberate misalignment must keep focus order and reading order logical."],
+      "platform_notes": {
+        "web": "box grid with visible borders",
+        "mobile": "keep borders and offsets on cards; standard navigation"
+      }
+    },
+    {
+      "id": "organic-tactile",
+      "name": "Organic Tactile",
+      "family": "warm-natural",
+      "aliases": ["organic tactile", "organic"],
+      "label": "sustainable and natural",
+      "persona": "sustainable, natural and crafted",
+      "ambition": "confident",
+      "color_posture": {
+        "mode": "chromatic",
+        "rule": "low-chroma earth tones (moss, clay, stone) on paper-like neutrals; grain allowed"
+      },
+      "motion": {
+        "level": "quiet",
+        "character": "slow fades and soft parallax; never bouncy"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["brand-site", "ecommerce", "booking"],
+          "ok": ["content-media", "community", "nonprofit"]
+        },
+        "category": {
+          "strong": ["sustainability", "wellness", "food-hospitality", "travel", "home-living"],
+          "ok": ["fashion", "beauty", "healthcare"],
+          "conflict": ["crypto-web3"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "trust"],
+          "ok": ["conversion", "discovery", "engagement"]
+        },
+        "audience": {
+          "strong": ["young-adults", "adults", "affluent"],
+          "ok": ["families", "general", "creatives"]
+        },
+        "personality": {
+          "strong": ["natural", "calm", "crafted", "warm"],
+          "ok": ["sophisticated", "friendly", "trustworthy"],
+          "conflict": ["technical", "rebellious", "energetic"]
+        },
+        "positioning": {
+          "strong": ["premium"],
+          "ok": ["mainstream", "luxury"]
+        },
+        "surface_mode": {
+          "strong": ["persuade", "read"],
+          "ok": ["experience"]
+        },
+        "density": {
+          "strong": ["low"],
+          "ok": ["medium"],
+          "conflict": ["high"]
+        },
+        "content": {
+          "strong": ["photography", "product-imagery"],
+          "ok": ["long-text", "video"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["editorial-luxury", "modern-minimal", "warm-humanist"],
+      "clashes_with": ["neo-brutalist", "color-block", "dark-premium", "bold-modern"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "serif or soft grotesk display with a calm sans body; no italic-serif reflex",
+        "color": "earth tones on paper neutrals; avoid the editorial-beige trap by using a real value range",
+        "layout": "unhurried sections, image-led storytelling, asymmetric calm",
+        "components": "soft edges, textured fills, understated controls",
+        "surface": "paper grain, matte materials",
+        "motion": "slow fades, soft parallax, gentle reveals",
+        "imagery": "natural-light photography of materials, people and places"
+      },
+      "accessibility": ["Grain and texture must not reduce text contrast.", "Low-chroma palettes still need 4.5:1 body text."],
+      "platform_notes": {
+        "web": "large imagery with text overlays checked for contrast",
+        "mobile": "texture limited to hero and backgrounds; plain controls"
+      }
+    },
+    {
+      "id": "instrument",
+      "name": "Instrument",
+      "family": "quiet-functional",
+      "aliases": ["instrument"],
+      "label": "data-focused and technical",
+      "persona": "precise, data-dense and technical",
+      "ambition": "quiet",
+      "color_posture": {
+        "mode": "monochrome",
+        "archetypes": ["Graphite"],
+        "rule": "neutral ramp plus functional status colors only"
+      },
+      "motion": {
+        "level": "quiet",
+        "character": "minimal, functional feedback; instant data updates without decoration"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["saas", "banking-fintech", "utility"],
+          "ok": ["marketplace", "booking"]
+        },
+        "category": {
+          "strong": ["finance", "technology", "developer-tools", "logistics"],
+          "ok": ["healthcare", "b2b-services", "government-civic", "sports-fitness", "legal-insurance", "crypto-web3"],
+          "conflict": ["kids"]
+        },
+        "business_goal": {
+          "strong": ["monitoring", "task-efficiency"],
+          "ok": ["trust", "retention"]
+        },
+        "audience": {
+          "strong": ["professionals", "enterprise", "developers"],
+          "ok": ["adults"],
+          "conflict": ["children"]
+        },
+        "personality": {
+          "strong": ["technical", "professional", "minimal"],
+          "ok": ["trustworthy", "calm", "innovative"],
+          "conflict": ["playful", "warm", "nostalgic"]
+        },
+        "positioning": {
+          "ok": ["mainstream", "premium", "luxury", "budget"]
+        },
+        "surface_mode": {
+          "strong": ["operate"],
+          "ok": ["read"],
+          "conflict": ["experience"]
+        },
+        "density": {
+          "strong": ["high", "medium"]
+        },
+        "content": {
+          "strong": ["data"],
+          "ok": ["long-text"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [
+        {
+          "dimension": "audience",
+          "values": ["children"]
+        }
+      ],
+      "pairs_with": ["modern-minimal", "native-clean", "swiss-grid", "dark-premium", "bold-modern"],
+      "clashes_with": ["playful-illustrated", "retro-modern"],
+      "functional_neutral": true,
+      "as_secondary": false,
+      "treatments": {
+        "typography": "compact sans, tabular figures, mono numerals for data",
+        "color": "neutral graphite ramp, color only for status and data series",
+        "layout": "dense grid, aligned columns, persistent filters",
+        "components": "compact tables, segmented controls, inline status",
+        "surface": "flat layered surfaces with hairlines",
+        "motion": "instant updates, subtle highlight on change",
+        "imagery": "none; charts and data only"
+      },
+      "accessibility": ["Dense text still meets contrast and target minimums.", "Status colors need text or icon redundancy."],
+      "platform_notes": {
+        "web": "multi-pane layouts with keyboard support",
+        "mobile": "progressive disclosure; one metric group per screen"
+      }
+    },
+    {
+      "id": "playful-illustrated",
+      "name": "Playful Illustrated",
+      "family": "expressive-color",
+      "aliases": ["playful illustrated", "illustrated"],
+      "label": "playful and illustrated",
+      "persona": "playful, illustrated and fun",
+      "ambition": "bold",
+      "color_posture": {
+        "mode": "chromatic",
+        "rule": "bright palette with clear roles; illustration carries most color"
+      },
+      "motion": {
+        "level": "expressive",
+        "character": "bouncy springs, character reactions, celebratory micro-interactions"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["learning", "game", "community"],
+          "ok": ["utility", "brand-site", "ecommerce"]
+        },
+        "category": {
+          "strong": ["kids", "education", "gaming"],
+          "ok": ["food-hospitality", "wellness", "media-entertainment"],
+          "conflict": ["legal-insurance"]
+        },
+        "business_goal": {
+          "strong": ["engagement", "learning", "retention"],
+          "ok": ["brand-awareness", "conversion"]
+        },
+        "audience": {
+          "strong": ["children", "families", "teens"],
+          "ok": ["general", "young-adults", "gen-z"],
+          "conflict": ["enterprise", "professionals"]
+        },
+        "personality": {
+          "strong": ["playful", "friendly", "energetic"],
+          "ok": ["warm", "approachable"],
+          "conflict": ["sophisticated", "luxurious", "technical", "professional"]
+        },
+        "positioning": {
+          "strong": ["mainstream"],
+          "ok": ["budget"],
+          "conflict": ["luxury"]
+        },
+        "surface_mode": {
+          "strong": ["experience", "persuade"],
+          "ok": ["operate", "read"]
+        },
+        "density": {
+          "strong": ["low"],
+          "conflict": ["high"]
+        },
+        "content": {
+          "strong": ["illustration"],
+          "ok": ["video", "sparse", "product-imagery", "photography"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["warm-humanist", "color-block", "native-clean"],
+      "clashes_with": ["editorial-luxury", "dark-premium", "instrument", "swiss-grid", "neo-brutalist", "bold-modern"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "rounded heavy display, large friendly body sizes",
+        "color": "bright role-based palette led by illustration",
+        "layout": "big targets, one task per screen, playful asymmetry",
+        "components": "chunky rounded controls, obvious feedback, rewards",
+        "surface": "soft shapes, sticker-like cards",
+        "motion": "bouncy springs and celebrations, always interruptible",
+        "imagery": "custom illustration or a mascot with a consistent style"
+      },
+      "accessibility": ["Bouncy motion needs a reduced-motion path.", "Large targets (≥ 48dp) for children; avoid dark patterns in rewards."],
+      "platform_notes": {
+        "web": "illustrated scenes scale down without clipping",
+        "mobile": "touch-first, bottom-reachable actions"
+      }
+    },
+    {
+      "id": "editorial-luxury",
+      "name": "Editorial Luxury",
+      "family": "refined-neutral",
+      "aliases": ["editorial luxury", "editorial", "luxury editorial", "high fashion"],
+      "label": "luxury",
+      "persona": "luxury / high-end",
+      "ambition": "bold",
+      "color_posture": {
+        "mode": "monochrome",
+        "archetypes": ["Ink & paper", "Gallery white", "Obsidian & metal"]
+      },
+      "motion": {
+        "level": "expressive",
+        "character": "slow, confident image reveals and editorial page turns"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["brand-site", "ecommerce", "portfolio"],
+          "ok": ["content-media", "booking"]
+        },
+        "category": {
+          "strong": ["fashion", "beauty", "real-estate", "automotive", "travel"],
+          "ok": ["home-living", "food-hospitality", "creative-arts"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "discovery"],
+          "ok": ["conversion", "engagement"],
+          "conflict": ["task-efficiency", "monitoring"]
+        },
+        "audience": {
+          "strong": ["affluent"],
+          "ok": ["adults", "young-adults", "professionals", "creatives"],
+          "conflict": ["children", "teens"]
+        },
+        "personality": {
+          "strong": ["luxurious", "sophisticated"],
+          "ok": ["minimal", "calm", "bold"],
+          "conflict": ["playful", "rebellious", "energetic"]
+        },
+        "positioning": {
+          "strong": ["luxury", "premium"],
+          "conflict": ["budget"]
+        },
+        "surface_mode": {
+          "strong": ["persuade", "read", "experience"]
+        },
+        "density": {
+          "strong": ["low"],
+          "conflict": ["high"]
+        },
+        "content": {
+          "strong": ["photography", "product-imagery"],
+          "ok": ["long-text", "video"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [
+        {
+          "dimension": "audience",
+          "values": ["children"]
+        },
+        {
+          "dimension": "category",
+          "values": ["kids"]
+        }
+      ],
+      "pairs_with": ["modern-minimal", "organic-tactile", "swiss-grid", "dark-premium", "native-clean"],
+      "clashes_with": ["color-block", "neo-brutalist", "playful-illustrated", "warm-humanist"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "high-contrast display (serif or sharp grotesk) with a quiet body; no gold-and-italic reflex",
+        "color": "premium monochrome; photography supplies the color",
+        "layout": "magazine spreads, large image fields, asymmetric editorial grid",
+        "components": "minimal chrome, text links, understated buttons",
+        "surface": "paper or gallery-white fields, deep black sections",
+        "motion": "slow image reveals and crossfades; restrained hover",
+        "imagery": "art-directed campaign photography, full-bleed and cropped"
+      },
+      "accessibility": ["Text over imagery needs a scrim or contrast check.", "Thin display weights only at large sizes."],
+      "platform_notes": {
+        "web": "editorial grid with full-bleed spreads",
+        "mobile": "one image and one line per view; keep the type contrast"
+      }
+    },
+    {
+      "id": "dark-premium",
+      "name": "Dark Premium",
+      "family": "refined-neutral",
+      "aliases": ["dark premium", "dark luxury"],
+      "label": "dark and cinematic",
+      "persona": "dark, cinematic and premium",
+      "ambition": "bold",
+      "color_posture": {
+        "mode": "monochrome",
+        "archetypes": ["Obsidian & metal", "Graphite"],
+        "rule": "true or warm/cool neutral darks; never violet-tinted"
+      },
+      "motion": {
+        "level": "expressive",
+        "character": "cinematic reveals, light and material transitions"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["brand-site", "saas", "game"],
+          "ok": ["ecommerce", "content-media", "portfolio"]
+        },
+        "category": {
+          "strong": ["automotive", "media-entertainment", "gaming", "technology", "music-events"],
+          "ok": ["fashion", "beauty", "finance", "developer-tools", "sports-fitness", "crypto-web3"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "engagement"],
+          "ok": ["conversion", "discovery", "monitoring"]
+        },
+        "audience": {
+          "strong": ["affluent"],
+          "ok": ["young-adults", "professionals", "developers", "creatives", "gen-z"],
+          "conflict": ["children", "seniors"]
+        },
+        "personality": {
+          "strong": ["sophisticated", "luxurious", "bold"],
+          "ok": ["technical", "innovative", "minimal"],
+          "conflict": ["playful", "warm", "friendly"]
+        },
+        "positioning": {
+          "strong": ["premium", "luxury"],
+          "conflict": ["budget"]
+        },
+        "surface_mode": {
+          "strong": ["experience", "persuade"],
+          "ok": ["operate", "read"]
+        },
+        "density": {
+          "ok": ["low", "medium"]
+        },
+        "content": {
+          "strong": ["video", "photography", "product-imagery"],
+          "ok": ["data"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [
+        {
+          "dimension": "audience",
+          "values": ["children"]
+        },
+        {
+          "dimension": "category",
+          "values": ["kids"]
+        }
+      ],
+      "pairs_with": ["modern-minimal", "instrument", "editorial-luxury", "bold-modern", "native-clean"],
+      "clashes_with": ["warm-humanist", "playful-illustrated", "organic-tactile", "color-block", "neo-brutalist"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "refined grotesk, light-on-dark sizes tuned for halation",
+        "color": "near-black ramp with one metallic or signal detail",
+        "layout": "cinematic full-bleed scenes, focused single-subject frames",
+        "components": "low-chrome controls, subtle borders, clear focus rings",
+        "surface": "layered dark surfaces, material highlights; no glow blobs",
+        "motion": "cinematic reveals, light sweeps used sparingly",
+        "imagery": "low-key photography and video"
+      },
+      "accessibility": ["Mid-gray text on dark often fails contrast; check every pair.", "Provide a light scheme where the platform expects one."],
+      "platform_notes": {
+        "web": "dark scheme with prefers-color-scheme fallback",
+        "mobile": "respect system light/dark where the app supports both"
+      }
+    },
+    {
+      "id": "retro-modern",
+      "name": "Retro Modern",
+      "family": "expressive-color",
+      "aliases": ["retro modern", "retro", "vintage"],
+      "label": "retro and nostalgic",
+      "persona": "nostalgic, retro with a modern twist",
+      "ambition": "bold",
+      "color_posture": {
+        "mode": "chromatic",
+        "rule": "period print palette (muted 70s or 90s) with tinted neutrals; no neon synthwave"
+      },
+      "motion": {
+        "level": "expressive",
+        "character": "playful period-appropriate transitions, print-like reveals"
+      },
+      "fit": {
+        "product_type": {
+          "strong": ["brand-site", "community", "content-media"],
+          "ok": ["ecommerce", "portfolio", "game"]
+        },
+        "category": {
+          "strong": ["food-hospitality", "media-entertainment", "creative-arts", "gaming", "music-events"],
+          "ok": ["fashion", "travel", "home-living"]
+        },
+        "business_goal": {
+          "strong": ["brand-awareness", "engagement", "self-expression"],
+          "ok": ["conversion", "discovery"],
+          "conflict": ["task-efficiency", "monitoring"]
+        },
+        "audience": {
+          "strong": ["gen-z", "young-adults", "creatives"],
+          "ok": ["adults", "general"]
+        },
+        "personality": {
+          "strong": ["nostalgic", "playful", "crafted"],
+          "ok": ["warm", "bold", "friendly", "energetic"],
+          "conflict": ["technical"]
+        },
+        "positioning": {
+          "ok": ["mainstream", "premium", "budget"]
+        },
+        "surface_mode": {
+          "strong": ["persuade", "experience"],
+          "ok": ["read"]
+        },
+        "density": {
+          "strong": ["low"],
+          "conflict": ["high"]
+        },
+        "content": {
+          "strong": ["illustration", "photography"],
+          "ok": ["sparse"]
+        },
+        "platform": {
+          "ok": ["web", "ios", "android", "react-native", "flutter", "desktop"]
+        }
+      },
+      "exclude_when": [],
+      "pairs_with": ["color-block", "neo-brutalist", "warm-humanist"],
+      "clashes_with": ["instrument", "editorial-luxury", "dark-premium", "swiss-grid", "modern-minimal"],
+      "functional_neutral": false,
+      "as_secondary": true,
+      "treatments": {
+        "typography": "period display face paired with a modern sans body",
+        "color": "muted period palette with real value range",
+        "layout": "poster-like compositions, badges, framed sections",
+        "components": "rounded or pill controls with period details",
+        "surface": "print texture, halftone used sparingly",
+        "motion": "print-like reveals, small playful loops",
+        "imagery": "period-graded photography or illustration"
+      },
+      "accessibility": ["Decorative display faces only for headings.", "Halftone and texture must not sit under body text."],
+      "platform_notes": {
+        "web": "poster sections with modern responsive grid",
+        "mobile": "retro styling in headers and cards; standard controls"
+      }
+    }
+  ],
+  "deferred": [
+    {
+      "id": "glass-modern",
+      "name": "Glass Modern",
+      "reason": "Frosted panels over color blur are a listed AI-generated signature; needs stricter material rules before it can be inferred. An explicit user request is still honored as a custom direction."
+    },
+    {
+      "id": "spatial-futurism",
+      "name": "Spatial Futurism",
+      "reason": "Overlaps the spatial/3D reference and glow signatures; needs a performance and legibility contract first. Explicit requests use references/spatial-design.md as a custom direction."
+    }
+  ]
+}

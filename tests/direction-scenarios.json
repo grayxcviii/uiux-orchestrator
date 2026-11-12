@@ -1,0 +1,580 @@
+{
+  "version": 1,
+  "notes": "Design direction scenarios for core/direction.md. `context` is the record the agent must extract from the prompt (vocabulary from registry/styles.json); tests/direction.test.mjs runs scripts/direction.mjs on it and checks `expected`. Extraction itself is judged by comparing an agent's record with `context` in harness runs.",
+  "scenarios": [
+    {
+      "id": "D01",
+      "prompt": "Design a landing page for a clothing store.",
+      "context": {
+        "product_type": {
+          "value": "ecommerce",
+          "source": "inferred"
+        },
+        "category": "fashion",
+        "page_type": "landing",
+        "business_goal": {
+          "value": ["conversion", "discovery"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["photography"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "mode": "inferred",
+        "ask": true,
+        "primary_not": ["editorial-luxury"],
+        "options_include": ["editorial-luxury", "organic-tactile"],
+        "unknown_include": ["audience", "personality", "positioning"],
+        "secondary_in": [null]
+      }
+    },
+    {
+      "id": "D01b",
+      "prompt": "Design a landing page for a clothing store. (non-interactive run)",
+      "context": {
+        "interactive": false,
+        "product_type": {
+          "value": "ecommerce",
+          "source": "inferred"
+        },
+        "category": "fashion",
+        "page_type": "landing",
+        "business_goal": {
+          "value": ["conversion", "discovery"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["photography"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "ask": false,
+        "primary_not": ["editorial-luxury"],
+        "assumption_matches": "assumed a",
+        "confidence": "medium",
+        "secondary_in": [null]
+      }
+    },
+    {
+      "id": "D02",
+      "prompt": "Design a luxury fashion landing page.",
+      "context": {
+        "product_type": {
+          "value": "brand-site",
+          "source": "inferred"
+        },
+        "category": "fashion",
+        "page_type": "landing",
+        "positioning": "luxury",
+        "personality": {
+          "value": ["luxurious"],
+          "source": "inferred"
+        },
+        "business_goal": {
+          "value": ["brand-awareness", "conversion"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["photography"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "mode": "inferred",
+        "ask": false,
+        "primary": ["editorial-luxury"],
+        "secondary_in": ["modern-minimal", "dark-premium", "organic-tactile", "swiss-grid"]
+      }
+    },
+    {
+      "id": "D03",
+      "prompt": "Design a streetwear e-commerce website for Gen Z.",
+      "context": {
+        "product_type": "ecommerce",
+        "category": "fashion",
+        "page_type": "homepage",
+        "audience": "gen-z",
+        "personality": {
+          "value": ["rebellious", "bold"],
+          "source": "inferred"
+        },
+        "business_goal": {
+          "value": ["conversion", "discovery"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["photography", "product-imagery"],
+          "source": "inferred"
+        },
+        "surfaces": [
+          {
+            "name": "product listing",
+            "page_type": "product-listing"
+          },
+          {
+            "name": "checkout",
+            "page_type": "checkout"
+          }
+        ]
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["neo-brutalist", "color-block"],
+        "primary_not": ["editorial-luxury", "modern-minimal"],
+        "functional_present": ["checkout"]
+      }
+    },
+    {
+      "id": "D04",
+      "prompt": "Design a sustainable clothing brand website.",
+      "context": {
+        "product_type": "brand-site",
+        "category": ["fashion", "sustainability"],
+        "page_type": "homepage",
+        "personality": {
+          "value": ["natural"],
+          "source": "inferred"
+        },
+        "business_goal": {
+          "value": ["brand-awareness", "conversion"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["photography"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["organic-tactile"],
+        "assumption_matches": "audience"
+      }
+    },
+    {
+      "id": "D04b",
+      "prompt": "Design a premium sustainable fashion landing page for environmentally conscious young adults.",
+      "context": {
+        "product_type": {
+          "value": "ecommerce",
+          "source": "inferred"
+        },
+        "category": ["fashion", "sustainability"],
+        "page_type": "landing",
+        "audience": "young-adults",
+        "positioning": "premium",
+        "personality": {
+          "value": ["natural"],
+          "source": "inferred"
+        },
+        "business_goal": {
+          "value": ["conversion", "brand-awareness"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["photography"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["organic-tactile"],
+        "secondary_in": ["modern-minimal", "editorial-luxury"],
+        "confidence_in": ["high", "medium"]
+      }
+    },
+    {
+      "id": "D05",
+      "prompt": "Design a modern SaaS dashboard.",
+      "context": {
+        "product_type": "saas",
+        "page_type": "dashboard",
+        "density": {
+          "value": "high",
+          "source": "inferred"
+        },
+        "business_goal": {
+          "value": ["monitoring", "task-efficiency"],
+          "source": "inferred"
+        },
+        "audience": {
+          "value": "professionals",
+          "source": "inferred"
+        },
+        "personality": {
+          "value": ["minimal", "professional"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["data"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["instrument"],
+        "secondary_in": ["modern-minimal"],
+        "ambition": "quiet",
+        "excluded_include": []
+      }
+    },
+    {
+      "id": "D06",
+      "prompt": "Design a banking mobile application.",
+      "context": {
+        "product_type": "banking-fintech",
+        "category": "finance",
+        "page_type": {
+          "value": "app-home",
+          "source": "inferred"
+        },
+        "platform": "ios",
+        "business_goal": {
+          "value": ["trust", "task-efficiency"],
+          "source": "inferred"
+        },
+        "surfaces": [
+          {
+            "name": "spending analytics",
+            "page_type": "analytics",
+            "density": "high"
+          },
+          {
+            "name": "settings",
+            "page_type": "settings"
+          }
+        ]
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["native-clean"],
+        "primary_not": ["neo-brutalist", "playful-illustrated", "color-block"],
+        "secondary_not": ["instrument"],
+        "functional": {
+          "spending analytics": ["native-clean", "instrument"]
+        }
+      }
+    },
+    {
+      "id": "D07",
+      "prompt": "Design a playful educational application for children.",
+      "context": {
+        "product_type": "learning",
+        "category": ["education", "kids"],
+        "audience": "children",
+        "personality": "playful",
+        "page_type": {
+          "value": "app-home",
+          "source": "inferred"
+        },
+        "business_goal": {
+          "value": ["learning", "engagement"],
+          "source": "inferred"
+        },
+        "content": {
+          "value": ["illustration"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["playful-illustrated"],
+        "secondary_in": ["warm-humanist"],
+        "excluded_include": ["neo-brutalist", "editorial-luxury", "dark-premium", "instrument"]
+      }
+    },
+    {
+      "id": "D08",
+      "prompt": "Design a healthcare booking application.",
+      "context": {
+        "product_type": "booking",
+        "category": "healthcare",
+        "page_type": {
+          "value": "booking-flow",
+          "source": "inferred"
+        },
+        "business_goal": {
+          "value": ["trust", "task-efficiency"],
+          "source": "inferred"
+        },
+        "audience": {
+          "value": "patients",
+          "source": "inferred"
+        },
+        "personality": {
+          "value": ["calm", "trustworthy"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["native-clean", "warm-humanist"],
+        "secondary_in": ["native-clean", "warm-humanist", "modern-minimal"],
+        "excluded_include": ["neo-brutalist"]
+      }
+    },
+    {
+      "id": "D09",
+      "prompt": "Design a portfolio website using Swiss Grid.",
+      "context": {
+        "explicit_style": "Swiss Grid",
+        "product_type": "portfolio",
+        "page_type": "portfolio",
+        "business_goal": {
+          "value": ["brand-awareness"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "mode": "explicit",
+        "ask": false,
+        "primary": ["swiss-grid"],
+        "confidence": "high",
+        "secondary_in": [null]
+      }
+    },
+    {
+      "id": "D10",
+      "prompt": "Design a mobile app. You decide the visual direction.",
+      "context": {
+        "delegated": true,
+        "platform": {
+          "value": "ios",
+          "source": "inferred"
+        },
+        "page_type": {
+          "value": "app-home",
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "mode": "default",
+        "ask": false,
+        "primary": ["native-clean", "modern-minimal"],
+        "confidence": "low",
+        "assumption_matches": "library default"
+      }
+    },
+    {
+      "id": "E01",
+      "prompt": "Design a luxury fashion landing page using Editorial Luxury.",
+      "context": {
+        "explicit_style": "Editorial Luxury",
+        "category": "fashion",
+        "page_type": "landing",
+        "positioning": "luxury",
+        "product_type": {
+          "value": "brand-site",
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "mode": "explicit",
+        "primary": ["editorial-luxury"],
+        "ask": false
+      }
+    },
+    {
+      "id": "E02",
+      "prompt": "Design a clothing landing page. You decide everything.",
+      "context": {
+        "delegated": true,
+        "product_type": {
+          "value": "ecommerce",
+          "source": "inferred"
+        },
+        "category": "fashion",
+        "page_type": "landing",
+        "business_goal": {
+          "value": ["conversion", "discovery"],
+          "source": "inferred"
+        }
+      },
+      "expected": {
+        "ask": false,
+        "primary_not": ["editorial-luxury"],
+        "assumption_matches": "assumed a"
+      }
+    },
+    {
+      "id": "E03",
+      "prompt": "Make our banking app for seniors neo-brutalist.",
+      "context": {
+        "explicit_style": "neo-brutalist",
+        "product_type": "banking-fintech",
+        "category": "finance",
+        "audience": "seniors",
+        "page_type": "app-home"
+      },
+      "expected": {
+        "mode": "explicit",
+        "primary": ["neo-brutalist"],
+        "validation_warning": "explicit-style-fit"
+      }
+    },
+    {
+      "id": "E04",
+      "prompt": "Design a fintech landing page in a glassmorphism style.",
+      "context": {
+        "explicit_style": "glass modern",
+        "product_type": "banking-fintech",
+        "page_type": "landing"
+      },
+      "expected": {
+        "mode": "explicit",
+        "primary": ["custom:glass-modern"],
+        "rationale_matches": "deferred"
+      }
+    },
+    {
+      "id": "E05",
+      "prompt": "Redesign the onboarding of our wellness app (brand tokens and guide exist).",
+      "context": {
+        "brand": {
+          "governing": true
+        },
+        "product_type": "utility",
+        "category": "wellness",
+        "page_type": "onboarding"
+      },
+      "expected": {
+        "mode": "brand",
+        "ask": false,
+        "color_mode": "brand",
+        "ambition_not": "bold"
+      }
+    },
+    {
+      "id": "E06",
+      "prompt": "Design a landing page.",
+      "context": {
+        "page_type": "landing"
+      },
+      "expected": {
+        "mode": "default",
+        "ask": true,
+        "question_matches": "What is the product"
+      }
+    },
+    {
+      "id": "E07",
+      "prompt": "Design a colorful kids learning app, keep it static.",
+      "context": {
+        "product_type": "learning",
+        "category": "kids",
+        "audience": "children",
+        "explicit_visual": {
+          "color": "colorful, saturated",
+          "motion": "static"
+        }
+      },
+      "expected": {
+        "color_mode": "user",
+        "motion_level": "static",
+        "primary": ["playful-illustrated"]
+      }
+    },
+    {
+      "id": "E08",
+      "prompt": "Design a landing page for a car brand.",
+      "context": {
+        "product_type": {
+          "value": "brand-site",
+          "source": "inferred"
+        },
+        "category": "automotive",
+        "page_type": "landing"
+      },
+      "expected": {
+        "ask": false,
+        "primary": ["bold-modern", "dark-premium", "editorial-luxury"],
+        "assumption_matches": "assumed a"
+      }
+    },
+    {
+      "id": "E09",
+      "prompt": "Design a website for a restaurant.",
+      "context": {
+        "product_type": {
+          "value": "brand-site",
+          "source": "inferred"
+        },
+        "category": "food-hospitality",
+        "page_type": "homepage"
+      },
+      "expected": {
+        "ask": true,
+        "options_include": ["organic-tactile", "retro-modern"],
+        "question_matches": "food and hospitality brand"
+      }
+    },
+    {
+      "id": "E10",
+      "prompt": "Design an online toy shop.",
+      "context": {
+        "product_type": "ecommerce",
+        "category": "kids",
+        "page_type": "homepage"
+      },
+      "expected": {
+        "primary": ["playful-illustrated"],
+        "excluded_include": ["editorial-luxury", "dark-premium", "neo-brutalist"]
+      }
+    },
+    {
+      "id": "E11",
+      "prompt": "Luxury fashion site with checkout.",
+      "context": {
+        "product_type": "ecommerce",
+        "category": "fashion",
+        "positioning": "luxury",
+        "personality": "luxurious",
+        "page_type": "landing",
+        "surfaces": [
+          {
+            "name": "checkout",
+            "page_type": "checkout"
+          }
+        ]
+      },
+      "expected": {
+        "primary": ["editorial-luxury"],
+        "functional": {
+          "checkout": ["native-clean", "editorial-luxury"]
+        }
+      }
+    },
+    {
+      "id": "E12",
+      "prompt": "B2B SaaS homepage with a campaign page and an analytics dashboard.",
+      "context": {
+        "product_type": "saas",
+        "category": "b2b-services",
+        "audience": "professionals",
+        "personality": ["calm", "professional"],
+        "page_type": "homepage",
+        "surfaces": [
+          {
+            "name": "campaign",
+            "page_type": "marketing-campaign",
+            "density": "low"
+          },
+          {
+            "name": "analytics",
+            "page_type": "dashboard",
+            "density": "high"
+          }
+        ]
+      },
+      "expected": {
+        "primary": ["modern-minimal"],
+        "functional": {
+          "analytics": ["instrument"],
+          "campaign": ["modern-minimal", "swiss-grid"]
+        }
+      }
+    }
+  ]
+}

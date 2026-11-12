@@ -49,6 +49,9 @@ test(`packed npm CLI installs with isolated scopes (parent dry-run=${inheritedDr
     assert.ok(files.has('skills/uiux-orchestrator/LICENSE'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/THIRD_PARTY_NOTICES.md'));
     assert.ok(files.has('skills/uiux-orchestrator/legal/licenses/apache-2.0.txt'));
+    for (const file of ['core/direction.md', 'registry/styles.json', 'scripts/direction.mjs']) {
+      assert.ok(files.has('skills/uiux-orchestrator/' + file), file);
+    }
     for (const file of ['scripts/probe-runtime.py', 'scripts/check-orchestration.py']) {
       assert.ok(files.has('skills/uiux-orchestrator/' + file), file);
     }

@@ -60,7 +60,8 @@ Every screen answers three questions in this order:
 
 ### Default color posture: premium monochrome
 
-When the user and brand give no color direction, default to a **premium monochrome or dark
+When the user, brand and [direction record](../core/direction.md) give no other color
+direction (monochrome styles and the library default), use a **premium monochrome or dark
 palette**: black, white and a deliberate range of grays, with at most one restrained accent.
 Luxury and modernity come from value contrast, material, photography and typography, not from
 hue. A user's or brand's explicit color request always overrides this default; then apply the
@@ -162,6 +163,7 @@ When `direction` runs, keep a short record in working context with concrete choi
 
 | Field | What to decide |
 |---|---|
+| Direction | How the design direction record is realized: primary (and secondary, functional) styles, ambition, color posture and motion level mapped to concrete treatments. A deviation needs a recorded reason (brief, brand, accessibility). |
 | Brief fit | The requested visual qualities and explicit dislikes, each mapped to an observable design choice. Include references actually inspected, if any. |
 | Concept | A product-specific visual idea and surface mode; how it serves the audience and primary action. |
 | Color | Actual roles/tokens in OKLCH (or platform wide-gamut values): the neutral ramp, its temperature, the accent (if any) and where it appears, and contrast pairs. Confirm no [AI-generated color signature](#ai-generated-color-signatures-avoid) is present; if the result matches a [safe-default trap](#safe-default-traps), state the brief reason. |
@@ -178,8 +180,11 @@ brief, not a substitute for rendering or a reason to create process files.
 
 ### Contemporary visual range: bold by default
 
-For original work without a governing style, the default ambition is **bold**: a direction
-someone would remember and could describe after one look. In the default
+The ambition comes from the [direction record](../core/direction.md): each style declares
+`bold`, `confident` or `quiet` (see its style index), dense Operate surfaces are `quiet`, and a
+governing brand turns `bold` into `confident`. A Persuade surface with no context falls back to
+Bold Modern (`bold`). Bold means a direction someone would remember
+and could describe after one look; confident and quiet keep one recognizable signature. In the default
 [premium monochrome](#default-color-posture-premium-monochrome) posture, boldness comes from
 scale, contrast, crop, composition, photography, material and motion rather than from hue.
 Specify actual colors, type, composition and assets; naming a style is insufficient. Products
@@ -210,6 +215,11 @@ brief or brand points to it; otherwise treat it as unresolved direction and push
 - **Editorial beige:** cream/beige/terracotta, muted sage, serif italics, sparse layout.
 - **SaaS gray:** white + light gray cards + one blue/indigo CTA, centered hero, three-card grid.
 - **Dark glow:** slate/ink background + violet/indigo glow blobs + gradient headline text.
+
+A style selected in the direction record is a brief, not a trap: Organic Tactile is not
+editorial beige when it has a real value range, earth chroma and material; Modern Minimal is not
+lazy mono or SaaS gray when it has true darks, structure and product imagery. The traps still
+apply inside every style.
 
 When the user asks for colorful or vivid design, follow that brief: build the palette with the
 same OKLCH method (real chroma, real area, tinted neutrals) and still avoid the

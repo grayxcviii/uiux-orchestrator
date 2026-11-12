@@ -16,6 +16,7 @@ platform_hint: what the request says (confirmed later by project intelligence)
 size: Small | Medium | Large                        # see complexity
 risk: low | elevated | high                         # see risk
 open_questions: [only blocking ones]
+design_context: {dimension: {value, source}}       # when design judgment is open; see direction.md §1
 ```
 
 ## Intents
@@ -100,6 +101,7 @@ default, state it in the start summary, and proceed.
 | Adding a dependency or upgrading a library | Which file a screen lives in (search) |
 | Destructive change to shared components | Preferred spacing/colors when tokens exist |
 | Facts end users would read as true (company facts, prices, claims, testimonials) — ask once and meanwhile build with clearly marked placeholders | Whether to follow platform conventions (always) |
+| The direction question [direction.md §4](direction.md#4-clarification-rule) raises: unknown audience or personality that would change the style family on a brand-expressive surface | A style the user delegated ("you decide") or that the brief, a named style or the brand already settles |
 
 Ask once, batched, with a recommended default.
 
@@ -111,13 +113,14 @@ and brand limits. When references are available, inspect their relevant visual d
 invent references or claim to have viewed them. Carry this brief into driver selection and
 the direction contract in [visual-design.md §6](../references/visual-design.md#6-avoiding-generic-ai-generated-ui).
 
-For original work with no supplied style, use a bold, contemporary direction suited to the
-product. Without a user or brand color direction, the palette follows the
+Record these signals in `design_context` with their sources; never invent audience, brand
+personality or positioning. The style, **ambition level** (`bold`, `confident` or `quiet`) and
+color posture then come from the [design direction record](direction.md): a named style is
+kept, a governing brand leads, otherwise the direction is inferred, and the library default is
+a bold, contemporary direction in the
 [premium monochrome posture](../references/visual-design.md#default-color-posture-premium-monochrome)
-(black/white/dark, one temperature, at most one rare accent) and avoids the
-[AI-generated color signatures](../references/visual-design.md#ai-generated-color-signatures-avoid).
-Record the **ambition level**: `bold` by default; `restrained` only when the user, brand or an
-Operate/data-dense surface asks for it, with that reason noted. "Modern" alone does not select
+(black/white/dark, one temperature, at most one rare accent). Every posture avoids the
+[AI-generated color signatures](../references/visual-design.md#ai-generated-color-signatures-avoid). "Modern" alone does not select
 neon, gradients or retro editorial styling. For an explicit "colorful" request, plan visible
 chromatic presence; do not reduce it to a tiny accent on a gray template. State the
 concrete direction you choose and proceed when the user delegated it. This adds no approval step.

@@ -44,11 +44,15 @@ Ask a coding agent for a beautiful interface and you usually get:
   the specialists that fit: web, React Native, iOS, Android or Flutter.
 - **A design team, not a single prompt.** Research, concept, art direction, components, motion and
   review each go to the best-suited skill, in the right order.
-- **Premium, not generic.** Without a color brief: refined black, white and dark palettes with at
-  most one rare accent, and no AI-generated colors (indigo accents, purple-to-blue gradients, neon,
-  gradient text). Your brand or color request always comes first.
-- **Bold by design.** Every new design commits to one memorable decision, such as an oversized type
-  crop or a dramatic photographic composition, and later steps keep it.
+- **The right style for the product.** A Style Library of 13 directions (from Editorial Luxury and
+  Organic Tactile to Instrument and Playful Illustrated) is matched to your product, goal,
+  audience and brand personality. A clothing store is not assumed to be luxury: if the answer
+  would change the design, it asks one short question; if you say "you decide", it decides and
+  states its assumptions. A style you name is always kept.
+- **Premium, not generic.** No AI-generated colors (indigo accents, purple-to-blue gradients,
+  neon, gradient text) in any style. With no context at all, it falls back to refined black,
+  white and dark palettes with one memorable, bold decision. Your brand or color request always
+  comes first.
 - **Components that hold up on every platform.** A built-in component contract decides the right
   component and what it must do (states, keyboard, accessibility, motion), then maps it to HTML,
   SwiftUI, Compose, React Native or Flutter.
@@ -57,9 +61,9 @@ Ask a coding agent for a beautiful interface and you usually get:
 - **Checked on screen.** The rendered result is reviewed for brief fit, craft, accessibility and
   responsiveness. Anything unverified is reported, not hidden.
 
-Have a design system, brand or supplied design? It works within them. The monochrome palette and
-bold direction are defaults for a blank brief only: existing brand colors, tokens and components
-always win, so say so in your request if your project has them.
+Have a design system, brand or supplied design? It works within them: existing brand colors,
+tokens and components always win over the style library, which then only shapes functional
+screens such as settings or dashboards. Say so in your request if your project has them.
 
 ## How it works
 
@@ -70,8 +74,10 @@ already uses (`.claude/`, `AGENTS.md`, `.cursor/`, …). A new or unrecognized p
 catalogue; `npx uiux-orchestrator uninstall` removes everything the installer added.
 
 **On every request**, it reads your brief and your project (stack, tokens, components, motion
-library, tooling), picks which installed skill owns each step, and settles their overlaps up
-front so no two skills fight over the same decision. The final report lists which skills
+library, tooling). For design work it first picks one design direction from the Style Library,
+or asks a single question when the brief leaves the style genuinely open. Then it picks which
+installed skill owns each step, and settles their overlaps up front so no two skills fight over
+the same decision. The final report lists which skills
 actually ran and the evidence behind the result.
 
 New designs and redesigns run the full process. Each stage hands an accepted output to the next:
@@ -79,15 +85,16 @@ New designs and redesigns run the full process. Each stage hands an accepted out
 | # | Stage | What happens |
 |---|---|---|
 | 1 | Inspect | Platform, stack, tokens, components, tooling, installed skills |
-| 2 | Research & UX | Research evidence first, then the UX plan: audience, tasks, hierarchy, flows, states |
-| 3 | Concept | 2–3 distinct approaches; one chosen with its rationale |
-| 4 | Art direction | Palette, type, composition, media, the decisive move |
-| 5 | Design system | Final tokens, components, variants, states, contrast |
-| 6 | Components & media | Pick each component against a platform-agnostic contract (states, keyboard, accessibility, motion), then reuse project and platform components, use shadcn/Magic UI on React, and check asset rights |
-| 7 | Motion | Motion signature, choreography, transitions, reduced motion |
-| 8 | Build | Working code on your stack, every interaction state |
-| 9 | Validate | Build, interactions and rendered screenshots at real sizes |
-| 10 | Review & refine | Separate design, technical/accessibility and motion reviews; fix and re-check |
+| 2 | Design direction | Product, goal, audience and brand personality from your brief (unknowns stay unknown); a primary style, at most one complementary style and functional styles for screens like checkout or analytics; one question only if the answer would change the style |
+| 3 | Research & UX | Research evidence first, then the UX plan: audience, tasks, hierarchy, flows, states |
+| 4 | Concept | 2–3 distinct approaches inside the chosen direction; one chosen with its rationale |
+| 5 | Art direction | Palette, type, composition, media and the decisive move, inside the chosen direction |
+| 6 | Design system | Final tokens, components, variants, states, contrast |
+| 7 | Components & media | Pick each component against a platform-agnostic contract (states, keyboard, accessibility, motion), then reuse project and platform components, use shadcn/Magic UI on React, and check asset rights |
+| 8 | Motion | Motion signature, choreography, transitions, reduced motion |
+| 9 | Build | Working code on your stack, every interaction state |
+| 10 | Validate | Build, interactions and rendered screenshots at real sizes |
+| 11 | Review & refine | Separate design, technical/accessibility and motion reviews; fix and re-check |
 
 Smaller jobs take shorter paths:
 
@@ -121,6 +128,15 @@ Open your agent in the project and ask:
 ```text
 Use uiux-orchestrator to redesign this dashboard.
 Keep our components and brand colors. Make the main actions easier to find.
+```
+
+Steer the style, or leave it open:
+
+```text
+Design a landing page for our sustainable clothing brand for young adults.   → picks Organic Tactile
+Design a portfolio site using Swiss Grid.                                     → keeps Swiss Grid
+Design a landing page for a clothing store.                                   → asks what kind of brand
+Design a clothing landing page. You decide everything.                        → decides, states assumptions
 ```
 
 Or explore before building:

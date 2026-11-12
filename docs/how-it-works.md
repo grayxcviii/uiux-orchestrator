@@ -24,6 +24,10 @@ the normal pipeline. The shortcut keeps the applicable build, visual and interac
     Compose/Views, Flutter;
   - tokens, components and motion libraries;
   - commands, and the visual tooling available.
+- **Design direction** (when design judgment is open) turns the brief into a context record,
+  ranks the Style Library with `scripts/direction.mjs` and returns one direction record: primary,
+  secondary and functional styles, ambition, color posture, motion level and assumptions. It asks
+  one question only when missing audience or personality would change the style family.
 - **Decision engine** assigns every required capability to a compatible skill, an executed
   driver's owned output, verified project reuse or an evidenced fallback. Available suitable
   specialists must execute; personal confidence and cost alone do not permit bypass.
@@ -158,14 +162,16 @@ and caveats are in [tests/benchmark.md](../tests/benchmark.md).
 .claude-plugin/               Claude Code plugin + marketplace manifests
 skills/uiux-orchestrator/     the skill (the only part an agent loads)
   SKILL.md                    hub: pipeline, fast path, workflows, rules, report format
-  core/                       intake, project intelligence, decision engine, skill registry,
-                              conflict resolution, handoff, execution policy, quality gates
+  core/                       intake, project intelligence, design direction, decision engine,
+                              skill registry, conflict resolution, handoff, execution policy,
+                              quality gates
   workflows/                  design, redesign, improvement, animation, review, bug-fix,
                               design-system, accessibility
   platforms/                  web, react-native, ios, android, flutter (version gates + 12 topics)
   references/                 visual-design, motion-principles, accessibility (WCAG 2.2 AA)
   registry/skills.yaml        verified metadata for external skills + reference sources
-  scripts/                    ui-check, motion-trace (zero-dependency CDP)
+  registry/styles.json        Style Library: styles, fit rules, pairings, treatments
+  scripts/                    ui-check, motion-trace (zero-dependency CDP), direction (style decision)
 docs/                         usage examples, research, registry schema
 tests/                        scenarios, harness, fixtures, results
 scripts/validate.py           spec + consistency checks (Python 3 stdlib)
@@ -191,7 +197,8 @@ Routing benchmark: `python3 scripts/score_routing.py <results.json> [--key tests
 The harness is described in [tests/harness/README.md](../tests/harness/README.md). Planned targets are
 kept separate from measured numbers ([tests/README.md](../tests/README.md)).
 
-Adding a skill means adding a registry entry; the decision engine does not change. See
+Adding a skill means adding a registry entry; the decision engine does not change. Adding a style
+means adding a `registry/styles.json` entry and direction scenarios; the script does not change. See
 [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## History

@@ -6,6 +6,7 @@
 |---|---|
 | `scenarios.json` | 41 routing scenarios with expected routing, including alternate-runtime and subject/media-fit regressions |
 | `scenarios-heldout.json` | 8 held-out scenarios written after all fixes, never used for tuning |
+| `direction-scenarios.json` | 24 design direction scenarios: the context an agent must extract from each prompt and the expected direction decision |
 | `harness/` | Harness README (decision schema, prompts), installed-skill metadata, shuffled batches |
 | `fixtures/` | Sample apps for execution runs (`web-app`, `expo-onboarding`) |
 | `benchmark.md` | **Current benchmark: measured metrics vs. targets, cost, threats to validity** |
@@ -20,6 +21,20 @@ expected: platform · intent(s) · workflow(s) · fast_path · mutation · drive
           max_status · must_ask · mode
 expected_outputs · expected_validation · pass_criteria
 ```
+
+## Design direction checks
+
+`tests/direction.test.mjs` (part of `npm test`) runs `scripts/direction.mjs` on every
+`direction-scenarios.json` entry and checks mode, clarification, primary/secondary/functional
+choices, exclusions, assumptions and confidence. It also checks invariants on every scenario:
+at most one secondary, which must be a listed pairing; at most three styles; no question when
+the user delegated, named a style, a brand governs or the run is non-interactive; unknown context
+disclosed as assumptions; identical output on repeated runs. Further tests cover library
+consistency, extensibility without code changes, platform-independent identity and the CLI.
+
+The scenarios fix the expected extraction (`context`) separately from the decision, so a harness
+run can score an agent's context record against them. The deterministic tests do not prove that
+an agent extracts context correctly.
 
 ## Installer checks
 

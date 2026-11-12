@@ -10,7 +10,8 @@ was actually executed.
 ```mermaid
 flowchart TD
     U[User brief] --> I[Inspect product, project and platform]
-    I --> F[Research and UX foundation / UUPM evidence, then Impeccable shape UX plan]
+    I --> D[Design direction / Style Library record, at most one question]
+    D --> F[Research and UX foundation / UUPM evidence, then Impeccable shape UX plan]
     F --> C[Concept reasoning / bounded frontend-design or platform-compatible alternative]
     C --> A[Final art direction / one visual driver, Taste when eligible]
     A --> S[Finalize design system / reconcile foundation and final visuals]
@@ -66,7 +67,7 @@ designs keep their fidelity requirements; read-only reviews provide recommendati
 | `inspect` | Project/platform facts, commands, asset/tool and skill inventory | Orchestrator inspects actual sources. |
 | `foundation` | Evidence, product/UX analysis, patterns, hierarchy, states and provisional guidelines | In order: UUPM search (research evidence) → Impeccable shape (UX plan) → Impeccable onboard or a targeted UUPM query for gaps. UUPM style/palette results stay provisional. |
 | `concept` | Alternatives, chosen experience concept, narrative/structure and rationale | frontend-design in bounded `design-reasoning` mode on suitable web tasks; compatible concept specialist elsewhere. |
-| `direction` | Final palette, typography, composition, imagery/materials, identity and responsive direction | One visual driver. Taste is first choice for eligible marketing/product/shop websites. |
+| `direction` | Final palette, typography, composition, imagery/materials, identity and responsive direction, inside the design direction record | One visual driver. Taste is first choice for eligible marketing/product/shop websites. |
 | `system` | Final semantic tokens and component/state conventions, actual code locations and contrast checks | Create: the driver if it owns the system, else Expo design-system or shadcn; record afterwards with Impeccable document (never counts as creation). |
 | `components` | Reuse/source decisions, real media, rights and gaps | Component contracts from `references/component-intelligence.md`; project/platform components first; shadcn/Magic UI on React or suitable asset/component expertise for unresolved gaps. |
 | `motion` | Purpose, behavior, timing, interruption, reduced-motion path and implementation plan | Primary by platform: Emil animate (web), animate-expo (React Native), platform APIs (native); specialized skills when the task matches; Emil choreograph for groups. Static only on user request. |
@@ -81,6 +82,36 @@ reconciling its inputs from both foundation and art direction.
 
 When findings invalidate an upstream decision, revise that owner's handoff and recheck affected
 downstream outputs. Do not restart unrelated stages or let a reviewer silently impose new taste.
+
+## Design direction decision
+
+Before routing creative work, the orchestrator decides the design direction once
+([core/direction.md](../skills/uiux-orchestrator/core/direction.md)). The agent turns the brief
+into a context record (product, page, goal, audience, personality, positioning, UX mode,
+content, platform, explicit preferences), each value marked explicit, inferred, default or
+unknown. `scripts/direction.mjs` ranks the Style Library (`registry/styles.json`, 13 styles in
+four families) against it and returns one record: mode, confidence, assumptions, primary, at
+most one secondary, functional directions per extra surface, treatments, constraints and an
+optional clarification question.
+
+The record is the single source of truth for style family, ambition, color posture and motion
+level. UUPM supplies evidence, concept reasoning works inside the record, and the visual driver
+authors the concrete direction contract (palette values, type, composition) without re-choosing
+the style. Main design decisions:
+
+- **Semantic extraction, deterministic scoring.** The model maps meaning to a fixed vocabulary;
+  the script applies weighted compatibility rules. Results are reproducible and testable, and
+  the agent does not load the whole library.
+- **Relative scores, coarse matches.** Fit levels are strong, ok, neutral or conflict, not
+  fine-grained percentages, because finer numbers would imply a precision the inputs lack.
+- **Ask only when it changes the outcome.** A question is raised only if unknown audience or
+  personality could move the primary to a style of another family on a brand-expressive surface,
+  and never when the user delegated, named a style, a brand governs or the run is
+  non-interactive.
+- **Coherence over high scores.** A secondary must be a pairing the primary lists; functional
+  directions reuse the primary and secondary first and inherit their tokens; at most three styles.
+- **Backward compatible.** With too little context the library default is the previous built-in
+  direction: bold, premium monochrome.
 
 ## A bounded concept adapter, not two full drivers
 
