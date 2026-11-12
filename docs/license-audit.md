@@ -204,7 +204,7 @@ global (47), web (31) and mobile (23) installs were verified with original notic
 re-run kept all web sources. Results: [component specialist installation](../tests/results/2026-11-11-component-specialists.json).
 No upstream scripts/hooks were executed.
 
-## Stack-filtered installs — 2026-11-11 (1.5.0)
+## Stack-filtered installs — 2026-11-12 (1.4.5)
 
 `bin/specialists.json` gained `stacks` tags on 14 mobile skills; sources, revisions, licence files
 and supplemental notices are unchanged, so the catalogue hash in `install-audit.json` was updated

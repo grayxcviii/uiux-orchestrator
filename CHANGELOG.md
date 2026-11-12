@@ -4,7 +4,7 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
-## [1.5.0] - 2026-11-11
+## [1.4.5] - 2026-11-12
 
 ### Added
 - `npx uiux-orchestrator uninstall [--project | --global] [--agent <name>] [--dry-run]` removes
